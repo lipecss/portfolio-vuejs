@@ -1,0 +1,15 @@
+// File: _grid.scss
+// This file contains grid config.
+/* STYLES GO HERE */
+.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+.img-responsive-width {
+    width: 100%;
+    height: auto;
+}
+.img-responsive-height {
+    width: auto;
+    height: 100%;
+}

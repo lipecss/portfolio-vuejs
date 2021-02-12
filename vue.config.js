@@ -24,6 +24,13 @@ module.exports = {
       }
     }
   },
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: '@import "~@/scss/main.scss";'
+      }
+    }
+  },
   pluginOptions: {
     i18n: {
       locale: 'pt-BR',

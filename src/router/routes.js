@@ -1,7 +1,8 @@
 // Website pages
 const StartPage = () => import('@views/website/StartPage')
 const HomePage = () => import('@views/website/HomePage')
-const AboutPage = () => import('@views/website/AboutPage')
+const PortfolioPage = () => import('@views/website/PortfolioPage')
+const BlogPage = () => import('@views/website/BlogPage')
 
 // Errors Pages
 const Error404Page = () => import('@/views/errors/Error404Page')
@@ -22,9 +23,15 @@ export const routes = [
         meta: { scrollToTop: true }
       },
       {
-        path: '/about',
-        name: 'AboutPage',
-        component: AboutPage,
+        path: '/portfolio?',
+        name: 'PortfolioPage',
+        component: PortfolioPage,
+        meta: { scrollToTop: true }
+      },
+      {
+        path: '/blog?',
+        name: 'BlogPage',
+        component: BlogPage,
         meta: { scrollToTop: true }
       },
       {

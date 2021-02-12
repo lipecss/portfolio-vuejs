@@ -1,11 +1,13 @@
 <template>
-  <router-view/>
+  <div class="blog">
+    <h1>This is an about page</h1>
+  </div>
 </template>
 
 <script>
 
 export default {
-  name: 'StartPage',
+  name: 'BlogPage',
   beforeCreate () {},
   created () {},
   beforeMount () {},
@@ -24,7 +26,3 @@ export default {
   watch: {}
 }
 </script>
-
-<style lang="scss">
-
-</style>
