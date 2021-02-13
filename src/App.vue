@@ -1,20 +1,33 @@
 <template>
   <div class="app">
-    <NavBar/>
     <router-view/>
     <Footer/>
   </div>
 </template>
 
 <script>
-const NavBar = () => import('@/components/layout/TheNavBar')
+// const NavBar = () => import('@/components/layout/TheNavBar')
 const Footer = () => import('@/components/layout/TheFooter')
 
 export default {
+  beforeCreate () {},
+  created () {},
+  beforeMount () {},
+  mounted () {},
+  beforeUpdate () {},
+  updated () {},
+  destroyed () {},
+  data () {
+    return {}
+  },
   components: {
-    NavBar,
+    // NavBar,
     Footer
-  }
+  },
+  computed: {},
+  methods: {},
+  filters: {},
+  watch: {}
 }
 
 </script>

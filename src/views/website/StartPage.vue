@@ -1,9 +1,12 @@
 <template>
-  <router-view/>
+  <div class="start">
+    <NavBar/>
+    <router-view/>
+  </div>
 </template>
 
 <script>
-
+const NavBar = () => import('@/components/layout/TheNavBar')
 export default {
   name: 'StartPage',
   beforeCreate () {},
@@ -15,9 +18,13 @@ export default {
   beforeDestroy () {},
   destroyed () {},
   data () {
-    return {}
+    return {
+      result: 'OI'
+    }
   },
-  components: {},
+  components: {
+    NavBar
+  },
   computed: {},
   methods: {},
   filters: {},

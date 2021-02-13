@@ -1,8 +1,10 @@
 <template>
   <div class="home">
-    <section class="home"><BaseHeroImage/></section>
+    <section id="home" class="home">
+      <BaseHeroImage/>
+    </section>
 
-    <section class="about">
+    <section id="about" class="about">
       <b-container>
         <b-row class="about-area padding-area">
           <b-col cols="12" sm="12" lg="5">
@@ -31,7 +33,7 @@
       </b-container>
     </section>
 
-    <section class="portfolio">
+    <section id="portfolio" class="portfolio">
       <b-container>
         <b-row class="portfolio-area text-center padding-area">
           <b-col md="12">
@@ -55,7 +57,20 @@
       </b-container>
     </section>
 
-    <section class="blog">
+    <section id="blog" class="blog">
+      <b-container>
+        <b-row class="blog-area text-center padding-area">
+          <b-col md="12">
+            <div class="">
+              <h2 class="title">My Awesome Service</h2>
+              <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
+            </div>
+          </b-col>
+        </b-row>
+      </b-container>
+    </section>
+
+    <section id="contact" class="contact">
       <b-container>
         <b-row class="blog-area text-center padding-area">
           <b-col md="12">
