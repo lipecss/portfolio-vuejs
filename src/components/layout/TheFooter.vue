@@ -11,13 +11,13 @@
           <div class="social text-center">
             <ul>
               <li>
-                <a href=""><font-awesome-icon :icon="['fab', 'github']" /></a>
+                <a href="https://github.com/lipecss" target="_blank"><font-awesome-icon :icon="['fab', 'github']" /></a>
               </li>
               <li>
-                <a href=""><font-awesome-icon :icon="['fab', 'linkedin-in']" /></a>
+                <a href="https://www.linkedin.com/in/felipecss/" target="_blank"><font-awesome-icon :icon="['fab', 'linkedin-in']" /></a>
               </li>
               <li>
-                <a href=""><font-awesome-icon :icon="['fab', 'instagram']" /></a>
+                <a href="https://www.instagram.com/felipecss/" target="_blank"><font-awesome-icon :icon="['fab', 'instagram']" /></a>
               </li>
             </ul>
           </div>
