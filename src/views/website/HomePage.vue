@@ -72,11 +72,15 @@
 
     <section id="contact" class="contact">
       <b-container>
-        <b-row class="blog-area text-center padding-area">
-          <b-col md="12">
+        <b-row class="blog-area padding-area">
+          <b-col lg="6" order="2" order-lg="1">
             <div class="">
-              <h2 class="title">My Awesome Service</h2>
-              <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
+              <BaseContactForm/>
+            </div>
+          </b-col>
+          <b-col lg="6" order="1" order-lg="2">
+            <div class="">
+              <img src="http://trydo.rainbowit.net/assets/images/about/about-9.jpg" alt="talk to me">
             </div>
           </b-col>
         </b-row>
@@ -87,6 +91,7 @@
 
 <script>
 const BaseHeroImage = () => import('@/components/fragments/BaseHeroImage')
+const BaseContactForm = () => import('@/components/fragments/BaseContactForm')
 export default {
   name: 'HomePage',
   beforeCreate () {},
@@ -110,7 +115,8 @@ export default {
     }
   },
   components: {
-    BaseHeroImage
+    BaseHeroImage,
+    BaseContactForm
   },
   computed: {},
   methods: {},
@@ -161,5 +167,10 @@ img {
 .blog {
   background: $default-gray;
   color: #fff;
+}
+
+// Section Contact
+.contact {
+  background: $default-black;
 }
 </style>

@@ -58,7 +58,7 @@ $--heading-size: 90px;
 
 .footer {
   padding: 30px 0;
-  background: $default-black;
+  background: $default-gray;
   color: #fff
 }
 
