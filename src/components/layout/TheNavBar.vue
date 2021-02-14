@@ -4,7 +4,6 @@
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav>
         <b-nav-item class="navss" :class="{ current: (content.id === currentNav)}" v-for="content in navContent" :key="content.name" :href="content.id">{{content.name}}</b-nav-item>
-        <b-nav-item class="navss" href="#blog">Blog</b-nav-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -30,6 +29,7 @@ export default {
         { name: 'Home', id: '#home' },
         { name: 'About', id: '#about' },
         { name: 'Portfolio', id: '#portfolio' },
+        { name: 'Blog', id: '#blog' },
         { name: 'Contact', id: '#contact' }
       ]
     }
