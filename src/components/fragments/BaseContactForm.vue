@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: 'BaseHeroImage',
+  name: 'BaseContactForm',
   beforeCreate () {},
   created () {},
   beforeMount () {},

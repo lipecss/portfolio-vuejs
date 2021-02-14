@@ -2,11 +2,13 @@
   <div class="start">
     <NavBar/>
     <router-view/>
+    <TheBackToTop/>
   </div>
 </template>
 
 <script>
 const NavBar = () => import('@/components/layout/TheNavBar')
+const TheBackToTop = () => import('@/components/layout/TheBackToTop')
 export default {
   name: 'StartPage',
   beforeCreate () {},
@@ -23,7 +25,8 @@ export default {
     }
   },
   components: {
-    NavBar
+    NavBar,
+    TheBackToTop
   },
   computed: {},
   methods: {},
