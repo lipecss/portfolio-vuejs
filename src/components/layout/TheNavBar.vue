@@ -16,6 +16,7 @@ export default {
   created () {},
   beforeMount () {},
   mounted () {
+    console.log(this.$router.currentRoute.path)
     window.addEventListener('scroll', this.updateScroll)
   },
   beforeUpdate () {},
@@ -39,16 +40,19 @@ export default {
   methods: {
     updateScroll (e) {
       this.scrollPosition = window.scrollY
-      console.log(this.scrollPosition)
-      if (window.scrollY >= 0 && window.scrollY <= 568) {
-        this.currentNav = '#home'
-        console.log('home')
-      } else if (window.scrollY > 568 && window.scrollY <= 1374) {
-        this.currentNav = '#about'
-        console.log('about')
-      } else if (window.scrollY > 1374) {
-        this.currentNav = '#portfolio'
-        console.log('portfolio')
+      const currentPage = this.$router.currentRoute.path
+      // console.log(this.scrollPosition)
+      if (currentPage === '/') {
+        if (window.scrollY >= 0 && window.scrollY <= 568) {
+          this.currentNav = '#home'
+          console.log('home')
+        } else if (window.scrollY > 568 && window.scrollY <= 1374) {
+          this.currentNav = '#about'
+          console.log('about')
+        } else if (window.scrollY > 1374) {
+          this.currentNav = '#portfolio'
+          console.log('portfolio')
+        }
       }
     }
   },

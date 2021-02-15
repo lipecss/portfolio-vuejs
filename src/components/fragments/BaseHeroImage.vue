@@ -1,5 +1,5 @@
 <template>
-  <div class="hero-banner">
+  <div class="hero-banner" :style="style">
     <b-container>
       <b-row class="about-area padding-area">
         <b-col cols="12" lg="6" class="">
@@ -7,7 +7,7 @@
             <span>Welcome to my World</span>
             <h1 class="title">Hi, I’m Felipecss <br></h1>
             <div class="skills">
-              <span>Js Developer</span>
+              <span id="skill-text">Js Developer.</span>
             </div>
             <h2 class="location">based in USA.</h2>
           </div>
@@ -24,27 +24,42 @@ export default {
   created () {},
   beforeMount () {},
   mounted () {
+    this.changeSkill()
   },
   beforeUpdate () {},
   updated () {},
   destroyed () {},
   data () {
     return {
-      skillToShow: '',
       skills: ['JS Developer.', 'Front End.', 'Back End.', 'Game Developer.']
     }
   },
-  props: {},
-  computed: {},
+  props: {
+    urlImg: { type: String, required: true }
+  },
+  computed: {
+    style () {
+      const img = this.urlImg
+      return {
+        backgroundImage: `url(${img})`,
+        backgroundPosition: '50%',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        padding: '230px 0'
+      }
+    }
+  },
   methods: {
     changeSkill () {
-      for (let i = 1; i <= this.skills.length; i++) {
-        const delay = i * 300
-        console.log(i)
-        setTimeout(function () {
-          console.log(this.items[i])
-        }, delay)
-      }
+      var index = 1
+      setInterval(() => {
+        if (index < this.skills.length) {
+          document.getElementById('skill-text').innerText = this.skills[index]
+          index++
+        } else {
+          index = 1
+        }
+      }, 2800)
     }
   },
   filters: {},
@@ -54,12 +69,7 @@ export default {
 
 <style lang="scss" scoped>
 .hero-banner {
-  background-color: #101010;
-  background-image: url(http://trydo.rainbowit.net/assets/images/bg/bg-image-28.jpg)!important;
-  background-position: 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 230px 0;
+
 }
 
 .inner {

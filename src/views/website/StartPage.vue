@@ -20,9 +20,7 @@ export default {
   beforeDestroy () {},
   destroyed () {},
   data () {
-    return {
-      result: 'OI'
-    }
+    return {}
   },
   components: {
     NavBar,
@@ -36,5 +34,7 @@ export default {
 </script>
 
 <style lang="scss">
-
+.start {
+  min-height: 805px;
+}
 </style>

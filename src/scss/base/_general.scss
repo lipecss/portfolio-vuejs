@@ -1,2 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap');
 
+.default-button {
+  margin-top: 35px;
+  transition: 0.7s;
+  opacity: 1;
+  padding: 0 23px;
+  height: 40px;
+  display: inline-block;
+  line-height: 34px;
+  border: 2px solid $vue-green;
+  color: $vue-green;
+  background: transparent;
+  border-radius: 4px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+

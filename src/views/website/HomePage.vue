@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <section id="home" class="home">
-      <BaseHeroImage/>
+      <BaseHeroImage urlImg="http://trydo.rainbowit.net/assets/images/bg/bg-image-28.jpg"/>
     </section>
 
     <section id="about" class="about">
@@ -60,11 +60,13 @@
     <section id="blog" class="blog">
       <b-container>
         <b-row class="blog-area text-center padding-area">
-          <b-col md="12">
-            <div class="">
-              <h2 class="title">My Awesome Service</h2>
-              <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
-            </div>
+          <b-col cols="12" md="6" lg="4" v-for="post in latastPosts" :key="post._id">
+           <BasePostThumb :data="post" />
+          </b-col>
+        </b-row>
+        <b-row class="text-center" v-if="latastPosts.lenght > 3">
+          <b-col cols="12" lg="12">
+            <button class="default-button">MORE</button>
           </b-col>
         </b-row>
       </b-container>
@@ -90,20 +92,25 @@
 </template>
 
 <script>
+import { getLatestPost } from '../../services/api'
 const BaseHeroImage = () => import('@/components/fragments/BaseHeroImage')
 const BaseContactForm = () => import('@/components/fragments/BaseContactForm')
+const BasePostThumb = () => import('@/components/fragments/BasePostThumb')
 export default {
   name: 'HomePage',
   beforeCreate () {},
   created () {},
   beforeMount () {},
-  mounted () {},
+  mounted () {
+    this.returnPosts()
+  },
   beforeUpdate () {},
   updated () {},
   beforeDestroy () {},
   destroyed () {},
   data () {
     return {
+      latastPosts: [],
       list: [
         { id: 1, color: 'red' },
         { id: 2, color: 'green' },
@@ -116,10 +123,16 @@ export default {
   },
   components: {
     BaseHeroImage,
-    BaseContactForm
+    BaseContactForm,
+    BasePostThumb
   },
   computed: {},
-  methods: {},
+  methods: {
+    async returnPosts () {
+      const posts = await getLatestPost()
+      this.latastPosts = posts
+    }
+  },
   filters: {},
   watch: {}
 }
@@ -167,6 +180,11 @@ img {
 .blog {
   background: $default-gray;
   color: #fff;
+  padding: 120px 0;
+
+  &.container {
+    padding: 0;
+  }
 }
 
 // Section Contact

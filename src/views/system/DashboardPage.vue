@@ -1,39 +1,33 @@
 <template>
-  <div class="app">
-    <router-view/>
-    <Footer/>
+  <div class="dashboard-admin">
+    <p>Dashboard Admin Page View</p>
   </div>
 </template>
 
 <script>
-// const NavBar = () => import('@/components/layout/TheNavBar')
-const Footer = () => import('@/components/layout/TheFooter')
-
 export default {
+  name: 'AdminDashboardPage',
+  metaInfo: {
+    title: 'System Admin Page'
+  },
   beforeCreate () {},
   created () {},
   beforeMount () {},
   mounted () {},
   beforeUpdate () {},
   updated () {},
+  beforeDestroy () {},
   destroyed () {},
   data () {
     return {}
   },
-  components: {
-    // NavBar,
-    Footer
-  },
+  components: {},
   computed: {},
   methods: {},
   filters: {},
   watch: {}
 }
-
 </script>
-<style lang="scss">
-#router-view {
-  padding: 20px 0px;
-  margin: 0 auto;
-}
+
+<style scoped lang="scss">
 </style>

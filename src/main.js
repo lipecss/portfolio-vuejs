@@ -3,10 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import { BootstrapVue } from 'bootstrap-vue'
-
-// Import Bootstrap an BootstrapVue CSS files (order is important)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import VueSecureHTML from 'vue-html-secure'
 
 // Plugins
 import i18n from './i18n'
@@ -25,6 +24,9 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 // Make BootstrapVue available throughout project
 Vue.use(BootstrapVue)
+
+// Vue VueSecureHTML
+Vue.use(VueSecureHTML)
 
 Vue.config.productionTip = false
 
