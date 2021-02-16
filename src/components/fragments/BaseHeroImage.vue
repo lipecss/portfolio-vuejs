@@ -52,9 +52,10 @@ export default {
   methods: {
     changeSkill () {
       var index = 1
+      const item = document.getElementById('skill-text')
       setInterval(() => {
-        if (index < this.skills.length) {
-          document.getElementById('skill-text').innerText = this.skills[index]
+        if (item && index < this.skills.length) {
+          item.innerText = this.skills[index]
           index++
         } else {
           index = 1

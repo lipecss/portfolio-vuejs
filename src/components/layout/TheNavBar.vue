@@ -3,7 +3,14 @@
     <b-navbar-toggle target="nav_collapse" class="navbar-dark"></b-navbar-toggle>
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav>
-        <b-nav-item class="navss" :class="{ current: (content.id === currentNav)}" v-for="content in navContent" :key="content.name" :href="content.id">{{content.name}}</b-nav-item>
+        <b-nav-item
+        class="navss"
+        :class="{ current: (content.id === currentNav)}"
+        v-for="content in navContent"
+        :key="content.name"
+        :href="content.id">
+          {{content.name}}
+        </b-nav-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -16,7 +23,6 @@ export default {
   created () {},
   beforeMount () {},
   mounted () {
-    console.log(this.$router.currentRoute.path)
     window.addEventListener('scroll', this.updateScroll)
   },
   beforeUpdate () {},
