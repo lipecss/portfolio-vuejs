@@ -1,7 +1,7 @@
 <template>
   <div class="start">
     <NavBar/>
-    <transition name="router-transition">
+    <transition name="router-transition" mode="out-in">
       <router-view/>
     </transition>
     <TheBackToTop/>
@@ -50,6 +50,6 @@ export default {
 
 .router-transition-enter-active,
 .router-transition-leave-active {
-  transition: all .8s ease;
+  transition: all .8s ease-in-out;
 }
 </style>
