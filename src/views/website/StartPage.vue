@@ -1,7 +1,9 @@
 <template>
   <div class="start">
     <NavBar/>
-    <router-view/>
+    <transition name="router-transition">
+      <router-view/>
+    </transition>
     <TheBackToTop/>
   </div>
 </template>
@@ -36,5 +38,18 @@ export default {
 <style lang="scss">
 .start {
   min-height: 805px;
+}
+
+// Transição de rota
+
+.router-transition-enter,
+.router-transition-leave-to {
+  opacity: 0;
+  transform: translateX(2em);
+}
+
+.router-transition-enter-active,
+.router-transition-leave-active {
+  transition: all .8s ease;
 }
 </style>

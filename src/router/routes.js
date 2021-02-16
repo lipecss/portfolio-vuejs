@@ -26,19 +26,19 @@ export const routes = [
         path: '/',
         name: 'HomePage',
         component: HomePage,
-        meta: { scrollToTop: true }
+        meta: { scrollBehavior: false }
       },
       {
         path: '/portfolio?',
         name: 'PortfolioPage',
         component: PortfolioPage,
-        meta: { scrollToTop: true }
+        meta: { scrollBehavior: true }
       },
       {
         path: '/blog/:slug',
         name: 'BlogPage',
         component: BlogPage,
-        meta: { scrollToTop: true },
+        meta: { scrollBehavior: true },
         async beforeEnter (to, from, next) {
           try {
             const hasSlugParam = to.params.slug.split(' ').join('-')
@@ -67,7 +67,7 @@ export const routes = [
         path: '/404',
         name: 'Error404Page',
         component: Error404Page,
-        meta: { scrollToTop: true },
+        meta: { scrollBehavior: true },
         props: false
       }
     ]

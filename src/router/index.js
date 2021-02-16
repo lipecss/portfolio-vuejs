@@ -5,6 +5,8 @@ import { routes } from '@router/routes.js'
 Vue.use(VueRouter)
 
 const scrollBehavior = (to, from, savedPosition) => {
+  if (to.path === '/') return
+
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve({ x: 0, y: 0 })
