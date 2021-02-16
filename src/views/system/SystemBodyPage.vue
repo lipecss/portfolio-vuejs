@@ -1,15 +1,9 @@
 <template>
   <div class="syetem-body-page">
-    <h1>System Body Page View</h1>
-    <input type="text" v-model="postImage" placeholder="Your image url">
-    <input type="text" v-model="title" placeholder="Your title">
     <b-container>
       <b-row>
         <b-col cols="6">
-          <quill-editor
-          v-model="content"
-          ref="myQuillEditor"
-          />
+          <RichTextEditor/>
         </b-col>
       </b-row>
     </b-container>
@@ -19,12 +13,8 @@
 </template>
 
 <script>
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
-import { quillEditor } from 'vue-quill-editor'
-
 import { newPost } from '../../services/api'
+const RichTextEditor = () => import('@/components/fragments/BaseRichTextEditor')
 
 export default {
   name: 'SystemBodyPage',
@@ -38,13 +28,11 @@ export default {
   destroyed () {},
   data () {
     return {
-      postImage: '',
-      title: '',
-      content: ''
+      postImage: ''
     }
   },
   components: {
-    quillEditor
+    RichTextEditor
   },
   computed: {},
   methods: {
@@ -59,4 +47,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "~vue2-editor/dist/vue2-editor.css";
+
+/* Import the Quill styles you want */
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
 </style>
