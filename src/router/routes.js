@@ -26,7 +26,7 @@ export const routes = [
         path: '/',
         name: 'HomePage',
         component: HomePage,
-        meta: { scrollBehavior: false }
+        meta: { scrollBehavior: true }
       },
       {
         path: '/portfolio?',

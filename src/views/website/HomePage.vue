@@ -99,7 +99,11 @@
 </template>
 
 <script>
+
+// Services
 import { getLatestPost } from '../../services/api'
+
+// Components
 const BaseHeroImage = () => import('@/components/fragments/BaseHeroImage')
 const BaseContactForm = () => import('@/components/fragments/BaseContactForm')
 const BasePostThumb = () => import('@/components/fragments/BasePostThumb')

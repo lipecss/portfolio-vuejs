@@ -16,23 +16,22 @@
   text-transform: uppercase;
 }
 
-/* width */
-::-webkit-scrollbar {
-  width: 5px;
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: $vue-green $default-gray;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: $default-black; 
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: $default-green; 
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 6px;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: $default-green; 
+*::-webkit-scrollbar-track {
+  background: $default-gray;
 }
 
+*::-webkit-scrollbar-thumb {
+  background-color: $vue-green;
+  border-radius: 20px;
+}
