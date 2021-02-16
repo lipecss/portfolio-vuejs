@@ -25,8 +25,7 @@ export default {
   data () {
     return {
       userName: '',
-      userPassword: '',
-      isForgotPassword: false
+      userPassword: ''
     }
   },
   components: {},
@@ -48,9 +47,6 @@ export default {
 
       // localStorage.setItem('system_user_type', 'client')
       // localStorage.setItem('system_token', 'asdasdasdasdasdas')
-
-      this.changeLogged(true)
-      this.changeUserType('client')
 
       if (this.userType === 'admin') {
         this.$router.push({ name: 'AdminDashboardPage' })

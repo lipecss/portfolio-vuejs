@@ -16,7 +16,7 @@
                 <div class="inner">
                   <div class="section-title">
                     <h2>About me</h2>
-                    <p class="description">There are many variations of passages of Lorem Ipsum available, but the majority have suffered &lt;a href="#"&gt;alteration&lt;/a&gt; in some form, by injected humour, or randomised words which dont look even slightly believable. If you are going to use a passage of Lorem Ipsum,</p>
+                    <p class="description" v-for="(desc, index) in about.descriptions" :key="index">{{desc}}</p>
                   </div>
                 </div>
               </b-col>
@@ -24,7 +24,6 @@
             <b-row>
               <b-col cols="12">
                 <div class="inner">
-                    fgfg
                 </div>
               </b-col>
             </b-row>
@@ -57,8 +56,16 @@
       </b-container>
     </section>
 
-    <section id="blog" class="blog">
+    <section id="blog" class="blog padding-area">
       <b-container>
+        <b-row class="">
+          <b-col cols="12" sm="12" md="12">
+            <div class="section-title text-center">
+              <h2>Latest Posts</h2>
+              <p>There are many variations of passages of Lorem Ipsum available.</p>
+            </div>
+          </b-col>
+        </b-row>
         <b-row class="blog-area text-center padding-area">
           <b-col cols="12" md="6" lg="4" v-for="post in latastPosts" :key="post._id">
            <BasePostThumb :data="post" />
@@ -111,6 +118,12 @@ export default {
   data () {
     return {
       latastPosts: [],
+      about: {
+        descriptions: [
+          'I am an eternal student, Full-Stack Developer. In fact, I have a Bachelor of Science in Computer Science. Its not just my professional background. It is also and above all a passion that has grown since I was a child. I am an autonomous self-taught teacher and I love to learn new things, certainly not without difficulties, hehe, but I have always managed to overcome obstacles and solve the problems I encountered!',
+          'I am a born gamer, I love to play. I have currently returned to the seas of Sea of ​​Thieves, so there is where they can find me when I am away'
+        ]
+      },
       list: [
         { id: 1, color: 'red' },
         { id: 2, color: 'green' },
@@ -145,8 +158,22 @@ img {
   box-shadow: 0 25px 65px rgb(0 0 0 / 10%);
 }
 
+// general
 .padding-area {
   padding: 120px 0;
+}
+
+.section-title h2 {
+  font-size: 56px;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.section-title p {
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 300;
+  color: $middle-gray;
 }
 
 // Section About
@@ -154,19 +181,6 @@ img {
 .about {
   background: $default-gray;
   color: #fff;
-}
-
-.inner .section-title h2 {
-  font-size: 56px;
-  margin-bottom: 8px;
-  font-weight: 700;
-}
-
-.inner .section-title p {
-  font-size: 18px;
-  line-height: 30px;
-  font-weight: 300;
-  color: #717173;
 }
 
 // Section Portfolio
@@ -180,10 +194,9 @@ img {
 .blog {
   background: $default-gray;
   color: #fff;
-  padding: 120px 0;
 
-  &.container {
-    padding: 0;
+  .blog-area {
+    padding: 40px 0;
   }
 }
 

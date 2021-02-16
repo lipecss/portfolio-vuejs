@@ -9,7 +9,7 @@
             <div class="skills">
               <span id="skill-text">Js Developer.</span>
             </div>
-            <h2 class="location">based in USA.</h2>
+            <h2 class="location">Living in Brazil</h2>
           </div>
         </b-col>
       </b-row>
@@ -68,10 +68,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.hero-banner {
-
-}
-
 .inner {
   padding: 0 30px;
 

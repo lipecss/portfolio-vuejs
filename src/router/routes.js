@@ -5,14 +5,13 @@ const StartPage = () => import('@views/website/StartPage')
 const HomePage = () => import('@views/website/HomePage')
 const PortfolioPage = () => import('@views/website/PortfolioPage')
 const BlogPage = () => import('@views/website/BlogPage')
+const LoginPage = () => import('@/views/website/LoginPage')
 
 // Errors Pages
 const Error404Page = () => import('@/views/errors/Error404Page')
 
-// Modules Pages
+// Admim Pages
 const SystemBodyPage = () => import('@/views/system/SystemBodyPage')
-// Admim
-const AdminDashboardPage = () => import('@/views/system/DashboardPage')
 
 export const routes = [
   {
@@ -60,22 +59,9 @@ export const routes = [
         }
       },
       {
-        path: '/dashboard',
-        component: SystemBodyPage,
-        props: false,
-        meta: {
-          requiresAuth: false
-        },
-        children: [
-          {
-            path: 'admin',
-            name: 'AdminDashboardPage',
-            component: AdminDashboardPage,
-            meta: {
-              userAdmin: true
-            }
-          }
-        ]
+        path: '/login',
+        name: 'LoginPage',
+        component: LoginPage
       },
       {
         path: '/404',
@@ -85,6 +71,26 @@ export const routes = [
         props: false
       }
     ]
+  },
+  {
+    path: '/dashboard',
+    component: SystemBodyPage,
+    props: false,
+    meta: {
+      requiresAuth: true
+    },
+    async beforeEnter (to, from, next) {
+      try {
+        const value = true
+        if (!value) {
+          next({ path: '/' })
+        } else {
+          next()
+        }
+      } catch (error) {
+        next()
+      }
+    }
   },
   {
     path: '*',

@@ -1,6 +1,6 @@
 <template>
   <div class="post">
-    <BaseHeroPost :urlImg="post.img" :title="post.title"/>
+    <BaseHeroPost :urlImg="post.img" :title="post.title" :date="post.created_at"/>
     <b-container>
       <b-row class="content">
         <b-col cols="12">
@@ -62,7 +62,7 @@ export default {
   img, p, span, h1, h2,
   h3, h5, h6 {
     color: #000 !important;
-    margin-bottom: 40px;
+    margin-bottom: 6px;
     font-family: Poppins,sans-serif;
   }
 
@@ -70,10 +70,10 @@ export default {
     text-align: justify;
   }
 
-  span {
+  span, p {
     font-size: 20px;
     line-height: 30px;
-    margin-bottom: 40px;
+    margin-bottom: 6px;
   }
 }
 
