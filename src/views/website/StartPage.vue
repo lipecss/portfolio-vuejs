@@ -1,6 +1,5 @@
 <template>
   <div class="start">
-    <NavBar/>
     <transition name="router-transition" mode="out-in">
       <router-view/>
     </transition>
@@ -9,7 +8,6 @@
 </template>
 
 <script>
-const NavBar = () => import('@/components/layout/TheNavBar')
 const TheBackToTop = () => import('@/components/layout/TheBackToTop')
 export default {
   name: 'StartPage',
@@ -25,7 +23,6 @@ export default {
     return {}
   },
   components: {
-    NavBar,
     TheBackToTop
   },
   computed: {},

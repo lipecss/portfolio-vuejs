@@ -5,10 +5,10 @@
       <b-navbar-nav>
         <b-nav-item
         class="navss"
-        :class="{ current: (content.id === currentNav)}"
+        :class="{ current: (content.id === currentNav )}"
         v-for="content in navContent"
         :key="content.name"
-        :href="content.id">
+        @click="findItem(content.id)">
           {{content.name}}
         </b-nav-item>
       </b-navbar-nav>
@@ -33,11 +33,11 @@ export default {
       scrollPosition: null,
       currentNav: '#home',
       navContent: [
-        { name: 'Home', id: '#home' },
-        { name: 'About', id: '#about' },
-        { name: 'Portfolio', id: '#portfolio' },
-        { name: 'Blog', id: '#blog' },
-        { name: 'Contact', id: '#contact' }
+        { name: 'Home', id: 'home' },
+        { name: 'About', id: 'about' },
+        { name: 'Portfolio', id: 'portfolio' },
+        { name: 'Blog', id: 'blog' },
+        { name: 'Contact', id: 'contact' }
       ]
     }
   },
@@ -47,19 +47,18 @@ export default {
     updateScroll (e) {
       this.scrollPosition = window.scrollY
       const currentPage = this.$router.currentRoute.path
-      // console.log(this.scrollPosition)
+
       if (currentPage === '/') {
-        if (window.scrollY >= 0 && window.scrollY <= 568) {
-          this.currentNav = '#home'
-          console.log('home')
-        } else if (window.scrollY > 568 && window.scrollY <= 1374) {
-          this.currentNav = '#about'
-          console.log('about')
-        } else if (window.scrollY > 1374) {
-          this.currentNav = '#portfolio'
-          console.log('portfolio')
-        }
+        if (window.scrollY >= 0 && window.scrollY <= 543) this.currentNav = 'home'
+        else if (window.scrollY > 543 && window.scrollY <= 1375) this.currentNav = 'about'
+        else if (window.scrollY > 1375 && window.scrollY <= 2216) this.currentNav = 'portfolio'
+        else if (window.scrollY > 2216 && window.scrollY <= 3057) this.currentNav = 'blog'
+        else this.currentNav = 'contact'
       }
+    },
+    findItem (item) {
+      const el = document.getElementById(item)
+      el.scrollIntoView({ behavior: 'smooth' })
     }
   },
   filters: {},
