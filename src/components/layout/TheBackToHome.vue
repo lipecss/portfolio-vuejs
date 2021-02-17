@@ -1,14 +1,14 @@
 <template>
   <transition name="fade">
-    <div class="back-top" @click="toTop" v-if="isActive">
-      <span><font-awesome-icon :icon="['fas', 'sort-up']" /></span>
+    <div class="back-home" @click="toHome">
+      <span><font-awesome-icon :icon="['fas', 'home']" /></span>
     </div>
   </transition>
 </template>
 
 <script>
 export default {
-  name: 'TheBackToTop',
+  name: 'TheBackToHome',
   beforeCreate () {},
   created () {},
   beforeMount () {},
@@ -28,22 +28,8 @@ export default {
   props: {},
   computed: {},
   methods: {
-    handleScroll () {
-      if (this.scY > 140) this.isActive = true
-      else this.isActive = false
-
-      if (this.scTimer) return
-      this.scTimer = setTimeout(() => {
-        this.scY = window.scrollY
-        clearTimeout(this.scTimer)
-        this.scTimer = 0
-      }, 100)
-    },
-    toTop () {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      })
+    toHome () {
+      this.$router.push({ path: '/' })
     }
   },
   filters: {},
@@ -52,17 +38,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.back-top {
+.back-home {
   position: fixed;
   background: #000;
   width: 50px;
   height: 50px;
-  bottom: 50px;
+  top: 50px;
   right: 30px;
   cursor: pointer;
   color: $vue-green;
   font-size: 30px;
-  line-height: 59px;
+  line-height: 51px;
   border-radius: 50%;
   text-align: center;
   z-index: 999;

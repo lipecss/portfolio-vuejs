@@ -1,5 +1,6 @@
 <template>
-  <div class="post">
+  <div class="posts">
+    <TheBackToHome/>
     <BaseHeroPost :urlImg="post.img" :title="post.title" :date="post.created_at"/>
     <b-container>
       <b-row class="content">
@@ -12,7 +13,7 @@
 </template>
 
 <script>
-
+const TheBackToHome = () => import('@/components/layout/TheBackToHome')
 const BaseHeroPost = () => import('@/components/fragments/BaseHeroPost')
 export default {
   name: 'BlogPage',
@@ -32,6 +33,7 @@ export default {
     }
   },
   components: {
+    TheBackToHome,
     BaseHeroPost
   },
   computed: {},
@@ -42,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss">
-.post {
+.posts {
   min-height: 805px;
   background: #fff;
 }
