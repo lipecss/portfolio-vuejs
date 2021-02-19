@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import { VueEditor, Quill } from 'vue2-editor'
-import ImageResize from 'quill-image-resize-vue'
-import { ImageDrop } from 'quill-image-drop-module'
+import { VueEditor } from 'vue2-editor'
+// import ImageResize from 'quill-image-resize-vue'
+// import { ImageDrop } from 'quill-image-drop-module'
 
-Quill.register('modules/imageDrop', ImageDrop)
-Quill.register('modules/imageResize', ImageResize)
+// Quill.register('modules/imageDrop', ImageDrop)
+// Quill.register('modules/imageResize', ImageResize)
 
 export default {
   name: 'BaseRichTextEditor',
@@ -24,11 +24,6 @@ export default {
   destroyed () {},
   data () {
     return {
-      content: '',
-      customModulesForEditor: [
-        { alias: 'imageDrop', module: ImageDrop },
-        { alias: 'imageResize', module: ImageResize }
-      ],
       editorSettings: {
         modules: {
           imageDrop: true,
@@ -37,7 +32,9 @@ export default {
       }
     }
   },
-  props: {},
+  props: {
+    content: { type: String, required: true }
+  },
   components: {
     VueEditor
   },

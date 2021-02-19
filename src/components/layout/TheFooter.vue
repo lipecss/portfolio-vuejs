@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <div class="footer-inner">
+    <b-container>
       <b-row class="text-center">
         <b-col cols="12" sm="6" lg="4" md="6">
           <div class="brand">
@@ -28,7 +28,7 @@
           </div>
         </b-col>
       </b-row>
-    </div>
+    </b-container>
   </div>
 </template>
 

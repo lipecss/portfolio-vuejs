@@ -1,13 +1,22 @@
 <template>
   <b-container fluid :style="style">
-    <b-row>
+    <b-row class="padding">
       <b-col cols="12" lg="12" class="">
         <div class="text-center">
-          <h2 class="title">{{ title }}</h2>
+          <h2 class="title gradient-text">{{ title }}</h2>
           <ul class="blog-meta justify-content-center align-items-center">
             <li><font-awesome-icon :icon="['far', 'calendar-alt']" /> {{ sanitizedDate }}</li>
             <li><font-awesome-icon :icon="['far', 'smile']" /> Felipecss</li>
-            <li><font-awesome-icon :icon="['far', 'heart']" /> Like</li>
+            <li>
+              <div class="like">
+                <font-awesome-icon
+                :icon="[liked ? 'fas' : 'far', 'heart']"
+                id="heart" @click="sendAction"
+                :color="liked ? '#dc3545' : ''"
+                />
+                <span id="like-count">{{likes}}</span>
+              </div>
+            </li>
           </ul>
         </div>
       </b-col>
@@ -23,8 +32,7 @@ export default {
   beforeCreate () {},
   created () {},
   beforeMount () {},
-  mounted () {
-  },
+  mounted () {},
   beforeUpdate () {},
   updated () {},
   destroyed () {},
@@ -34,9 +42,12 @@ export default {
   props: {
     urlImg: { type: String, required: true },
     title: { type: String, required: true },
+    likes: { type: Number, default: 0 },
+    liked: { type: Boolean, default: false },
     options: { type: Array },
     date: { type: String }
   },
+  components: {},
   computed: {
     sanitizedDate () {
       return moment(this.date).format('LL')
@@ -48,18 +59,14 @@ export default {
         backgroundImage: `url(${img})`,
         backgroundPosition: '50%',
         backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        padding: '190px 0'
+        backgroundSize: 'cover'
       }
     }
   },
   methods: {
-    changeSkill () {
-      for (let i = 1; i <= this.skills.length; i++) {
-        const delay = i * 300
-        setTimeout(function () {
-        }, delay)
-      }
+    sendAction () {
+      const id = this.$route.params.post._id
+      this.$emit('action', id)
     }
   },
   filters: {},
@@ -73,30 +80,55 @@ export default {
   line-height: 90px;
   font-size: 65px;
   text-transform: uppercase;
-  background: -webkit-linear-gradient(145deg,#5b7363,$vue-green);
-  background: -webkit-linear-gradient(305deg,#5b7363,$vue-green);
-  background: linear-gradient(145deg,#5b7363,$vue-green);
   font-family: Montserrat,sans-serif;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+}
+
+.padding {
+  padding: 190px 0px;
 }
 
 .blog-meta {
   margin: 0 -15px;
-  flex-wrap: wrap;
   position: absolute;
-  width: 100%;
-  bottom: -135px;
+  width: 78%;
+  bottom: -115px;
+  // bottom: -135px;
   list-style: none;
+  display: flex;
 
   li {
     font-size: 16px;
-    color: #c6c9d8;
+    color: #fff;
     margin: 0 15px 13px;
+    text-shadow: 2px 1px 0px #000000;
   }
   svg {
     margin-right: 13px;
     font-size: 22px;
+
+    &:hover {
+      transform: scale(1.25);
+      cursor: pointer;
+    }
+  }
+}
+
+.like {
+  position: relative;
+
+  #like-count {
+    position: absolute;
+    top: -16px;
+    left: 27px;
+    color: #dc3545;
+    font-weight: 600;
+    font-size: 22px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .blog-meta {
+    width: 100%;
   }
 }
 </style>

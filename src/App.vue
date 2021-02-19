@@ -33,7 +33,7 @@ export default {
 </script>
 <style lang="scss">
 #router-view {
-  padding: 20px 0px;
+  // padding: 20px 0px;
   margin: 0 auto;
 }
 </style>

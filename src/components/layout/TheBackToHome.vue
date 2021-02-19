@@ -52,8 +52,9 @@ export default {
   border-radius: 50%;
   text-align: center;
   z-index: 999;
+  opacity: 0.6;
   &:hover {
-    opacity: 0.6;
+    opacity: 1;
   }
 }
 

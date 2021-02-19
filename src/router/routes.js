@@ -74,22 +74,11 @@ export const routes = [
   },
   {
     path: '/dashboard',
+    name: 'DashBoardPage',
     component: SystemBodyPage,
     props: false,
     meta: {
       requiresAuth: true
-    },
-    async beforeEnter (to, from, next) {
-      try {
-        const value = true
-        if (!value) {
-          next({ path: '/' })
-        } else {
-          next()
-        }
-      } catch (error) {
-        next()
-      }
     }
   },
   {

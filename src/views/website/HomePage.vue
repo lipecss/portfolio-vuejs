@@ -44,7 +44,7 @@
           </b-col>
         </b-row>
         <b-row class="content-area text-center">
-          <b-col cols="12" md="6" lg="4" v-for="post in latastPosts" :key="post._id">
+          <b-col cols="12" md="6" lg="4" v-for="post in latastPosts" :key="post._id" class="thumb">
            <BasePostThumb :data="post" />
           </b-col>
         </b-row>
@@ -62,11 +62,11 @@
           </b-col>
         </b-row>
         <b-row class="content-area text-center">
-          <b-col cols="12" md="6" lg="4" v-for="post in latastPosts" :key="post._id">
-           <BasePostThumb :data="post" />
+          <b-col cols="12" md="6" lg="4" v-for="post in latastPosts" :key="post._id" class="thumb">
+            <BasePostThumb :data="post"/>
           </b-col>
         </b-row>
-        <b-row class="text-center" v-if="latastPosts.lenght > 3">
+        <b-row class="text-center" v-if="latastPosts.length > 3">
           <b-col cols="12" lg="12">
             <button class="default-button">MORE</button>
           </b-col>
@@ -151,6 +151,10 @@ img {
   box-shadow: 0 25px 65px rgb(0 0 0 / 10%);
 }
 
+.thumb:nth-child(-n+3) {
+  padding-bottom: 20px;
+ }
+
 // general
 .padding-area {
   padding: 120px 0;
@@ -165,7 +169,6 @@ img {
 
 .section-title p {
   font-size: 18px;
-  line-height: 30px;
   font-weight: 300;
   color: $middle-gray;
 }

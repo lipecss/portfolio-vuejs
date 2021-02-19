@@ -3,11 +3,20 @@
 /* STYLES GO HERE */
 
 /*
-* Billy o Coco Cores
+* Cores
 */
 $default-black: #101010;
 $default-gray: #191919;
 $default-green: #00dc82;
 $vue-green: #42b883;
+$vue-greenlight: #6cbb60;
 $clean-gray: #c6c9d8;
 $middle-gray: #717173;
+
+// Gradient
+.gradient-text {
+  background: linear-gradient(145deg, $vue-green, $vue-greenlight);
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  -webkit-background-clip: text;
+}

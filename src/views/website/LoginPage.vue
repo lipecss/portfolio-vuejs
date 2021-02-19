@@ -2,15 +2,17 @@
   <div class="login">
     <h1>Login Page View</h1>
 
-    <input v-model.trim="userName" type="text" name="name" id="input-name" placeholder="Nome" @keyup.enter="loginEvent" >
+    <input id="email" v-model="email" type="email"  name="email" placeholder="Your Email" required autocomplete="new-password">
     <input v-model="userPassword" type="password" name="name" id="input-password" placeholder="Senha" @keyup.enter="loginEvent" >
 
     <button @click.prevent="loginEvent">Submit</button>
-    <p><router-link :to="{ name: 'ForgotPassword' }">Esqueci minha senha</router-link></p>
+    <p><router-link :to="{ path: '/' }">Esqueci minha senha</router-link></p>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import { authenticate } from '../../services/api'
 
 export default {
   name: 'LoginPage',
@@ -24,37 +26,22 @@ export default {
   destroyed () {},
   data () {
     return {
-      userName: '',
+      email: '',
       userPassword: ''
     }
   },
   components: {},
   computed: {},
   methods: {
-    loginEvent () {
-      const userName = this.userName
+    ...mapActions('ModuleUser', ['authUser']),
+    async loginEvent () {
+      const email = this.email
       const userPassord = this.userPassword
 
-      if (userName && userPassord) {
-        alert(`Nome: ${userName} - Senha: ${userPassord}`)
-      } else if (!userName && !userPassord) {
-        alert('Informe um nome de usuario e Senha')
-      } else if (!userName) {
-        alert('Informe um nome de usuario')
-      } else if (!userPassord) {
-        alert('Informe uma senha')
-      }
-
-      // localStorage.setItem('system_user_type', 'client')
-      // localStorage.setItem('system_token', 'asdasdasdasdasdas')
-
-      if (this.userType === 'admin') {
-        this.$router.push({ name: 'AdminDashboardPage' })
-      } else if (this.userType === 'client') {
-        this.$router.push({ name: 'UserDashboardPage' })
-      } else {
-        this.$router.push({ name: 'HomePage' })
-      }
+      authenticate(email, userPassord).then(user => {
+        this.authUser(user)
+        this.$router.push({ name: 'DashBoardPage', params: { user } })
+      })
     }
   },
   filters: {},

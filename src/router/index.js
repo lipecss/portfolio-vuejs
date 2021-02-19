@@ -2,6 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import { routes } from '@router/routes.js'
 
+import { hasTokenInStore, validToken } from '../helpers/functions'
+import store from '../store/index'
+
 Vue.use(VueRouter)
 
 const scrollBehavior = (to, from, savedPosition) => {
@@ -21,6 +24,30 @@ const router = new VueRouter({
   linkExactActiveClass: 'router-link-exact-active',
   scrollBehavior,
   routes
+})
+
+// Proteção das rotas (Auth)
+router.beforeEach(async (to, from, next) => {
+  // Obtendo se ja existe token salvo localmente
+  const tokenLocalStorage = await hasTokenInStore()
+
+  // Meta da rota
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+
+  if (requiresAuth && !tokenLocalStorage) {
+    next({ name: 'LoginPage' })
+  } else if (requiresAuth && tokenLocalStorage) {
+    const tokeIsValid = await validToken(tokenLocalStorage)
+
+    if (!tokeIsValid.auth) {
+      store.commit('ModuleUser/UPDATE_TOKEN', tokeIsValid.token)
+      next()
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
 })
 
 export default router

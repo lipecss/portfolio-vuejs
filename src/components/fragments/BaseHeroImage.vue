@@ -45,7 +45,9 @@ export default {
         backgroundPosition: '50%',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
-        padding: '230px 0'
+        padding: '230px 0',
+        width: '100%',
+        height: '700px'
       }
     }
   },
