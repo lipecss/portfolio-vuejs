@@ -120,7 +120,7 @@ export default {
       if (post.status === 'create') {
         const result = await newPost(post.img, post.title, post.content)
         if (result.status !== 'error') {
-          this.pushToList(post)
+          this.pushToList(result)
           this.isCreating = false
         }
       } else if (post.status === 'edit') {
@@ -166,16 +166,15 @@ export default {
 
 <style scoped lang="scss">
 .system-body-page {
-  background: $default-black;
+  background: $default-gray;
   min-height: 789px;
   padding-top: 50px;
-
   -webkit-user-select: none;
--khtml-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
--o-user-select: none;
-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
 
 // navbar

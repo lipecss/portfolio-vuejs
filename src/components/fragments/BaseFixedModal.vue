@@ -4,7 +4,8 @@
       <span id="btn-resize"><font-awesome-icon :icon="['fas', 'arrows-alt-v']"/></span>
       <!-- <span id="btn-resize" @mousedown="startDrag"><font-awesome-icon :icon="['fas', 'arrows-alt-v']"/></span> -->
       <b-container fluid>
-
+<p style="color: red">{{isEditing}}
+{{itemToEdit}}</p>
         <!-- buttons area -->
         <b-row style="padding-bottom: 20px; padding-right: 15px;" align-h="end">
           <button class="button" style="border: 2px solid #dc3545; color: #dc3545;" @click="closeModal">Cancel</button>
@@ -75,7 +76,7 @@ export default {
       dividerPosition: null,
       editorSize: null,
       dragging: false,
-      isEditing: true,
+      isEditing: false,
       showPreview: false,
       editorSettings: {
         modules: {
@@ -96,7 +97,9 @@ export default {
   methods: {
     closeModal () {
       this.$emit('close', false)
-
+      this.reserModal()
+    },
+    reserModal () {
       // reset all input and textarea
       this.title = ''
       this.postImage = ''
@@ -107,7 +110,7 @@ export default {
       const status = this.isEditing ? 'edit' : 'create'
 
       const newPost = {
-        _id: this.itemToEdit._id,
+        _id: this.isEditing ? this.itemToEdit._id : '',
         img: this.postImage,
         title: this.title,
         content: this.content,
@@ -126,12 +129,10 @@ export default {
       this.x = this.y = 'no'
     },
     doDrag (event) {
-      // console.log(event.screenY)
       if (this.dragging) {
-        // console.log(event)
         // const percentage = (event.layerY * 10) / 100
         const percentage = (event.pageY / window.innerHeight) * 100
-        console.log(percentage.toFixed(2))
+
         if (percentage >= 50 && percentage <= 92) {
           this.dividerPosition = percentage.toFixed(2)
           this.editorSize = event.layerY
@@ -150,12 +151,16 @@ export default {
       }
     },
     itemToEdit (value) {
-      console.log(value)
       if (value !== null) {
         this.postImage = value.img
         this.title = value.title
         this.content = value.content
         this.isEditing = true
+      }
+    },
+    isEditing (value) {
+      if (value === false) {
+        this.reserModal()
       }
     }
   }
@@ -244,5 +249,8 @@ input {
   height: 610px;
   border: 1px solid #fff;
   color: #fff;
+  img {
+    width: 100%;
+  }
 }
 </style>

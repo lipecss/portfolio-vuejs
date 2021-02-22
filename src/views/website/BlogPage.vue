@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import Pusher from 'pusher-js'
 import { mapActions, mapGetters } from 'vuex'
 
 // Services
@@ -37,7 +36,9 @@ export default {
     this.isAlreadyLike(this.post._id)
   },
   beforeMount () {},
-  mounted () {},
+  mounted () {
+    this.addAltTag()
+  },
   beforeUpdate () {},
   updated () {},
   beforeDestroy () {},
@@ -58,10 +59,9 @@ export default {
   methods: {
     ...mapActions('ModuleLike', ['pushToList', 'removeToList']),
     subscribe () {
-      const pusher = new Pusher('640cf85899a511c2c024', { cluster: 'us2' })
-      pusher.subscribe('portfolio-likes')
-      pusher.bind('postAction', async data => {
-        // this.likedPost(data.id)
+      const channel = this.$pusher.subscribe('portfolio-likes')
+
+      channel.bind('postAction', (data) => {
         this.post.likes = data.likes
       })
     },
@@ -78,13 +78,18 @@ export default {
         this.liked = false
         // tem, manda como dislike no back e remove da store
         this.removeToList(id)
-        console.log('ja tem')
       }
     },
     async isAlreadyLike (id) {
       const result = await this.getLikeById(id)
       if (result == null) this.liked = false
       else this.liked = true
+    },
+    addAltTag () {
+      let i = 0
+      for (i = 0; i < document.getElementsByTagName('img').length; i++) {
+        document.getElementsByTagName('img')[i].setAttribute('alt', document.getElementsByTagName('img')[i].src)
+      }
     }
   },
   filters: {},

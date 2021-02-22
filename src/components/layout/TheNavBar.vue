@@ -12,6 +12,7 @@
           {{content.name}}
         </b-nav-item>
       </b-navbar-nav>
+      <button class="login ml-auto"><router-link to="login">Login</router-link></button>
     </b-collapse>
   </b-navbar>
 </template>
@@ -31,10 +32,11 @@ export default {
   data () {
     return {
       scrollPosition: null,
-      currentNav: '#home',
+      currentNav: 'home',
       navContent: [
         { name: 'Home', id: 'home' },
         { name: 'About', id: 'about' },
+        { name: 'Skills', id: 'skill' },
         { name: 'Portfolio', id: 'portfolio' },
         { name: 'Blog', id: 'blog' },
         { name: 'Contact', id: 'contact' }
@@ -51,8 +53,9 @@ export default {
       if (currentPage === '/') {
         if (window.scrollY >= 0 && window.scrollY <= 543) this.currentNav = 'home'
         else if (window.scrollY > 543 && window.scrollY <= 1375) this.currentNav = 'about'
-        else if (window.scrollY > 1375 && window.scrollY <= 2216) this.currentNav = 'portfolio'
-        else if (window.scrollY > 2216 && window.scrollY <= 3057) this.currentNav = 'blog'
+        else if (window.scrollY > 1376 && window.scrollY <= 2236) this.currentNav = 'skill'
+        else if (window.scrollY > 2238 && window.scrollY <= 3488) this.currentNav = 'portfolio'
+        else if (window.scrollY > 3489 && window.scrollY <= 4823) this.currentNav = 'blog'
         else this.currentNav = 'contact'
       }
     },
@@ -66,7 +69,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .navbar {
   position: absolute;
   top: 0;
@@ -100,8 +103,32 @@ ul {
 }
 
 .current {
-  border-bottom: solid 5px #42b883;
+  border-bottom: solid 5px $vue-green;
   transition: border-width 0.6s linear;
   width: 106px;
+}
+
+.login {
+  padding: 0 23px;
+  height: 40px;
+  line-height: 34px;
+  border: 2px solid $vue-green;
+  background: transparent;
+  border-radius: 4px;
+  font-size: 14px;
+  text-transform: uppercase;
+  transition: .3s;
+
+  a { color: $default-green }
+
+  &:hover {
+    background: $vue-green;
+    color: #fff;
+    box-shadow: 0 10px 15px 0 rgb(0 0 0 / 10%);
+    transform: translateY(-5px);
+    a {
+      color: #fff;
+    }
+  }
 }
 </style>

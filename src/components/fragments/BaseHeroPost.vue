@@ -11,7 +11,7 @@
               <div class="like">
                 <font-awesome-icon
                 :icon="[liked ? 'fas' : 'far', 'heart']"
-                id="heart" @click="sendAction"
+                id="heart" @click.prevent="sendAction"
                 :color="liked ? '#dc3545' : ''"
                 />
                 <span id="like-count">{{likes}}</span>

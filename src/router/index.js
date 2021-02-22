@@ -31,14 +31,18 @@ router.beforeEach(async (to, from, next) => {
   // Obtendo se ja existe token salvo localmente
   const tokenLocalStorage = await hasTokenInStore()
 
+  if (tokenLocalStorage) {
+    var tokeIsValid = await validToken(tokenLocalStorage)
+  }
+
   // Meta da rota
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
   if (requiresAuth && !tokenLocalStorage) {
     next({ name: 'LoginPage' })
+  } else if (tokeIsValid && to.path === '/login') {
+    next({ name: 'DashBoardPage' })
   } else if (requiresAuth && tokenLocalStorage) {
-    const tokeIsValid = await validToken(tokenLocalStorage)
-
     if (!tokeIsValid.auth) {
       store.commit('ModuleUser/UPDATE_TOKEN', tokeIsValid.token)
       next()

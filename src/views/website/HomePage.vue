@@ -1,4 +1,4 @@
-<template>
+<template  @scroll="handleScroll">
   <div class="home">
     <NavBar/>
     <section id="home" class="home">
@@ -12,22 +12,47 @@
             <img src="http://trydo.rainbowit.net/assets/images/about/about-8.jpg" alt="">
           </b-col>
           <b-col col md="7">
+            <div class="inner">
+              <div class="section-title">
+                <h2>About me</h2>
+                <p class="description" v-for="(desc, index) in about.descriptions" :key="index">{{desc}}</p>
+              </div>
+            </div>
+          </b-col>
+        </b-row>
+      </b-container>
+    </section>
+
+    <section id="skill" class="skill padding-area">
+      <b-container>
+        <b-row >
+          <b-col cols="12" sm="12" md="12">
+            <div class="section-title text-center">
+              <h2>What can I do for you?</h2>
+              <p>There are many variations of passages of Lorem Ipsum available.</p>
+            </div>
+          </b-col>
+        </b-row>
+
+        <b-row class="skill-area">
+          <b-col lg="6">
+            <h3 class="text-center">Competences</h3>
+
             <b-row>
-              <b-col cols="12">
-                <div class="inner">
-                  <div class="section-title">
-                    <h2>About me</h2>
-                    <p class="description" v-for="(desc, index) in about.descriptions" :key="index">{{desc}}</p>
-                  </div>
-                </div>
+              <b-col lg="6" >
+                <span v-for="skill in skills" :key="skill.index">
+                  <BaseDonut :text="skill.text" value="100%"/>
+                </span>
+              </b-col>
+              <b-col lg="6">
+                <span v-for="skill in skills2" :key="skill.index">
+                  <BaseDonut :text="skill.text" value="100%"/>
+                </span>
               </b-col>
             </b-row>
-            <b-row>
-              <b-col cols="12">
-                <div class="inner">
-                </div>
-              </b-col>
-            </b-row>
+          </b-col>
+          <b-col lg="6" style="background: tomato">
+            tabs
           </b-col>
         </b-row>
       </b-container>
@@ -103,6 +128,8 @@ const NavBar = () => import('@/components/layout/TheNavBar')
 const BaseHeroImage = () => import('@/components/fragments/BaseHeroImage')
 const BaseContactForm = () => import('@/components/fragments/BaseContactForm')
 const BasePostThumb = () => import('@/components/fragments/BasePostThumb')
+const BaseDonut = () => import('@/components/fragments/BaseDonut')
+
 export default {
   name: 'HomePage',
   beforeCreate () {},
@@ -114,7 +141,8 @@ export default {
   beforeUpdate () {},
   updated () {},
   beforeDestroy () {},
-  destroyed () {},
+  destroyed () {
+  },
   data () {
     return {
       latastPosts: [],
@@ -123,14 +151,23 @@ export default {
           'I am an eternal student, Full-Stack Developer. In fact, I have a Bachelor of Science in Computer Science. Its not just my professional background. It is also and above all a passion that has grown since I was a child. I am an autonomous self-taught teacher and I love to learn new things, certainly not without difficulties, hehe, but I have always managed to overcome obstacles and solve the problems I encountered!',
           'I am a born gamer, I love to play. I have currently returned to the seas of Sea of ​​Thieves, so there is where they can find me when I am away'
         ]
-      }
+      },
+      skills: [
+        { index: 0, text: 'creativity' },
+        { index: 1, text: 'groundbreaking ' }
+      ],
+      skills2: [
+        { index: 0, text: 'To build a team' },
+        { index: 1, text: 'troubleshoot' }
+      ]
     }
   },
   components: {
     NavBar,
     BaseHeroImage,
     BaseContactForm,
-    BasePostThumb
+    BasePostThumb,
+    BaseDonut
   },
   computed: {},
   methods: {
@@ -183,22 +220,28 @@ img {
   background: $default-gray;
 }
 
+// Section Skill
+.skill {
+  background: $default-black;
+  color: #fff;
+}
+
 // Section Portfolio
 
 .portfolio {
-  background: $default-black;
+  background: $default-gray;
   color: #fff;
 }
 
 // Section Blog
 
 .blog {
-  background: $default-gray;
+  background: $default-black;
   color: #fff;
 }
 
 // Section Contact
 .contact {
-  background: $default-black;
+  background: $default-gray;
 }
 </style>

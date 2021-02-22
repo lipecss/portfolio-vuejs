@@ -11,13 +11,13 @@
           <div class="social text-center">
             <ul>
               <li>
-                <a href="https://github.com/lipecss" target="_blank"><font-awesome-icon :icon="['fab', 'github']" /></a>
+                <a href="https://github.com/lipecss" aria-label="github" rel="noopener" target="_blank"><font-awesome-icon :icon="['fab', 'github']" /></a>
               </li>
               <li>
-                <a href="https://www.linkedin.com/in/felipecss/" target="_blank"><font-awesome-icon :icon="['fab', 'linkedin-in']" /></a>
+                <a href="https://www.linkedin.com/in/felipecss/" aria-label="linkedin" rel="noopener" target="_blank"><font-awesome-icon :icon="['fab', 'linkedin-in']" /></a>
               </li>
               <li>
-                <a href="https://www.instagram.com/felipecss/" target="_blank"><font-awesome-icon :icon="['fab', 'instagram']" /></a>
+                <a href="https://www.instagram.com/felipecss/" aria-label="instagram" rel="noopener" target="_blank"><font-awesome-icon :icon="['fab', 'instagram']" /></a>
               </li>
             </ul>
           </div>
@@ -58,7 +58,7 @@ $--heading-size: 90px;
 
 .footer {
   padding: 30px 0;
-  background: $default-gray;
+  background: $default-black;
   color: #fff
 }
 

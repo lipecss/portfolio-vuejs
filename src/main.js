@@ -6,6 +6,8 @@ import { BootstrapVue } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueSecureHTML from 'vue-html-secure'
+import Donut from 'vue-css-donut-chart'
+import 'vue-css-donut-chart/dist/vcdonut.css'
 
 // Plugins
 import i18n from './i18n'
@@ -28,6 +30,16 @@ Vue.use(BootstrapVue)
 // Vue VueSecureHTML
 Vue.use(VueSecureHTML)
 
+// vue-donut-chart
+Vue.use(Donut)
+
+Vue.use(require('vue-pusher'), {
+  api_key: process.env.VUE_APP_PUSHER_APP_KEY,
+  options: {
+    cluster: 'us2',
+    encrypted: true
+  }
+})
 Vue.config.productionTip = false
 
 new Vue({

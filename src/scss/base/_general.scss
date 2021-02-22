@@ -7,6 +7,11 @@
 @import '~quill/dist/quill.bubble.css';
 @import '~quill/dist/quill.snow.css';
 
+img {
+  width: 100%; /* or max-width: 100%; */
+  height: auto;
+}
+
 .default-button {
   margin-top: 35px;
   transition: 0.7s;
@@ -21,6 +26,16 @@
   border-radius: 4px;
   font-size: 14px;
   text-transform: uppercase;
+
+  &:hover {
+    background: $vue-green;
+    color: #fff;
+    box-shadow: 0 10px 15px 0 rgb(0 0 0 / 10%);
+    transform: translateY(-5px);
+    a {
+      color: #fff;
+    }
+  }
 }
 
 /* Works on Firefox */
@@ -65,10 +80,6 @@
 
 .ql-snow .ql-fill, .ql-snow .ql-stroke.ql-fill {
   fill: #42b883 !important;
-}
-
-button:hover  {
-  color: #06c !important;
 }
 
 .ql-editor {

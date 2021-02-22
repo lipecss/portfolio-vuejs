@@ -45,7 +45,7 @@ export default {
   min-height: 805px;
   display: flex;
   align-items: center;
-  background: $default-black;
+  background: $default-gray;
   color: #fff;
 }
 

@@ -95,7 +95,6 @@ textarea {
 
 button {
   background: $vue-green;
-  color: #fff;
   font-size: 16px;
   text-transform: uppercase;
   letter-spacing: 2px;
