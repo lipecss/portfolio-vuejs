@@ -33,6 +33,14 @@ import { authenticate } from '../../services/api'
 
 export default {
   name: 'LoginPage',
+  metaInfo () {
+    return {
+      title: this.$t('pages.website.loginPage.html.title'),
+      link: [
+        { rel: 'canonical', href: `${process.env.VUE_APP_BASE}/` }
+      ]
+    }
+  },
   beforeCreate () {},
   created () {},
   beforeMount () {},

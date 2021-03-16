@@ -200,6 +200,14 @@ const HorizontalChart = () => import('@/components/fragments/BaseHorizontalChart
 
 export default {
   name: 'HomePage',
+  metaInfo () {
+    return {
+      title: this.$t('pages.website.homePage.html.title'),
+      link: [
+        { rel: 'canonical', href: `${process.env.VUE_APP_BASE}/` }
+      ]
+    }
+  },
   beforeCreate () {},
   created () {},
   beforeMount () {},

@@ -67,6 +67,14 @@ const TheBackToHome = () => import('@/components/layout/TheBackToHome')
 
 export default {
   name: 'BlogPage',
+  metaInfo () {
+    return {
+      title: this.$t('pages.website.blogListPage.html.title'),
+      link: [
+        { rel: 'canonical', href: `${process.env.VUE_APP_BASE}/` }
+      ]
+    }
+  },
   beforeCreate () {},
   created () {
     this.getInitialPosts()

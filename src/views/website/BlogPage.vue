@@ -29,6 +29,19 @@ const TheBackToHome = () => import('@/components/layout/TheBackToHome')
 const BaseHeroPost = () => import('@/components/fragments/BaseHeroPost')
 export default {
   name: 'BlogPage',
+  metaInfo () {
+    return {
+      title: this.post.title,
+      meta: [
+        { name: 'description', content: this.contentConverted },
+        { name: 'keywords', content: this.post.slug },
+        { property: 'og:image', content: this.post.img }
+      ],
+      link: [
+        { rel: 'canonical', href: `${process.env.VUE_APP_BASE}/` }
+      ]
+    }
+  },
   beforeCreate () {},
   created () {
     this.post = this.$route.params.post
@@ -54,7 +67,11 @@ export default {
     BaseHeroPost
   },
   computed: {
-    ...mapGetters('ModuleLike', ['getLikeById'])
+    ...mapGetters('ModuleLike', ['getLikeById']),
+    contentConverted () {
+      const strippedString = this.post.content.replace(/(<([^>]+)>)/gi, '').slice(0, 500)
+      return strippedString
+    }
   },
   methods: {
     ...mapActions('ModuleLike', ['pushToList', 'removeToList']),
