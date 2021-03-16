@@ -57,7 +57,7 @@ export default {
 $--heading-size: 90px;
 
 .footer {
-  padding: 30px 0;
+  padding: 22px 0;
   background: $default-black;
   color: #fff
 }

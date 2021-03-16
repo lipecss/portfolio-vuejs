@@ -167,7 +167,7 @@ export default {
 <style scoped lang="scss">
 .system-body-page {
   background: $default-gray;
-  min-height: 789px;
+  min-height: 805px;
   padding-top: 50px;
   -webkit-user-select: none;
   -khtml-user-select: none;
