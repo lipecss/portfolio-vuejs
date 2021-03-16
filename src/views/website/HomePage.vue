@@ -14,8 +14,8 @@
           <b-col col md="7">
             <div class="inner">
               <div class="section-title">
-                <h2>About me</h2>
-                <p class="description" v-for="(desc, index) in about.descriptions" :key="index">{{desc}}</p>
+                <h2>{{ $t('pages.website.homePage.sections.about.title') }}</h2>
+                <p class="description" v-for="(desc, index) in $t('pages.website.homePage.sections.about.descriptions')" :key="index">{{desc}}</p>
               </div>
             </div>
           </b-col>
@@ -28,31 +28,31 @@
         <b-row >
           <b-col cols="12" sm="12" md="12">
             <div class="section-title text-center">
-              <h2>What can I do for you?</h2>
-              <p>There are many variations of passages of Lorem Ipsum available.</p>
+              <h2>{{ $t('pages.website.homePage.sections.skill.title') }}</h2>
+              <p>{{ $t('pages.website.homePage.sections.skill.subtitle') }}</p>
             </div>
           </b-col>
         </b-row>
 
         <b-row class="skill-area">
           <b-col lg="6">
-            <h3 class="text-center">Competences</h3>
+            <h3 class="text-center">{{ $t('pages.website.homePage.sections.skill.competences.title') }}</h3>
             <b-row>
               <b-col sm="4" md="6" lg="6" >
-                <span v-for="competence in competences" :key="competence.index">
+                <span v-for="competence in $t('pages.website.homePage.sections.skill.competences.array')" :key="competence.index">
                   <BaseDonut :text="competence.text" value="100%"/>
                 </span>
               </b-col>
               <b-col sm="4" md="6" lg="6">
-                <span v-for="competence in competences2" :key="competence.index">
+                <span v-for="competence in $t('pages.website.homePage.sections.skill.competences.array2')" :key="competence.index">
                   <BaseDonut :text="competence.text" value="100%"/>
                 </span>
               </b-col>
             </b-row>
             <b-row>
               <b-col lg="12" class="d-none d-md-block text-center">
-                <h3 class="text-center">Languages</h3>
-                <div v-for="(lang, index) in languages" :key="index" class="flags">
+                <h3 class="text-center">{{ $t('pages.website.homePage.sections.skill.languages.title') }}</h3>
+                <div v-for="(lang, index) in $t('pages.website.homePage.sections.skill.languages.array')" :key="index" class="flags">
                   <country-flag :country='lang.flag' size='big'/>
                   <span>{{ lang.language }}</span>
                 </div>
@@ -64,7 +64,7 @@
             <div class="tabs">
               <ul class="tab-list">
                 <li
-                v-for="tab in skillTabs"
+                v-for="tab in $t('pages.website.homePage.sections.skill.skillTabs')"
                 :key="tab.id"
                 :class="{ tabSelected: tab.id === activetab }"
                 @click="activetab = tab.id">
@@ -126,8 +126,8 @@
         <b-row>
           <b-col cols="12" sm="12" md="12">
             <div class="section-title text-center">
-              <h2>My Latest Project</h2>
-              <p>There are many variations of passages of Lorem Ipsum available.</p>
+              <h2>{{ $t('pages.website.homePage.sections.portfolio.title') }}</h2>
+              <p>{{ $t('pages.website.homePage.sections.portfolio.subtitle') }}</p>
             </div>
           </b-col>
         </b-row>
@@ -144,8 +144,8 @@
         <b-row>
           <b-col cols="12" sm="12" md="12">
             <div class="section-title text-center">
-              <h2>Latest Posts</h2>
-              <p>There are many variations of passages of Lorem Ipsum available.</p>
+              <h2>{{ $t('pages.website.homePage.sections.blog.title') }}</h2>
+              <p>{{ $t('pages.website.homePage.sections.blog.subtitle') }}</p>
             </div>
           </b-col>
         </b-row>
@@ -157,7 +157,7 @@
         <b-row class="text-center" v-if="latastPosts.length > 3">
           <b-col cols="12" lg="12">
             <router-link to="/blog">
-            <button class="default-button">MORE</button>
+            <button class="default-button">{{ $t('buttons.more') }}</button>
           </router-link>
           </b-col>
         </b-row>
@@ -214,30 +214,7 @@ export default {
   data () {
     return {
       latastPosts: [],
-      about: {
-        descriptions: [
-          'I am an eternal student, Full-Stack Developer. In fact, I have a Bachelor of Science in Computer Science. Its not just my professional background. It is also and above all a passion that has grown since I was a child. I am an autonomous self-taught teacher and I love to learn new things, certainly not without difficulties, hehe, but I have always managed to overcome obstacles and solve the problems I encountered!',
-          'I am a born gamer, I love to play. I have currently returned to the seas of Sea of ​​Thieves, so there is where they can find me when I am away'
-        ]
-      },
-      competences: [
-        { index: 1, text: 'creativity' },
-        { index: 2, text: 'To build a team ' }
-      ],
-      competences2: [
-        { index: 1, text: 'Issue solver' },
-        { index: 2, text: 'I study by myself' }
-      ],
-      languages: [
-        { flag: 'br', language: 'Portuguese' },
-        { flag: 'us', language: 'English' }
-      ],
       activetab: 1,
-      skillTabs: [
-        { id: 1, tabName: 'Web Skills' },
-        { id: 2, tabName: 'Education & Last Certification' },
-        { id: 3, tabName: 'Experience' }
-      ],
       webSkills: [
         { name: 'HTML/CSS', width: 100, timer: 10 },
         { name: 'SASS/LESS', width: 78, timer: 20 },

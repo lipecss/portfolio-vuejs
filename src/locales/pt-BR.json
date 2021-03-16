@@ -26,6 +26,53 @@
       "homePage": {
         "html": {
           "title": "Home"
+        },
+        "sections": {
+          "about": {
+            "title": "Sobre mim",
+            "descriptions": [
+              "Sou um eterno estudante, Desenvolvedor Full-Stack. Na verdade, tenho um bacharelado em ciência da computação. Não é apenas minha experiência profissional. É também e acima de tudo uma paixão que cresceu desde que eu era criança. Sou professor, autodidata autônoma e adoro aprender coisas novas, certamente não sem dificuldades, hehe, mas sempre consegui superar obstáculos e resolver os problemas que encontrava!",
+              "Sou um jogador nato, adoro jogar. Atualmente, retornei ao Sea Of Thieves, então é lá onde que você poderá me encontrar quando eu estiver fora"
+            ]
+          },
+          "skill": {
+            "title": "O que eu posso fazer para você?",
+            "subtitle": "Principais habilidades",
+            "competences": {
+              "title": "Competências",
+              "array": [
+                { "index": 1, "text": "criatividade" },
+                { "index": 2, "text": "trabalho em equipe" }
+              ],
+              "array2": [
+                { "index": 1, "text": "solucionador de problemas" },
+                { "index": 2, "text": "autodidata" }
+              ]
+            },
+            "languages": {
+              "title": "Línguas",
+              "array": [
+                { "flag": "br", "language": "Português" },
+                { "flag": "us", "language": "Inglês" }
+              ] 
+            },
+            "skillTabs": [
+              { "id": 1, "tabName": "Web habi." },
+              { "id": 2, "tabName": "Educação e últimas certificações" },
+              { "id": 3, "tabName": "Experiências" }
+            ]
+          },
+          "portfolio": {
+            "title": "Meus Projetos Recentes",
+            "subtitle": "Confira alguns dos meus ultimos trabalhos."
+          },
+          "blog": {
+            "title": "Postagens Recentes",
+            "subtitle": "Aqui falarei de tudo oque gosto, não necessáriamente apenas sobre desenvolvimento."
+          },
+          "contact": {
+
+          }
         }
       },
       "blogListPage": {
@@ -60,6 +107,8 @@
     "signUp": "Cadastrar",
     "logout": "Sair",
     "send": "Enviar",
+    "readMore": "Leia mais",
+    "more": "Mais",
     "home": "Voltar ao Início"
   },
   "inputs": {
