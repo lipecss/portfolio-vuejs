@@ -6,13 +6,13 @@
         <b-nav-item
         class="navss"
         :class="{ current: (content.id === currentNav )}"
-        v-for="content in navContent"
+        v-for="content in $t('components.layout.theFooter.navContent')"
         :key="content.name"
         @click="findItem(content.id)">
           {{content.name}}
         </b-nav-item>
       </b-navbar-nav>
-      <router-link to="login"  class="ml-auto"><button class="login">Login</button></router-link>
+      <router-link to="login"  class="ml-auto"><button class="login">{{ $t('buttons.signIn') }}</button></router-link>
     </b-collapse>
   </b-navbar>
 </template>
@@ -32,15 +32,7 @@ export default {
   data () {
     return {
       scrollPosition: null,
-      currentNav: 'home',
-      navContent: [
-        { name: 'Home', id: 'home' },
-        { name: 'About', id: 'about' },
-        { name: 'Skills', id: 'skill' },
-        { name: 'Portfolio', id: 'portfolio' },
-        { name: 'Blog', id: 'blog' },
-        { name: 'Contact', id: 'contact' }
-      ]
+      currentNav: 'home'
     }
   },
   props: {},

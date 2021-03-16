@@ -121,5 +121,20 @@
     }
   },
   "components": {
+    "fragments": {
+
+    },
+    "layout": {
+      "theFooter": {
+        "navContent": [
+          { "name": "Início", "id": "home" },
+          { "name": "Sobre", "id": "about" },
+          { "name": "Habilidades", "id": "skill" },
+          { "name": "Portfólio", "id": "portfolio" },
+          { "name": "Blog", "id": "blog" },
+          { "name": "Contato", "id": "contact" }
+        ]
+      }
+    }
   }
 }

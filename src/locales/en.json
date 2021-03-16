@@ -120,14 +120,19 @@
     }
   },
   "components": {
-    "BaseValidPassword": {
-      "label": "The password must contain:",
-      "rules": {
-        "minUppercase": "Min. 1 Uppercase",
-        "minLowercase": "Min 1 Lowercase",
-        "minNumber":"Min 1 Number",
-        "minCharacters": "Min 8 Characters",
-        "specialCharacter": "Special Character"
+    "fragments": {
+
+    },
+    "layout": {
+      "theFooter": {
+        "navContent": [
+          { "name": "Home", "id": "home" },
+          { "name": "About", "id": "about" },
+          { "name": "Skills", "id": "skill" },
+          { "name": "Portfolio", "id": "portfolio" },
+          { "name": "Blog", "id": "blog" },
+          { "name": "Contact", "id": "contact" }
+        ]
       }
     }
   }
