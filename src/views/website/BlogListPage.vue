@@ -12,10 +12,10 @@
     <b-row>
       <b-col cols="12" lg="12" class="no-padding">
         <div class="header">
-          <h2 class="title gradient-text">Blog List</h2>
+          <h2 class="title gradient-text">{{ $t('pages.website.blogListPage.html.title') }}</h2>
           <ul class="page-list">
-            <li class="breadcrumb-item">Home</li>
-            <li class="breadcrumb-item" style="color: #42b883">Blog List</li>
+            <li class="breadcrumb-item">{{ $t('pages.website.blogListPage.html.link') }}</li>
+            <li class="breadcrumb-item" style="color: #42b883">{{ $t('pages.website.blogListPage.html.title') }}</li>
           </ul>
         </div>
       </b-col>
@@ -29,15 +29,15 @@
       </b-row>
 
       <b-row class="text-center" v-if="currentPage >= maxPage">
-        <p id="nothing">Nothing more to show</p>
+        <p id="nothing">{{ $t('pages.website.blogListPage.html.noMore.nothing') }}</p>
         <b-col cols="12" lg="12">
           <div class="wrap">
             <b-row>
               <b-col md="6" offset-md="3">
                 <div class="typying">
-                  <h3>Stay tuned for upcoming posts 💎</h3>
+                  <h3>{{ $t('pages.website.blogListPage.html.noMore.title') }}</h3>
                   <vue-typed-js
-                  :strings="strings"
+                  :strings="$t('pages.website.blogListPage.html.noMore.types')"
                   :loop="true"
                   :shuffle="true"
                   :backSpeed="80"
@@ -86,15 +86,7 @@ export default {
       posts: [],
       isLoading: false,
       currentPage: 1,
-      maxPage: 0,
-      strings: [
-        'If I drink water while I shower, am I taking a shower then?',
-        '"If you want to know what a man’s like, take a good look at how he treats his inferiors, not his equals."',
-        '"Fear is the path to the dark side. Fear leads to anger. Anger leads to hate. Hate leads to suffering."',
-        'Perfection is the enemy of perfectly adequate.',
-        'Everyone likes the comments on Youtube with the lyrics of the songs, especially when you are too lazy to search Google.',
-        '"Martha. Why did you say that name ? 🦇"'
-      ]
+      maxPage: 0
     }
   },
   components: {

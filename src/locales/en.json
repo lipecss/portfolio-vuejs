@@ -20,49 +20,30 @@
         "html": {
           "title": "Login"
         },
-        "title": "Welcome to",
+        "title": "Bem vindo ao",
         "subtitle": "VLALG"
-      },
-      "signUpPage": {
-        "html": {
-          "title": "SignUp"
-        }
-      },
-      "resetPasswordPage": {
-        "html": {
-          "title": "Reset Password"
-        }
-      },
-      "newsletterUnsubscribePage": {
-        "html": {
-          "title": "newsletter Unsubscribe"
-        }
-      },
-      "newsletterPage": {
-        "html": {
-          "title": "Newsletter"
-        }
       },
       "homePage": {
         "html": {
           "title": "Home"
         }
       },
-      "forgotPasswordPage": {
+      "blogListPage": {
         "html": {
-          "title": "Forgot Password"
-        },
-        "title": "Esqueceu sua senha?",
-        "description": "Para recuperar sua senha é simples! Informe seu e-mail no campo abaixo e receba os proximos passos por email."
-      },
-      "activePage": {
-        "html": {
-          "title": "Activate account"
-        }
-      },
-      "aboutPage": {
-        "html": {
-          "title": "About"
+          "title": "Blog List",
+          "link": "Home",
+          "noMore": {
+            "nothing": "Nothing more to show",
+            "title": "Stay tuned for upcoming posts 💎",
+            "types": [
+              "If I drink water while I shower, am I taking a shower then?",
+              "'If you want to know what a man’s like, take a good look at how he treats his inferiors, not his equals.'",
+              "'Fear is the path to the dark side. Fear leads to anger. Anger leads to hate. Hate leads to suffering.'",
+              "'Perfection is the enemy of perfectly adequate.'",
+              "Everyone likes the comments on Youtube with the lyrics of the songs, especially when you are too lazy to search Google.",
+              "'Martha. Why did you say that name ? 🦇'"
+            ]
+          }
         }
       }
     }
