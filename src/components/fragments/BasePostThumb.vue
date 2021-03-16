@@ -3,7 +3,7 @@
     <div class="content">
       <h2>{{data.title}}</h2>
       <div class="btn-post" :class="{ visible: isHover }">
-        <router-link :to="`/blog/${data.slug}`" class="">Read More</router-link>
+        <router-link :to="`/blog/${data.slug}`" class="">{{ $t('buttons.readMore')}}</router-link>
       </div>
     </div>
   </div>

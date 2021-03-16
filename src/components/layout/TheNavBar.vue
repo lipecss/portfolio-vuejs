@@ -97,7 +97,7 @@ ul {
 .current {
   border-bottom: solid 5px $vue-green;
   transition: border-width 0.6s linear;
-  width: 106px;
+  // width: 106px;
 }
 
 .login {
