@@ -147,7 +147,7 @@
       }
     },
     "layout": {
-      "theFooter": {
+      "theNavBar": {
         "navContent": [
           { "name": "Home", "id": "home" },
           { "name": "About", "id": "about" },
@@ -156,6 +156,9 @@
           { "name": "Blog", "id": "blog" },
           { "name": "Contact", "id": "contact" }
         ]
+      },
+      "theFooter": {
+        "compyright": "Copyright © 2021 Felipecss. All Rights Reserved."
       }
     }
   }

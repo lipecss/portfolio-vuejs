@@ -6,7 +6,7 @@
         <b-nav-item
         class="navss"
         :class="{ current: (content.id === currentNav )}"
-        v-for="content in $t('components.layout.theFooter.navContent')"
+        v-for="content in $t('components.layout.theNavBar.navContent')"
         :key="content.name"
         @click="findItem(content.id)">
           {{content.name}}

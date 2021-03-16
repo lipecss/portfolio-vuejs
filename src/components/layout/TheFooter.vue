@@ -24,7 +24,7 @@
         </b-col>
         <b-col cols="12" sm="12" lg="4" md="12">
           <div class="copyright">
-            <p>Copyright © 2021 Felipecss. All Rights Reserved.</p>
+            <p>{{ $t('components.layout.theFooter.compyright') }}</p>
           </div>
         </b-col>
       </b-row>
