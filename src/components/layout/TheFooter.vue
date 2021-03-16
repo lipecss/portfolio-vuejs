@@ -11,13 +11,58 @@
           <div class="social text-center">
             <ul>
               <li>
-                <a href="https://github.com/lipecss" aria-label="github" rel="noopener" target="_blank"><font-awesome-icon :icon="['fab', 'github']" /></a>
+                <a
+                  href="https://github.com/lipecss"
+                  aria-label="github" rel="noopener"
+                  target="_blank"
+                  alt="Github"
+                >
+                  <font-awesome-icon :icon="['fab', 'github']" />
+                </a>
               </li>
               <li>
-                <a href="https://www.linkedin.com/in/felipecss/" aria-label="linkedin" rel="noopener" target="_blank"><font-awesome-icon :icon="['fab', 'linkedin-in']" /></a>
+                <a
+                  href="https://www.linkedin.com/in/felipecss/"
+                  aria-label="linkedin" rel="noopener"
+                  target="_blank"
+                  alt="Linkedin"
+                >
+                  <font-awesome-icon :icon="['fab', 'linkedin-in']" />
+                </a>
               </li>
               <li>
-                <a href="https://www.instagram.com/felipecss/" aria-label="instagram" rel="noopener" target="_blank"><font-awesome-icon :icon="['fab', 'instagram']" /></a>
+                <a
+                  href="https://www.instagram.com/felipecss/"
+                  aria-label="instagram"
+                  rel="noopener"
+                  target="_blank"
+                  alt="Instagram"
+                >
+                  <font-awesome-icon :icon="['fab', 'instagram']" />
+                </a>
+              </li>
+              <li>
+                <a
+                  aria-label="instagram"
+                  rel="noopener"
+                  class="i18n"
+                  alt="I18n"
+                  @mouseenter="isHover = true"
+                  @mouseleave="isHover = false"
+                >
+                  <font-awesome-icon :icon="['fa', 'globe-americas']"/>
+                  <div class="i18n__content" v-if="isHover">
+                    <button
+                      class="i18n__content-button"
+                      v-for="lang in languages"
+                      :key="lang.flag"
+                      @click="changeLocale(lang.language)"
+                    >
+                      <flag :iso="lang.flag" v-bind:squared="false" />
+                      <span>{{ lang.title }}</span>
+                    </button>
+                  </div>
+                </a>
               </li>
             </ul>
           </div>
@@ -43,11 +88,22 @@ export default {
   updated () {},
   destroyed () {},
   data () {
-    return {}
+    return {
+      isHover: false,
+      languages: [
+        { flag: 'br', language: 'pt-BR' },
+        { flag: 'us', language: 'en' }
+      ]
+    }
   },
   props: {},
   computed: {},
-  methods: {},
+  methods: {
+    changeLocale (locale) {
+      this.$i18n.locale = locale
+      this.isHover = false
+    }
+  },
   filters: {},
   watch: {}
 }
@@ -110,6 +166,35 @@ ul li a {
   }
 }
 
+// I18n
+.i18n {
+  position: relative;
+ &__content {
+   position: absolute;
+   top: -25px;
+   left: 52px;
+
+   &-button {
+    padding: 0 23px;
+    line-height: 34px;
+    border: 2px solid #42b883;
+    background: transparent;
+    border-radius: 4px;
+    transition: 0.3s;
+    color: #00dc82;
+
+    &:hover {
+      background: $vue-green;
+      color: #fff;
+      box-shadow: 0 10px 15px 0 rgb(0 0 0 / 10%);
+      transform: translateY(-5px);
+      a {
+        color: #fff;
+      }
+    }
+   }
+ }
+}
 // Compyright
 .copyright {
   margin-top: 20px;

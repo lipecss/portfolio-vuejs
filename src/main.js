@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import VueMeta from 'vue-meta'
+import FlagIcon from 'vue-flag-icon'
 import { BootstrapVue } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -37,6 +38,9 @@ Vue.use(Donut)
 
 // Vue Meta
 Vue.use(VueMeta)
+
+// VueFlag
+Vue.use(FlagIcon)
 
 // Pusher
 Vue.use(require('vue-pusher'), {

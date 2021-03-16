@@ -103,9 +103,9 @@
     "delete": "Delete",
     "forgotPassword": "Forgot password?",
     "newUser": "I'm a newbie!",
-    "signIn": "signIn",
-    "signUp": "signUp",
-    "logout": "Signout",
+    "signIn": "sign in",
+    "signUp": "sign up",
+    "logout": "Sign out",
     "send": "Send",
     "readMore": "Read more",
     "more": "More",
@@ -118,6 +118,10 @@
     "password": {
       "placeholder": "Your password",
       "name": "inputpassword"
+    },
+    "name": {
+      "placeholder": "Your name",
+      "name": "name"
     },
     "subject": {
       "placeholder": "Your Subject",
