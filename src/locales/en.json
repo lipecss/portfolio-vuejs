@@ -112,17 +112,28 @@
     "home": "Back To Homepage"
   },
   "inputs": {
-    "email": {
+    "email": {  
       "placeholder": "Your email"
     },
     "password": {
       "placeholder": "Your password",
       "name": "inputpassword"
+    },
+    "subject": {
+      "placeholder": "Your Subject",
+      "name": "subject"
+    },
+    "message": {
+      "placeholder": "Your Message",
+      "name": "message"
     }
   },
   "components": {
     "fragments": {
-
+      "contactForm": {
+        "title": "Hire Me.",
+        "subtitle": "I am available for freelance work. Connect with me"
+      }
     },
     "layout": {
       "theFooter": {

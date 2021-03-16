@@ -118,11 +118,26 @@
     "password": {
       "placeholder": "Sua senha",
       "name": "inputpassword"
+    },
+    "name": {
+      "placeholder": "Seu nome",
+      "name": "name"
+    },
+    "subject": {
+      "placeholder": "Seu assunto",
+      "name": "subject"
+    },
+    "message": {
+      "placeholder": "Sua menssagem",
+      "name": "message"
     }
   },
   "components": {
     "fragments": {
-
+      "contactForm": {
+        "title": "Contacte-me.",
+        "subtitle": "Estou disponível para trabalho autônomo. Conecte-se comigo"
+      }
     },
     "layout": {
       "theFooter": {

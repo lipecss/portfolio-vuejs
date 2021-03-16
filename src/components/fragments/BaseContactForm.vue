@@ -1,25 +1,25 @@
 <template>
   <div class="contact-form">
     <div class="section-title text-left">
-      <h2 class="title">Hire Me.</h2>
-      <p class="description">I am available for freelance work. Connect with me</p>
+      <h2 class="title">{{ $t('components.fragments.contactForm.title') }}</h2>
+      <p class="description">{{ $t('components.fragments.contactForm.subtitle') }}</p>
     </div>
     <form
       @submit.prevent="sendValues"
     >
       <label for="name">
-        <input id="name" v-model="name"  type="text" name="name" placeholder="Your Name" required autocomplete="off">
+        <input id="name" v-model="name"  type="text" name="name" :placeholder="$t('inputs.name.placeholder')" required autocomplete="off">
       </label>
       <label for="email">
-        <input id="email" v-model="email" type="email"  name="email" placeholder="Your Email" required autocomplete="new-password">
+        <input id="email" v-model="email" type="email"  name="email" :placeholder="$t('inputs.email.placeholder')" required autocomplete="new-password">
       </label>
       <label for="subject">
-        <input id="subject" v-model="subject" type="text"  name="subject" placeholder="Your Subject" required autocomplete="new-password">
+        <input id="subject" v-model="subject" type="text"  name="subject" :placeholder="$t('inputs.subject.placeholder')" required autocomplete="new-password">
       </label>
       <label for="">
-        <textarea type="text" v-model="message" name="message" placeholder="Your Message"></textarea>
+        <textarea type="text" v-model="message" name="message" :placeholder="$t('inputs.message.placeholder')"></textarea>
       </label>
-      <button type="submit" value="submit" name="submit">Submit</button>
+      <button type="submit" value="submit" name="submit">{{ $t('buttons.send') }}</button>
     </form>
   </div>
 </template>
