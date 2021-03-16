@@ -6,7 +6,7 @@
           <div div class="inner">
             <h1 class="title gradient-text">404!</h1>
             <h3 class="sub-title">{{ $t('pages.error.404Page.html.title')}}</h3>
-            <span>{{ $t('pages.error.404Page.html.information')}}</span>
+            <span>{{ $t('pages.error.404Page.information')}}</span>
             <router-link to="/" class="error-button">{{ $t('buttons.home')}}</router-link>
         </div>
         </b-col>

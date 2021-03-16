@@ -3,9 +3,9 @@
     "error": {
       "404Page": {
         "html": {
-          "title": "Página nâo encontrada",
-          "information": "A página que você está procurando não foi encontrada."
-        }
+          "title": "Página nâo encontrada"
+        },
+        "information": "A página que você está procurando não foi encontrada."
       }
     },
     "system": {
@@ -30,20 +30,20 @@
       },
       "blogListPage": {
         "html": {
-          "title": "Lista de Postagens",
-          "link": "Início",
-          "noMore": {
-            "nothing": "Sem mais conteúdo para mostrar",
-            "title": "Fique ligado nas próximas postagens 💎",
-            "types": [
-              "Se eu beber água durante o banho, então estarei tomando banho então?",
-              "'Se você quer saber como é uma pessoa, dê uma boa olhada em como ele trata seus inferiores, não seus iguais.'",
-              "'O medo é o caminho para o lado negro. O medo leva à raiva. A raiva leva ao ódio. O ódio leva ao sofrimento.'",
-              "'A perfeição é inimiga do perfeitamente adequado.'",
-              "Todo mundo gosta dos comentários no Youtube com as letras das músicas, principalmente quando você tem preguiça de pesquisar no Google.",
-              "'Martha. Por que você disse esse nome? 🦇'"
-            ]
-          }
+          "title": "Lista de Postagens"
+        },
+        "link": "Início",
+        "noMore": {
+          "nothing": "Sem mais conteúdo para mostrar",
+          "title": "Fique ligado nas próximas postagens 💎",
+          "types": [
+            "Se eu beber água durante o banho, então estarei tomando banho então?",
+            "'Se você quer saber como é uma pessoa, dê uma boa olhada em como ele trata seus inferiores, não seus iguais.'",
+            "'O medo é o caminho para o lado negro. O medo leva à raiva. A raiva leva ao ódio. O ódio leva ao sofrimento.'",
+            "'A perfeição é inimiga do perfeitamente adequado.'",
+            "Todo mundo gosta dos comentários no Youtube com as letras das músicas, principalmente quando você tem preguiça de pesquisar no Google.",
+            "'Martha. Por que você disse esse nome? 🦇'"
+          ]
         }
       }
     }

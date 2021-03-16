@@ -3,9 +3,9 @@
     "error": {
       "404Page": {
         "html": {
-          "title": "Page not found",
-          "information": "The page you were looking for could not be found."
-        }
+          "title": "Page not found"
+        },
+        "information": "The page you were looking for could not be found."
       }
     },
     "system": {
@@ -30,20 +30,20 @@
       },
       "blogListPage": {
         "html": {
-          "title": "Blog List",
-          "link": "Home",
-          "noMore": {
-            "nothing": "Nothing more to show",
-            "title": "Stay tuned for upcoming posts 💎",
-            "types": [
-              "If I drink water while I shower, am I taking a shower then?",
-              "'If you want to know what a man’s like, take a good look at how he treats his inferiors, not his equals.'",
-              "'Fear is the path to the dark side. Fear leads to anger. Anger leads to hate. Hate leads to suffering.'",
-              "'Perfection is the enemy of perfectly adequate.'",
-              "Everyone likes the comments on Youtube with the lyrics of the songs, especially when you are too lazy to search Google.",
-              "'Martha. Why did you say that name ? 🦇'"
-            ]
-          }
+          "title": "Blog List"
+        },
+        "link": "Home",
+        "noMore": {
+          "nothing": "Nothing more to show",
+          "title": "Stay tuned for upcoming posts 💎",
+          "types": [
+            "If I drink water while I shower, am I taking a shower then?",
+            "'If you want to know what a man’s like, take a good look at how he treats his inferiors, not his equals.'",
+            "'Fear is the path to the dark side. Fear leads to anger. Anger leads to hate. Hate leads to suffering.'",
+            "'Perfection is the enemy of perfectly adequate.'",
+            "Everyone likes the comments on Youtube with the lyrics of the songs, especially when you are too lazy to search Google.",
+            "'Martha. Why did you say that name ? 🦇'"
+          ]
         }
       }
     }
