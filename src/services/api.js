@@ -42,7 +42,7 @@ export async function refreshToken (token) {
 
 // POSTS
 
-// Pega todas as urls do usuario pelo Id
+// Pega todas os Pots sem paginação
 export async function getPosts () {
   return api.get('/posts').then(response => {
     return response.data
@@ -85,7 +85,6 @@ export async function newPost (img, title, content) {
         'x-access-token': token
       }
     }).then(response => {
-    console.log(response)
     return response.data
   }).catch(error => {
     return {
@@ -133,6 +132,17 @@ export async function deletePost (id) {
 
 export async function likePost (id, action) {
   return api.post(`/like/${id}`, { action }).then(response => {
+    return response.data
+  }).catch(error => {
+    return {
+      status: 'error',
+      data: error
+    }
+  })
+}
+
+export async function contactMe (name, from, subject, message) {
+  return api.post('/contact', { name, from, subject, message }).then(response => {
     return response.data
   }).catch(error => {
     return {

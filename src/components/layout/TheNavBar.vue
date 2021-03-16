@@ -12,7 +12,7 @@
           {{content.name}}
         </b-nav-item>
       </b-navbar-nav>
-      <button class="login ml-auto"><router-link to="login">Login</router-link></button>
+      <router-link to="login"  class="ml-auto"><button class="login">Login</button></router-link>
     </b-collapse>
   </b-navbar>
 </template>
@@ -118,8 +118,7 @@ ul {
   font-size: 14px;
   text-transform: uppercase;
   transition: .3s;
-
-  a { color: $default-green }
+  color: $default-green;
 
   &:hover {
     background: $vue-green;

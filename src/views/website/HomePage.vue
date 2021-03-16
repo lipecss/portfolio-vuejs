@@ -37,22 +37,85 @@
         <b-row class="skill-area">
           <b-col lg="6">
             <h3 class="text-center">Competences</h3>
-
             <b-row>
-              <b-col lg="6" >
-                <span v-for="skill in skills" :key="skill.index">
-                  <BaseDonut :text="skill.text" value="100%"/>
+              <b-col sm="4" md="6" lg="6" >
+                <span v-for="competence in competences" :key="competence.index">
+                  <BaseDonut :text="competence.text" value="100%"/>
                 </span>
               </b-col>
-              <b-col lg="6">
-                <span v-for="skill in skills2" :key="skill.index">
-                  <BaseDonut :text="skill.text" value="100%"/>
+              <b-col sm="4" md="6" lg="6">
+                <span v-for="competence in competences2" :key="competence.index">
+                  <BaseDonut :text="competence.text" value="100%"/>
                 </span>
               </b-col>
             </b-row>
+            <b-row>
+              <b-col lg="12" class="d-none d-md-block text-center">
+                <h3 class="text-center">Languages</h3>
+                <div v-for="(lang, index) in languages" :key="index" class="flags">
+                  <country-flag :country='lang.flag' size='big'/>
+                  <span>{{ lang.language }}</span>
+                </div>
+              </b-col>
+            </b-row>
           </b-col>
-          <b-col lg="6" style="background: tomato">
-            tabs
+
+          <b-col lg="6">
+            <div class="tabs">
+              <ul class="tab-list">
+                <li
+                v-for="tab in skillTabs"
+                :key="tab.id"
+                :class="{ tabSelected: tab.id === activetab }"
+                @click="activetab = tab.id">
+                  {{ tab.tabName }}
+                </li>
+              </ul>
+            </div>
+
+            <div class="content-skill-tabs">
+              <section v-if="activetab === 1" class="tab-skill">
+                <HorizontalChart :items="webSkills"/>
+              </section>
+
+              <section v-if="activetab === 2" class="tab-education">
+                <ul>
+                  <li>
+                    <p>Diploma in Computer Science - Uninove</p>
+                    <span>2016</span>
+                  </li>
+                  <li>
+                    <p>Ruby on Rails 4.x</p>
+                    <span>2018</span>
+                  </li>
+                  <li>
+                    <p>Vue - The Complete Guide by Maximilian Schwarzmüller</p>
+                    <span>2020</span>
+                  </li>
+                </ul>
+              </section>
+
+              <section v-if="activetab === 3" class="tab-experience">
+                <ul>
+                  <li>
+                    <p>Front-end Engineer - Self-employment</p>
+                    <span>Current</span>
+                  </li>
+                  <li>
+                    <p>Full Stack Javascript - Self-employment</p>
+                    <span>2019</span>
+                  </li>
+                  <li>
+                    <p>Ruby Back-end developer - <span>Find-me</span></p>
+                    <span>2018 - 2019</span>
+                  </li>
+                  <li>
+                    <p>Tax analyst - <span>Universidade Nove de Julho</span></p>
+                    <span>2012 - 2018</span>
+                  </li>
+                </ul>
+              </section>
+            </div>
           </b-col>
         </b-row>
       </b-container>
@@ -93,7 +156,9 @@
         </b-row>
         <b-row class="text-center" v-if="latastPosts.length > 3">
           <b-col cols="12" lg="12">
+            <router-link to="/blog">
             <button class="default-button">MORE</button>
+          </router-link>
           </b-col>
         </b-row>
       </b-container>
@@ -104,7 +169,7 @@
         <b-row class="padding-area">
           <b-col lg="6" order="2" order-lg="1">
             <div class="">
-              <BaseContactForm/>
+              <BaseContactForm @contact="sendContact"/>
             </div>
           </b-col>
           <b-col lg="6" order="1" order-lg="2">
@@ -120,8 +185,10 @@
 
 <script>
 
+import CountryFlag from 'vue-country-flag'
+
 // Services
-import { getLatestPost } from '../../services/api'
+import { getLatestPost, contactMe } from '../../services/api'
 
 // Components
 const NavBar = () => import('@/components/layout/TheNavBar')
@@ -129,6 +196,7 @@ const BaseHeroImage = () => import('@/components/fragments/BaseHeroImage')
 const BaseContactForm = () => import('@/components/fragments/BaseContactForm')
 const BasePostThumb = () => import('@/components/fragments/BasePostThumb')
 const BaseDonut = () => import('@/components/fragments/BaseDonut')
+const HorizontalChart = () => import('@/components/fragments/BaseHorizontalChart')
 
 export default {
   name: 'HomePage',
@@ -152,13 +220,43 @@ export default {
           'I am a born gamer, I love to play. I have currently returned to the seas of Sea of ​​Thieves, so there is where they can find me when I am away'
         ]
       },
-      skills: [
-        { index: 0, text: 'creativity' },
-        { index: 1, text: 'groundbreaking ' }
+      competences: [
+        { index: 1, text: 'creativity' },
+        { index: 2, text: 'To build a team ' }
       ],
-      skills2: [
-        { index: 0, text: 'To build a team' },
-        { index: 1, text: 'troubleshoot' }
+      competences2: [
+        { index: 1, text: 'Issue solver' },
+        { index: 2, text: 'I study by myself' }
+      ],
+      languages: [
+        { flag: 'br', language: 'Portuguese' },
+        { flag: 'us', language: 'English' }
+      ],
+      activetab: 1,
+      skillTabs: [
+        { id: 1, tabName: 'Web Skills' },
+        { id: 2, tabName: 'Education & Last Certification' },
+        { id: 3, tabName: 'Experience' }
+      ],
+      webSkills: [
+        { name: 'HTML/CSS', width: 100, timer: 10 },
+        { name: 'SASS/LESS', width: 78, timer: 20 },
+        { name: 'Javascript', width: 100, timer: 30 },
+        { name: 'Vuejs / Vuex', width: 90, timer: 10 },
+        { name: 'Nodejs', width: 98, timer: 10 },
+        { name: 'Express', width: 95, timer: 20 },
+        { name: 'Restfull API', width: 95, timer: 30 },
+        { name: 'VPS/Web Hosting', width: 70, timer: 10 },
+        { name: 'Bootstrap', width: 100, timer: 20 },
+        { name: 'Git', width: 80, timer: 30 },
+        { name: 'Scrum & Kambam', width: 70, timer: 10 },
+        { name: 'SQL', width: 98, timer: 20 },
+        { name: 'No Sequel', width: 90, timer: 30 },
+        { name: 'C#', width: 95, timer: 10 },
+        { name: 'Unity', width: 95, timer: 10 },
+        { name: 'Linux', width: 80, timer: 20 },
+        { name: 'React', width: 60, timer: 30 },
+        { name: 'React Native', width: 60, timer: 10 }
       ]
     }
   },
@@ -167,13 +265,19 @@ export default {
     BaseHeroImage,
     BaseContactForm,
     BasePostThumb,
-    BaseDonut
+    BaseDonut,
+    HorizontalChart,
+    CountryFlag
   },
   computed: {},
   methods: {
     async returnPosts () {
       const posts = await getLatestPost()
       this.latastPosts = posts
+    },
+    async sendContact (data) {
+      const result = await contactMe(data.name, data.from, data.subject, data.message)
+      console.log(result)
     }
   },
   filters: {},
@@ -211,7 +315,7 @@ img {
 }
 
 .content-area {
-  padding: 40px 0;
+  padding: 10px 0;
 }
 
 // Section About
@@ -224,6 +328,69 @@ img {
 .skill {
   background: $default-black;
   color: #fff;
+
+  ul {
+    list-style: none;
+  }
+
+  .tabSelected {
+    color: $vue-greenlight;
+    &::before {
+      width: 18% !important;
+      background: $vue-greenlight !important;
+    }
+  }
+
+  .flags {
+    display: inline-grid;
+
+    span {
+      margin: 5px 10px;
+      font-weight: 200;
+      color: #afafaf;
+    }
+  }
+
+  .tab-list {
+    position: relative;
+    display: inline-flex;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    li {
+      text-align: center;
+      font-size: 17px;
+      padding-bottom: 4px;
+
+      &:not(:first-child) {
+        margin: 0 15px;
+      }
+
+      &::before {
+        position: absolute;
+        content: "";
+        width: 30px;
+        background: $clean-gray;
+        height: 2px;
+        bottom: 0;
+      }
+    }
+  }
+
+  // tabs {
+  .tab-education, .tab-experience {
+
+    li {
+      margin-bottom: 8px;
+      p {
+        font-weight: 200;
+        margin-bottom: 0;
+        color: $middle-gray;
+      }
+    }
+  }
 }
 
 // Section Portfolio

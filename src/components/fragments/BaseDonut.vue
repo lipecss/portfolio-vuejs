@@ -62,7 +62,7 @@ export default {
         if (section.value === 100) {
           clearInterval(timer)
         }
-      }, 60)
+      }, 100)
     }
   },
   filters: {},

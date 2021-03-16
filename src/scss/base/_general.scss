@@ -12,6 +12,11 @@ img {
   height: auto;
 }
 
+a { 
+  color: $default-green;
+  text-decoration: none !important;
+}
+
 .default-button {
   margin-top: 35px;
   transition: 0.7s;
@@ -36,6 +41,14 @@ img {
       color: #fff;
     }
   }
+}
+
+// Gradient
+.gradient-text {
+  background: linear-gradient(145deg, $vue-green, $vue-greenlight);
+  -webkit-text-fill-color: transparent;
+  // display: inline-block;
+  -webkit-background-clip: text;
 }
 
 /* Works on Firefox */
@@ -84,4 +97,21 @@ img {
 
 .ql-editor {
   overflow-y: unset !important;
+}
+
+pre {
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  border-left: 3px solid #f36d33;
+  color: #666;
+  page-break-inside: avoid;
+  font-family: monospace !important;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 1.6em;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1em 1.5em !important;
+  display: block;
+  word-wrap: break-word;
 }

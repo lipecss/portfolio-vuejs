@@ -4,8 +4,7 @@
       <span id="btn-resize"><font-awesome-icon :icon="['fas', 'arrows-alt-v']"/></span>
       <!-- <span id="btn-resize" @mousedown="startDrag"><font-awesome-icon :icon="['fas', 'arrows-alt-v']"/></span> -->
       <b-container fluid>
-<p style="color: red">{{isEditing}}
-{{itemToEdit}}</p>
+
         <!-- buttons area -->
         <b-row style="padding-bottom: 20px; padding-right: 15px;" align-h="end">
           <button class="button" style="border: 2px solid #dc3545; color: #dc3545;" @click="closeModal">Cancel</button>
@@ -171,7 +170,9 @@ export default {
 .fixed-modal {
   position: fixed;
   width: 100%;
-  height: 97%;
+  // height: 97%;
+  height: 100vh;
+  overflow-y: auto;
   background: $default-gray;
   bottom: 0;
   padding: 20px;

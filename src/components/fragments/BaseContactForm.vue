@@ -5,9 +5,7 @@
       <p class="description">I am available for freelance work. Connect with me</p>
     </div>
     <form
-      @submit="checkForm"
-      action=""
-      method=""
+      @submit.prevent="sendValues"
     >
       <label for="name">
         <input id="name" v-model="name"  type="text" name="name" placeholder="Your Name" required autocomplete="off">
@@ -19,7 +17,7 @@
         <input id="subject" v-model="subject" type="text"  name="subject" placeholder="Your Subject" required autocomplete="new-password">
       </label>
       <label for="">
-        <textarea type="text" name="message" placeholder="Your Message"></textarea>
+        <textarea type="text" v-model="message" name="message" placeholder="Your Message"></textarea>
       </label>
       <button type="submit" value="submit" name="submit">Submit</button>
     </form>
@@ -41,18 +39,29 @@ export default {
     return {
       name: null,
       email: null,
-      subject: null
+      subject: null,
+      message: null
+
     }
   },
   props: {},
   computed: {},
   methods: {
-    checkForm: function (e) {
-      if (this.name && this.email && this.subject) {
-        return true
+    resetInputs () {
+      this.name = ''
+      this.email = ''
+      this.subject = ''
+      this.message = ''
+    },
+    sendValues () {
+      const data = {
+        name: this.name,
+        from: this.email,
+        subject: this.subject,
+        message: this.message
       }
-
-      e.preventDefault()
+      this.$emit('contact', data)
+      this.resetInputs()
     }
   },
   filters: {},

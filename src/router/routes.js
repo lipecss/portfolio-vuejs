@@ -5,6 +5,7 @@ const StartPage = () => import('@views/website/StartPage')
 const HomePage = () => import('@views/website/HomePage')
 const PortfolioPage = () => import('@views/website/PortfolioPage')
 const BlogPage = () => import('@views/website/BlogPage')
+const BlogListPage = () => import('@views/website/BlogListPage')
 const LoginPage = () => import('@/views/website/LoginPage')
 
 // Errors Pages
@@ -32,6 +33,12 @@ export const routes = [
         path: '/portfolio?',
         name: 'PortfolioPage',
         component: PortfolioPage,
+        meta: { scrollToTop: true }
+      },
+      {
+        path: '/blog/',
+        name: 'BlogListPage',
+        component: BlogListPage,
         meta: { scrollToTop: true }
       },
       {
