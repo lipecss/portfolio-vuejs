@@ -1,3 +1,95 @@
 {
-  
+  "pages": {
+    "error": {
+      "404Page": {
+        "html": {
+          "title": "Página nâo encontrada",
+          "information": "A página que você está procurando não foi encontrada."
+        }
+      }
+    },
+    "system": {
+      "dashboardPage": {
+        "html": {
+          "title": "Dashboard"
+        }
+      }
+    },
+    "website": {
+      "loginPage": {
+        "html": {
+          "title": "Login"
+        },
+        "title": "Bem vindo ao",
+        "subtitle": "VLALG"
+      },
+      "signUpPage": {
+        "html": {
+          "title": "Cadastro"
+        }
+      },
+      "resetPasswordPage": {
+        "html": {
+          "title": "Resetar Senha"
+        }
+      },
+      "newsletterUnsubscribePage": {
+        "html": {
+          "title": "Newsletter Desinscrição"
+        }
+      },
+      "newsletterPage": {
+        "html": {
+          "title": "Newsletter"
+        }
+      },
+      "homePage": {
+        "html": {
+          "title": "Home"
+        }
+      },
+      "forgotPasswordPage": {
+        "html": {
+          "title": "Esqueci a Senha"
+        },
+        "title": "Esqueceu sua senha?",
+        "description": "Para recuperar sua senha é simples! Informe seu e-mail no campo abaixo e receba os próximos passos por email."
+      },
+      "activePage": {
+        "html": {
+          "title": "Ativar conta"
+        }
+      },
+      "aboutPage": {
+        "html": {
+          "title": "Sobre"
+        }
+      }
+    }
+  },
+  "buttons": {
+    "save": "Salvar",
+    "close": "Fechar",
+    "cancel": "Cancelar",
+    "create": "Criar",
+    "delete": "Deletar",
+    "forgotPassword": "Esqueceu a senha?",
+    "newUser": "Sou novato!",
+    "signIn": "Entrar",
+    "signUp": "Cadastrar",
+    "logout": "Sair",
+    "send": "Enviar",
+    "home": "Voltar ao Início"
+  },
+  "inputs": {
+    "username": {
+      "placeholder": "email"
+    },
+    "password": {
+      "placeholder": "senha",
+      "name": "inputpassword"
+    }
+  },
+  "components": {
+  }
 }

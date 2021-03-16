@@ -5,9 +5,9 @@
         <b-col cols="12" class="text-center">
           <div div class="inner">
             <h1 class="title gradient-text">404!</h1>
-            <h3 class="sub-title">Page not found</h3>
-            <span>The page you were looking for could not be found.</span>
-            <router-link to="/" class="error-button">Back To Homepage</router-link>
+            <h3 class="sub-title">{{ $t('pages.error.404Page.html.title')}}</h3>
+            <span>{{ $t('pages.error.404Page.html.information')}}</span>
+            <router-link to="/" class="error-button">{{ $t('buttons.home')}}</router-link>
         </div>
         </b-col>
       </b-row>

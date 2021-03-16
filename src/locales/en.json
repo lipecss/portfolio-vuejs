@@ -1,3 +1,105 @@
 {
-  
+  "pages": {
+    "error": {
+      "404Page": {
+        "html": {
+          "title": "Page not found",
+          "information": "The page you were looking for could not be found."
+        }
+      }
+    },
+    "system": {
+      "dashboardPage": {
+        "html": {
+          "title": "Dashboard"
+        }
+      }
+    },
+    "website": {
+      "loginPage": {
+        "html": {
+          "title": "Login"
+        },
+        "title": "Welcome to",
+        "subtitle": "VLALG"
+      },
+      "signUpPage": {
+        "html": {
+          "title": "SignUp"
+        }
+      },
+      "resetPasswordPage": {
+        "html": {
+          "title": "Reset Password"
+        }
+      },
+      "newsletterUnsubscribePage": {
+        "html": {
+          "title": "newsletter Unsubscribe"
+        }
+      },
+      "newsletterPage": {
+        "html": {
+          "title": "Newsletter"
+        }
+      },
+      "homePage": {
+        "html": {
+          "title": "Home"
+        }
+      },
+      "forgotPasswordPage": {
+        "html": {
+          "title": "Forgot Password"
+        },
+        "title": "Esqueceu sua senha?",
+        "description": "Para recuperar sua senha é simples! Informe seu e-mail no campo abaixo e receba os proximos passos por email."
+      },
+      "activePage": {
+        "html": {
+          "title": "Activate account"
+        }
+      },
+      "aboutPage": {
+        "html": {
+          "title": "About"
+        }
+      }
+    }
+  },
+  "buttons": {
+    "save": "Save",
+    "close": "Close",
+    "cancel": "Cancel",
+    "create": "Create",
+    "delete": "Delete",
+    "forgotPassword": "Forgot password?",
+    "newUser": "I'm a newbie!",
+    "signIn": "signIn",
+    "signUp": "signUp",
+    "logout": "Signout",
+    "send": "Send",
+    "home": "Back To Homepage"
+  },
+  "inputs": {
+    "username": {
+      "placeholder": "email"
+    },
+    "password": {
+      "placeholder": "password",
+      "name": "inputpassword"
+    }
+  },
+  "components": {
+    "BaseValidPassword": {
+      "label": "The password must contain:",
+      "rules": {
+        "minUppercase": "Min. 1 Uppercase",
+        "minLowercase": "Min 1 Lowercase",
+        "minNumber":"Min 1 Number",
+        "minCharacters": "Min 8 Characters",
+        "specialCharacter": "Special Character"
+      }
+    }
+  }
 }
