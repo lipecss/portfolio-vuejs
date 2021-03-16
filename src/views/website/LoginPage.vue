@@ -5,19 +5,19 @@
         <div class="page-login___row-content">
           <div class="page-login___content">
           <div class="page-login___content-form">
-              <h4 class="page-login___content-form-title">Bem vindo ao</h4>
-              <h1 class="page-login___content-form-subtitle">Meu Site</h1>
+              <h4 class="page-login___content-form-title">{{ $t('pages.website.loginPage.title') }}</h4>
+              <h1 class="page-login___content-form-subtitle">{{ $t('pages.website.loginPage.subtitle') }}</h1>
               <form
               @submit.prevent="loginEvent"
               >
                 <label for="email">
-                  <input id="email" v-model="email" type="email"  name="email" placeholder="Your Email" required autocomplete="new-password">
+                  <input id="email" v-model="email" type="email"  name="email" :placeholder="$t('inputs.email.placeholder')" required autocomplete="new-password">
                 </label>
 
                 <label for="password">
-                  <input v-model="userPassword" type="password" name="name" id="input-password" placeholder="Password">
+                  <input v-model="userPassword" type="password" name="name" id="input-password" :placeholder="$t('inputs.password.placeholder')">
                 </label>
-                <button type="submit" value="submit" name="submit">Login</button>
+                <button type="submit" value="submit" name="submit">{{ $t('buttons.signIn') }}</button>
               </form>
             </div>
           </div>

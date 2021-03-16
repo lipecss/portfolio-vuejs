@@ -20,8 +20,8 @@
         "html": {
           "title": "Login"
         },
-        "title": "Bem vindo ao",
-        "subtitle": "VLALG"
+        "title": "Welcome to",
+        "subtitle": "My website"
       },
       "homePage": {
         "html": {
@@ -63,11 +63,11 @@
     "home": "Back To Homepage"
   },
   "inputs": {
-    "username": {
-      "placeholder": "email"
+    "email": {
+      "placeholder": "Your email"
     },
     "password": {
-      "placeholder": "password",
+      "placeholder": "Your password",
       "name": "inputpassword"
     }
   },

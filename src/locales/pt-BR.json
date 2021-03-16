@@ -21,7 +21,7 @@
           "title": "Login"
         },
         "title": "Bem vindo ao",
-        "subtitle": "VLALG"
+        "subtitle": "Meu Site"
       },
       "homePage": {
         "html": {
@@ -63,11 +63,11 @@
     "home": "Voltar ao Início"
   },
   "inputs": {
-    "username": {
-      "placeholder": "email"
+    "email": {
+      "placeholder": "Seu email"
     },
     "password": {
-      "placeholder": "senha",
+      "placeholder": "Sua senha",
       "name": "inputpassword"
     }
   },
