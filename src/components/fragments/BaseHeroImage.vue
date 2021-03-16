@@ -4,12 +4,12 @@
       <b-row class="about-area padding-area">
         <b-col cols="12" lg="6" class="">
            <div class="inner">
-            <span>Welcome to my World</span>
-            <h1 class="title">Hi, I’m Felipecss <br></h1>
+            <span>{{ $t('components.fragments.heroImage.welcome') }}</span>
+            <h1 class="title">{{ $t('components.fragments.heroImage.title') }}<br></h1>
             <div class="skills">
-              <span id="skill-text">Js Developer.</span>
+              <span id="skill-text">{{ currentSkill }}</span>
             </div>
-            <h2 class="location">Living in Brazil</h2>
+            <h2 class="location">{{ $t('components.fragments.heroImage.living') }}</h2>
           </div>
         </b-col>
       </b-row>
@@ -31,7 +31,7 @@ export default {
   destroyed () {},
   data () {
     return {
-      skills: ['JS Developer.', 'Front End.', 'Back End.', 'Game Developer.']
+      currentSkill: ''
     }
   },
   props: {
@@ -55,9 +55,12 @@ export default {
     changeSkill () {
       var index = 1
       const item = document.getElementById('skill-text')
+      const skills = this.$t('components.fragments.heroImage.skills')
+
+      this.currentSkill = skills[0]
       setInterval(() => {
-        if (item && index < this.skills.length) {
-          item.innerText = this.skills[index]
+        if (item && index < skills.length) {
+          item.innerText = skills[index]
           index++
         } else {
           index = 1

@@ -133,6 +133,17 @@
       "contactForm": {
         "title": "Hire Me.",
         "subtitle": "I am available for freelance work. Connect with me"
+      },
+      "heroImage": {
+        "welcome": "Welcome to my World",
+        "title": "Hi, I’m Felipecss",
+        "living": "Living in Brazil",
+        "skills": [
+          "JS Developer.",
+          "Front End.",
+          "Back End.",
+          "Game Developer."
+        ]
       }
     },
     "layout": {

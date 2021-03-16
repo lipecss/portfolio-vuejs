@@ -137,6 +137,17 @@
       "contactForm": {
         "title": "Contacte-me.",
         "subtitle": "Estou disponível para trabalho autônomo. Conecte-se comigo"
+      },
+      "heroImage": {
+        "welcome": "Bem vindo ao meu mundo",
+        "title": "Olá, eu sou o Felipecss",
+        "living": "Morando no brasil",
+        "skills": [
+          "Desenvolvedor JS.",
+          "Front End.",
+          "Back End.",
+          "Desenvovledor de Game."
+        ]
       }
     },
     "layout": {
