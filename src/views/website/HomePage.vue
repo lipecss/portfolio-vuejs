@@ -132,8 +132,15 @@
           </b-col>
         </b-row>
         <b-row class="content-area text-center">
-          <b-col cols="12" md="6" lg="4" v-for="post in latastPosts" :key="post._id" class="thumb">
-           <BasePostThumb :data="post" />
+          <b-col cols="12" md="6" lg="4" v-for="project in latastProject" :key="project._id" class="thumb">
+           <BaseProjectThumb :data="project" />
+          </b-col>
+        </b-row>
+        <b-row class="text-center" v-if="latastProject.length > 3">
+          <b-col cols="12" lg="12">
+            <router-link to="/blog">
+            <button class="default-button">{{ $t('buttons.more') }}</button>
+          </router-link>
           </b-col>
         </b-row>
       </b-container>
@@ -188,15 +195,7 @@
 import CountryFlag from 'vue-country-flag'
 
 // Services
-import { getLatestPost, contactMe } from '../../services/api'
-
-// Components
-const NavBar = () => import('@/components/layout/TheNavBar')
-const BaseHeroImage = () => import('@/components/fragments/BaseHeroImage')
-const BaseContactForm = () => import('@/components/fragments/BaseContactForm')
-const BasePostThumb = () => import('@/components/fragments/BasePostThumb')
-const BaseDonut = () => import('@/components/fragments/BaseDonut')
-const HorizontalChart = () => import('@/components/fragments/BaseHorizontalChart')
+import { getLatestPost, getLatestProject, contactMe } from '../../services/api'
 
 export default {
   name: 'HomePage',
@@ -213,6 +212,7 @@ export default {
   beforeMount () {},
   mounted () {
     this.returnPosts()
+    this.returnProjects()
   },
   beforeUpdate () {},
   updated () {},
@@ -222,6 +222,7 @@ export default {
   data () {
     return {
       latastPosts: [],
+      latastProject: [],
       activetab: 1,
       webSkills: [
         { name: 'HTML/CSS', width: 100, timer: 10 },
@@ -246,12 +247,13 @@ export default {
     }
   },
   components: {
-    NavBar,
-    BaseHeroImage,
-    BaseContactForm,
-    BasePostThumb,
-    BaseDonut,
-    HorizontalChart,
+    NavBar: () => import('@/components/layout/TheNavBar'),
+    BaseHeroImage: () => import('@/components/fragments/BaseHeroImage'),
+    BaseContactForm: () => import('@/components/fragments/BaseContactForm'),
+    BasePostThumb: () => import('@/components/fragments/BasePostThumb'),
+    BaseDonut: () => import('@/components/fragments/BaseDonut'),
+    HorizontalChart: () => import('@/components/fragments/BaseHorizontalChart'),
+    BaseProjectThumb: () => import('@/components/fragments/BaseProjectThumb'),
     CountryFlag
   },
   computed: {},
@@ -259,6 +261,10 @@ export default {
     async returnPosts () {
       const posts = await getLatestPost()
       this.latastPosts = posts
+    },
+    async returnProjects () {
+      const projects = await getLatestProject()
+      this.latastProject = projects
     },
     async sendContact (data) {
       const result = await contactMe(data.name, data.from, data.subject, data.message)

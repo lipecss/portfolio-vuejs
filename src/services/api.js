@@ -151,3 +151,28 @@ export async function contactMe (name, from, subject, message) {
     }
   })
 }
+
+// PROJECTS
+
+// Pega todas os Pots sem paginação
+export async function getProjects () {
+  return api.get('/projects').then(response => {
+    return response.data
+  }).catch(error => {
+    return {
+      status: 'error',
+      data: error
+    }
+  })
+}
+
+export async function getLatestProject () {
+  return api.get('/project/latest').then(response => {
+    return response.data
+  }).catch(error => {
+    return {
+      status: 'error',
+      data: error
+    }
+  })
+}
