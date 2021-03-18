@@ -93,6 +93,14 @@
           ]
         }
       }
+    },
+    "projects": {
+      "projectListPage": {
+        "html": {
+          "title": "Lista de Projetos"
+        },
+        "link": "Início"
+      }
     }
   },
   "buttons": {
@@ -109,7 +117,8 @@
     "send": "Enviar",
     "readMore": "Leia mais",
     "more": "Mais",
-    "home": "Voltar ao Início"
+    "home": "Voltar ao Início",
+    "talk": "Fale comigo"
   },
   "inputs": {
     "email": {
@@ -163,6 +172,11 @@
       },
       "theFooter": {
         "compyright": "Copyright © 2021 Felipecss. Todos os direitos reservados."
+      },
+      "theAlternativeFooter": {
+        "suptitle": "Estamos preparados",
+        "text1": "Vamos ao",
+        "text2": "trabalho"
       }
     }
   }

@@ -79,7 +79,7 @@ export default {
     overflow: hidden;
 
     .tag {
-      background-color: #498041;
+      background-color: #1f1f1f;
       color: #fff;
       height: 100%;
       width: 110px;
@@ -91,7 +91,7 @@ export default {
     }
 
     .fill {
-      background: $vue-greenlight;
+      background: $vue-green;
       height: 28px;
       z-index: 20;
     }

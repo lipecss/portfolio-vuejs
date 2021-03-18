@@ -48,10 +48,9 @@
                   class="i18n"
                   alt="I18n"
                   @mouseenter="isHover = true"
-                  @mouseleave="isHover = false"
                 >
                   <font-awesome-icon :icon="['fa', 'globe-americas']"/>
-                  <div class="i18n__content" v-if="isHover">
+                  <div class="i18n__content" v-if="isHover" @mouseleave="isHover = false">
                     <button
                       class="i18n__content-button"
                       v-for="lang in languages"

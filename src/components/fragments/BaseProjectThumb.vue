@@ -4,7 +4,7 @@
       <div class="project-thumbnail__iner-content">
         <h2>{{data.name}}</h2>
         <div class="project-thumbnail__iner-content-action" :class="{ visible: isHover }">
-          <router-link :to="`/blog/${data.slug}`" class="">{{ $t('buttons.readMore')}}</router-link>
+          <router-link :to="`/project/${data.slug}`" class="">{{ $t('buttons.readMore')}}</router-link>
         </div>
       </div>
     </div>
@@ -83,7 +83,7 @@ export default {
         border: 2px solid $vue-green;
         background: transparent;
         border-radius: 4px;
-        font-size: 14px;
+        font-size: 12px;
         text-transform: uppercase;
         transition: .3s;
         color: $default-green;

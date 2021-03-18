@@ -93,6 +93,14 @@
           ]
         }
       }
+    },
+    "projects": {
+      "projectListPage": {
+        "html": {
+          "title": "Project List"
+        },
+        "link": "Home"
+      }
     }
   },
   "buttons": {
@@ -109,7 +117,8 @@
     "send": "Send",
     "readMore": "Read more",
     "more": "More",
-    "home": "Back To Homepage"
+    "home": "Back To Homepage",
+    "talk": "Contact-me"
   },
   "inputs": {
     "email": {  
@@ -163,6 +172,11 @@
       },
       "theFooter": {
         "compyright": "Copyright © 2021 Felipecss. All Rights Reserved."
+      },
+      "theAlternativeFooter": {
+        "suptitle": "Ready To Do This",
+        "text1": "Let's get",
+        "text2": "to work"
       }
     }
   }

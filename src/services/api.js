@@ -166,6 +166,17 @@ export async function getProjects () {
   })
 }
 
+export async function getProjectsBySlug (slug) {
+  return api.get(`/project/${slug}`).then(response => {
+    return response.data
+  }).catch(error => {
+    return {
+      status: 'error',
+      data: error
+    }
+  })
+}
+
 export async function getLatestProject () {
   return api.get('/project/latest').then(response => {
     return response.data

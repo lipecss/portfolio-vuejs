@@ -1,14 +1,10 @@
 <template>
   <div class="app">
     <router-view/>
-    <Footer/>
   </div>
 </template>
 
 <script>
-// const NavBar = () => import('@/components/layout/TheNavBar')
-const Footer = () => import('@/components/layout/TheFooter')
-
 export default {
   name: 'App',
   metaInfo () {
@@ -33,10 +29,7 @@ export default {
   data () {
     return {}
   },
-  components: {
-    // NavBar,
-    Footer
-  },
+  components: {},
   computed: {},
   methods: {},
   filters: {},

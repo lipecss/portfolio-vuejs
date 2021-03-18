@@ -138,7 +138,7 @@
         </b-row>
         <b-row class="text-center" v-if="latastProject.length > 3">
           <b-col cols="12" lg="12">
-            <router-link to="/blog">
+            <router-link to="/project">
             <button class="default-button">{{ $t('buttons.more') }}</button>
           </router-link>
           </b-col>
@@ -171,7 +171,7 @@
       </b-container>
     </section>
 
-    <section id="contact" class="contact">
+    <section id="contact" class="contact" ref="contact">
       <b-container>
         <b-row class="padding-area">
           <b-col lg="6" order="2" order-lg="1">
@@ -325,10 +325,10 @@ img {
   }
 
   .tabSelected {
-    color: $vue-greenlight;
+    color: $vue-green;
     &::before {
       width: 18% !important;
-      background: $vue-greenlight !important;
+      background: $vue-green !important;
     }
   }
 

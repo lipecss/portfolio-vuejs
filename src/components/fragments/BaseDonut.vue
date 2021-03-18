@@ -38,7 +38,7 @@ export default {
     text: { type: String, default: '' },
     size: { type: Number, default: 85 },
     value: { type: String },
-    sectionColor: { type: String, default: '#6cbb60' },
+    sectionColor: { type: String, default: '#42b883' },
     background: { type: String, default: '#101010' },
     foreground: { type: String, default: 'gray' }
   },

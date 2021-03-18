@@ -25,8 +25,6 @@ import { mapActions, mapGetters } from 'vuex'
 // Services
 import { likePost } from '../../services/api'
 
-const TheBackToHome = () => import('@/components/layout/TheBackToHome')
-const BaseHeroPost = () => import('@/components/fragments/BaseHeroPost')
 export default {
   name: 'BlogPage',
   metaInfo () {
@@ -63,8 +61,8 @@ export default {
     }
   },
   components: {
-    TheBackToHome,
-    BaseHeroPost
+    TheBackToHome: () => import('@/components/layout/TheBackToHome'),
+    BaseHeroPost: () => import('@/components/fragments/BaseHeroPost')
   },
   computed: {
     ...mapGetters('ModuleLike', ['getLikeById']),

@@ -1,5 +1,6 @@
 <template>
   <b-container fluid class="page-login">
+    <TheBackToHome/>
     <b-row class="row page-login___row">
       <b-col xs="12" xm="10" offset-sm="1" md="10" offset-md="1" lg="8" offset-lg="2">
         <div class="page-login___row-content">
@@ -55,7 +56,9 @@ export default {
       userPassword: ''
     }
   },
-  components: {},
+  components: {
+    TheBackToHome: () => import('@/components/layout/TheBackToHome')
+  },
   computed: {},
   methods: {
     ...mapActions('ModuleUser', ['authUser']),

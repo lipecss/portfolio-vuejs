@@ -8,8 +8,6 @@ import store from '../store/index'
 Vue.use(VueRouter)
 
 const scrollBehavior = (to, from, savedPosition) => {
-  if (to.path === '/') return
-
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve({ x: 0, y: 0 })

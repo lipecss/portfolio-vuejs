@@ -1,4 +1,4 @@
-import { getPostsBySlug } from '../services/api'
+import { getPostsBySlug, getProjectsBySlug } from '../services/api'
 
 // Website pages
 const StartPage = () => import('@views/website/StartPage')
@@ -7,6 +7,10 @@ const PortfolioPage = () => import('@views/website/PortfolioPage')
 const BlogPage = () => import('@views/website/BlogPage')
 const BlogListPage = () => import('@views/website/BlogListPage')
 const LoginPage = () => import('@/views/website/LoginPage')
+
+// Project pages
+const ProjectListPage = () => import('@/views/projects/ProjectListPage')
+const ProjectPage = () => import('@/views/projects/ProjectPage')
 
 // Errors Pages
 const Error404Page = () => import('@/views/errors/Error404Page')
@@ -36,7 +40,7 @@ export const routes = [
         meta: { scrollToTop: true }
       },
       {
-        path: '/blog/',
+        path: '/blog',
         name: 'BlogListPage',
         component: BlogListPage,
         meta: { scrollToTop: true }
@@ -86,6 +90,37 @@ export const routes = [
     props: false,
     meta: {
       requiresAuth: true
+    }
+  },
+  {
+    path: '/project',
+    name: 'ProjectListPage',
+    component: ProjectListPage,
+    meta: { scrollToTop: true },
+    props: false
+  },
+  {
+    path: '/project/:slug',
+    name: 'ProjectPage',
+    component: ProjectPage,
+    meta: { scrollToTop: true },
+    async beforeEnter (to, from, next) {
+      try {
+        const hasSlugParam = to.params.slug.split(' ').join('-')
+        if (!hasSlugParam || hasSlugParam === undefined) {
+          next()
+        } else {
+          const slugData = await getProjectsBySlug(hasSlugParam)
+          to.params.project = slugData
+          if (slugData.status === 'error') {
+            next({ name: 'Error404Page' })
+          } else {
+            next()
+          }
+        }
+      } catch (error) {
+        next()
+      }
     }
   },
   {

@@ -4,11 +4,12 @@
       <router-view/>
     </transition>
     <TheBackToTop/>
+    <Footer/>
   </div>
 </template>
 
 <script>
-const TheBackToTop = () => import('@/components/layout/TheBackToTop')
+
 export default {
   name: 'StartPage',
   metaInfo () {
@@ -32,7 +33,8 @@ export default {
     return {}
   },
   components: {
-    TheBackToTop
+    TheBackToTop: () => import('@/components/layout/TheBackToTop'),
+    Footer: () => import('@/components/layout/TheFooter')
   },
   computed: {},
   methods: {},

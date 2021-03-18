@@ -7,7 +7,6 @@ module.exports = {
       alias: {
         '@': path.resolve(__dirname, 'src'),
         // '@cfg': path.resolve(__dirname, 'src', '_config'),
-        // '@components': path.resolve(__dirname, 'src', 'components'),
         '@components': path.resolve(__dirname, 'src', 'components'),
         // '@config': path.resolve(__dirname, 'src', '_config', 'config'),
         '@css': path.resolve(__dirname, 'src', 'assets', 'css'),
