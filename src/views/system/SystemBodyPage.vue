@@ -74,6 +74,14 @@ const BaseFixedModal = () => import('@/components/fragments/BaseFixedModal')
 
 export default {
   name: 'DashBoardPage',
+  metaInfo () {
+    return {
+      title: 'System',
+      link: [
+        { rel: 'canonical', href: `${process.env.VUE_APP_BASE}/` }
+      ]
+    }
+  },
   beforeCreate () {},
   async created () {
     await this.syncPosts()
@@ -167,7 +175,7 @@ export default {
 <style scoped lang="scss">
 .system-body-page {
   background: $default-gray;
-  min-height: 805px;
+  min-height: 100vh;
   padding-top: 50px;
   -webkit-user-select: none;
   -khtml-user-select: none;
