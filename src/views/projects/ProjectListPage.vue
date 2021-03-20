@@ -29,6 +29,12 @@
             <BaseProjectThumb :data="project"/>
           </b-col>
         </b-row>
+
+        <b-row class="mb-5" v-if="currentPage >= maxPage">
+          <b-col cols="12" lg="12">
+            <p id="nothing">{{ $t('pages.website.blogListPage.noMore.nothing') }}</p>
+          </b-col>
+        </b-row>
       </b-col>
     </b-row>
 

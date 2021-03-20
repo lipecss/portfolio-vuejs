@@ -29,12 +29,17 @@ router.beforeEach(async (to, from, next) => {
   // Obtendo se ja existe token salvo localmente
   const tokenLocalStorage = await hasTokenInStore()
 
-  if (tokenLocalStorage) {
-    var tokeIsValid = await validToken(tokenLocalStorage)
-  }
-
   // Meta da rota
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+
+  // Verifica se token é valido e refresh se for
+  if (tokenLocalStorage) {
+    var tokeIsValid = await validToken(tokenLocalStorage)
+
+    if (!tokeIsValid && requiresAuth) {
+      next({ name: 'LoginPage' })
+    }
+  }
 
   if (requiresAuth && !tokenLocalStorage) {
     next({ name: 'LoginPage' })
