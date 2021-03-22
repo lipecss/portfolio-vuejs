@@ -1,6 +1,7 @@
-<template  @scroll="handleScroll">
+<template>
   <div class="home">
     <NavBar/>
+    <BaseAlerts :propClearAlert="hasError" :propTypeAlert="typeAlert" @alert-is-close="changeHasAlert('alertFalse', $event)" />
     <section id="home" class="home">
       <BaseHeroImage urlImg="http://trydo.rainbowit.net/assets/images/bg/bg-image-28.jpg"/>
     </section>
@@ -191,7 +192,6 @@
 </template>
 
 <script>
-
 import CountryFlag from 'vue-country-flag'
 
 // Services
@@ -243,7 +243,9 @@ export default {
         { name: 'Linux', width: 80, timer: 20 },
         { name: 'React', width: 60, timer: 30 },
         { name: 'React Native', width: 60, timer: 10 }
-      ]
+      ],
+      typeAlert: 'error',
+      hasError: false
     }
   },
   components: {
@@ -254,6 +256,7 @@ export default {
     BaseDonut: () => import('@/components/fragments/BaseDonut'),
     HorizontalChart: () => import('@/components/fragments/BaseHorizontalChart'),
     BaseProjectThumb: () => import('@/components/fragments/BaseProjectThumb'),
+    BaseAlerts: () => import('@/components/fragments/BaseAlerts'),
     CountryFlag
   },
   computed: {},
@@ -268,7 +271,21 @@ export default {
     },
     async sendContact (data) {
       const result = await contactMe(data.name, data.from, data.subject, data.message)
-      console.log(result)
+      if (result.status === 'error') {
+        this.setErrors([this.$t('messages.contact.error')])
+        this.setBlockUi(true)
+        this.hasError = true
+      } else {
+        this.setErrors([this.$t('messages.contact.success')])
+        this.setBlockUi(true)
+        this.hasError = true
+        this.typeAlert = 'success'
+      }
+    },
+    changeHasAlert (refValue, eventValue) {
+      if (refValue === 'alertFalse') {
+        this.hasError = eventValue
+      }
     }
   },
   filters: {},

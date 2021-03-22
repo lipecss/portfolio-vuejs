@@ -8,18 +8,18 @@
       @submit.prevent="sendValues"
     >
       <label for="name">
-        <input id="name" v-model="name"  type="text" name="name" :placeholder="$t('inputs.name.placeholder')" required autocomplete="off">
+        <input id="name" v-model="name"  type="text" name="name" :placeholder="$t('inputs.name.placeholder')" required autocomplete="off" :disabled="blockUi">
       </label>
       <label for="email">
-        <input id="email" v-model="email" type="email"  name="email" :placeholder="$t('inputs.email.placeholder')" required autocomplete="new-password">
+        <input id="email" v-model="email" type="email"  name="email" :placeholder="$t('inputs.email.placeholder')" required autocomplete="new-password" :disabled="blockUi">
       </label>
       <label for="subject">
-        <input id="subject" v-model="subject" type="text"  name="subject" :placeholder="$t('inputs.subject.placeholder')" required autocomplete="new-password">
+        <input id="subject" v-model="subject" type="text"  name="subject" :placeholder="$t('inputs.subject.placeholder')" required autocomplete="new-password" :disabled="blockUi">
       </label>
       <label for="">
-        <textarea type="text" v-model="message" name="message" :placeholder="$t('inputs.message.placeholder')"></textarea>
+        <textarea type="text" v-model="message" name="message" :placeholder="$t('inputs.message.placeholder')" :disabled="blockUi"></textarea>
       </label>
-      <button type="submit" value="submit" name="submit">{{ $t('buttons.send') }}</button>
+      <button type="submit" value="submit" name="submit" :disabled="blockUi">{{ $t('buttons.send') }}</button>
     </form>
   </div>
 </template>

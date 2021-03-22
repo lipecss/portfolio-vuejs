@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import VueMeta from 'vue-meta'
+import { myMixins } from '@/mixins'
 import FlagIcon from 'vue-flag-icon'
 import { BootstrapVue } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -35,6 +36,8 @@ Vue.use(VueSecureHTML)
 
 // vue-donut-chart
 Vue.use(Donut)
+
+Vue.mixin(myMixins)
 
 // Vue Meta
 Vue.use(VueMeta)

@@ -17,6 +17,10 @@ a {
   text-decoration: none !important;
 }
 
+input:disabled, textarea:disabled {
+  background: #272727;
+}
+
 .default-button {
   margin-top: 35px;
   transition: 0.7s;

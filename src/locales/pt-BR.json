@@ -141,6 +141,12 @@
       "name": "message"
     }
   },
+  "messages": {
+    "contact": {
+      "success": "Mensagem enviada com sucesso.",
+      "error": "Falha ao enviar sua mensagem. Tente novamente!"
+    }
+  },
   "components": {
     "fragments": {
       "contactForm": {
