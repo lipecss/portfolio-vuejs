@@ -145,6 +145,9 @@
     "contact": {
       "success": "Mensagem enviada com sucesso.",
       "error": "Falha ao enviar sua mensagem. Tente novamente!"
+    },
+    "login": {
+      "error": "Falha ao logar. Tente novamente!"
     }
   },
   "components": {

@@ -9,7 +9,7 @@ export default {
   'UPDATE_TOKEN' (state, userData) {
     state.user.auth = userData
   },
-  'LOGOUT' (state) {
+  'CLEAR_USER_STORE' (state) {
     state.user = {}
   }
 }

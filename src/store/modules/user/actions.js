@@ -7,5 +7,8 @@ export default {
   },
   upadateToken (context, userData) {
     context.commit('UPDATE_TOKEN', userData)
+  },
+  clearUserStore (context, payload) {
+    context.commit('CLEAR_USER_STORE', payload)
   }
 }

@@ -1,20 +1,20 @@
 <template>
   <div class="system-body-page">
-    <b-container fluid>
+    <TheSystemNavBar @logout="logoutUser" />
+    <b-container fluid >
       <b-row>
         <b-col cols="12" lg="12">
           <b-container>
             <b-row>
-
               <!-- Nav bar -->
               <b-col cols="12" sm="12" lg="2" md="3">
-              <div class="tabs">
-                <div class="border-nav"></div>
-                <ul>
-                  <li v-for="option in options" :key="option" @click="changeSection(option)" :class="{ active: isActive == option }">{{option}}
-                  </li>
-                </ul>
-              </div>
+                <div class="tabs">
+                  <div class="border-nav"></div>
+                  <ul>
+                    <li v-for="option in options" :key="option" @click="changeSection(option)" :class="{ active: isActive == option }">{{option}}
+                    </li>
+                  </ul>
+                </div>
               </b-col>
               <!-- End Nav bar -->
 
@@ -22,55 +22,51 @@
 
                 <!-- section Post -->
                 <div class="right-section">
-                  <section v-if="isActive =='post' ">
-                    <button @click="openModal">New Post</button>
+                    <section v-if="isActive =='post' ">
+                      <button @click="openModal">New Post</button>
 
-                    <b-container class="content">
-                      <b-row>
-                        <b-col lg="12" class="text-center">
-                          <h3 class="title">ALL Posts</h3>
-                        </b-col>
-                      </b-row>
-                      <b-row>
-                        <b-col v-for="(post, index) in postList" :key="post._id" md="6" lg="6" style="padding: 10px;">
-                          <div class="text-center" :style="postStyle(post.img)" @mouseenter="isHover = post._id">
-                            <h3 class="post-title">{{post.title}}</h3>
-                            <transition name="option-fade">
-                              <div class="options" v-if="isHover === post._id">
-                                <span id="edit"><font-awesome-icon :icon="['fas', 'pencil-alt']" @click="updatePost(post)"/></span>
-                                <span id="delete"><font-awesome-icon :icon="['far', 'trash-alt']" @click="deletePost(post, index)"/></span>
-                              </div>
-                            </transition>
-                          </div>
-                        </b-col>
-                      </b-row>
-                    </b-container>
-                      <!-- <RichTextEditor/> -->
-                  </section>
-                  <section v-if="isActive == 'project' ">
-                    CONTENT Project
-                  </section>
-                  <section v-if="isActive == 'analytics' ">
-                    CONTENT analytics
-                  </section>
+                      <b-container class="content">
+                        <b-row>
+                          <b-col lg="12" class="text-center">
+                            <h3 class="title">ALL Posts</h3>
+                          </b-col>
+                        </b-row>
+                        <b-row>
+                          <b-col v-for="(post, index) in postList" :key="post._id" md="6" lg="6" style="padding: 10px;">
+                            <div class="text-center" :style="postStyle(post.img)" @mouseenter="isHover = post._id">
+                              <h3 class="post-title">{{post.title}}</h3>
+                              <transition name="option-fade">
+                                <div class="options" v-if="isHover === post._id">
+                                  <span id="edit"><font-awesome-icon :icon="['fas', 'pencil-alt']" @click="updatePost(post)"/></span>
+                                  <span id="delete"><font-awesome-icon :icon="['far', 'trash-alt']" @click="deletePost(post, index)"/></span>
+                                </div>
+                              </transition>
+                            </div>
+                          </b-col>
+                        </b-row>
+                      </b-container>
+                        <!-- <RichTextEditor/> -->
+                    </section>
+                    <section v-if="isActive == 'project' ">
+                      CONTENT Project
+                    </section>
+                    <section v-if="isActive == 'analytics' ">
+                      CONTENT analytics
+                    </section>
                 </div>
               </b-col>
-
             </b-row>
           </b-container>
         </b-col>
       </b-row>
+      <BaseFixedModal :isActive="isCreating" @close="closeModal" @post="createPost" :itemToEdit="itemToEdit"/>
     </b-container>
-
-    <BaseFixedModal :isActive="isCreating" @close="closeModal" @post="createPost" :itemToEdit="itemToEdit"/>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import { getPosts, newPost, editPost, deletePost } from '../../services/api'
-// const RichTextEditor = () => import('@/components/fragments/BaseRichTextEditor')
-const BaseFixedModal = () => import('@/components/fragments/BaseFixedModal')
 
 export default {
   name: 'DashBoardPage',
@@ -103,16 +99,15 @@ export default {
     }
   },
   components: {
-    // RichTextEditor,
-    BaseFixedModal
+    TheSystemNavBar: () => import('@/components/layout/TheSystemNavBar'),
+    BaseFixedModal: () => import('@/components/fragments/BaseFixedModal')
   },
   computed: {
     ...mapGetters('ModulePost', ['postList'])
   },
   methods: {
-    ...mapActions('ModulePost', ['setList', 'pushToList']),
-    ...mapActions('ModulePost', ['removeToList']),
-    ...mapActions('ModulePost', ['updateToList']),
+    ...mapActions('ModulePost', ['setList', 'pushToList', 'removeToList', 'updateToList']),
+    ...mapActions('ModuleUser', ['clearUserStore']),
     openModal () {
       this.isCreating = true
     },
@@ -165,6 +160,12 @@ export default {
         width: '100%',
         borderRadius: '6px'
       }
+    },
+    logoutUser (eventValue) {
+      if (eventValue) {
+        this.$router.push({ name: 'HomePage' })
+        this.clearUserStore()
+      }
     }
   },
   filters: {},
@@ -176,7 +177,6 @@ export default {
 .system-body-page {
   background: $default-gray;
   min-height: 100vh;
-  padding-top: 50px;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;

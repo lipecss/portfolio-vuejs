@@ -1,6 +1,7 @@
 <template>
   <b-container fluid class="page-login">
     <TheBackToHome/>
+    <BaseAlerts :propClearAlert="hasError" :propTypeAlert="typeAlert" @alert-is-close="changeHasAlert('alertFalse', $event)" />
     <b-row class="row page-login___row">
       <b-col xs="12" xm="10" offset-sm="1" md="10" offset-md="1" lg="8" offset-lg="2">
         <div class="page-login___row-content">
@@ -53,11 +54,14 @@ export default {
   data () {
     return {
       email: '',
-      userPassword: ''
+      userPassword: '',
+      typeAlert: 'error',
+      hasError: false
     }
   },
   components: {
-    TheBackToHome: () => import('@/components/layout/TheBackToHome')
+    TheBackToHome: () => import('@/components/layout/TheBackToHome'),
+    BaseAlerts: () => import('@/components/fragments/BaseAlerts')
   },
   computed: {},
   methods: {
@@ -66,10 +70,21 @@ export default {
       const email = this.email
       const userPassord = this.userPassword
 
-      authenticate(email, userPassord).then(user => {
+      const user = await authenticate(email, userPassord)
+
+      if (user.status === 'error') {
+        this.setErrors([this.$t('messages.login.error')])
+        this.setBlockUi(true)
+        this.hasError = true
+      } else {
         this.authUser(user)
         this.$router.push({ name: 'DashBoardPage', params: { user } })
-      })
+      }
+    },
+    changeHasAlert (refValue, eventValue) {
+      if (refValue === 'alertFalse') {
+        this.hasError = eventValue
+      }
     }
   },
   filters: {},
