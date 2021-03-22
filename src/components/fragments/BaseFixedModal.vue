@@ -131,7 +131,7 @@ export default {
       if (this.dragging) {
         // const percentage = (event.layerY * 10) / 100
         const percentage = (event.pageY / window.innerHeight) * 100
-
+        console.log(percentage)
         if (percentage >= 50 && percentage <= 92) {
           this.dividerPosition = percentage.toFixed(2)
           this.editorSize = event.layerY
@@ -171,7 +171,7 @@ export default {
   position: fixed;
   width: 100%;
   // height: 97%;
-  height: 100vh;
+  height: 92vh;
   overflow-y: auto;
   background: $default-gray;
   bottom: 0;
@@ -186,7 +186,7 @@ export default {
 
 #btn-resize {
   position: relative;
-  top: -39px;
+  top: -10px;
   display: block;
   width: 32px;
   height: 32px;

@@ -1,6 +1,7 @@
 <template>
   <b-container fluid class="blog-list">
     <TheBackToHome/>
+    <TheBackToTop />
     <loading :active.sync="isLoading"
       color="#42b883"
       :can-cancel="false"
@@ -62,9 +63,6 @@ import Loading from 'vue-loading-overlay'
 
 import 'vue-loading-overlay/dist/vue-loading.css'
 
-const BasePostThumb = () => import('@/components/fragments/BasePostThumb')
-const TheBackToHome = () => import('@/components/layout/TheBackToHome')
-
 export default {
   name: 'BlogPage',
   metaInfo () {
@@ -99,8 +97,9 @@ export default {
   },
   components: {
     Loading,
-    BasePostThumb,
-    TheBackToHome
+    TheBackToTop: () => import('@/components/layout/TheBackToTop'),
+    BasePostThumb: () => import('@/components/fragments/BasePostThumb'),
+    TheBackToHome: () => import('@/components/layout/TheBackToHome')
   },
   computed: {},
   methods: {

@@ -1,6 +1,7 @@
 <template>
   <div class="posts">
     <TheBackToHome/>
+    <TheBackToTop/>
     <BaseHeroPost
     :urlImg="post.img"
     :title="post.title"
@@ -61,6 +62,7 @@ export default {
     }
   },
   components: {
+    TheBackToTop: () => import('@/components/layout/TheBackToTop'),
     TheBackToHome: () => import('@/components/layout/TheBackToHome'),
     BaseHeroPost: () => import('@/components/fragments/BaseHeroPost')
   },

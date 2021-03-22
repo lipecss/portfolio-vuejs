@@ -3,7 +3,6 @@ import { getPostsBySlug, getProjectsBySlug } from '../services/api'
 // Website pages
 const StartPage = () => import('@views/website/StartPage')
 const HomePage = () => import('@views/website/HomePage')
-const PortfolioPage = () => import('@views/website/PortfolioPage')
 const BlogPage = () => import('@views/website/BlogPage')
 const BlogListPage = () => import('@views/website/BlogListPage')
 const LoginPage = () => import('@/views/website/LoginPage')
@@ -32,12 +31,6 @@ export const routes = [
         name: 'HomePage',
         component: HomePage,
         meta: { scrollBehavior: true }
-      },
-      {
-        path: '/portfolio?',
-        name: 'PortfolioPage',
-        component: PortfolioPage,
-        meta: { scrollToTop: true }
       },
       {
         path: '/blog',

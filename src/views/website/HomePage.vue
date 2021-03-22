@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <NavBar/>
+    <TheBackToTop/>
     <BaseAlerts :propClearAlert="hasError" :propTypeAlert="typeAlert" @alert-is-close="changeHasAlert('alertFalse', $event)" />
     <section id="home" class="home">
       <BaseHeroImage urlImg="http://trydo.rainbowit.net/assets/images/bg/bg-image-28.jpg"/>
@@ -250,6 +251,7 @@ export default {
   },
   components: {
     NavBar: () => import('@/components/layout/TheNavBar'),
+    TheBackToTop: () => import('@/components/layout/TheBackToTop'),
     BaseHeroImage: () => import('@/components/fragments/BaseHeroImage'),
     BaseContactForm: () => import('@/components/fragments/BaseContactForm'),
     BasePostThumb: () => import('@/components/fragments/BasePostThumb'),

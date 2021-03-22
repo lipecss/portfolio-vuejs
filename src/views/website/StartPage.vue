@@ -3,7 +3,6 @@
     <transition name="router-transition" mode="out-in">
       <router-view/>
     </transition>
-    <TheBackToTop/>
     <Footer/>
   </div>
 </template>
@@ -33,7 +32,6 @@ export default {
     return {}
   },
   components: {
-    TheBackToTop: () => import('@/components/layout/TheBackToTop'),
     Footer: () => import('@/components/layout/TheFooter')
   },
   computed: {},
