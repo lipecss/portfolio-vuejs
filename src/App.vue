@@ -21,6 +21,9 @@ export default {
         { name: 'robots', content: 'index, follow' },
         { name: 'description', content: 'Esse site é meu cantinho, o lugar do Felipecss, na qual você poderá conhecer um pouco de tudo, dos meus projetos, trabalhos, gostos e de mim. Estou super ansioco para trocarmos um papo!' },
         { name: 'keywords', content: 'felipecss, felipe, vuejs, vue, javascript, developer, development, desenvolvedor' }
+      ],
+      link: [
+        { rel: 'canonical', href: 'https://felipecss.com' }
       ]
     }
   },

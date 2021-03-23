@@ -67,10 +67,7 @@ export default {
   name: 'BlogPage',
   metaInfo () {
     return {
-      title: this.$t('pages.website.blogListPage.html.title'),
-      link: [
-        { rel: 'canonical', href: `${process.env.VUE_APP_BASE}/` }
-      ]
+      title: this.$t('pages.website.blogListPage.html.title')
     }
   },
   beforeCreate () {},

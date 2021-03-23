@@ -72,10 +72,7 @@ export default {
   name: 'DashBoardPage',
   metaInfo () {
     return {
-      title: 'System',
-      link: [
-        { rel: 'canonical', href: `${process.env.VUE_APP_BASE}/` }
-      ]
+      title: 'System'
     }
   },
   beforeCreate () {},
