@@ -60,9 +60,21 @@ export default {
     return {
       title: this.project.name,
       meta: [
-        { name: 'description', content: this.project.description },
-        { name: 'keywords', content: this.project.slug },
-        { property: 'og:image', content: this.project.images[0] }
+        // Facebook
+        { property: 'og:title', content: this.project.slug },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: `${process.env.VUE_APP_BASE}/${this.project.slug}` },
+        { property: 'og:description', content: this.project.description },
+        { property: 'og:image', content: this.project.images[0] },
+        { property: 'og:site_name', content: this.project.slug },
+
+        // Twitter
+
+        { property: 'twitter:card', content: 'summary_large_image' },
+        { property: 'twitter:url', content: `${process.env.VUE_APP_BASE}/${this.project.slug}` },
+        { property: 'twitter:title', content: this.project.slug },
+        { property: 'twitter:description', content: this.project.description },
+        { property: 'twitter:image', content: this.project.images[0] }
       ],
       link: [
         { rel: 'canonical', href: `${process.env.VUE_APP_BASE}/${this.project.slug}` }

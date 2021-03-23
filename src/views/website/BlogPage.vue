@@ -32,9 +32,21 @@ export default {
     return {
       title: this.post.title,
       meta: [
-        { name: 'description', content: this.contentConverted },
-        { name: 'keywords', content: this.post.slug },
-        { property: 'og:image', content: this.post.img }
+        // Facebook
+        { property: 'og:title', content: this.post.title },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: `${process.env.VUE_APP_BASE}/${this.post.slug}` },
+        { property: 'og:description', content: this.contentConverted },
+        { property: 'og:image', content: this.post.img },
+        { property: 'og:site_name', content: this.post.slug },
+
+        // Twitter
+
+        { property: 'twitter:card', content: 'summary_large_image' },
+        { property: 'twitter:url', content: `${process.env.VUE_APP_BASE}/${this.post.slug}` },
+        { property: 'twitter:title', content: this.post.title },
+        { property: 'twitter:description', content: this.contentConverted },
+        { property: 'twitter:image', content: this.post.img }
       ],
       link: [
         { rel: 'canonical', href: `${process.env.VUE_APP_BASE}/${this.post.slug}` }
