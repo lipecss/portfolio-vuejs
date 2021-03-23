@@ -4,14 +4,14 @@
     <TheBackToTop/>
     <BaseAlerts :propClearAlert="hasError" :propTypeAlert="typeAlert" @alert-is-close="changeHasAlert('alertFalse', $event)" />
     <section id="home" class="home">
-      <BaseHeroImage urlImg="http://trydo.rainbowit.net/assets/images/bg/bg-image-28.jpg"/>
+      <BaseHeroImage urlImg="https://trydo.rainbowit.net/assets/images/bg/bg-image-28.jpg"/>
     </section>
 
     <section id="about" class="about">
       <b-container>
         <b-row class="about-area padding-area">
           <b-col cols="12" sm="12" lg="5">
-            <img src="http://trydo.rainbowit.net/assets/images/about/about-8.jpg" alt="" width="100%" height="100%">
+            <img src="https://trydo.rainbowit.net/assets/images/about/about-8.jpg" alt="" width="100%" height="100%">
           </b-col>
           <b-col col md="7">
             <div class="inner">

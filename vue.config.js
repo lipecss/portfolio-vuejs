@@ -1,8 +1,4 @@
 const path = require('path')
-const webpack = require('webpack')
-
-const PrerenderSpaPlugin = require('prerender-spa-plugin')
-const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
 
 module.exports = {
   runtimeCompiler: true,
@@ -27,25 +23,17 @@ module.exports = {
     output: {
       crossOriginLoading: 'anonymous'
     },
-    plugins: [
-      new PrerenderSpaPlugin({
-        // Absolute path to compiled SPA
-        staticDir: path.resolve(__dirname, './dist'),
-        // List of routes to prerender
-        routes: [ '/'],
-      }),
-    ],
     optimization: {
       splitChunks: {
         cacheGroups: {
           commons: {
             test: /[\\/]node_modules[\\/]/,
             minSize: 10000,
-            maxSize: 200000,
+            maxSize: 200000
           }
         }
       }
-    },
+    }
   },
   pwa: {
     name: 'My App',
@@ -76,6 +64,15 @@ module.exports = {
       fallbackLocale: 'en',
       localeDir: 'locales',
       enableInSFC: false
+    },
+    prerenderSpa: {
+      registry: undefined,
+      renderRoutes: [
+        '/'
+      ],
+      useRenderEvent: true,
+      headless: true,
+      onlyProduction: true
     }
   }
 }

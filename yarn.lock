@@ -8301,7 +8301,7 @@ prepend-http@^1.0.0:
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"
   integrity sha1-1PRWKwzjaW5BrFLQ4ALlemNdxtw=
 
-prerender-spa-plugin@^3.4.0:
+prerender-spa-plugin@^3.2.1, prerender-spa-plugin@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/prerender-spa-plugin/-/prerender-spa-plugin-3.4.0.tgz#332f55e68e1bba68bcf176d8c8dfc8380c5dee8a"
   integrity sha512-4Gtu7XIz5p0VBi1527c/ogu0NNcM5kJPG9q3F26SioeeURVbIJ11B6fuK8pxTmlPqffKPR/2TRRf4o020r4Fqw==
@@ -10300,6 +10300,13 @@ vm-browserify@^1.0.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
+
+vue-cli-plugin-prerender-spa@~1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/vue-cli-plugin-prerender-spa/-/vue-cli-plugin-prerender-spa-1.1.6.tgz#fd3ed890c949c29c1e0c74ee81c7e044539242e3"
+  integrity sha512-SzWUSqQrcsVpdbzGqmBrAgJqQQleDxR7XzmTnp/POn50QX5gxWMlJd6a/WahdhKFJv+qSuLrunC8oAoCb4y5Zg==
+  dependencies:
+    prerender-spa-plugin "^3.2.1"
 
 vue-country-flag@^2.0.3:
   version "2.0.3"
