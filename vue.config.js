@@ -33,7 +33,7 @@ module.exports = {
         // Absolute path to compiled SPA
         staticDir: path.resolve(__dirname, './dist'),
         // List of routes to prerender
-        routes: [ '/', '/login', '/blog', '/project' ],
+        routes: [ '/', '/blog', '/project' ],
         // Options
         renderer: new PrerenderSpaPlugin.PuppeteerRenderer({
           renderAfterTime: 5000
