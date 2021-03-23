@@ -37,7 +37,7 @@ export default {
         { property: 'og:image', content: this.post.img }
       ],
       link: [
-        { rel: 'canonical', href: `${process.env.VUE_APP_BASE}/` }
+        { rel: 'canonical', href: `${process.env.VUE_APP_BASE}/${this.post.slug}` }
       ]
     }
   },

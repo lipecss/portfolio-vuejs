@@ -65,7 +65,7 @@ export default {
         { property: 'og:image', content: this.project.images[0] }
       ],
       link: [
-        { rel: 'canonical', href: `${process.env.VUE_APP_BASE}/` }
+        { rel: 'canonical', href: `${process.env.VUE_APP_BASE}/${this.project.slug}` }
       ]
     }
   },
