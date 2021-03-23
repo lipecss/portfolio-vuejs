@@ -27,6 +27,14 @@ module.exports = {
     output: {
       crossOriginLoading: 'anonymous'
     },
+    plugins: [
+      new PrerenderSpaPlugin({
+        // Absolute path to compiled SPA
+        staticDir: path.resolve(__dirname, './dist'),
+        // List of routes to prerender
+        routes: [ '/'],
+      }),
+    ],
     optimization: {
       splitChunks: {
         cacheGroups: {
