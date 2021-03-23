@@ -1,0 +1,23 @@
+/* TEAM */
+	Site: felipecss.com.
+	Twitter: @felipecss.
+	Location: São Paulo, Brasil.
+
+	Youtuber, Gamer, Noob e Desenvolvedor: Felipe Santos.
+	Site: felipecss.com
+	Location: São Paulo, Brasil.
+
+							
+/* THANKS */
+	Name: Mãe & Pai
+
+	Name: Namorada e Esposa
+
+							
+/* SITE */
+	Last update: 2021/03/22
+	Language: Portugues
+	Doctype: HTML5
+	Web Languages: HTML5, CSS3
+	Components: Vue.js, etc
+	Tools: Adobe Photoshop, VSCode
