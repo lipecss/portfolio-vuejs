@@ -63,6 +63,5 @@ new Vue({
   router,
   store,
   i18n,
-  render: h => h(App),
-  mounted: () => document.dispatchEvent(new Event('x-app-rendered'))
+  render: h => h(App)
 }).$mount('#app')
