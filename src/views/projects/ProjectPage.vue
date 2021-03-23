@@ -121,7 +121,6 @@ export default {
       })
     },
     setHeightResponsive () {
-      console.log('setHeightResponsive')
       const el = document.getElementsByClassName('image')
       el.forEach(async (img) => {
         img.style.width = await '100%'
