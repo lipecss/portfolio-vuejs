@@ -1,4 +1,8 @@
 const path = require('path')
+const webpack = require('webpack')
+
+const PrerenderSpaPlugin = require('prerender-spa-plugin')
+const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
 
 module.exports = {
   runtimeCompiler: true,
@@ -19,7 +23,34 @@ module.exports = {
         '@views': path.resolve(__dirname, 'src', 'views'),
         '@lib': path.resolve(__dirname, 'src', 'lib')
       }
-    }
+    },
+    output: {
+      crossOriginLoading: 'anonymous'
+    },
+    plugins: [
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      new PrerenderSpaPlugin({
+        // Absolute path to compiled SPA
+        staticDir: path.resolve(__dirname, './dist'),
+        // List of routes to prerender
+        routes: [ '/', '/login', '/blog', '/project' ],
+        // Options
+        renderer: new PrerenderSpaPlugin.PuppeteerRenderer({
+          renderAfterTime: 5000
+        })
+      }),
+    ],
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            minSize: 10000,
+            maxSize: 200000,
+          }
+        }
+      }
+    },
   },
   pwa: {
     name: 'My App',
