@@ -13,11 +13,11 @@
               @submit.prevent="loginEvent"
               >
                 <label for="email">
-                  <input id="email" v-model="email" type="email"  name="email" :placeholder="$t('inputs.email.placeholder')" required autocomplete="new-password">
+                  <input id="email" v-model="email" type="email"  name="email" :placeholder="$t('inputs.email.placeholder')" required autocomplete="new-password" :disabled="blockUi">
                 </label>
 
                 <label for="password">
-                  <input v-model="userPassword" type="password" name="name" id="input-password" :placeholder="$t('inputs.password.placeholder')">
+                  <input v-model="userPassword" type="password" name="name" id="input-password" :placeholder="$t('inputs.password.placeholder')" :disabled="blockUi">
                 </label>
                 <button type="submit" value="submit" name="submit">{{ $t('buttons.signIn') }}</button>
               </form>

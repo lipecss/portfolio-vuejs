@@ -60,20 +60,10 @@ export default {
     return {
       title: this.project.name,
       meta: [
-        // Facebook
-        { vmid: 'og:title', property: 'og:title', content: this.project.slug },
-        { vmid: 'og:type', property: 'og:type', content: 'website' },
-        { vmid: 'og:url', property: 'og:url', content: `${process.env.VUE_APP_BASE}/${this.project.slug}` },
-        { vmid: 'og:description', property: 'og:description', content: this.project.description },
-        { vmid: 'og:image', property: 'og:image', content: this.project.images[0] },
-        { vmid: 'og:site_name', property: 'og:site_name', content: this.project.slug },
-
-        // Twitter
-        { vmid: 'twitter:card', property: 'twitter:card', content: 'summary_large_image' },
-        { vmid: 'twitter:url', property: 'twitter:url', content: `${process.env.VUE_APP_BASE}/${this.project.slug}` },
-        { vmid: 'twitter:title', property: 'twitter:title', content: this.project.slug },
-        { vmid: 'twitter:description', property: 'twitter:description', content: this.project.description },
-        { vmid: 'twitter:image', property: 'twitter:image', content: this.project.images[0] }
+        { vmid: 'title', property: 'title', content: this.project.slug },
+        { vmid: 'type', property: 'type', content: 'website' },
+        { vmid: 'url', property: 'url', content: `${process.env.VUE_APP_BASE}/${this.project.slug}` },
+        { vmid: 'description', property: 'description', content: this.project.description }
       ]
     }
   },

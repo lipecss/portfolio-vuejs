@@ -10,7 +10,7 @@ export default {
   metaInfo () {
     const locale = this.$i18n.locale
     return {
-      title: 'Default Title',
+      title: 'Home',
       titleTemplate: chunk => (
         locale === 'en' ? `${chunk} | ${process.env.VUE_APP_APP_NAME}` : `${chunk} | ${process.env.VUE_APP_APP_NAME}`
       ),

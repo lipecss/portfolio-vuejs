@@ -32,21 +32,10 @@ export default {
     return {
       title: this.post.title,
       meta: [
-        // Facebook
-        { vmid: 'og:title', property: 'og:title', content: this.post.title },
-        { vmid: 'og:type', property: 'og:type', content: 'website' },
-        { vmid: 'og:url', property: 'og:url', content: `${process.env.VUE_APP_BASE}/${this.post.slug}` },
-        { vmid: 'og:description', property: 'og:description', content: this.contentConverted },
-        { vmid: 'og:image', property: 'og:image', content: this.post.img },
-        { vmid: 'og:site_name', property: 'og:site_name', content: this.post.slug },
-
-        // Twitter
-
-        { vmid: 'twitter:card', property: 'twitter:card', content: 'summary_large_image' },
-        { vmid: 'twitter:url', property: 'twitter:url', content: `${process.env.VUE_APP_BASE}/${this.post.slug}` },
-        { vmid: 'twitter:title', property: 'twitter:title', content: this.post.title },
-        { vmid: 'twitter:description', property: 'twitter:description', content: this.contentConverted },
-        { vmid: 'twitter:image', property: 'twitter:image', content: this.post.img }
+        { vmid: 'title', property: 'title', content: this.post.title },
+        { vmid: 'type', property: 'type', content: 'website' },
+        { vmid: 'url', property: 'url', content: `${process.env.VUE_APP_BASE}/${this.post.slug}` },
+        { vmid: 'description', property: 'description', content: this.contentConverted }
       ]
     }
   },
