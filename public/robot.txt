@@ -1,0 +1,7 @@
+# Aviso: Crawling este site é proibido a menos que tenha permissão expressa por escrito.
+# Contato: felipecss@vemlavaralouca.com.br
+
+User-agent: *
+Sitemap: https://www.felipecss.com/sitemap.xml
+Disallow: /404
+allow: /img

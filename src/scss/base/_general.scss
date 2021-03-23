@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import "~vue2-editor/dist/vue2-editor.css";
+
+/* Import the Quill styles you want */
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
+
+img {
+  width: 100%; /* or max-width: 100%; */
+  height: auto;
+}
+
+a { 
+  color: $default-green;
+  text-decoration: none !important;
+}
+
+input:disabled, textarea:disabled {
+  background: #272727;
+}
+
+.default-button {
+  margin-top: 35px;
+  transition: 0.7s;
+  opacity: 1;
+  padding: 0 23px;
+  height: 40px;
+  display: inline-block;
+  line-height: 34px;
+  border: 2px solid $vue-green;
+  color: $vue-green;
+  background: transparent;
+  border-radius: 4px;
+  font-size: 14px;
+  text-transform: uppercase;
+
+  &:hover {
+    background: $vue-green;
+    color: #fff;
+    box-shadow: 0 10px 15px 0 rgb(0 0 0 / 10%);
+    transform: translateY(-5px);
+    a {
+      color: #fff;
+    }
+  }
+}
+
+// Gradient
+.gradient-text {
+  background: linear-gradient(145deg, $vue-green, $vue-greenlight);
+  -webkit-text-fill-color: transparent;
+  // display: inline-block;
+  -webkit-background-clip: text;
+}
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: $vue-green $default-gray;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: $default-gray;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: $vue-green;
+  border-radius: 20px;
+}
+
+// vue2-editor 
+.ql-toolbar {
+  span {
+    color: #42b883;
+  }
+}
+
+#quill-container {
+  overflow: auto !important;
+  max-height: 562px !important;
+  height: 562px;
+}
+.ql-container {
+  color: #fff
+}
+
+.ql-stroke {
+  stroke: #42b883 !important;
+}
+
+.ql-snow .ql-fill, .ql-snow .ql-stroke.ql-fill {
+  fill: #42b883 !important;
+}
+
+.ql-editor {
+  overflow-y: unset !important;
+}
+
+pre {
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  border-left: 3px solid #f36d33;
+  color: #666;
+  page-break-inside: avoid;
+  font-family: monospace !important;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 1.6em;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1em 1.5em !important;
+  display: block;
+  word-wrap: break-word;
+}

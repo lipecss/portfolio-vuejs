@@ -1,3 +1,192 @@
 {
-  
+  "pages": {
+    "error": {
+      "404Page": {
+        "html": {
+          "title": "Page not found"
+        },
+        "information": "The page you were looking for could not be found."
+      }
+    },
+    "system": {
+      "dashboardPage": {
+        "html": {
+          "title": "Dashboard"
+        }
+      }
+    },
+    "website": {
+      "loginPage": {
+        "html": {
+          "title": "Login"
+        },
+        "title": "Welcome to",
+        "subtitle": "My website"
+      },
+      "homePage": {
+        "html": {
+          "title": "Home"
+        },
+        "sections": {
+          "about": {
+            "title": "About me",
+            "descriptions": [
+              "I am an eternal student, Full-Stack Developer. In fact, I have a Bachelor of Science in Computer Science. Its not just my professional background. It is also and above all a passion that has grown since I was a child. I am an autonomous self-taught teacher and I love to learn new things, certainly not without difficulties, hehe, but I have always managed to overcome obstacles and solve the problems I encountered!",
+              "I am a born gamer, I love to play. I have currently returned to the seas of Sea of ​​Thieves, so there is where they can find me when I am away"
+            ]
+          },
+          "skill": {
+            "title": "What can I do for you?",
+            "subtitle": "Main skills",
+            "competences": {
+              "title": "Competências",
+              "array": [
+                { "index": 1, "text": "creativity" },
+                { "index": 2, "text": "To build a team" }
+              ],
+              "array2": [
+                { "index": 1, "text": "Issue solver" },
+                { "index": 2, "text": "I study by myself'" }
+              ]
+            },
+            "languages": {
+              "title": "Languages",
+              "array": [
+                { "flag": "br", "language": "Portuguese" },
+                { "flag": "us", "language": "English" }
+              ] 
+            },
+            "skillTabs": [
+              { "id": 1, "tabName": "Web Skills" },
+              { "id": 2, "tabName": "Education & Last Certification" },
+              { "id": 3, "tabName": "Experience" }
+            ]
+          },
+          "portfolio": {
+            "title": "My Latest Project",
+            "subtitle": "Check out some of my works."
+          },
+          "blog": {
+            "title": "Recent Posts",
+            "subtitle": "Here, I'll talk about everything that I like, not necessarily just about development."
+          },
+          "contact": {
+
+          }
+        }
+      },
+      "blogListPage": {
+        "html": {
+          "title": "Post List"
+        },
+        "link": "Home",
+        "noMore": {
+          "nothing": "Nothing more to show",
+          "title": "Stay tuned for upcoming posts 💎",
+          "types": [
+            "If I drink water while I shower, am I taking a shower then?",
+            "'If you want to know what a man’s like, take a good look at how he treats his inferiors, not his equals.'",
+            "'Fear is the path to the dark side. Fear leads to anger. Anger leads to hate. Hate leads to suffering.'",
+            "'Perfection is the enemy of perfectly adequate.'",
+            "Everyone likes the comments on Youtube with the lyrics of the songs, especially when you are too lazy to search Google.",
+            "'Martha. Why did you say that name ? 🦇'"
+          ]
+        }
+      }
+    },
+    "projects": {
+      "projectListPage": {
+        "html": {
+          "title": "Project List"
+        },
+        "link": "Home"
+      }
+    }
+  },
+  "buttons": {
+    "save": "Save",
+    "close": "Close",
+    "cancel": "Cancel",
+    "create": "Create",
+    "delete": "Delete",
+    "forgotPassword": "Forgot password?",
+    "newUser": "I'm a newbie!",
+    "signIn": "sign in",
+    "signUp": "sign up",
+    "logout": "Sign out",
+    "send": "Send",
+    "readMore": "Read more",
+    "more": "More",
+    "home": "Back To Homepage",
+    "talk": "Contact-me"
+  },
+  "inputs": {
+    "email": {  
+      "placeholder": "Your email"
+    },
+    "password": {
+      "placeholder": "Your password",
+      "name": "inputpassword"
+    },
+    "name": {
+      "placeholder": "Your name",
+      "name": "name"
+    },
+    "subject": {
+      "placeholder": "Your Subject",
+      "name": "subject"
+    },
+    "message": {
+      "placeholder": "Your Message",
+      "name": "message"
+    }
+  },
+  "messages": {
+    "contact": {
+      "success": "Message sent Successfully",
+      "error": "Failed to send your message. Try again!"
+    },
+    "login": {
+      "error": "Failed to login. Try again!"
+    }
+  },
+  "components": {
+    "fragments": {
+      "contactForm": {
+        "title": "Hire Me.",
+        "subtitle": "I am available for freelance work. Connect with me"
+      },
+      "heroImage": {
+        "welcome": "Welcome to my World",
+        "title": "Hi, I’m Felipecss",
+        "living": "Living in Brazil",
+        "skills": [
+          "JS Developer.",
+          "Front End.",
+          "Back End.",
+          "Game Developer."
+        ]
+      }
+    },
+    "layout": {
+      "theNavBar": {
+        "navContent": [
+          { "name": "Home", "id": "home" },
+          { "name": "About", "id": "about" },
+          { "name": "Skills", "id": "skill" },
+          { "name": "Portfolio", "id": "portfolio" },
+          { "name": "Blog", "id": "blog" },
+          { "name": "Contact", "id": "contact" }
+        ]
+      },
+      "theFooter": {
+        "compyright": "Copyright © 2021 Felipecss. All Rights Reserved."
+      },
+      "theAlternativeFooter": {
+        "suptitle": "Ready To Do This",
+        "text1": "Let's get",
+        "text2": "to work"
+      }
+    }
+  }
 }

@@ -6,10 +6,7 @@ module.exports = {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),
-        // '@cfg': path.resolve(__dirname, 'src', '_config'),
-        // '@components': path.resolve(__dirname, 'src', 'components'),
         '@components': path.resolve(__dirname, 'src', 'components'),
-        // '@config': path.resolve(__dirname, 'src', '_config', 'config'),
         '@css': path.resolve(__dirname, 'src', 'assets', 'css'),
         '@fonts': path.resolve(__dirname, 'src', 'assets', 'fonts'),
         '@helpers': path.resolve(__dirname, 'src', 'helpers'),
@@ -21,6 +18,29 @@ module.exports = {
         '@utils': path.resolve(__dirname, 'src', 'utils'),
         '@views': path.resolve(__dirname, 'src', 'views'),
         '@lib': path.resolve(__dirname, 'src', 'lib')
+      }
+    }
+  },
+  pwa: {
+    name: 'My App',
+    themeColor: '#42b883',
+    msTileColor: '#fff',
+    appleMobileWebAppCapable: 'yes',
+    appleMobileWebAppStatusBarStyle: 'black',
+    workboxPluginMode: 'InjectManifest',
+    workboxOptions: {
+      swSrc: 'src/service-worker.js',
+      exclude: [
+        /\.map$/,
+        /manifest\.json$/,
+        /_redirects$/
+      ]
+    }
+  },
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: '@import "~@/scss/main.scss";'
       }
     }
   },
