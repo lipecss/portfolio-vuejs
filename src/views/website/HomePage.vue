@@ -183,7 +183,7 @@
           </b-col>
           <b-col lg="6" order="1" order-lg="2">
             <div class="">
-              <img src="http://trydo.rainbowit.net/assets/images/about/about-9.jpg" alt="talk to me" width="100%" height="100%">
+              <img src="https://trydo.rainbowit.net/assets/images/about/about-9.jpg" alt="talk to me" width="100%" height="100%">
             </div>
           </b-col>
         </b-row>

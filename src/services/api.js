@@ -103,7 +103,6 @@ export async function editPost (_id, img, title, content) {
         'x-access-token': token
       }
     }).then(response => {
-    console.log(response)
     return response.data
   }).catch(error => {
     return {

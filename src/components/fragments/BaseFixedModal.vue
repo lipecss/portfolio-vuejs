@@ -131,7 +131,7 @@ export default {
       if (this.dragging) {
         // const percentage = (event.layerY * 10) / 100
         const percentage = (event.pageY / window.innerHeight) * 100
-        console.log(percentage)
+
         if (percentage >= 50 && percentage <= 92) {
           this.dividerPosition = percentage.toFixed(2)
           this.editorSize = event.layerY

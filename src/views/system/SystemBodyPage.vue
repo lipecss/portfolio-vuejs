@@ -143,8 +143,6 @@ export default {
       if (confirm('Do you really want to delete?')) {
         deletePost(post._id).then(() => {
           this.removeToList(index)
-        }).catch(err => {
-          console.log(err)
         })
       }
     },
