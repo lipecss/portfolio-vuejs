@@ -27,19 +27,6 @@ module.exports = {
     output: {
       crossOriginLoading: 'anonymous'
     },
-    plugins: [
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-      new PrerenderSpaPlugin({
-        // Absolute path to compiled SPA
-        staticDir: path.resolve(__dirname, './dist'),
-        // List of routes to prerender
-        routes: [ '/', '/blog', '/project' ],
-        // Options
-        renderer: new PrerenderSpaPlugin.PuppeteerRenderer({
-          renderAfterTime: 5000
-        })
-      }),
-    ],
     optimization: {
       splitChunks: {
         cacheGroups: {
