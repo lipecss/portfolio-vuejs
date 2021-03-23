@@ -11,7 +11,7 @@
       <b-container>
         <b-row class="about-area padding-area">
           <b-col cols="12" sm="12" lg="5">
-            <img src="http://trydo.rainbowit.net/assets/images/about/about-8.jpg" alt="">
+            <img src="http://trydo.rainbowit.net/assets/images/about/about-8.jpg" alt="" width="100%" height="100%">
           </b-col>
           <b-col col md="7">
             <div class="inner">
@@ -183,7 +183,7 @@
           </b-col>
           <b-col lg="6" order="1" order-lg="2">
             <div class="">
-              <img src="http://trydo.rainbowit.net/assets/images/about/about-9.jpg" alt="talk to me">
+              <img src="http://trydo.rainbowit.net/assets/images/about/about-9.jpg" alt="talk to me" width="100%" height="100%">
             </div>
           </b-col>
         </b-row>

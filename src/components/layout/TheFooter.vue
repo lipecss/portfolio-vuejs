@@ -42,7 +42,7 @@
                 </a>
               </li>
               <li>
-                <a
+                <span
                   aria-label="instagram"
                   rel="noopener"
                   class="i18n"
@@ -61,7 +61,7 @@
                       <span>{{ lang.title }}</span>
                     </button>
                   </div>
-                </a>
+                </span>
               </li>
             </ul>
           </div>
@@ -145,7 +145,7 @@ ul li {
   }
 }
 
-ul li a {
+ul li a, .i18n {
   width: 53px;
   height: 50px;
   line-height: 44px;
