@@ -181,42 +181,50 @@ export default {
     }
   }
 
-@media screen and (min-width: 375px) {}
-@media screen and (min-width: 425px) {}
-@media screen and (min-width: 576px) {}
-@media screen and (min-width: 768px) {}
-@media screen and (min-width: 1024px) {
-  .page-login___row {
-    height: 85vh;
+  @media screen and (min-width: 375px) {}
+  @media screen and (min-width: 425px) {}
+  @media screen and (min-width: 576px) {}
+  @media screen and (min-width: 768px) {
   }
-  .page-login___row-content {
-    position: relative;
+  @media screen and (min-width: 1024px) {
 
-    .page-login___content {
-      .page-login___content-form {
+    .page-login___row {
+      height: 85vh;
+    }
 
-        .page-login___content-form-title {
-          font-size: 25px;
-        }
+    .page-login___row-content {
+      position: relative;
 
-        .page-login___content-form-subtitle {
-          font-size: 60px;
+      .page-login___content {
+        .page-login___content-form {
+
+          .page-login___content-form-title {
+            font-size: 25px;
+          }
+
+          .page-login___content-form-subtitle {
+            font-size: 60px;
+          }
         }
       }
     }
   }
-}
-@media screen and (min-width: 1400px) {
-  .page-login___row-content {
-    position: relative;
+  @media screen and (min-width: 1400px) {
 
-    .page-login___content {
-      .page-login___content-form {
-        width: 60%;
+    .page-login___row-content {
+      position: relative;
+
+      .page-login___content {
+        .page-login___content-form {
+          width: 60%;
+        }
       }
     }
   }
-}
-@media screen and (min-width: 1600px) {}
+
+  @media screen and (min-width: 1600px) {
+    height: 100vh;
+    max-height: 876px;
+  }
 }
 </style>

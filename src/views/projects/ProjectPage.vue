@@ -99,8 +99,8 @@ export default {
     resize () {
       const width = window.innerWidth
       if (width <= 1024) {
-        return this.setHeightResponsive()
-      } else return this.setHeight400()
+        this.setHeightResponsive()
+      } else this.setHeight400()
     },
     initResize () {
       const width = window.innerWidth
