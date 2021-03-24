@@ -60,9 +60,9 @@ export default {
     return {
       title: this.project.name,
       meta: [
-        { vmid: 'title', property: 'title', content: this.project.slug },
-        { vmid: 'url', property: 'url', content: `${process.env.VUE_APP_BASE}/${this.project.slug}` },
-        { vmid: 'description', property: 'description', content: this.project.description }
+        { vmid: 'title', name: 'title', content: this.project.slug },
+        { vmid: 'url', name: 'url', content: `${process.env.VUE_APP_BASE}/${this.project.slug}` },
+        { vmid: 'description', name: 'description', content: this.project.description }
       ]
     }
   },

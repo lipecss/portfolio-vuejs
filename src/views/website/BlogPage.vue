@@ -32,9 +32,9 @@ export default {
     return {
       title: this.$route.params.post.title,
       meta: [
-        { vmid: 'title', property: 'title', content: this.$route.params.post.title },
-        { vmid: 'url', property: 'url', content: `${process.env.VUE_APP_BASE}/${this.$route.params.post.slug}` },
-        { vmid: 'description', property: 'description', content: this.contentConverted }
+        { vmid: 'title', name: 'title', content: this.$route.params.post.title },
+        { vmid: 'url', name: 'url', content: `${process.env.VUE_APP_BASE}/${this.$route.params.post.slug}` },
+        { vmid: 'description', name: 'description' , content: this.contentConverted }
       ]
     }
   },
