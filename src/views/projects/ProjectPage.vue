@@ -61,7 +61,6 @@ export default {
       title: this.project.name,
       meta: [
         { vmid: 'title', property: 'title', content: this.project.slug },
-        { vmid: 'type', property: 'type', content: 'website' },
         { vmid: 'url', property: 'url', content: `${process.env.VUE_APP_BASE}/${this.project.slug}` },
         { vmid: 'description', property: 'description', content: this.project.description }
       ]
