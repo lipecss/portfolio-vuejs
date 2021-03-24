@@ -101,7 +101,7 @@ export default {
   computed: {},
   methods: {
     getInitialPosts () {
-      axios.get('http://localhost:3333/posts/paginate').then(response => {
+      axios.get(`${process.env.VUE_APP_API}/posts/paginate`).then(response => {
         const postsLimit = response.data.docs.length
         this.maxPage = response.data.totalPages
         for (var i = 0; i < postsLimit; i++) {
@@ -120,7 +120,7 @@ export default {
             this.isLoading = false
             // eslint-disable-next-line prefer-const
             let page = this.currentPage
-            axios.get(`http://localhost:3333/posts/paginate?page=${page}`).then(response => {
+            axios.get(`${process.env.VUE_APP_API}/posts/paginate?page=${page}`).then(response => {
               const postsLimit = response.data.docs.length
               if (page <= response.data.totalPages) {
                 for (var i = 0; i < postsLimit; i++) {
