@@ -1,4 +1,5 @@
 const path = require('path')
+const PrerenderSPAPlugin = require('prerender-spa-plugin')
 
 module.exports = {
   runtimeCompiler: true,
@@ -28,7 +29,13 @@ module.exports = {
         minSize: 10000,
         maxSize: 200000,
       }
-    }
+    },
+    plugins: [
+      new PrerenderSPAPlugin({
+        staticDir: path.join(__dirname, 'dist'),
+        routes: ['/', '/login', '/404'],
+      }),
+    ]
   },
   pwa: {
     name: 'My App',
