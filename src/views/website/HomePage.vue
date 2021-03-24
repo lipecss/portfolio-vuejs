@@ -215,8 +215,7 @@ export default {
   beforeUpdate () {},
   updated () {},
   beforeDestroy () {},
-  destroyed () {
-  },
+  destroyed () {},
   data () {
     return {
       latastPosts: [],

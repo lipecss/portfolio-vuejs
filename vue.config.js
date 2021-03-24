@@ -1,9 +1,8 @@
 const path = require('path')
+const webpack = require('webpack')
 const PrerenderSpaPlugin = require('prerender-spa-plugin')
-const CompressionWebpackPlugin = require('compression-webpack-plugin')
- // define compressed file types
-const productionGzipExtensions = ['js', 'css']
 const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
+const ImageminPlugin = require('imagemin-webpack-plugin').default
 
 module.exports = {
   runtimeCompiler: true,
@@ -35,27 +34,25 @@ module.exports = {
       }
     },
     plugins: [
-      new CompressionWebpackPlugin({
-        filename: '[path].gz[query]',
-        algorithm: 'gzip',
-        test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
-        threshold: 10240,
-        minRatio: 0.8
-      }),
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
       new PrerenderSpaPlugin({
         // Absolute path to compiled SPA
         staticDir: path.resolve(__dirname, './dist'),
         // List of routes to prerender
         routes: [ '/', '/login', '/dashboard' ,'/404' ],
         // Options
-        renderer: new PrerenderSpaPlugin.PuppeteerRenderer({
+        renderer: new Renderer ({
           renderAfterTime: 5000
         })
+      }),
+      new ImageminPlugin({
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        /* other ImageMin configs */
       })
     ]
   },
   pwa: {
-    name: 'My App',
+    name: 'Felipecss',
     themeColor: '#42b883',
     msTileColor: '#fff',
     appleMobileWebAppCapable: 'yes',
