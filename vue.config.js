@@ -1,5 +1,6 @@
 const path = require('path')
 const PrerenderSPAPlugin = require('prerender-spa-plugin')
+const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
 
 module.exports = {
   runtimeCompiler: true,
@@ -33,8 +34,22 @@ module.exports = {
     plugins: [
       new PrerenderSPAPlugin({
         staticDir: path.join(__dirname, 'dist'),
-        routes: ['/', '/login', '/404'],
-      }),
+        outputDir: path.join(__dirname, 'dist'),
+        routes: ['/', '/login','/404',],
+        postProcess(renderedRoute) {
+            renderedRoute.html = renderedRoute.html
+                .replace(/<script (.*?)>/g, `<script $1 defer>`)
+                .replace(`id="app"`, `id="app" data-server-rendered="true"`);
+
+            return renderedRoute;
+        },
+        renderer: new Renderer({
+            headless: true,
+            // renderAfterElementExists: `[data-view]`,
+            renderAfterTime: 5000,
+            args: ['--no-sandbox', '--disable-setuid-sandbox']
+        })
+      })
     ]
   },
   pwa: {
