@@ -22,13 +22,8 @@ module.exports = {
     },
     optimization: {
       splitChunks: {
-        cacheGroups: {
-          commons: {
-            test: /[\\/]node_modules[\\/]/,
-            minSize: 10000,
-            maxSize: 200000
-          }
-        }
+        minSize: 10000,
+        maxSize: 200000,
       }
     }
   },
