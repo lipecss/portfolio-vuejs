@@ -34,7 +34,7 @@ export default {
       meta: [
         { vmid: 'title', name: 'title', content: this.$route.params.post.title },
         { vmid: 'url', name: 'url', content: `${process.env.VUE_APP_BASE}/${this.$route.params.post.slug}` },
-        { vmid: 'description', name: 'description' , content: this.contentConverted }
+        { vmid: 'description', name: 'description', content: this.contentConverted }
       ]
     }
   },
