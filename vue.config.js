@@ -20,6 +20,9 @@ module.exports = {
         '@lib': path.resolve(__dirname, 'src', 'lib')
       }
     },
+    output: {
+      crossOriginLoading: 'anonymous'
+    },
     optimization: {
       splitChunks: {
         minSize: 10000,
