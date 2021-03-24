@@ -1,6 +1,9 @@
 const path = require('path')
-const PrerenderSPAPlugin = require('prerender-spa-plugin')
-const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
+const PrerenderSpaPlugin = require('prerender-spa-plugin')
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
+ // define compressed file types
+const productionGzipExtensions = ['js', 'css']
+const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
 
 module.exports = {
   runtimeCompiler: true,
@@ -28,26 +31,25 @@ module.exports = {
     optimization: {
       splitChunks: {
         minSize: 10000,
-        maxSize: 200000,
+        maxSize: 250000,
       }
     },
     plugins: [
-      new PrerenderSPAPlugin({
-        staticDir: path.join(__dirname, 'dist'),
-        outputDir: path.join(__dirname, 'dist'),
-        routes: ['/', '/login','/404',],
-        postProcess(renderedRoute) {
-            renderedRoute.html = renderedRoute.html
-                .replace(/<script (.*?)>/g, `<script $1 defer>`)
-                .replace(`id="app"`, `id="app" data-server-rendered="true"`);
-
-            return renderedRoute;
-        },
-        renderer: new Renderer({
-            headless: true,
-            // renderAfterElementExists: `[data-view]`,
-            renderAfterTime: 5000,
-            args: ['--no-sandbox', '--disable-setuid-sandbox']
+      new CompressionWebpackPlugin({
+        filename: '[path].gz[query]',
+        algorithm: 'gzip',
+        test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
+        threshold: 10240,
+        minRatio: 0.8
+      }),
+      new PrerenderSpaPlugin({
+        // Absolute path to compiled SPA
+        staticDir: path.resolve(__dirname, './dist'),
+        // List of routes to prerender
+        routes: [ '/', '/login', '/dashboard' ,'/404' ],
+        // Options
+        renderer: new PrerenderSpaPlugin.PuppeteerRenderer({
+          renderAfterTime: 5000
         })
       })
     ]
@@ -81,15 +83,6 @@ module.exports = {
       fallbackLocale: 'en',
       localeDir: 'locales',
       enableInSFC: false
-    },
-    prerenderSpa: {
-      registry: undefined,
-      renderRoutes: [
-        '/'
-      ],
-      useRenderEvent: true,
-      headless: true,
-      onlyProduction: true
     }
   }
 }
