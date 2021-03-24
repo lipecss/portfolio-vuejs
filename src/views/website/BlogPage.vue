@@ -30,11 +30,11 @@ export default {
   name: 'BlogPage',
   metaInfo () {
     return {
-      title: this.post.title,
+      title: this.$route.params.post.title,
       meta: [
-        { vmid: 'title', property: 'title', content: this.post.title },
+        { vmid: 'title', property: 'title', content: this.$route.params.post.title },
         { vmid: 'type', property: 'type', content: 'website' },
-        { vmid: 'url', property: 'url', content: `${process.env.VUE_APP_BASE}/${this.post.slug}` },
+        { vmid: 'url', property: 'url', content: `${process.env.VUE_APP_BASE}/${this.$route.params.post.slug}` },
         { vmid: 'description', property: 'description', content: this.contentConverted }
       ]
     }
