@@ -3,6 +3,12 @@
     <router-link class="navss" :to="{ name: 'HomePage'}" target="_blank">
       {{ $t('components.layout.theNavBar.navContent[0].name') }}
     </router-link>
+    <router-link class="navss" :to="{ name: 'BlogListPage'}" target="_blank">
+      Blog
+    </router-link>
+    <router-link class="navss" :to="{ name: 'ProjectListPage'}" target="_blank">
+      Projetos
+    </router-link>
     <button class="login ml-auto" @click="logoutUser">{{ $t('buttons.logout') }}</button>
   </b-navbar>
 </template>

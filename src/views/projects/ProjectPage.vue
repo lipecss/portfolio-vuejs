@@ -20,7 +20,10 @@
     <b-row class="mb-3">
       <b-col md="10" offset-md="1">
         <div class="project__content-area">
-          <h2 class="project__content-area-title">{{ project.name }}</h2>
+          <h2 class="project__content-area-title" v-if="project.url">
+            <a :href="project.url" target="_blank" rel="noopener noreferrer">{{ project.name }}</a>
+          </h2>
+          <h2 v-else class="project__content-area-title">{{ project.name }}</h2>
 
           <div class="project__content-area-description mt-5">
             {{ project.description }}

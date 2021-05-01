@@ -20,10 +20,10 @@
 
               <b-col cols="12" md="9" lg="10">
 
-                <!-- section Post -->
                 <div class="right-section">
+                  <!-- section Post -->
                     <section v-if="isActive =='post' ">
-                      <button @click="openModal">New Post</button>
+                      <button @click="openPostModal">New Post</button>
 
                       <b-container class="content">
                         <b-row>
@@ -47,26 +47,73 @@
                       </b-container>
                         <!-- <RichTextEditor/> -->
                     </section>
-                    <section v-if="isActive == 'project' ">
-                      CONTENT Project
+
+                    <!-- section Project -->
+                    <section v-if="isActive =='project' ">
+                      <button @click="openProjectModal">New Project</button>
+
+                      <b-container class="content">
+                        <b-row>
+                          <b-col lg="12" class="text-center">
+                            <h3 class="title">ALL Projects</h3>
+                          </b-col>
+                        </b-row>
+                        <b-row>
+                          <b-col v-for="(project,index) in projectList" :key="project._id" md="6" lg="6" style="padding: 10px;">
+                            <div class="text-center" :style="postStyle(project.images[0])" @mouseenter="isHover = project._id">
+                              <h3 class="post-title">{{project.name}}</h3>
+                              <transition name="option-fade">
+                                <div class="options" v-if="isHover === project._id">
+                                  <span id="edit"><font-awesome-icon :icon="['fas', 'pencil-alt']"/></span>
+                                  <span id="delete"><font-awesome-icon :icon="['far', 'trash-alt']" @click="deleteProject(project, index)"/></span>
+                                </div>
+                              </transition>
+                            </div>
+                          </b-col>
+                        </b-row>
+                      </b-container>
+                        <!-- <RichTextEditor/> -->
                     </section>
+
                     <section v-if="isActive == 'analytics' ">
                       CONTENT analytics
                     </section>
                 </div>
+
               </b-col>
             </b-row>
           </b-container>
         </b-col>
       </b-row>
-      <BaseFixedModal :isActive="isCreating" @close="closeModal" @post="createPost" :itemToEdit="itemToEdit"/>
+      <BaseFixedModal
+        :isActive="isCreatingPost"
+        @close="closePostModal"
+        @post="createPost"
+        :itemToEdit="itemToEdit"
+      />
+      <BaseNewProjectModal
+        :isActive="isCreatingProject"
+        @close="closeProjectModal"
+        @project="createProject"
+        :itemToEdit="itemToEdit"
+        :skills="projectSkills"
+      />
     </b-container>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import { getPosts, newPost, editPost, deletePost } from '../../services/api'
+import {
+  getPosts,
+  newPost,
+  editPost,
+  deletePost,
+  getProjects,
+  newProject,
+  deleteProject,
+  getSkills
+} from '../../services/api'
 
 export default {
   name: 'DashBoardPage',
@@ -78,6 +125,7 @@ export default {
   beforeCreate () {},
   async created () {
     await this.syncPosts()
+    await this.syncProjects()
   },
   beforeMount () {},
   mounted () {},
@@ -91,25 +139,30 @@ export default {
       options: ['post', 'project', 'analytics'],
       isActive: 'post',
       isHover: null,
-      isCreating: false,
+      isCreatingPost: false,
+      isCreatingProject: false,
+      projectSkills: [],
       itemToEdit: null
     }
   },
   components: {
     TheSystemNavBar: () => import('@/components/layout/TheSystemNavBar'),
-    BaseFixedModal: () => import('@/components/fragments/BaseFixedModal')
+    BaseFixedModal: () => import('@/components/fragments/BaseFixedModal'),
+    BaseNewProjectModal: () => import('@/components/fragments/BaseNewProjectModal')
   },
   computed: {
-    ...mapGetters('ModulePost', ['postList'])
+    ...mapGetters('ModulePost', ['postList']),
+    ...mapGetters('ModuleProject', ['projectList'])
   },
   methods: {
     ...mapActions('ModulePost', ['setList', 'pushToList', 'removeToList', 'updateToList']),
+    ...mapActions('ModuleProject', ['setProjectList', 'pushToProjectList', 'removeToProjectList', 'updateToProjectList']),
     ...mapActions('ModuleUser', ['clearUserStore']),
-    openModal () {
-      this.isCreating = true
+    openPostModal () {
+      this.isCreatingPost = true
     },
-    closeModal (status) {
-      this.isCreating = status
+    closePostModal (status) {
+      this.isCreatingPost = status
       this.itemToEdit = null
     },
     async syncPosts () {
@@ -121,25 +174,55 @@ export default {
         const result = await newPost(post.img, post.title, post.content)
         if (result.status !== 'error') {
           this.pushToList(result)
-          this.isCreating = false
+          this.isCreatingPost = false
         }
       } else if (post.status === 'edit') {
         const result = await editPost(post._id, post.img, post.title, post.content)
 
         if (result.status !== 'error') {
           this.updateToList(result)
-          this.isCreating = false
+          this.isCreatingPost = false
         }
       }
     },
+    async openProjectModal () {
+      this.isCreatingProject = true
+
+      const skills = await getSkills()
+      this.projectSkills = skills
+    },
+    closeProjectModal (status) {
+      this.isCreatingProject = status
+      this.itemToEdit = null
+    },
     updatePost (item) {
-      this.isCreating = true
+      this.isCreatingPost = true
       this.itemToEdit = item
     },
     async deletePost (post, index) {
       if (confirm('Do you really want to delete?')) {
         deletePost(post._id).then(() => {
           this.removeToList(index)
+        })
+      }
+    },
+    async syncProjects () {
+      const projects = await getProjects()
+      this.setProjectList(projects)
+    },
+    async createProject (project) {
+      if (project.status === 'create') {
+        const result = await newProject(project.name, project.description, project.images, project.skills)
+        if (result.status !== 'error') {
+          this.pushToProjectList(result)
+          this.isCreatingProject = false
+        }
+      }
+    },
+    async deleteProject (project, index) {
+      if (confirm('Do you really want to delete?')) {
+        deleteProject(project._id).then(() => {
+          this.removeToProjectList(index)
         })
       }
     },

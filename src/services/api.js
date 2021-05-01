@@ -165,6 +165,59 @@ export async function getProjects () {
   })
 }
 
+export async function newProject (name, description, images, skills) {
+  const token = await hasTokenInStore()
+
+  return api.post('/projects', { name, description, images, skills },
+    {
+      headers: {
+        'x-access-token': token
+      }
+    }).then(response => {
+    return response.data
+  }).catch(error => {
+    return {
+      status: 'error',
+      data: error
+    }
+  })
+}
+
+export async function deleteProject (id) {
+  const token = await hasTokenInStore()
+  return api.delete(`/projects/${id}`,
+    {
+      headers: {
+        'x-access-token': token
+      }
+    }).then(response => {
+    return response.data
+  }).catch(error => {
+    return {
+      status: 'error',
+      data: error
+    }
+  })
+}
+
+export async function editProject (_id, img, title, content) {
+  const token = await hasTokenInStore()
+
+  return api.put(`/posts/${_id}`, { img, title, content },
+    {
+      headers: {
+        'x-access-token': token
+      }
+    }).then(response => {
+    return response.data
+  }).catch(error => {
+    return {
+      status: 'error',
+      data: error
+    }
+  })
+}
+
 export async function getProjectsBySlug (slug) {
   return api.get(`/project/${slug}`).then(response => {
     return response.data
@@ -178,6 +231,19 @@ export async function getProjectsBySlug (slug) {
 
 export async function getLatestProject () {
   return api.get('/project/latest').then(response => {
+    return response.data
+  }).catch(error => {
+    return {
+      status: 'error',
+      data: error
+    }
+  })
+}
+
+// SIKILLS
+
+export async function getSkills () {
+  return api.get('/skills').then(response => {
     return response.data
   }).catch(error => {
     return {

@@ -174,6 +174,10 @@ export default {
   padding-bottom: 20px;
 }
 
+.thumb {
+  padding-top: 20px;
+}
+
 #nothing {
   font-size: 17px;
   font-weight: 500;

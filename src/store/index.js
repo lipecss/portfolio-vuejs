@@ -12,6 +12,7 @@ import getters from './getters'
 // Modules
 import ModuleUser from './modules/user'
 import ModulePost from './modules/posts'
+import ModuleProject from './modules/projects'
 import ModuleLike from './modules/likes'
 import ModuleErrors from './modules/errors'
 
@@ -20,6 +21,7 @@ Vue.use(Vuex)
 const modules = {
   ModuleUser,
   ModulePost,
+  ModuleProject,
   ModuleLike,
   ModuleErrors
 }
