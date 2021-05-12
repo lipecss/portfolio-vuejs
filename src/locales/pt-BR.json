@@ -148,7 +148,8 @@
     },
     "login": {
       "error": "Falha ao logar. Tente novamente!"
-    }
+    },
+    "download": "Baixar CV"
   },
   "components": {
     "fragments": {

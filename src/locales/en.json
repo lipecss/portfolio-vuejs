@@ -148,7 +148,8 @@
     },
     "login": {
       "error": "Failed to login. Try again!"
-    }
+    },
+    "download": "Download Resume"
   },
   "components": {
     "fragments": {

@@ -6,11 +6,19 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default
 
 module.exports = {
   runtimeCompiler: true,
+  chainWebpack: config => {
+    config.module
+    .rule("pdf")
+    .test(/\.pdf$/)
+    .use("file-loader")
+    .loader("file-loader");
+  },
   configureWebpack: {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),
         '@components': path.resolve(__dirname, 'src', 'components'),
+        '@assets': path.resolve(__dirname, 'src', 'assets'),
         '@css': path.resolve(__dirname, 'src', 'assets', 'css'),
         '@fonts': path.resolve(__dirname, 'src', 'assets', 'fonts'),
         '@helpers': path.resolve(__dirname, 'src', 'helpers'),

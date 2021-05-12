@@ -10,14 +10,29 @@
     <section id="about" class="about">
       <b-container>
         <b-row class="about-area padding-area">
+
           <b-col cols="12" sm="12" lg="5">
             <img src="https://trydo.rainbowit.net/assets/images/about/about-8.jpg" alt="" width="100%" height="100%">
           </b-col>
+
           <b-col col md="7">
             <div class="inner">
               <div class="section-title">
                 <h2>{{ $t('pages.website.homePage.sections.about.title') }}</h2>
                 <p class="description" v-for="(desc, index) in $t('pages.website.homePage.sections.about.descriptions')" :key="index">{{desc}}</p>
+              </div>
+
+              <div class="about-area__social">
+                <label v-for="(item, index) in social" :key="index" class="ml-2 mr-2">
+                  <a :href="item.href" target="_blank" rel="noopener noreferrer" class="social-myself" :title="item.title">
+                    <font-awesome-icon :icon="['fab', item.icon]" size="3x"/>
+                  </a>
+                </label>
+                <label class="ml-2 mr-2">
+                  <a :href="pdfLink" target="_blank" rel="noopener noreferrer" class="social-myself" download="Felipecss_Resume" :title="$t('messages.download')">
+                    <font-awesome-icon :icon="['fas', 'file-pdf']" size="3x" />
+                  </a>
+                </label>
               </div>
             </div>
           </b-col>
@@ -241,6 +256,12 @@ export default {
         { name: 'React', width: 60, timer: 30 },
         { name: 'React Native', width: 60, timer: 10 }
       ],
+      social: [
+        { icon: 'xbox', href: 'https://account.xbox.com/pt-br/Profile?xr=socialtwistnav&activetab=main:mainTab2', title: 'Xbox' },
+        { icon: 'spotify', href: 'https://open.spotify.com/user/felipessz?si=1285b442a8db41bd', title: 'Spotify' },
+        { icon: 'twitch', href: 'https://www.twitch.tv/felipecss', title: 'Twitch' }
+      ],
+      pdfLink: require('@/assets/felipecssResume.pdf'),
       typeAlert: 'error',
       hasError: false
     }
@@ -328,6 +349,20 @@ img {
 
 .about {
   background: $default-gray;
+}
+
+.about-area__social {
+  display: flex;
+  justify-content: center;
+
+  a {
+    color: $middle-gray;
+  }
+  .social-myself {
+    &:hover {
+      color: $vue-green;
+    }
+  }
 }
 
 // Section Skill
