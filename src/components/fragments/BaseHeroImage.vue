@@ -34,20 +34,10 @@ export default {
       currentSkill: ''
     }
   },
-  props: {
-    urlImg: { type: String, required: true }
-  },
   computed: {
     style () {
-      const img = this.urlImg
       return {
-        backgroundImage: `url(${img})`,
-        backgroundPosition: '50%',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        padding: '230px 0',
-        width: '100%',
-        height: '700px'
+        backgroundImage: `url(${require('../../assets/img/base-hero.png')})`
       }
     }
   },
@@ -74,40 +64,63 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.inner {
-  padding: 0 30px;
+.hero-banner {
+  background-position: 70%;
+  background-repeat: no-repeat;
+  background-size: cover;
 
-  span {
-    color: #c6c9d8bf;
-    font-size: 22px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    display: block;
-  }
+  .inner {
+    padding: 0 30px;
 
-  .title {
-    color: #fff;
-    font-size: 32px;
-    line-height: 49px;
-    font-weight: 900;
-    font-family: Montserrat,sans-serif;
-  }
-
-  .skills {
     span {
-      color: $vue-green;
+      color: #c6c9d8bf;
+      font-size: 22px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      display: block;
+    }
+
+    .title {
+      color: #fff;
       font-size: 32px;
       line-height: 49px;
+      font-weight: 900;
+      font-family: Montserrat,sans-serif;
+    }
+
+    .skills {
+      span {
+        color: $vue-green;
+        font-size: 20px;
+        line-height: 49px;
+        font-weight: 700;
+      }
+    }
+
+    .location {
+      color: #fff;
+      font-size: 32px;
+      line-height: 1.3;
       font-weight: 700;
     }
   }
 
-  .location {
-    color: #fff;
-    font-size: 32px;
-    line-height: 1.3;
-    font-weight: 700;
+  @media screen and (min-width: 1024px) {
+    background-position: 35%;
+
+    .inner {
+      .skills {
+        span {
+          font-size: 32px;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 1600px) {
+    height: 100vh;
+    max-height: 876px;
   }
 }
 </style>

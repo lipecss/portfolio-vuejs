@@ -4,7 +4,7 @@
     <TheBackToTop/>
     <BaseAlerts :propClearAlert="hasError" :propTypeAlert="typeAlert" @alert-is-close="changeHasAlert('alertFalse', $event)" />
     <section id="home" class="home">
-      <BaseHeroImage urlImg="https://trydo.rainbowit.net/assets/images/bg/bg-image-28.jpg"/>
+      <BaseHeroImage urlImg="../../assets/img/base-hero.png"/>
     </section>
 
     <section id="about" class="about">
@@ -12,7 +12,7 @@
         <b-row class="about-area padding-area">
 
           <b-col cols="12" sm="12" lg="5">
-            <img src="https://trydo.rainbowit.net/assets/images/about/about-8.jpg" alt="" width="100%" height="100%">
+            <img src="../../assets/img/about.png" alt="" width="100%" height="100%">
           </b-col>
 
           <b-col col md="7">
@@ -198,7 +198,7 @@
           </b-col>
           <b-col lg="6" order="1" order-lg="2">
             <div class="">
-              <img src="https://trydo.rainbowit.net/assets/images/about/about-9.jpg" alt="talk to me" width="100%" height="100%">
+              <img src="../../assets/img/contact.png" alt="talk to me" width="100%" height="100%">
             </div>
           </b-col>
         </b-row>
