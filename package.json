@@ -19,7 +19,7 @@
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
     "imagemin-webpack-plugin": "^2.4.2",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "prerender-spa-plugin": "^3.4.0",
     "pusher-js": "^7.0.3",
     "quill-image-drop-module": "^1.0.3",
