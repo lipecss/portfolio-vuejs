@@ -1,6 +1,13 @@
+*.log*
+.nuxt
+.nitro
+.cache
+.output
+
 .DS_Store
 node_modules
 /dist
+/backup
 
 /tests/e2e/reports/
 selenium-debug.log
