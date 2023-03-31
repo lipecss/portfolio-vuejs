@@ -1,0 +1,89 @@
+@font-face {
+  font-family: 'Roobert';
+  src: url('https://fonts.cdnfonts.com/css/roobert');
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --g1: rgb(65, 184, 131);
+  --g2: rgb(53, 73, 94);
+}
+
+body {
+  font-family: 'Roobert', sans-serif !important;
+  color: white !important;
+  background-color: rgb(0, 0, 0);
+  overflow-y: auto !important;
+}
+
+
+.color1 {
+  background-color: tomato;
+}
+.color2 {
+  background-color: green;
+}
+.color3 {
+  background-color: orange;
+}
+.color4 {
+  background-color: blueviolet;
+}
+.color5 {
+  background-color: blue;
+}
+.color6 {
+  background-color: yellow;
+}
+.color7 {
+  background-color: red;
+}
+.color8 {
+  background-color: cyan;
+}
+.color9 {
+  background-color: firebrick;
+}
+.color10 {
+  background-color: chocolate;
+}
+
+.vertical-text {
+  z-index: 2;
+  pointer-events: none;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  white-space: nowrap;
+  letter-spacing: 15px;
+  user-select: none;
+}
+.is-typed {
+  display: inline;
+}
+
+.is-typed span.cursor {
+  display: inline-block;
+  width: 10px;
+  background-color: white;
+  animation: blink 1s infinite;
+}
+
+.is-typed span.cursor.typing {
+  animation: none;
+}
+
+@keyframes blink {
+  49% {
+    background-color: white;
+  }
+  50% {
+    background-color: transparent;
+  }
+  99% {
+    background-color: transparent;
+  }
+}
