@@ -9,8 +9,8 @@
 @tailwind utilities;
 
 :root {
-  --g1: rgb(65, 184, 131);
-  --g2: rgb(53, 73, 94);
+  --g1: #41b883;
+  --g2: #35495e;
 }
 
 body {
@@ -86,4 +86,13 @@ body {
   99% {
     background-color: transparent;
   }
+}
+
+
+.lateral-text {
+  font-weight: 400;
+  font-size: 42px;
+  letter-spacing: -.013em;
+  line-height: 105%;
+  max-width: 18ch;
 }

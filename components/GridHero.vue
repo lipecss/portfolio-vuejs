@@ -2,18 +2,18 @@
   <div class="hero-content">
     <div id="tiles" ref="tilesRef" :style="border"></div>
     
-    <div v-if="!toggled">
+    <div v-show="!toggled">
       <h1 id="title" ref="title" class="font-medium sm:text-2xl centered">
-        Bem ao site do
-        <span class="fancy">Felipecss</span>.
+        Bem vindo ao site do
+        <span class="fancy">Felipecss</span>
       </h1>
-      <div class="click vertical-text absolute top-4 md:top-1/4 left-6 md:left-20 font-thin whitespace-no-wrap text-sm uppercase">
+      <!-- <div class="click vertical-text absolute top-4 md:top-1/4 left-6 md:left-20 font-thin whitespace-no-wrap text-sm uppercase">
         Clique aqui
-      </div>
+      </div> -->
     </div>
 
 
-    <div v-else id="title" ref="title" class="centered items-center">
+    <div v-show="toggled" id="title" ref="title" class="centered items-center">
       <span class="font-bold inline">
         Eu <span class="font-bold inline">
           <VueWriter 
@@ -198,7 +198,7 @@ createGrid();
 #title > .fancy {
   color: var(--g1);
   font-size: 1.5em;
-  line-height: 0.9em;
+  line-height: 1em;
   font-weight: 700;
 }
 

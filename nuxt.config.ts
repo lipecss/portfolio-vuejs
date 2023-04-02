@@ -6,7 +6,33 @@ export default defineNuxtConfig({
         lang: 'pt-BR'
       },
       title: 'Portifolio felipecss',
-      meta: [ ]
+      meta: [ ],
+      script: [
+        {
+          src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js',
+          body: true
+        },
+        {
+          src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/EaselPlugin.min.js',
+          body: true
+        },
+        {
+          src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js',
+          body: true
+        },
+        {
+          src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollTrigger/1.0.6/ScrollTrigger.min.js',
+          body: true
+        },
+        {
+          src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.js',
+          body: true
+        },
+        {
+          src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.min.js',
+          body: true
+        }
+      ]
     }
   },
   pageTransition: {
