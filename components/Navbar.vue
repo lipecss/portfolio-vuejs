@@ -1,13 +1,13 @@
 <template>
   <div class="nav w-full relative">
-    <button class="card" :class="{ expandido: expand }" @click="toggle">
+    <button class="card" aria-label="card-button" aria-labelledby="card-button" :class="{ expandido: expand }" @click="toggle">
       <ClientOnly>
         <font-awesome-icon v-if="!expand" icon="fa-solid fa-bars" color="black" />
       </ClientOnly>
     </button>
 
     <div v-if="expand" class="content">
-      <button class="card-close" @click="expand = false">
+      <button class="card-close" aria-labelledby="card-close" @click="expand = false">
         <ClientOnly>
           <font-awesome-icon :icon="['fas', 'x']" />
         </ClientOnly>  

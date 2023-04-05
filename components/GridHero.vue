@@ -1,7 +1,7 @@
 <template>
   <div class="hero-content">
     <div id="tiles" ref="tilesRef" :style="border"></div>
-    
+
     <div v-show="!toggled">
       <h1 id="title" ref="title" class="font-medium sm:text-2xl centered">
         Bem vindo ao site do
@@ -16,10 +16,9 @@
     <div v-show="toggled" id="title" ref="title" class="centered items-center">
       <span class="font-bold inline">
         Eu <span class="font-bold inline">
-          <VueWriter 
-            :typeSpeed="70"
-            :array="array"
-          />
+          <ClientOnly>
+            <VueWriter :typeSpeed="70" :array="array" />
+          </ClientOnly>
         </span>
       </span>
     </div>
@@ -38,7 +37,7 @@ const array = ref([
   'sou um criatvo desenvolvedor Front End',
   'sou desenvolvedor de game',
   'amo Vuejs 💚',
-  'amo jogar video game 🕹️', 
+  'amo jogar video game 🕹️',
   'sou auto didata'
 ])
 
@@ -115,7 +114,7 @@ createGrid();
   from {
     background-position: 0% center;
   }
-  
+
   to {
     background-position: -200% center;
   }
@@ -123,12 +122,10 @@ createGrid();
 
 .hero-content {
   animation: background-pan 10s linear infinite;
-  background: linear-gradient(
-    to right,
-    var(--g1),
-    var(--g2),
-    var(--g1)
-  );
+  background: linear-gradient(to right,
+      var(--g1),
+      var(--g2),
+      var(--g1));
   background-size: 200%;
   height: 100vh;
   overflow: hidden;
@@ -139,15 +136,15 @@ createGrid();
   animation: none;
 }
 
-.toggled > #title {
+.toggled>#title {
   opacity: 0;
 }
 
-.toggled > #icon {
+.toggled>#icon {
   opacity: 1;
 }
 
-#tiles > .tile:hover {
+#tiles>.tile:hover {
   opacity: 0.1 !important;
 }
 
@@ -163,7 +160,7 @@ createGrid();
   width: calc(100vw - 1px);
   position: relative;
   z-index: 2;
-  
+
   display: grid;
   grid-template-columns: repeat(var(--columns), 1fr);
   grid-template-rows: repeat(var(--rows), 1fr);
@@ -195,10 +192,10 @@ createGrid();
   z-index: 3;
 }
 
-#title > .fancy {
+#title>.fancy {
   color: var(--g1);
   font-size: 1.5em;
-  line-height: 1em;
+  line-height: 1.5em;
   font-weight: 700;
 }
 

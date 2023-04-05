@@ -1,7 +1,7 @@
 <template>
   <div class="item switch">
     <div class="color flex justify-center items-center h-screen" :style="[currentColor]">
-      <img :src="imgUrl" class="w-6 md:w-10">
+      <img :src="imgUrl" class="w-6 md:w-10" :alt="name" :title="name">
       <span class="text-xs md:text-sm font-thin">{{ name }}</span>
     </div>
   </div>

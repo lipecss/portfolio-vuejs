@@ -26,71 +26,89 @@
           </h2>
         </div>
 
-        <div class="project-container overflow-hidden">
-<!-- 
-          <div class="inner">
-            <h1 class="title text-8xl">
-              <span class="block text-left first">
-                Meus
-              </span>
+        <div class="animation-aviator relative block lg:flex bg-red-400" style="height: 92vh; overflow: hidden;">
+          <div class="relative  w-full z-50 h-full" style="overflow: hidden;">
+            <img class="paper-plane absolute" src="http://static.indigoimages.ca/2016/shop/114450_img01_blueAirplane_45deg.png" width="70"
+              alt="">
 
-              <span class="block text-right second">
-                projetos
-              </span>
-
-              <span class="block text-center third">recentes</span>
-            </h1>
-          </div> -->
-
-          <div class="section mt-14">
-            <div class="content">
-              <h1>Scroll to experience the magic.</h1>
-              <p class="mb-6">Sou um eterno estudante, Desenvolvedor Full-Stack. Bacharelado em ciência da computação.</p>
-
-              <p>Professor, <span style="color: #9146ff">autodidata</span>
-                  e adoro aprender coisas novas, certamente não sem dificuldades, hehe, mas sempre consegui superar
-                  obstáculos e resolver os problemas que encontrava!</p>
-            </div>
-          </div>
-
-        <div class="pinContainer" id="pin">
-          <section class="panel-card" id="panel-card">
-            <div class="intro">
-              <h1>Confira algumas das minhas ultimas postagens.</h1>
-              <p>Aqui é onde compartilho minhas paixões. 
-                Então, prepare-se para mergulhar em um mundo de linhas de código e aventuras de jogo enquanto exploramos o emocionante universo da tecnologia juntos!
+            <div class="aviator-text block w-full md:w-2/3 lg:w-1/2 lg:absolute top-80">
+              <p class="text-3xl xl:text-6xl my-10 lg:my-0 font-normal">
+                Eu moro no Brasil que é conhecida pelo seu clima quente, praias paradisíacas e um cenário de
+                desenvolvimento acelerado.
               </p>
             </div>
-            <div v-for="(post, index) in posts" :key="index" class="panel-box">
-              <h1>{{ post.title }}</h1>
-            </div>
-          </section>
-        </div>
-        <div class="section">
-          <div class="content">
-            <h1>How delightful.</h1>
-            <p>Braid’s heart is in Charlottesville, VA, a charming city surrounded by beautiful country and mountainscape.
-              Charlottesville punches far above its weight class for food and culture and was named the happiest place to
-              live by the U.S. National Bureau of Economic Research (NBER) in 2014. In 2016, entrepreneur.com named
-              Charlottesville the 4th best city for entrepreneurs.</p>
-            <p>a <a target="_blank" href="https://wearebraid.com/">Braid</a> experiment</p>
-
+            <img src="~/assets/img/brazil.png" alt="" class="absolute right-0 xl:w-1/3 lg:bottom-40">
           </div>
         </div>
 
-          <!-- <div v-if="!pending" class="grid grid-cols-1 md:grid-cols-2 md:gap-5 md:mx-20 panel">
-            <PostThumb v-for="(post, index) in posts" :key="index" :data="post" class="my-4 md:my-0" />
-          </div> -->
+        <div class="overflow-hidden my-50">
+          <div data-aos="zoom-in" data-aos-offset="200" class="section lg:flex my-10">
+            <div class="relative w-full h-full">
+              <img src="~/assets/img/contact.png" class="w-full h-full" alt="">
+            </div>
+            
+            <div class="content px-5">
+              <p data-aos-anchor-placement="top-bottom" class="mb-10 md:text-5xl">
+                👋🏼 Sou um eterno estudante, um engenheiro de software com Bacharelado em ciência da computação.
+              </p>
+
+              <p class="md:text-5xl">Professor, <span style="color: #9146ff">autodidata</span>
+                e adoro aprender coisas novas, certamente não sem dificuldades, hehe, mas sempre consegui superar
+                obstáculos e resolver os problemas que encontrava!</p>
+
+                <p class="text-g1 md:text-5xl font-bold" style="padding: 5rem 3rem;">
+                  Tive a oportunidade de estar em várias posições e cenários de negócios. Uma variedade de campos que me ajudaram a aumentar ainda mais meu conhecimento 😊
+                </p>
+            </div>
+          </div>
+
+          <div class="pinContainer" id="pin">
+            <section class="panel-card h-4/5" id="panel-card">
+
+              <div class="intro">
+                <h1 class="text-5xl text-g1 font-bold mb-10">Confira algumas das minhas ultimas postagens.</h1>
+
+                <p class="drop-shadow-md">Aqui é onde compartilho minhas paixões.
+                  Então, prepare-se para mergulhar em um mundo de linhas de código e aventuras de jogo enquanto exploramos
+                  o emocionante universo da tecnologia juntos!
+                </p>
+              </div>
+
+              <div class="lg:flex">
+                <div v-for="(post, index) in posts" :key="index" :id="`post-card-${index}`" class="panel-box my-8 lg:my-0"
+                  :style="postImage(post.img)">
+                  <div class="absolute inset-0 bg-gray-900 opacity-50 w-full h-full"></div>
+                  <h2
+                    class="absolute inset-0 flex justify-center items-center px-10 hover:text-black hover:bg-g1 hover:opacity-70">
+                    {{ post.title }}</h2>
+                </div>
+              </div>
+            </section>
+          </div>
+          <p class="b-big-text">
+            Fora da minha vida profissional, amo jogar <span style="color: #fa4454"> Valorant</span> e <span style="color: #2cb49c">Sea of Thieves</span>. 
+          </p>
         </div>
 
-        <div>
-          <p class="b-big-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </p>
 
-          <p class="b-big-text">
-            Fuga similique hic tempora blanditiis ad! Repellendus, nobis deleniti! Inventore, atque recusandae?
-          </p>
+        <div id="contact-form">
+          <div class="mt-20">
+            <h2 class="contacts" style="line-height: 100%; margin: 0;">
+              <span class="block" style="backface-visibility: hidden;">Contato</span>
+              <span class="block" style="backface-visibility: hidden;">Contato</span>
+              <span class="block text-g1 gradient" style="backface-visibility: hidden;">Falar comigo</span>
+              <span class="block" style="backface-visibility: hidden;">Contato</span>
+            </h2>
+          </div>
+
+          <div class="my-80" style="height: 50vh;">
+            <form>      
+              <input name="name" type="text" class="feedback-input" placeholder="Name" />   
+              <input name="email" type="text" class="feedback-input" placeholder="Email" />
+              <textarea name="text" class="feedback-input" placeholder="Comment"></textarea>
+              <input type="submit" value="SUBMIT"/>
+            </form>
+          </div>
         </div>
 
       </div>
@@ -99,50 +117,62 @@
 </template>
 
 <script setup>
-onMounted(() => {
-  if (process.client) {
-    gsap = window.gsap
-    // executa as funções de scrollMagic
-    experiencesScrollMagic()
-    swithesScrollMagic()
-    teste()
-    //projetTitleScrollMagic()
-  }
-})
+const { stacks } = useEnums()
 
 //data
-const stacks = reactive([
-  { color: '#e34c26', name: 'Html', imgRul: 'https://cdn.iconscout.com/icon/free/png-256/html-2752158-2284975.png?f=webp&w=256' },
-  { color: '#f0db4f', name: 'Javascript', imgRul: 'https://cdn.iconscout.com/icon/free/png-256/javascript-2038874-1720087.png?f=webp&w=256' },
-  { color: '#264de4', name: 'Css', imgRul: 'https://cdn.iconscout.com/icon/free/png-256/css3-8-1175200.png?f=webp&w=256' },
-  { color: '#41b883', name: 'Vuejs', imgRul: 'https://cdn.iconscout.com/icon/free/png-256/vuejs-3-1175070.png?f=webp&w=256' },
-  { color: '#3b8070', name: 'Nuxt', imgRul: 'https://cdn.iconscout.com/icon/free/png-256/nuxt-dot-js-3628959-3030184.png?f=webp&w=256' },
-  { color: '#94704e', name: 'Cypress', imgRul: '' },
-  { color: '#563d7c', name: 'Boostrap', imgRul: 'https://cdn.iconscout.com/icon/free/png-256/bootstrap-2038880-1720093.png?f=webp&w=256' },
-  { color: '#ddd6fe', name: 'Talwind', imgRul: 'https://cdn.iconscout.com/icon/free/png-256/tailwind-css-5285308-4406745.png?f=webp&w=256' },
-  { color: '#68a063', name: 'Nodejs', imgRul: 'https://cdn.iconscout.com/icon/free/png-256/node-js-1-1174935.png?f=webp&w=256' },
-  { color: '#FFFFFF', name: 'Express', imgRul: 'https://cdn.iconscout.com/icon/free/png-256/express-9-1175170.png?f=webp&w=256' },
-  { color: '#3E2C00', name: 'Git', imgRul: 'https://cdn.iconscout.com/icon/free/png-256/git-18-1175219.png?f=webp&w=256' },
-  { color: '#034f84', name: 'SQL', imgRul: 'https://cdn.iconscout.com/icon/premium/png-256-thumb/sql-file-2694551-2246328.png?f=webp&w=256' },
-  { color: '#E8E7D5', name: 'Mongo DB', imgRul: 'https://cdn.iconscout.com/icon/free/png-256/mongodb-4-1175139.png?f=webp&w=256' },
-  { color: '#9b4993', name: 'C# (unity)', imgRul: 'https://cdn.iconscout.com/icon/free/png-256/c-57-1175191.png?f=webp&w=256' },
-  { color: '#00cccc', name: 'Unity', imgRul: 'https://cdn.iconscout.com/icon/free/png-256/unity-2749374-2284764.png?f=webp&w=256' },
-  { color: '#0040AD', name: 'Linux', imgRul: 'https://cdn.iconscout.com/icon/free/png-256/linux-21-1174928.png?f=webp&w=256' },
-  { color: '#61DBFB', name: 'React', imgRul: 'https://cdn.iconscout.com/icon/free/png-256/react-226053.png?f=webp&w=256' },
-  { color: '#20232A', name: 'React native', imgRul: 'https://cdn.iconscout.com/icon/premium/png-256-thumb/react-js-5379349-4492471.png?f=webp&w=256' },
-])
 const posts = ref([])
+const isMobile = ref(0)
 
 let gsap = null
+let controller4 = null;
+let scene4 = null;
+let divWidth = 0
+let divHeight = 0
 
-
-const { data, error, pending } = await useLazyFetch('http://localhost:5000/posts/latest')
+const { data, error } = useLazyAsyncData('posts', () => $fetch('http://localhost:5000/posts/latest'))
 
 if (!error.value) {
   posts.value = data.value
 }
 
+onMounted(() => {
+  if (process.client) {
+    isMobile.value = window.innerWidth <= 768
+    gsap = window.gsap
+    gsap.registerPlugin(MotionPathPlugin)
+
+    // executa as funções de scrollMagic
+    experiencesScrollMagic()
+    swithesScrollMagic()
+    paperPlane()
+    contactScrollMagic()
+    // if (!isMobile.value) teste()
+    //projetTitleScrollMagic()
+
+    window.addEventListener('resize', handleResize)
+  }
+})
+
+// watch
+watch(isMobile, (value) => {
+  if (value && scene4 !== null) destroyScene4()
+  if (!value && scene4 === null) createScene4()
+
+  const div = document.querySelector('.animation-aviator');
+
+  divWidth = div.offsetWidth
+  divHeight = div.offsetHeight
+
+  // if (!value && planeScene !== null) {
+  //   console.log('destruir')
+  // } else console.log('criar')
+})
+
 // methods
+const handleResize = () => {
+  isMobile.value = window.innerWidth <= 768;
+}
+
 const experiencesScrollMagic = () => {
   const experiences = document.querySelectorAll(".experiences")
 
@@ -247,8 +277,116 @@ const projetTitleScrollMagic = () => {
     .addTo(controller3)
 }
 
-const teste = () => {
-  const controller4 = new ScrollMagic.Controller();
+const paperPlane = () => {
+  const tween = new TimelineLite();
+  const plane = document.querySelector('.paper-plane')
+  const div = document.querySelector('.animation-aviator');
+
+  if (div) {
+    divWidth = div.offsetWidth
+    divHeight = div.offsetHeight
+
+    const controller = new window.ScrollMagic.Controller()
+
+    tween.add(
+      gsap.to(".paper-plane", 2, {
+        motionPath: {
+          curviness: 1.25,
+          autoRotate: true,
+          path: [
+          { x: 0, y: 0 },
+          { x: 0, y: 0 },
+          { x: divWidth * 0.1, y: divHeight * 0.1 },
+          { x: divWidth * 0.2, y: divHeight * 0.4, bezier: [{x: divWidth * 0.2 + 20, y: divHeight * 0.4 - 20}, {x: divWidth * 0.2 + 40, y: divHeight * 0.4 - 40}]},
+          // { x: divWidth * 0.7, y: divHeight * 0.5, rotation: 720, bezier: [{x: divWidth * 0.45, y: divHeight * 0.5 + 20}, {x: divWidth * 0.45, y: divHeight * 0.5 + 40}]},
+          { x: divWidth * 0.85, y: divHeight * 0.2 }
+          ]
+        }
+      })
+    )
+
+    new ScrollMagic.Scene({
+      triggerElement: ".animation-aviator",
+      duration: 2000,
+      triggerHook: 0
+    })
+      .on("update", function (e) {
+        const st = e.target.controller().info("scrollDirection")
+        // stDiv.text(st); 
+        if (st === 'FORWARD') {
+          plane.src = 'http://static.indigoimages.ca/2016/shop/114450_img01_blueAirplane_45deg.png';
+        } else if (st === 'REVERSE') {
+          plane.src = 'http://static.indigoimages.ca/114450_img01_blueAirplane_45deg__REVERSED.png';
+        };
+      })
+      .setTween(tween)
+      .setPin(".animation-aviator")
+      .addTo(controller)
+
+    const textTween = new TimelineLite();
+
+    textTween.fromTo('.aviator-text', 1, { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1 });
+
+    new ScrollMagic.Scene({
+      triggerElement: ".animation-aviator",
+      duration: 1000,
+      triggerHook: 0.9,
+    })
+      .setTween(textTween)
+      .addTo(controller);
+  }
+
+}
+
+const contactScrollMagic = () => {
+  const contacts = document.querySelectorAll(".contacts")
+
+    //  Percorre todas as spans de experiência e cria uma cena para cada uma
+    contacts.forEach((experience) => {
+    const spans = experience.querySelectorAll("span");
+    spans.forEach((span, index) => {
+      const delay = index * 0.2; // Adiciona um delay de 0.2s para cada span
+      createSceneForSpan(
+        span,
+        'onBegin', // Gatilho aumenta em 0.2 a cada span
+        "25%", // Duração da cena é metade do tamanho do elemento
+        delay // Adiciona o atraso na criação da timeline
+      )
+    })
+  })
+}
+
+
+
+
+// const teste = () => {
+//   const controller4 = new ScrollMagic.Controller()
+//   let animFrom = { left: "0" };
+//   let scrollDistance = null;
+//   const element = document.querySelector('#pin');
+
+//   if (element) {
+//     scrollDistance = element.scrollWidth;
+//   }
+
+//   const tl5 = gsap.timeline();
+//   tl5.fromTo('section.panel-card', 2, animFrom, {
+//     left: -scrollDistance,
+//     ease: Linear.easeNone
+//   });
+
+//   new ScrollMagic.Scene({
+//     triggerElement: '.pinContainer',
+//     triggerHook: 0,
+//     duration: scrollDistance
+//   })
+//     .setPin(".pinContainer")
+//     .setTween(tl5)
+//     .addTo(controller4);
+// }
+
+const createScene4 = () => {
+  controller4 = new ScrollMagic.Controller();
   let animFrom = { left: "0" };
   let scrollDistance = null;
   const element = document.querySelector('#pin');
@@ -263,20 +401,75 @@ const teste = () => {
     ease: Linear.easeNone
   });
 
-  new ScrollMagic.Scene({
+  scene4 = new ScrollMagic.Scene({
     triggerElement: '.pinContainer',
     triggerHook: 0,
     duration: scrollDistance
   })
-    .addIndicators()
     .setPin(".pinContainer")
     .setTween(tl5)
     .addTo(controller4);
 };
 
+const destroyScene4 = () => {
+  if (scene4 || planeScene) {
+    scene4.destroy(true);
+    scene4 = null;
+  }
+  if (controller4 || planeScene) {
+    controller4.destroy(true);
+    controller4 = null;
+  }
+};
+
+const teste = () => {
+  destroyScene4();
+  createScene4();
+};
+
+// const postHover = (event, type) => {
+//   const { id } = event.target
+//   if (type === 'enter') {
+//     gsap.to(`#${id}`, {
+//       duration: 0.3,
+//       scale: 1.1,
+//       ease: 'power2.out',
+//       transformOrigin: 'center'
+//     })
+//   } else {
+//     gsap.to(`#${id}`, {
+//       duration: 0.3,
+//       scale: 1,
+//       ease: 'power2.out',
+//       transformOrigin: 'center'
+//     });
+//   }
+// }
+
+
+const postImage = (image) => {
+  return {
+    backgroundImage: `url(${image})`,
+  }
+}
 </script>
 
 <style lang="scss">
+.path {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 0;
+}
+
+.paper-plane {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: -100px;
+  /* mudança aqui */
+}
+
 html,
 body {
   background-color: #000000;
@@ -371,6 +564,39 @@ body {
       }
     }
   }
+
+  .pinContainer {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .panel-card {
+    padding: 3em 1em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .panel-box {
+    width: 80vw;
+    height: 60vh !important;
+    max-width: 800px;
+    margin-right: 3vw;
+    transition: transform 0.33s;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.03);
+      transition: transform 0.33s;
+    }
+  }
 }
 
 .color span {
@@ -414,50 +640,19 @@ body {
   border: solid 3px #41b883;
 }
 
-
-.section {
-  padding: 3em 0;
-  display: flex;
-
-  .content {
-    width: 80vw;
-    max-width: 800px;
-    padding: 2em;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    color: #333;
-    display: block;
-    margin: auto;
-    line-height: 1.6;
-
-    p {
-      font-size: 1.2em;
-    }
-  }
-}
-
-.pinContainer {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-}
-
 .panel-card {
-  height: 100vh;
-  padding: 3em 1em;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: white;
   font-size: 3rem;
   transform: translate3d(0, 0, 0);
   z-index: 2;
+}
+
+.panel-box {
+  height: 30vh;
+  position: relative;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .intro {
@@ -472,31 +667,59 @@ body {
   }
 }
 
-.panel-box {
-  width: 80vw;
-  max-width: 800px;
-  height: 60vh;
-  margin-right: 10vw;
-  background: radial-gradient(ellipse, #fff 50%, #fafafa);
-  border: 1px solid #ccc;
-  display: flex;
-  box-shadow: 0 0 1em 0 rgba(#000, 0);
-  transition: transform 0.33s, box-shadow 0.33s;
-  cursor: pointer;
-
-  &:hover {
-    transform: scale(1.01) transform3d(0, 0, 0);
-    box-shadow: 0 0 1em 0 rgba(#000, 0.1);
-  }
-
-  &:last-child {
-    margin-right: 0;
-  }
-
-  h1 {
-    color: #333;
-    display: block;
-    margin: auto;
-  }
+.contacts {
+  font-weight: 500;
+  font-size: 200px;
+  line-height: 100%;
+  letter-spacing: -.02em;
+  margin: 0;
 }
+
+.gradient {
+  background: linear-gradient(180deg, #9146FF 21.09%, #00FAFA 64.08%, #FAFA1A 91.34%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.feedback-input {
+  color:white;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight:500;
+  font-size: 18px;
+  border-radius: 5px;
+  line-height: 22px;
+  background-color: transparent;
+  border:2px solid #CC6666;
+  transition: all 0.3s;
+  padding: 13px;
+  margin-bottom: 15px;
+  width:100%;
+  box-sizing: border-box;
+  outline:0;
+}
+
+.feedback-input:focus { border:2px solid #CC4949; }
+
+textarea {
+  height: 150px;
+  line-height: 150%;
+  resize:vertical;
+}
+
+[type="submit"] {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  width: 100%;
+  background:#CC6666;
+  border-radius:5px;
+  border:0;
+  cursor:pointer;
+  color:white;
+  font-size:24px;
+  padding-top:10px;
+  padding-bottom:10px;
+  transition: all 0.3s;
+  margin-top:-4px;
+  font-weight:700;
+}
+[type="submit"]:hover { background:#CC4949; }
 </style>
