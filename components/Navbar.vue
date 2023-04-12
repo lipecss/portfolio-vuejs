@@ -36,8 +36,9 @@ let expand = ref(false)
 
 const optionList = ref([
   { path: '/', dataText: 'Inicio', text: 'Inicio' },
-  { path: 'about', dataText: 'Sobre', text: 'Sobre' },
-  { path: '', dataText: 'Projetos', text: 'Projetos' }
+  { path: '/post', dataText: 'Postagens', text: 'Postagens' },
+  { path: '/project', dataText: 'Projetos', text: 'Projetos' },
+  { path: '/login', dataText: 'Login', text: 'Login' }
 ])
 
 const toggle = () => {
@@ -83,10 +84,10 @@ const gotTo = (path) => {
   z-index: 999;
   height: 100vh;
   position: relative;
-  transition: all 0.3s ease-out;
-  background-image: radial-gradient( rgba(255, 255, 255, 0.2) 8%, transparent 8% );
-  background-position: 0% 0%;
-  background-size: 14vmin 14vmin;
+  // transition: all 0.3s ease-out;
+  // background-image: radial-gradient( rgba(255, 255, 255, 0.2) 8%, transparent 8% );
+  // background-position: 0% 0%;
+  // background-size: 14vmin 14vmin;
 }
 .card-close {
   position: fixed;

@@ -1,8 +1,5 @@
 <template>
   <div>
-    teste
+    index
   </div>
 </template>
-
-<script>
-</script>
