@@ -46,10 +46,8 @@ const toggle = () => {
 }
 
 const gotTo = (path) => {
-  if (path) {
-    expand.value = false
-    router.push({ path })
-  }
+  router.push({ path })
+  expand.value = false
 }
 </script>
 

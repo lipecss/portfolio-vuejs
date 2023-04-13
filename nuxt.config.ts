@@ -1,5 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+// import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill'
+// import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill'
+
 export default defineNuxtConfig({
+  alias: {
+    util: 'rollup-plugin-node-polyfills/polyfills/util'
+  },
   app: {
     head: {
       htmlAttrs: {
@@ -22,9 +28,6 @@ export default defineNuxtConfig({
           src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js',
         },
         {
-          src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/MotionPathPlugin.min.js'
-        },
-        {
           src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js',
         },
         {
@@ -40,6 +43,9 @@ export default defineNuxtConfig({
     '@/assets/css/main.scss',
     '@fortawesome/fontawesome-svg-core/styles.css'
   ],
+  imports: {
+    dirs: ['stores']
+  },
   plugins: [
     { src: '~/plugins/vue-typed-js.js', mode: 'client' },
     { src: '@/plugins/aos', mode: 'client' },
@@ -47,11 +53,34 @@ export default defineNuxtConfig({
   ],
   modules: [
     '@nuxtjs/tailwindcss',
-    '@nuxt/image-edge'
+    '@nuxt/image-edge',
+    '@nuxtjs/supabase',
+    '@pinia-plugin-persistedstate/nuxt',
+    [
+      '@pinia/nuxt',
+      {
+        autoImports: ['defineStore', 'definePiniaStore', 'acceptHMRUpdate'],
+      },
+    ],
   ],
+  nitro: {
+    plugins: ['~/server/index.js']
+  },
   render: {
     static: {
       maxAge: 60 * 60 * 24 * 365 // Cache for 1 year
+    }
+  },
+  runtimeConfig: {
+    public: {
+      baseUrl: process.env.NUXT_BASE_URL ||'http://localhost:3000',
+      mongodbUri: process.env.CONNECTION_STRING,
+      pusherEnv: {
+        appId: process.env.PUSHER_APP_ID,
+        key: process.env.PUSHER_APP_KEY,
+        secret: process.env.PUSHER_APP_SECRET,
+        cluster: process.env.PUSHER_APP_CLUSTER
+      }
     }
   }
 })

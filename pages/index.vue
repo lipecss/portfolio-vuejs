@@ -83,7 +83,7 @@
 
             <div class="lg:flex">
 
-              <div v-for="(post, index) in posts" :key="index" :id="`post-card-${index}`" class="panel-box my-8 lg:my-0"
+              <div v-for="(post, index) in postData" :key="index" :id="`post-card-${index}`" class="panel-box my-8 lg:my-0"
                 :style="postImage(post.img)">
                 <div class="absolute inset-0 bg-gray-900 opacity-50 w-full h-full"></div>
                 <h2
@@ -108,9 +108,9 @@
           </h1>
         </div>
 
-        <div class="container-project" v-if="projects">
+        <div class="container-project">
           <div class="stackingcards">
-            <ProjectCard v-for="(project, index) in projects" :key="index" class="stackingcard" :data="project" />
+            <ProjectCard v-for="(project, index) in projectData" :key="index" class="stackingcard" :data="project" />
 
           </div>
           <div class="end-element"></div>
@@ -159,8 +159,6 @@
 const { stacks, profileIcons } = useEnums()
 
 //data
-const posts = ref([])
-const projects = ref([])
 const isMobile = ref(0)
 
 let gsap = null
@@ -179,7 +177,6 @@ onMounted(() => {
     paperPlane()
     contactScrollMagic()
     //createScene44()
-
 
     const cards = gsap.utils.toArray(".project-card");
 
@@ -213,17 +210,8 @@ onMounted(() => {
   }
 })
 
-const { data, error } = useLazyAsyncData('projects', () => $fetch('http://localhost:5000/project/latest'))
-
-if (!error.value) {
-  projects.value = data.value
-}
-
-const { data: dataPost, error: errorPost } = useLazyAsyncData('posts', () => $fetch('http://localhost:5000/posts/latest'))
-
-if (!errorPost.value) {
-  posts.value = dataPost.value
-}
+const { data: postData } = await useLazyAsyncData('postData', () => $fetch('/api/posts/latest', { initialCache: false }))
+const { data: projectData } = await useFetch('/api/projects/latest', { initialCache: false })
 
 // watch
 watch(isMobile, (value) => {
