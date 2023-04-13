@@ -12,7 +12,9 @@ export default <Partial<Config>>{
     extend: {
       colors: {
         g1: '#41b883',
-        g2: '#35495e'
+        g2: '#35495e',
+        g3: '#009d5d',
+        g4: '#18181B'
       }
     }
   }

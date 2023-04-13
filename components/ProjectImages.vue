@@ -34,6 +34,7 @@ body {
   align-items: center;
   margin: 0 auto;
   overflow: hidden;
+  width: 90%;
   transform: skew(5deg);
 
   .card {

@@ -23,6 +23,22 @@
           >
             <span :data-text="option.dataText">{{ option.text }}</span>
           </li>
+
+          <li
+            v-if="!user"
+            class="hover:cursor-pointer"
+            @click="gotTo('/login')"
+          >
+            <span data-text="Login">Login</span>
+          </li>
+
+          <li
+            v-else
+            class="hover:cursor-pointer"
+            @click="gotTo('/dashboard')"
+          >
+            <span data-text="Dashboard">Dashboard</span>
+          </li>
         </ul>
       </div>
     </div>
@@ -30,6 +46,7 @@
 </template>
 
 <script setup>
+const user = useSupabaseUser()
 const router = useRouter()
 
 let expand = ref(false)
@@ -37,8 +54,7 @@ let expand = ref(false)
 const optionList = ref([
   { path: '/', dataText: 'Inicio', text: 'Inicio' },
   { path: '/post', dataText: 'Postagens', text: 'Postagens' },
-  { path: '/project', dataText: 'Projetos', text: 'Projetos' },
-  { path: '/login', dataText: 'Login', text: 'Login' }
+  { path: '/project', dataText: 'Projetos', text: 'Projetos' }
 ])
 
 const toggle = () => {

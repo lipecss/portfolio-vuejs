@@ -10,7 +10,7 @@
       class="z-50 flex flex-col justify-center colum hover:bg-g1 hover:opacity-75 top-0 left-0 right-0 bottom-0 absolute"
     >
       <p class="text-center mb-10 text-2xl md:text-5xl text-white">{{ data.name }}</p>
-      <NuxtLink :to="`${baseUrl}/project/${data.slug}`" class="project-card__action hover:cursor-pointer">Leia mais</NuxtLink>
+      <NuxtLink :to="`/project/${data.slug}`" class="project-card__action hover:cursor-pointer">Leia mais</NuxtLink>
     </div>
   </div>
 </template>
