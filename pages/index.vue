@@ -45,9 +45,9 @@
                   v-for="(icon, index) in profileIcons"
                   :key="index"
                   :src="icon.imgUrl"
-                  width="100"
                   loading="lazy"
                   height="100"
+                  width="100"
                   format="webp"
                   quality="80"
                   class="box w-10"
@@ -186,10 +186,12 @@ useHead({
   script: [
     {
       src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js',
+      async: true,
       crossorigin: 'anonymous',
     },
     {
       src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js',
+      async: true,
       crossorigin: 'anonymous',
     },
     {
