@@ -4,10 +4,13 @@
       <NuxtImg 
         :src="imgUrl"
         class="w-6 md:w-10"
+        width="40"
+        height="40"
         :alt="name" :title="name"
         format="webp"
         quality="80"
-        sizes="sm:800px md:800px lg:800px"
+        loading="lazy"
+        sizes="sm:100vw md:100vw lg:100vw"
       />
       <span class="text-xs md:text-sm font-thin">{{ name }}</span>
     </div>
