@@ -5,7 +5,7 @@ export const useEnums = () => {
     { color: '#264de4', name: 'Css', imgUrl: 'https://cdn.iconscout.com/icon/free/png-256/css3-8-1175200.png?f=webp&w=256' },
     { color: '#41b883', name: 'Vuejs', imgUrl: 'https://cdn.iconscout.com/icon/free/png-256/vuejs-3-1175070.png?f=webp&w=256' },
     { color: '#3b8070', name: 'Nuxt', imgUrl: 'https://cdn.iconscout.com/icon/free/png-256/nuxt-dot-js-3628959-3030184.png?f=webp&w=256' },
-    { color: '#94704e', name: 'Cypress', imgUrl: '' },
+    { color: '#94704e', name: 'Cypress', imgUrl: 'https://cdn.icon-icons.com/icons2/3911/PNG/512/cypress_logo_icon_247239.png' },
     { color: '#563d7c', name: 'Boostrap', imgUrl: 'https://cdn.iconscout.com/icon/free/png-256/bootstrap-2038880-1720093.png?f=webp&w=256' },
     { color: '#ddd6fe', name: 'Talwind', imgUrl: 'https://cdn.iconscout.com/icon/free/png-256/tailwind-css-5285308-4406745.png?f=webp&w=256' },
     { color: '#68a063', name: 'Nodejs', imgUrl: 'https://cdn.iconscout.com/icon/free/png-256/node-js-1-1174935.png?f=webp&w=256' },

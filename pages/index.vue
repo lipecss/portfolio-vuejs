@@ -185,6 +185,11 @@
 useHead({
   script: [
     {
+      src: 'https://unpkg.com/gsap@3/dist/MotionPathPlugin.min.js',
+      defer: true,
+      crossorigin: 'anonymous'
+    },
+    {
       src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js',
       defer: true,
       crossorigin: 'anonymous'
@@ -225,6 +230,7 @@ onMounted(() => {
   if (process.client) {
     isMobile.value = window.innerWidth <= 768
     gsap = window.gsap
+    gsap.registerPlugin(MotionPathPlugin)
 
     // executa as funções de scrollMagic
     swithesScrollMagic()
