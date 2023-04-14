@@ -21,7 +21,7 @@ pnpm install
 
 Start the development server on http://localhost:3000
 
-```bash
+```bashs
 npm run dev
 ```
 
@@ -35,7 +35,7 @@ npm run build
 
 Locally preview production build:
 
-```bash
+```bash 
 npm run preview
 ```
 
