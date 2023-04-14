@@ -196,13 +196,18 @@ useHead({
     },
     {
       src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js',
+      async: true,
+      crossorigin: 'anonymous',
     },
     {
       src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js',
+      async: true,
+      crossorigin: 'anonymous',
     },
     {
       src: 'https://unpkg.com/gsap@3/dist/MotionPathPlugin.min.js',
-      crossorigin: 'anonymous'
+      async: true,
+      crossorigin: 'anonymous',
     }
     // {
     //   src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.min.js',
