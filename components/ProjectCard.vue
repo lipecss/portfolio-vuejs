@@ -11,7 +11,7 @@
         quality="80"
         :src="data.images[0]"
         class="absolute top-0 left-0 w-full h-full object-cover"
-        width="1200"
+        width="800"
         height="800"
         sizes="sm:100vw md:100vw lg:100vw"
       />
