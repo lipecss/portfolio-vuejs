@@ -13,7 +13,16 @@
         <div id="stage" class="overflow-hidden my-20">
           <div class="section lg:flex">
             <div class="w-full lg:w-6/12 h-full lg:h-1/2 rounded-lg">
-              <NuxtImg class="rounded-full" src="/contact.png" alt="Imagem de Felipe" />
+              <NuxtImg
+                format="webp"
+                loading="lazy"
+                class="rounded-full"
+                src="/contact.png"
+                alt="Imagem de Felipe"
+                width="800"
+                height="800"
+                sizes="sm:800px md:800px lg:800px"
+              />
             </div>
 
             <div class="content mt-10 lg:mt-0 lg:mx-6">
@@ -31,8 +40,18 @@
               </p>
 
               <div class="my-8 flex justify-between">
-                <NuxtImg v-for="(icon, index) in profileIcons" :key="index" :src="icon.imgUrl" width="100"
-                  class="box w-10" style="margin-right: 5vw;" alt="Imagem de contato" />
+                <NuxtImg 
+                  v-for="(icon, index) in profileIcons"
+                  :key="index" :src="icon.imgUrl"
+                  width="100"
+                  height="100"
+                  loading="lazy"
+                  format="webp"
+                  class="box w-10"
+                  style="margin-right: 5vw;"
+                  alt="Imagem de contato"
+                  sizes="sm:100vw md:100vw lg:100vw"
+                />
               </div>
             </div>
           </div>
@@ -40,8 +59,16 @@
 
         <div class="animation-aviator relative block lg:flex" style="height: 92vh; overflow: hidden;">
           <div class="relative w-full z-50 h-full" style="overflow: hidden;">
-            <img class="paper-plane absolute"
-              src="http://static.indigoimages.ca/2016/shop/114450_img01_blueAirplane_45deg.png" width="70" alt="">
+            <NuxtImg
+              loading="lazy"
+              format="webp"
+              class="paper-plane absolute"
+              src="https://static.indigoimages.ca/2016/shop/114450_img01_blueAirplane_45deg.png"
+              width="70"
+              height="70"
+              alt="aviao"
+              sizes="sm:100vw md:100vw lg:100vw"
+            />
 
             <div class="aviator-text block w-full md:w-2/3 lg:w-1/2 lg:absolute top-80">
               <p class="text-3xl xl:text-6xl my-10 lg:my-0 font-normal">
@@ -49,7 +76,16 @@
                 desenvolvimento acelerado.
               </p>
             </div>
-            <img src="~/assets/img/brazil.png" alt="" class="absolute right-0 xl:w-1/3 lg:bottom-40">
+            <NuxtImg 
+              format="webp"
+              loading="lazy"
+              src="/brazil.png"
+              alt="Brasil"
+              class="absolute right-0 xl:w-1/3 lg:bottom-40"
+              width="500"
+              height="500"
+              sizes="sm:100vw md:100vw lg:100vw"
+            />
           </div>
         </div>
 
@@ -83,8 +119,8 @@
 
             <div class="lg:flex">
 
-              <div v-for="(post, index) in postData" :key="index" :id="`post-card-${index}`" class="panel-box my-8 lg:my-0"
-                :style="postImage(post.img)">
+              <div v-for="(post, index) in postData" :key="index" :id="`post-card-${index}`"
+                class="panel-box my-8 lg:my-0" :style="postImage(post.img)">
                 <div class="absolute inset-0 bg-gray-900 opacity-50 w-full h-full"></div>
                 <h2
                   class="absolute inset-0 flex justify-center items-center px-10 hover:text-black hover:bg-g1 hover:opacity-70">
@@ -138,14 +174,8 @@
                 <ContactForm @contact="sendContact" />
               </div>
               <div class="order-1 lg:order-2">
-                <NuxtImg 
-                  format="webp"
-                  class="w-full bg-center"
-                  src="/about.png"
-                  alt="Imagem de Felipe"
-                  width="300" height="295"
-                  sizes="sm:100vw md:100vw lg:100vw"
-                />
+                <NuxtImg loading="lazy" format="webp" class="w-full bg-center" src="/about.png" alt="Imagem de Felipe" width="300"
+                  height="295" sizes="sm:100vw md:100vw lg:100vw" />
               </div>
             </div>
           </div>
@@ -156,6 +186,26 @@
 </template>
 
 <script setup>
+useHead({
+  script: [
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js',
+    },
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js',
+    },
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js',
+    },
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js',
+    },
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.min.js',
+    }
+  ]
+})
+
 const { stacks, profileIcons } = useEnums()
 
 //data
@@ -425,9 +475,9 @@ const paperPlane = () => {
       .on("update", function (e) {
         const st = e.target.controller().info("scrollDirection");
         if (st === 'FORWARD') {
-          plane.src = 'http://static.indigoimages.ca/2016/shop/114450_img01_blueAirplane_45deg.png';
+          plane.src = 'https://static.indigoimages.ca/2016/shop/114450_img01_blueAirplane_45deg.png';
         } else if (st === 'REVERSE') {
-          plane.src = 'http://static.indigoimages.ca/114450_img01_blueAirplane_45deg__REVERSED.png';
+          plane.src = 'https://static.indigoimages.ca/114450_img01_blueAirplane_45deg__REVERSED.png';
         }
       })
       .setPin(".animation-aviator")
