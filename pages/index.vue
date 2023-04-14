@@ -15,7 +15,6 @@
             <div class="w-full lg:w-6/12 h-full lg:h-1/2 rounded-lg">
               <NuxtImg 
                 format="webp"
-                loading="lazy"
                 class="rounded-full"
                 src="/contact.png"
                 quality="80"
@@ -47,7 +46,6 @@
                   :src="icon.imgUrl"
                   width="100"
                   height="100"
-                  loading="lazy"
                   format="webp"
                   quality="80"
                   class="box w-10"
@@ -62,7 +60,7 @@
 
         <div class="animation-aviator relative block lg:flex" style="height: 92vh; overflow: hidden;">
           <div class="relative w-full z-50 h-full" style="overflow: hidden;">
-            <NuxtImg loading="lazy" format="webp" quality="80" class="paper-plane absolute"
+            <NuxtImg format="webp" quality="80" class="paper-plane absolute"
               src="https://static.indigoimages.ca/2016/shop/114450_img01_blueAirplane_45deg.png" width="70" height="70"
               alt="aviao" sizes="sm:100vw md:100vw lg:100vw" />
 
@@ -74,8 +72,7 @@
             </div>
             <NuxtImg 
               format="webp"
-              loading="lazy"
-              src="/brazil.png"
+              src="brazil.png"
               quality="80"
               alt="Brasil"
               class="absolute right-0 xl:w-1/3 lg:bottom-40" width="500" height="500"
@@ -115,7 +112,7 @@
 
               <div v-for="(post, index) in postData" :key="index" :id="`post-card-${index}`"
                 class="panel-box my-8 lg:my-0">
-                <NuxtImg class="w-full h-full object-cover" format="webp" loading="lazy" :src="post.img" :alt="post.title"
+                <NuxtImg class="w-full h-full object-cover" loading="lazy" format="webp" :src="post.img" :alt="post.title"
                   width="800" height="800" quality="80" sizes="sm:100vw md:100vw lg:100vw" />
                 <div class="absolute inset-0 bg-gray-900 opacity-50 w-full h-full"></div>
                 <h2
@@ -170,7 +167,7 @@
                 <ContactForm @contact="sendContact" />
               </div>
               <div class="order-1 lg:order-2">
-                <NuxtImg loading="lazy" quality="80" format="webp" class="w-full bg-center" src="/about.png" alt="Imagem de Felipe"
+                <NuxtImg quality="80" format="webp" class="w-full bg-center" src="/about.png" alt="Imagem de Felipe"
                   width="300" height="295" sizes="sm:100vw md:100vw lg:100vw" />
               </div>
             </div>
@@ -185,35 +182,30 @@
 useHead({
   script: [
     {
-      src: 'https://unpkg.com/gsap@3/dist/MotionPathPlugin.min.js',
-      defer: true,
-      crossorigin: 'anonymous'
-    },
-    {
       src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js',
-      defer: true,
-      crossorigin: 'anonymous'
+      crossorigin: 'anonymous',
+      async: true
     },
     {
       src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js',
-      defer: true,
-      crossorigin: 'anonymous'
+      crossorigin: 'anonymous',
+      async: true
     },
     {
-      src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js',
-      defer: true,
-      crossorigin: 'anonymous'
+      src: 'http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js',
     },
     {
       src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js',
-      defer: true,
-      crossorigin: 'anonymous'
     },
     {
-      src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.min.js',
-      defer: true,
+      src: 'https://unpkg.com/gsap@3/dist/MotionPathPlugin.min.js',
       crossorigin: 'anonymous'
     }
+    // {
+    //   src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.min.js',
+    //   defer: true,
+    //   crossorigin: 'anonymous'
+    // }
   ]
 })
 
@@ -226,7 +218,7 @@ let gsap = null
 let controller4 = null;
 let scene4 = null;
 
-onMounted(() => {
+onMounted(async () => {
   if (process.client) {
     isMobile.value = window.innerWidth <= 768
     gsap = window.gsap
@@ -616,17 +608,17 @@ const sendContact = async (body) => {
   }
 }
 
-const teste = () => {
-  var controller = new ScrollMagic.Controller();
+// const teste = () => {
+//   var controller = new ScrollMagic.Controller();
 
-  var pinIntroScene = new ScrollMagic.Scene({
-    triggerElement: '.section-1',
-    triggerHook: 0.2,
-    duration: '150%'
-  })
-    .setPin('.section-1')
-    .addTo(controller);
-}
+//   var pinIntroScene = new ScrollMagic.Scene({
+//     triggerElement: '.section-1',
+//     triggerHook: 0.2,
+//     duration: '150%'
+//   })
+//     .setPin('.section-1')
+//     .addTo(controller);
+// }
 </script>
 
 <style lang="scss">
