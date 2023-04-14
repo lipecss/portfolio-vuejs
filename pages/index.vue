@@ -120,7 +120,18 @@
             <div class="lg:flex">
 
               <div v-for="(post, index) in postData" :key="index" :id="`post-card-${index}`"
-                class="panel-box my-8 lg:my-0" :style="postImage(post.img)">
+                class="panel-box my-8 lg:my-0"
+              >
+                <NuxtImg
+                  class="w-full h-full object-cover"
+                  format="webp"
+                  loading="lazy"
+                  :src="post.img"
+                  :alt="post.title"
+                  width="800"
+                  height="800"
+                  sizes="sm:100vw md:100vw lg:100vw"
+                />
                 <div class="absolute inset-0 bg-gray-900 opacity-50 w-full h-full"></div>
                 <h2
                   class="absolute inset-0 flex justify-center items-center px-10 hover:text-black hover:bg-g1 hover:opacity-70">
@@ -174,8 +185,16 @@
                 <ContactForm @contact="sendContact" />
               </div>
               <div class="order-1 lg:order-2">
-                <NuxtImg loading="lazy" format="webp" class="w-full bg-center" src="/about.png" alt="Imagem de Felipe" width="300"
-                  height="295" sizes="sm:100vw md:100vw lg:100vw" />
+                <NuxtImg 
+                  loading="lazy"
+                  format="webp"
+                  class="w-full bg-center"
+                  src="/about.png"
+                  alt="Imagem de Felipe"
+                  width="300"
+                  height="295"
+                  sizes="sm:100vw md:100vw lg:100vw"
+                />
               </div>
             </div>
           </div>
