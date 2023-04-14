@@ -2,82 +2,94 @@
   font-family: roobert;
   font-style: normal;
   font-weight: 400;
-  src: local('Roobert'), url(./Roobert-Regular.otf) format('opentype')
+  src: local('Roobert'), url(./Roobert-Regular.otf) format('opentype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: roobert;
   font-style: italic;
   font-weight: 400;
-  src: local('Roobert'), url(./Roobert-RegularItalic.otf) format('opentype')
+  src: local('Roobert'), url(./Roobert-RegularItalic.otf) format('opentype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: roobert;
   font-style: normal;
   font-weight: 300;
-  src: local('Roobert'), url(./Roobert-Light.otf) format('opentype')
+  src: local('Roobert'), url(./Roobert-Light.otf) format('opentype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: roobert;
   font-style: italic;
   font-weight: 300;
-  src: local('Roobert'), url(./Roobert-LightItalic.otf) format('opentype')
+  src: local('Roobert'), url(./Roobert-LightItalic.otf) format('opentype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: roobert;
   font-style: normal;
   font-weight: 500;
-  src: local('Roobert'), url(./Roobert-Medium.otf) format('opentype')
+  src: local('Roobert'), url(./Roobert-Medium.otf) format('opentype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: roobert;
   font-style: italic;
   font-weight: 500;
-  src: local('Roobert'), url(./Roobert-MediumItalic.otf) format('opentype')
+  src: local('Roobert'), url(./Roobert-MediumItalic.otf) format('opentype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: roobert;
   font-style: normal;
   font-weight: 600;
-  src: local('Roobert'), url(./Roobert-SemiBold.otf) format('opentype')
+  src: local('Roobert'), url(./Roobert-SemiBold.otf) format('opentype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: roobert;
   font-style: italic;
   font-weight: 600;
-  src: local('Roobert'), url(./Roobert-SemiBoldItalic.otf) format('opentype')
+  src: local('Roobert'), url(./Roobert-SemiBoldItalic.otf) format('opentype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: roobert;
   font-style: normal;
   font-weight: 700;
-  src: local('Roobert'), url(./Roobert-Bold.otf) format('opentype')
+  src: local('Roobert'), url(./Roobert-Bold.otf) format('opentype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: roobert;
   font-style: italic;
   font-weight: 700;
-  src: local('Roobert'), url(./Roobert-BoldItalic.otf) format('opentype')
+  src: local('Roobert'), url(./Roobert-BoldItalic.otf) format('opentype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: roobert;
   font-style: normal;
   font-weight: 900;
-  src: local('Roobert'), url(./Roobert-Heavy.otf) format('opentype')
+  src: local('Roobert'), url(./Roobert-Heavy.otf) format('opentype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: roobert;
   font-style: italic;
   font-weight: 900;
-  src: local('Roobert'), url(./Roobert-HeavyItalic.otf) format('opentype')
+  src: local('Roobert'), url(./Roobert-HeavyItalic.otf) format('opentype');
+  font-display: swap;
 }
