@@ -40,7 +40,7 @@
                 ajudaram a aumentar ainda mais meu conhecimento 😊
               </p>
 
-              <div class="my-8 flex justify-between">
+              <!-- <div class="my-8 flex justify-between">
                 <NuxtImg 
                   v-for="(icon, index) in profileIcons"
                   :key="index"
@@ -55,12 +55,12 @@
                   alt="Imagem de contato"
                   sizes="sm:100vw md:100vw lg:100vw"
                 />
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
 
-        <div class="animation-aviator relative block lg:flex" style="height: 92vh; overflow: hidden;">
+        <!-- <div class="animation-aviator relative block lg:flex" style="height: 92vh; overflow: hidden;">
           <div class="relative w-full z-50 h-full" style="overflow: hidden;">
             <NuxtImg format="webp" quality="80" loading="lazy" class="paper-plane absolute"
               src="https://static.indigoimages.ca/2016/shop/114450_img01_blueAirplane_45deg.png" width="70" height="70"
@@ -81,7 +81,7 @@
               class="absolute right-0 xl:w-1/3 lg:bottom-40" width="500" height="500"
               sizes="sm:100vw md:100vw lg:100vw" />
           </div>
-        </div>
+        </div> -->
 
         <div class="inner-container my-0">
           <div class="grid-t grid-cols-3 gap-y-8 justify-items-center stack-item">
