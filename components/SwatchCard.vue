@@ -1,7 +1,14 @@
 <template>
-  <div class="item switch">
+  <div class="item switch" v-if="imgUrl">
     <div class="color flex justify-center items-center h-screen" :style="[currentColor]">
-      <img :src="imgUrl" class="w-6 md:w-10" :alt="name" :title="name">
+      <NuxtImg 
+        :src="imgUrl"
+        class="w-6 md:w-10"
+        :alt="name" :title="name"
+        format="webp"
+        quality="80"
+        sizes="sm:800px md:800px lg:800px"
+      />
       <span class="text-xs md:text-sm font-thin">{{ name }}</span>
     </div>
   </div>

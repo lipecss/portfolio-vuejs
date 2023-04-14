@@ -1,11 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-// import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill'
-// import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill'
 
 export default defineNuxtConfig({
-  alias: {
-    util: 'rollup-plugin-node-polyfills/polyfills/util'
-  },
   app: {
     head: {
       htmlAttrs: {
@@ -68,7 +63,7 @@ export default defineNuxtConfig({
   },
   render: {
     static: {
-      maxAge: 60 * 60 * 24 * 365 // Cache for 1 year
+      maxAge: 1000 * 60 * 60 * 24 * 7
     }
   },
   runtimeConfig: {

@@ -4,7 +4,17 @@
     @mouseenter="toggleShow"
     @mouseleave="showInfo = false">
     <div class="z-50 absolute inset-0 bg-gray-900 opacity-75" />
-    <NuxtImg :src="data.images[0]" class="absolute top-0 left-0 w-full h-full object-cover" />
+      <NuxtImg
+        format="webp"
+        loading="lazy"
+        alt="data.name"
+        quality="80"
+        :src="data.images[0]"
+        class="absolute top-0 left-0 w-full h-full object-cover"
+        width="1200"
+        height="800"
+        sizes="sm:800 md:800 lg:800"
+      />
     <div 
       v-if="showInfo"
       class="z-50 flex flex-col justify-center colum hover:bg-g1 hover:opacity-75 top-0 left-0 right-0 bottom-0 absolute"

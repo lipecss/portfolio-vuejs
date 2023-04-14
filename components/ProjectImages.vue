@@ -1,7 +1,15 @@
 <template>
   <div class="container">
     <div v-for="image in images" :key="image" class="card">
-      <NuxtImg :src="image" />
+      <NuxtImg 
+        :src="image"
+        quality="80"
+        loading="lazy"
+        width="500" 
+        alt=""
+        format="webp"
+        sizes="sm:100vw md:100vw lg:100vw"
+      />
       <div class="card__head">Plotting Cat</div>
     </div>
   </div>
