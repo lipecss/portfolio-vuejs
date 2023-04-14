@@ -41,6 +41,9 @@ export default defineNuxtConfig({
       },
     ],
   ],
+  image: {
+    dir: 'assets/images'
+  },
   nitro: {
     plugins: ['~/server/index.js']
   },

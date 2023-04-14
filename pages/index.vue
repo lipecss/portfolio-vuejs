@@ -184,12 +184,10 @@ useHead({
     {
       src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js',
       crossorigin: 'anonymous',
-      async: true
     },
     {
       src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js',
       crossorigin: 'anonymous',
-      async: true
     },
     {
       src: 'http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js',
@@ -284,7 +282,7 @@ const handleResize = () => {
 
 const iconsScrollMagic = () => {
   TweenLite.defaultEase = Linear.easeNone;
-  const controller = new ScrollMagic.Controller();
+  const controller = new window.ScrollMagic.Controller();
   const tl = new TimelineMax();
 
   tl.staggerFrom(".box", 5, {
@@ -295,7 +293,7 @@ const iconsScrollMagic = () => {
     }
   });
 
-  new ScrollMagic.Scene({
+  new window.ScrollMagic.Scene({
     triggerElement: "#stage",
     duration: "20%",
     triggerHook: 0.25
@@ -303,7 +301,7 @@ const iconsScrollMagic = () => {
     .setTween(tl)
     .addTo(controller);
 
-  var pinIntroScene = new ScrollMagic.Scene({
+  var pinIntroScene = new window.ScrollMagic.Scene({
     triggerElement: '.section-2',
     triggerHook: 0.2,
     duration: '150%'
@@ -336,7 +334,7 @@ const createSceneForSpan = (span, triggerHook, duration, delay) => {
 
   tl.fromTo(span, { opacity: 0 }, { opacity: 1, duration: 1, delay: delay });
 
-  new ScrollMagic.Scene({
+  new window.ScrollMagic.Scene({
     triggerElement: span,
     triggerHook: triggerHook,
     duration: duration,
@@ -356,11 +354,11 @@ const swithesScrollMagic = () => {
   if (element) containerHeight = element.offsetHeight
 
   switches.forEach((stack, index) => {
-    const controller2 = new ScrollMagic.Controller()
+    const controller2 = new window.ScrollMagic.Controller()
     controllers.push(controller2)
 
     // Cria uma cena para o elemento atual
-    new ScrollMagic.Scene({
+    new window.ScrollMagic.Scene({
       triggerElement: `#switch-${index}`,
       triggerHook: "onEnter",
       duration: containerHeight * 0.8, // Define a duração com base na altura do container
@@ -377,12 +375,12 @@ const swithesScrollMagic = () => {
 }
 
 const projetTitleScrollMagic = () => {
-  const controller3 = new ScrollMagic.Controller()
+  const controller3 = new window.ScrollMagic.Controller()
 
   const tl2 = gsap.timeline()
   tl2.fromTo('.first', { opacity: 0, y: '100%' }, { opacity: 1, y: '0%', duration: 0.5 })
 
-  new ScrollMagic.Scene({
+  new window.ScrollMagic.Scene({
     triggerElement: '.first',
     offset: -10,
     triggerHook: 'onCenter',
@@ -394,7 +392,7 @@ const projetTitleScrollMagic = () => {
   const tl3 = gsap.timeline()
   tl3.fromTo('.second', { opacity: 0, x: '100%' }, { opacity: 1, x: '0%', duration: 0.5 })
 
-  new ScrollMagic.Scene({
+  new window.ScrollMagic.Scene({
     triggerElement: '.second',
     offset: -10,
     triggerHook: 'onCenter',
@@ -406,7 +404,7 @@ const projetTitleScrollMagic = () => {
   const tl4 = gsap.timeline()
   tl4.fromTo('.third', { opacity: 0, y: '100%' }, { opacity: 1, y: '0%', duration: 0.5 })
 
-  new ScrollMagic.Scene({
+  new window.ScrollMagic.Scene({
     triggerElement: '.third',
     offset: 20,
     triggerHook: 'onEnter',
@@ -471,7 +469,7 @@ const paperPlane = () => {
         }
       })
     );
-    new ScrollMagic.Scene({
+    new window.ScrollMagic.Scene({
       triggerElement: ".animation-aviator",
       duration: 2000,
       triggerHook: 0
@@ -492,7 +490,7 @@ const paperPlane = () => {
 
     textTween.fromTo('.aviator-text', 1, { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1 });
 
-    new ScrollMagic.Scene({
+    new window.ScrollMagic.Scene({
       triggerElement: ".animation-aviator",
       duration: 1000,
       triggerHook: 0.9,
@@ -523,7 +521,7 @@ const contactScrollMagic = () => {
 }
 
 const createScene4 = () => {
-  controller4 = new ScrollMagic.Controller();
+  controller4 = new window.ScrollMagic.Controller();
   let animFrom = { left: "0" };
   let scrollDistance = null;
   const element = document.querySelector('#pin');
@@ -538,7 +536,7 @@ const createScene4 = () => {
     ease: Linear.easeNone
   });
 
-  scene4 = new ScrollMagic.Scene({
+  scene4 = new window.ScrollMagic.Scene({
     triggerElement: '.pinContainer',
     triggerHook: 0,
     duration: scrollDistance
@@ -549,7 +547,7 @@ const createScene4 = () => {
 };
 
 const createScene44 = () => {
-  controller4 = new ScrollMagic.Controller();
+  controller4 = new window.ScrollMagic.Controller();
   let animFrom = { left: "0" };
   let scrollDistance = null;
   const element = document.querySelector('#pin2');
@@ -564,7 +562,7 @@ const createScene44 = () => {
     ease: Linear.easeNone
   });
 
-  scene4 = new ScrollMagic.Scene({
+  scene4 = new window.ScrollMagic.Scene({
     triggerElement: '.pinContainer2',
     triggerHook: 0,
     duration: scrollDistance
@@ -609,9 +607,9 @@ const sendContact = async (body) => {
 }
 
 // const teste = () => {
-//   var controller = new ScrollMagic.Controller();
+//   var controller = new window.ScrollMagic.Controller();
 
-//   var pinIntroScene = new ScrollMagic.Scene({
+//   var pinIntroScene = new window.ScrollMagic.Scene({
 //     triggerElement: '.section-1',
 //     triggerHook: 0.2,
 //     duration: '150%'
