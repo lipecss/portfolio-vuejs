@@ -9,6 +9,7 @@
         :alt="name" :title="name"
         format="webp"
         quality="80"
+        loading="lazy"
         sizes="sm:100vw md:100vw lg:100vw"
       />
       <span class="text-xs md:text-sm font-thin">{{ name }}</span>

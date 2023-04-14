@@ -15,6 +15,7 @@
             <div class="w-full lg:w-6/12 h-full lg:h-1/2 rounded-lg">
               <NuxtImg 
                 format="webp"
+                loading="lazy"
                 class="rounded-full"
                 src="/contact.png"
                 quality="80"
@@ -45,6 +46,7 @@
                   :key="index"
                   :src="icon.imgUrl"
                   width="100"
+                  loading="lazy"
                   height="100"
                   format="webp"
                   quality="80"
@@ -60,7 +62,7 @@
 
         <div class="animation-aviator relative block lg:flex" style="height: 92vh; overflow: hidden;">
           <div class="relative w-full z-50 h-full" style="overflow: hidden;">
-            <NuxtImg format="webp" quality="80" class="paper-plane absolute"
+            <NuxtImg format="webp" quality="80" loading="lazy" class="paper-plane absolute"
               src="https://static.indigoimages.ca/2016/shop/114450_img01_blueAirplane_45deg.png" width="70" height="70"
               alt="aviao" sizes="sm:100vw md:100vw lg:100vw" />
 
@@ -75,6 +77,7 @@
               src="brazil.png"
               quality="80"
               alt="Brasil"
+              loading="lazy"
               class="absolute right-0 xl:w-1/3 lg:bottom-40" width="500" height="500"
               sizes="sm:100vw md:100vw lg:100vw" />
           </div>
@@ -167,7 +170,7 @@
                 <ContactForm @contact="sendContact" />
               </div>
               <div class="order-1 lg:order-2">
-                <NuxtImg quality="80" format="webp" class="w-full bg-center" src="/about.png" alt="Imagem de Felipe"
+                <NuxtImg quality="80" loading="lazy" format="webp" class="w-full bg-center" src="/about.png" alt="Imagem de Felipe"
                   width="300" height="295" sizes="sm:100vw md:100vw lg:100vw" />
               </div>
             </div>
