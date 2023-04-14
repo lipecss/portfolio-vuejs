@@ -1,0 +1,108 @@
+@font-face {
+  font-family: 'Robert Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Robert Sans'), url('./RobertSans-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Robert Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Robert Sans'), url('./RobertSans-Italic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Robert Sans';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Robert Sans'), url('./RobertSans-Thin.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Robert Sans';
+  font-style: italic;
+  font-weight: 100;
+  src: local('Robert Sans'), url('./RobertSans-ThinItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Robert Sans';
+  font-style: normal;
+  font-weight: 250;
+  src: local('Robert Sans'), url('./RobertSans-ExtraLight.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Robert Sans';
+  font-style: italic;
+  font-weight: 250;
+  src: local('Robert Sans'), url('./RobertSans-ExtraLightItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Robert Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Robert Sans'), url('./RobertSans-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Robert Sans';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Robert Sans'), url('./RobertSans-LightItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Robert Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Robert Sans'), url('./RobertSans-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Robert Sans';
+  font-style: italic;
+  font-weight: 500;
+  src: local('Robert Sans'), url('./RobertSans-MediumItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Robert Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Robert Sans'), url('./RobertSans-SemiBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Robert Sans';
+  font-style: italic;
+  font-weight: 600;
+  src: local('Robert Sans'), url('./RobertSans-SemiBoldItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Robert Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Robert Sans'), url('./RobertSans-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Robert Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Robert Sans'), url('./RobertSans-BoldItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Robert Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Robert Sans'), url('./RobertSans-ExtraBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Robert Sans';
+  font-style: italic;
+  font-weight: 800;
+  src: local('Robert Sans'), url('./RobertSans-ExtraBoldItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Robert Sans';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Robert Sans'), url('./RobertSans-Black.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Robert Sans';
+  font-style: italic;
+  font-weight: 900;
+  src: local('Robert Sans'), url('./RobertSans-BlackItalic.ttf') format('truetype');
+}

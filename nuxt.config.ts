@@ -19,6 +19,7 @@ export default defineNuxtConfig({
   },
   css: [
     '@/assets/css/main.scss',
+    '@/assets/fonts/robert.css',
     '@fortawesome/fontawesome-svg-core/styles.css'
   ],
   imports: {

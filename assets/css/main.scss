@@ -1,22 +1,6 @@
-@font-face {
-  font-family: 'Roobert';
-  src: url('https://fonts.cdnfonts.com/css/roobert');
-  font-display: swap;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-$default-black: #101010;
-$default-gray: #191919;
-$default-green: #00dc82;
-$vue-green: #42b883;
-$vue-greenlight: #6cbb60;
-$clean-gray: #c6c9d8;
-$middle-gray: #afafaf; //#717173
-$red: #f9004d;
 
 :root {
   --g1: #41b883;
@@ -25,7 +9,7 @@ $red: #f9004d;
 }
 
 body {
-  font-family: 'Roobert', sans-serif !important;
+  font-family: 'Robert Sans', sans-serif !important;
   color: white !important;
   background-color: rgb(0, 0, 0);
   overflow-y: auto !important;
