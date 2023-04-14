@@ -40,7 +40,7 @@
                 ajudaram a aumentar ainda mais meu conhecimento 😊
               </p>
 
-              <!-- <div class="my-8 flex justify-between">
+              <div class="my-8 flex justify-between">
                 <NuxtImg 
                   v-for="(icon, index) in profileIcons"
                   :key="index"
@@ -55,7 +55,7 @@
                   alt="Imagem de contato"
                   sizes="sm:100vw md:100vw lg:100vw"
                 />
-              </div> -->
+              </div>
             </div>
           </div>
         </div>
@@ -182,35 +182,40 @@
 </template>
 
 <script setup>
-// useHead({
-//   script: [
-//     {
-//       src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js',
-//       async: true,
-//       crossorigin: 'anonymous',
-//     },
-//     {
-//       src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js',
-//       async: true,
-//       crossorigin: 'anonymous',
-//     },
-//     {
-//       src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js',
-//       async: true,
-//       crossorigin: 'anonymous',
-//     },
-//     {
-//       src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js',
-//       async: true,
-//       crossorigin: 'anonymous',
-//     },
-//     {
-//       src: 'https://unpkg.com/gsap@3/dist/MotionPathPlugin.min.js',
-//       async: true,
-//       crossorigin: 'anonymous',
-//     }
-//   ]
-// })
+useHead({
+  script: [
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js',
+      async: true,
+      crossorigin: 'anonymous',
+    },
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js',
+      async: true,
+      crossorigin: 'anonymous',
+    },
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js',
+      async: true,
+      crossorigin: 'anonymous',
+    },
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js',
+      async: true,
+      crossorigin: 'anonymous',
+    },
+    {
+      src: 'https://unpkg.com/gsap@3/dist/MotionPathPlugin.min.js',
+      async: true,
+      crossorigin: 'anonymous',
+    }
+    // {
+    //   src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.min.js',
+    //   defer: true,
+    //   crossorigin: 'anonymous'
+    // }
+  ]
+})
 
 const { stacks, profileIcons } = useEnums()
 
@@ -221,51 +226,51 @@ let gsap = null
 let controller4 = null;
 let scene4 = null;
 
-// onMounted(async () => {
-//   if (process.client) {
-//     isMobile.value = window.innerWidth <= 768
-//     gsap = window.gsap
-//     gsap.registerPlugin(MotionPathPlugin)
+onMounted(async () => {
+  if (process.client) {
+    isMobile.value = window.innerWidth <= 768
+    gsap = window.gsap
+    gsap.registerPlugin(MotionPathPlugin)
 
-//     // executa as funções de scrollMagic
-//     swithesScrollMagic()
-//     iconsScrollMagic()
-//     experiencesScrollMagic()
-//     paperPlane()
-//     contactScrollMagic()
-//     //createScene44()
+    // executa as funções de scrollMagic
+    swithesScrollMagic()
+    iconsScrollMagic()
+    experiencesScrollMagic()
+    paperPlane()
+    contactScrollMagic()
+    //createScene44()
 
-//     const cards = gsap.utils.toArray(".project-card");
+    const cards = gsap.utils.toArray(".project-card");
 
-//     cards.forEach((card, i) => {
-//       gsap.to(card, {
-//         scale: () => 0.8 + i * 0.035,
-//         ease: "none",
-//         scrollTrigger: {
-//           trigger: card,
-//           start: "top-=" + 40 * i + " 40%",
-//           end: "center 20%",
-//           scrub: true
-//         }
-//       });
-//       ScrollTrigger.create({
-//         trigger: card,
-//         start: "center-=" + 40 * i + " 40%",
-//         end: "top center",
-//         endTrigger: ".end-element",
-//         pin: true,
-//         pinSpacing: false,
-//         id: "card-" + i
-//       });
-//     })
+    cards.forEach((card, i) => {
+      gsap.to(card, {
+        scale: () => 0.8 + i * 0.035,
+        ease: "none",
+        scrollTrigger: {
+          trigger: card,
+          start: "top-=" + 40 * i + " 40%",
+          end: "center 20%",
+          scrub: true
+        }
+      });
+      ScrollTrigger.create({
+        trigger: card,
+        start: "center-=" + 40 * i + " 40%",
+        end: "top center",
+        endTrigger: ".end-element",
+        pin: true,
+        pinSpacing: false,
+        id: "card-" + i
+      });
+    })
 
 
-//     // if (!isMobile.value) teste()
-//     //projetTitleScrollMagic()
+    // if (!isMobile.value) teste()
+    //projetTitleScrollMagic()
 
-//     window.addEventListener('resize', handleResize)
-//   }
-// })
+    window.addEventListener('resize', handleResize)
+  }
+})
 
 const { data: postData } = await useLazyAsyncData('postData', () => $fetch('/api/posts/latest', { initialCache: false }))
 const { data: projectData } = await useFetch('/api/projects/latest', { initialCache: false })

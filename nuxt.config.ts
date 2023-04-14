@@ -49,6 +49,18 @@ export default defineNuxtConfig({
     plugins: ['~/server/index.js']
   },
   render: {
+    splitChunks: {
+      layouts: true,
+      pages: true,
+      commons: true
+    },
+    http2: {
+      push: true,
+      cache: {
+        max: 100,
+        maxAge: 1000 * 60 * 60 // 1 hora
+      }
+    },
     static: {
       maxAge: 1000 * 60 * 60 * 24 * 7
     }
