@@ -98,3 +98,27 @@ body {
   line-height: 105%;
   max-width: 18ch;
 }
+
+.button-read-more {
+  padding: 0 23px;
+  height: 40px;
+  margin: 0 auto;
+  line-height: 34px;
+  border: 2px solid #ffffff;
+  background: transparent;
+  border-radius: 4px;
+  font-size: 14px;
+  text-transform: uppercase;
+  transition: .3s;
+  color: #ffffff;
+
+  &:hover {
+    background: var(--g1);
+    box-shadow: 0 10px 15px 0 rgb(0 0 0 / 10%);
+    transform: translateY(-5px);
+
+    a {
+      color: #fff;
+    }
+  }
+}

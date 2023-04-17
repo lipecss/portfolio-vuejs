@@ -5,19 +5,19 @@
     <div class="w-full h-full px-4">
       <div ref="container">
 
-        <p class="b-big-text panel">
+        <p class="b-big-text">
           Descubra quem eu sou e o que eu posso fazer por você
         </p>
 
         <!-- sobre mim -->
         <div id="stage" class="overflow-hidden my-20">
           <div class="section lg:flex">
-            <div class="w-full lg:w-6/12 h-full lg:h-1/2 rounded-lg">
+            <div class="w-full lg:w-9/12 h-full lg:h-1/2 rounded-lg">
               <NuxtImg 
                 format="webp"
                 loading="lazy"
                 class="rounded-full"
-                src="/contact.png"
+                src="contact.png"
                 quality="80"
                 alt="Imagem de Felipe"
                 width="800"
@@ -26,7 +26,7 @@
               />
             </div>
 
-            <div class="content mt-10 lg:mt-0 lg:mx-6">
+            <div class="mt-10 lg:mt-0 lg:mx-6">
               <p class="mb-6 text-xl lg:text-3xl">
                 👋🏼 Sou um eterno estudante, um engenheiro de software com Bacharelado em ciência da computação.
               </p>
@@ -62,9 +62,9 @@
 
         <div class="animation-aviator relative block lg:flex" style="height: 92vh; overflow: hidden;">
           <div class="relative w-full z-50 h-full" style="overflow: hidden;">
-            <NuxtImg format="webp" quality="80" loading="lazy" class="paper-plane absolute"
+            <img class="paper-plane absolute"
               src="https://static.indigoimages.ca/2016/shop/114450_img01_blueAirplane_45deg.png" width="70" height="70"
-              alt="aviao" sizes="sm:100vw md:100vw lg:100vw" />
+              alt="aviao"/>
 
             <div class="aviator-text block w-full md:w-2/3 lg:w-1/2 lg:absolute top-80">
               <p class="text-3xl xl:text-6xl my-10 lg:my-0 font-normal">
@@ -100,28 +100,48 @@
         </div>
 
         <div class="pinContainer" id="pin">
-          <section class="panel-card h-4/5" id="panel-card">
-
+          <section class="panel-card" id="panel-card">
             <div class="intro">
               <h1 class="text-5xl text-g1 font-bold mb-10">Confira algumas das minhas ultimas postagens.</h1>
-
-              <p class="drop-shadow-md">Aqui é onde compartilho minhas paixões.
-                Então, prepare-se para mergulhar em um mundo de linhas de código e aventuras de jogo enquanto exploramos
-                o emocionante universo da tecnologia juntos!
+              <p class="drop-shadow-md">Aqui é onde compartilho minhas paixões. 
+                Então, prepare-se para mergulhar em um mundo de linhas de código e aventuras de jogo enquanto exploramos o emocionante universo da tecnologia juntos!
               </p>
             </div>
-
-            <div class="lg:flex">
-
-              <div v-for="(post, index) in postData" :key="index" :id="`post-card-${index}`"
-                class="panel-box my-8 lg:my-0">
-                <NuxtImg class="w-full h-full object-cover" loading="lazy" format="webp" :src="post.img" :alt="post.title"
-                  width="800" height="800" quality="80" sizes="sm:100vw md:100vw lg:100vw" />
+            
+            <div 
+              v-for="(post, index) in postData"
+              :key="index"
+              class="panel-box my-8 lg:my-0 relative"
+              @mouseenter="hoverPostInfo(index)"
+              @mouseleave="resetPostInfo"
+            >
+              <NuxtImg 
+                class="w-full h-full object-cover"
+                loading="lazy" format="webp"
+                :src="post.img"
+                :alt="post.title"
+                width="800"
+                height="800"
+                quality="80"
+                sizes="sm:100vw md:100vw lg:100vw"
+              />
                 <div class="absolute inset-0 bg-gray-900 opacity-50 w-full h-full"></div>
-                <h2
-                  class="absolute inset-0 flex justify-center items-center px-10 hover:text-black hover:bg-g1 hover:opacity-70">
-                  {{ post.title }}</h2>
-              </div>
+
+                <div 
+                  class="z-50 flex items-center flex-col justify-center colum hover:bg-g1 hover:opacity-75 top-0 left-0 right-0 bottom-0 absolute"
+                >
+                  <h2
+                    class="text-xl uppercase mb-10">
+                    {{ post.title }}
+                  </h2>
+                  <NuxtLink
+                    v-if="showPostInfo === index"
+                    :to="`/post/${post.slug}`"
+                    class="button-read-more hover:cursor-pointer"
+                    >
+                    Leia mais
+                  </NuxtLink>
+                </div>
             </div>
           </section>
         </div>
@@ -169,7 +189,8 @@
               <div class="order-2 lg:order-1">
                 <ContactForm @contact="sendContact" />
               </div>
-              <div class="order-1 lg:order-2">
+
+              <div class="order-1 lg:order-2 md:hidden">
                 <NuxtImg quality="80" loading="lazy" format="webp" class="w-full bg-center" src="/about.png" alt="Imagem de Felipe"
                   width="300" height="295" sizes="sm:100vw md:100vw lg:100vw" />
               </div>
@@ -217,7 +238,8 @@ useHead({
 const { stacks, profileIcons } = useEnums()
 
 //data
-const isMobile = ref(0)
+let isMobile = ref(0)
+let showPostInfo = ref(null)
 
 let gsap = null
 let controller4 = null;
@@ -236,6 +258,7 @@ onMounted(async () => {
     paperPlane()
     contactScrollMagic()
     //createScene44()
+    createScene4()
 
     const cards = gsap.utils.toArray(".project-card");
 
@@ -274,12 +297,14 @@ const { data: projectData } = await useFetch('/api/projects/latest', { initialCa
 
 // watch
 watch(isMobile, (value) => {
-  if (value && scene4 !== null) destroyScene4()
-  if (!value && scene4 === null) createScene4()
-
-  // if (!value && planeScene !== null) {
+  // if (value && scene4 !== null) {
   //   console.log('destruir')
-  // } else console.log('criar')
+  //   destroyScene4()
+  // }
+  // if (!value && scene4 === null) {
+  //   console.log('criar')
+  //   createScene4()
+  // }
 })
 
 // methods
@@ -482,7 +507,7 @@ const paperPlane = () => {
       triggerHook: 0
     })
       .on("update", function (e) {
-        const st = e.target.controller().info("scrollDirection");
+        const st = e.target.controller().info("scrollDirection")
         if (st === 'FORWARD') {
           plane.src = 'https://static.indigoimages.ca/2016/shop/114450_img01_blueAirplane_45deg.png';
         } else if (st === 'REVERSE') {
@@ -533,9 +558,20 @@ const createScene4 = () => {
   let scrollDistance = null;
   const element = document.querySelector('#pin');
 
-  if (element) {
-    scrollDistance = element.scrollWidth;
-  }
+  const adjustSceneDuration = () => {
+    if (element && scene4) {
+      scrollDistance = element.scrollWidth;
+      scene4.duration(scrollDistance);
+    }
+    console.log('atulizou', scrollDistance)
+  };
+
+  // Adiciona listener de resize antes de atualizar o scrollDistance
+  window.addEventListener('resize', adjustSceneDuration);
+
+  // Atualiza scrollDistance no carregamento da página
+  scrollDistance = element ? element.scrollWidth : 0;
+  console.log('scrollDistance:', scrollDistance);
 
   const tl5 = gsap.timeline();
   tl5.fromTo('section.panel-card', 2, animFrom, {
@@ -543,6 +579,7 @@ const createScene4 = () => {
     ease: Linear.easeNone
   });
 
+  // Cria a cena ScrollMagic após definir o valor de scrollDistance
   scene4 = new window.ScrollMagic.Scene({
     triggerElement: '.pinContainer',
     triggerHook: 0,
@@ -552,6 +589,7 @@ const createScene4 = () => {
     .setTween(tl5)
     .addTo(controller4);
 };
+
 
 const createScene44 = () => {
   controller4 = new window.ScrollMagic.Controller();
@@ -580,20 +618,11 @@ const createScene44 = () => {
 }
 
 const destroyScene4 = () => {
-  if (scene4 || planeScene) {
-    scene4.destroy(true);
-    scene4 = null;
-  }
-  if (controller4 || planeScene) {
-    controller4.destroy(true);
-    controller4 = null;
-  }
-}
-
-const postImage = (image) => {
-  return {
-    backgroundImage: `url(${image})`,
-  }
+  // if (scene4) {
+  //   scene4.destroy(true);
+  //   scene4 = null;
+  //   console.log('ssss')
+  // }
 }
 
 const sendContact = async (body) => {
@@ -613,17 +642,16 @@ const sendContact = async (body) => {
   }
 }
 
-// const teste = () => {
-//   var controller = new window.ScrollMagic.Controller();
+const hoverPostInfo = (index) => {
+  showPostInfo.value = index
 
-//   var pinIntroScene = new window.ScrollMagic.Scene({
-//     triggerElement: '.section-1',
-//     triggerHook: 0.2,
-//     duration: '150%'
-//   })
-//     .setPin('.section-1')
-//     .addTo(controller);
-// }
+  console.log('in', showPostInfo.value)
+}
+
+const resetPostInfo = () => {
+  console.log('aaaa')
+  showPostInfo.value = null
+}
 </script>
 
 <style lang="scss">
@@ -694,6 +722,19 @@ body {
   position: absolute;
 }
 
+.panel-box {
+  width: 120vw;
+  height: 35vh;
+  max-width: 800px;
+  margin-right: 3vw;
+  transition: transform 0.33s;
+
+  &:hover {
+    transform: scale(1.03);
+    transition: transform 0.33s;
+  }
+}
+
 @media (max-width: 767px) {
   .item:hover {
     width: 68px;
@@ -707,6 +748,12 @@ body {
 @media (min-width: 768px) {
   .grid-t {
     grid-template-columns: repeat(6, 1fr);
+  }
+
+  .panel-box {
+    width: 80vw;
+    max-width: 800px;
+    height: 60vh;
   }
 }
 
@@ -742,37 +789,12 @@ body {
     }
   }
 
-  .pinContainer {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .panel-card {
-    padding: 3em 1em;
-    position: absolute;
-    top: 0;
+  .stackingcards {
+    width: 90%;
     left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .panel-box {
-    width: 80vw;
-    height: 60vh !important;
-    max-width: 800px;
-    margin-right: 3vw;
-    transition: transform 0.33s;
-
-    &:hover {
-      cursor: pointer;
-      transform: scale(1.03);
-      transition: transform 0.33s;
-    }
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .container-project {
@@ -810,7 +832,6 @@ body {
   opacity: 1;
 }
 
-
 .item:hover .color span:last-child {
   top: 76%;
   opacity: 1;
@@ -823,20 +844,25 @@ body {
   margin: 0;
 }
 
-.panel-card {
-  color: white;
-  font-size: 3rem;
-  transform: translate3d(0, 0, 0);
-  z-index: 2;
+.pinContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.panel-box {
-  height: 30vh;
-  position: relative;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
+.panel-card {
+  padding: 3em 1em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 
 .intro {
   width: 600px;

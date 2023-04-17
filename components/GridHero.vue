@@ -16,9 +16,7 @@
     <div v-show="toggled" id="title" ref="title" class="centered items-center">
       <span class="font-bold inline">
         Eu <span class="font-bold inline">
-          <ClientOnly>
-            <VueWriter :typeSpeed="70" :array="array" />
-          </ClientOnly>
+          <VueWriter :typeSpeed="70" :eraseSpeed="60" :array="array" />
         </span>
       </span>
     </div>
@@ -36,8 +34,8 @@ const tilesRef = ref(null)
 const array = ref([
   'sou um criatvo desenvolvedor Front End',
   'sou desenvolvedor de game',
-  'amo Vuejs 💚',
-  'amo jogar video game 🕹️',
+  'amo Vuejs',
+  'amo jogar video game',
   'sou auto didata'
 ])
 
