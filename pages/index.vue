@@ -72,6 +72,7 @@
                 desenvolvimento acelerado.
               </p>
             </div>
+
             <NuxtImg 
               format="webp"
               src="brazil.png"
@@ -163,17 +164,16 @@
         <div class="container-project">
           <div class="stackingcards">
             <ProjectCard v-for="(project, index) in projectData" :key="index" class="stackingcard" :data="project" />
-
           </div>
-          <div class="end-element"></div>
+          <div class="end-element h-80"></div>
         </div>
 
-        <p class="about-play b-big-text">
+        <p class="about-play b-big-text" style="height: 67vh;">
           Fora da minha vida profissional, amo jogar <span style="color: #fa4454"> Valorant</span> e <span
             style="color: #2cb49c">Sea of Thieves</span>.
         </p>
 
-        <div id="contact-form">
+        <div id="contact-form mt-20">
           <div class="mt-20">
             <h2 class="contacts" style="line-height: 100%; margin: 0;">
               <span class="block text-8xl md:text-9xl" style="backface-visibility: hidden;">Contato</span>
@@ -186,7 +186,7 @@
 
           <div class="py-14">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div class="order-2 lg:order-1">
+              <div id="contact-area" class="order-2 lg:order-1">
                 <ContactForm @contact="sendContact" />
               </div>
 
@@ -224,28 +224,31 @@ useHead({
     },
     {
       src: 'https://unpkg.com/gsap@3/dist/MotionPathPlugin.min.js',
-      async: true,
       crossorigin: 'anonymous'
     }
-    // {
-    //   src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.min.js',
-    //   defer: true,
-    //   crossorigin: 'anonymous'
-    // }
   ]
 })
-
+const {
+  iconsScrollMagic,
+  experiencesScrollMagic,
+  swithesScrollMagic,
+  paperPlane,
+  contactScrollMagic,
+  postScrollMagic,
+  projectScrollMagic
+} = useScrollAnimation()
 const { stacks, profileIcons } = useEnums()
+const { hash } = useRoute()
 
 //data
 let isMobile = ref(0)
 let showPostInfo = ref(null)
 
 let gsap = null
-let controller4 = null;
-let scene4 = null;
 
 onMounted(async () => {
+  scrollToElement(hash)
+
   if (process.client) {
     isMobile.value = window.innerWidth <= 768
     gsap = window.gsap
@@ -257,36 +260,8 @@ onMounted(async () => {
     experiencesScrollMagic()
     paperPlane()
     contactScrollMagic()
-    //createScene44()
-    createScene4()
-
-    const cards = gsap.utils.toArray(".project-card");
-
-    cards.forEach((card, i) => {
-      gsap.to(card, {
-        scale: () => 0.8 + i * 0.035,
-        ease: "none",
-        scrollTrigger: {
-          trigger: card,
-          start: "top-=" + 40 * i + " 40%",
-          end: "center 20%",
-          scrub: true
-        }
-      });
-      ScrollTrigger.create({
-        trigger: card,
-        start: "center-=" + 40 * i + " 40%",
-        end: "top center",
-        endTrigger: ".end-element",
-        pin: true,
-        pinSpacing: false,
-        id: "card-" + i
-      });
-    })
-
-
-    // if (!isMobile.value) teste()
-    //projetTitleScrollMagic()
+    postScrollMagic()
+    projectScrollMagic()
 
     window.addEventListener('resize', handleResize)
   }
@@ -295,334 +270,9 @@ onMounted(async () => {
 const { data: postData } = await useLazyAsyncData('postData', () => $fetch('/api/posts/latest', { initialCache: false }))
 const { data: projectData } = await useFetch('/api/projects/latest', { initialCache: false })
 
-// watch
-watch(isMobile, (value) => {
-  // if (value && scene4 !== null) {
-  //   console.log('destruir')
-  //   destroyScene4()
-  // }
-  // if (!value && scene4 === null) {
-  //   console.log('criar')
-  //   createScene4()
-  // }
-})
-
 // methods
 const handleResize = () => {
   isMobile.value = window.innerWidth <= 768;
-}
-
-const iconsScrollMagic = () => {
-  TweenLite.defaultEase = Linear.easeNone;
-  const controller = new window.ScrollMagic.Controller();
-  const tl = new TimelineMax();
-
-  tl.staggerFrom(".box", 5, {
-    scale: 0,
-    stagger: {
-      from: "center",
-      amount: 0.85
-    }
-  });
-
-  new window.ScrollMagic.Scene({
-    triggerElement: "#stage",
-    duration: "20%",
-    triggerHook: 0.25
-  })
-    .setTween(tl)
-    .addTo(controller);
-
-  var pinIntroScene = new window.ScrollMagic.Scene({
-    triggerElement: '.section-2',
-    triggerHook: 0.2,
-    duration: '150%'
-  })
-    .setPin('.section-2')
-    .addTo(controller);
-}
-
-const experiencesScrollMagic = () => {
-  const experiences = document.querySelectorAll(".experiences")
-
-  //  Percorre todas as spans de experiência e cria uma cena para cada uma
-  experiences.forEach((experience) => {
-    const spans = experience.querySelectorAll("span");
-    spans.forEach((span, index) => {
-      const delay = index * 0.2; // Adiciona um delay de 0.2s para cada span
-      createSceneForSpan(
-        span,
-        'onBegin', // Gatilho aumenta em 0.2 a cada span
-        "25%", // Duração da cena é metade do tamanho do elemento
-        delay // Adiciona o atraso na criação da timeline
-      )
-    })
-  })
-}
-
-const createSceneForSpan = (span, triggerHook, duration, delay) => {
-  const controller = new window.ScrollMagic.Controller()
-  const tl = gsap.timeline()
-
-  tl.fromTo(span, { opacity: 0 }, { opacity: 1, duration: 1, delay: delay });
-
-  new window.ScrollMagic.Scene({
-    triggerElement: span,
-    triggerHook: triggerHook,
-    duration: duration,
-    reverse: true,
-  })
-    .setTween(tl)
-    .addTo(controller)
-}
-
-const swithesScrollMagic = () => {
-  const switches = document.querySelectorAll('.switch')
-  let element = document.querySelector('.stack-item')
-  let containerHeight = null
-
-  const controllers = []
-
-  if (element) containerHeight = element.offsetHeight
-
-  switches.forEach((stack, index) => {
-    const controller2 = new window.ScrollMagic.Controller()
-    controllers.push(controller2)
-
-    // Cria uma cena para o elemento atual
-    new window.ScrollMagic.Scene({
-      triggerElement: `#switch-${index}`,
-      triggerHook: "onEnter",
-      duration: containerHeight * 0.8, // Define a duração com base na altura do container
-    })
-      .setTween(
-        gsap.fromTo(
-          `#switch-${index}`,
-          { y: containerHeight }, // Posição inicial
-          { y: 0, opacity: 1 } // Posição final
-        )
-      )
-      .addTo(controller2)
-  })
-}
-
-const projetTitleScrollMagic = () => {
-  const controller3 = new window.ScrollMagic.Controller()
-
-  const tl2 = gsap.timeline()
-  tl2.fromTo('.first', { opacity: 0, y: '100%' }, { opacity: 1, y: '0%', duration: 0.5 })
-
-  new window.ScrollMagic.Scene({
-    triggerElement: '.first',
-    offset: -10,
-    triggerHook: 'onCenter',
-    reverse: true
-  })
-    .setTween(tl2)
-    .addTo(controller3);
-
-  const tl3 = gsap.timeline()
-  tl3.fromTo('.second', { opacity: 0, x: '100%' }, { opacity: 1, x: '0%', duration: 0.5 })
-
-  new window.ScrollMagic.Scene({
-    triggerElement: '.second',
-    offset: -10,
-    triggerHook: 'onCenter',
-    reverse: true
-  })
-    .setTween(tl3)
-    .addTo(controller3)
-
-  const tl4 = gsap.timeline()
-  tl4.fromTo('.third', { opacity: 0, y: '100%' }, { opacity: 1, y: '0%', duration: 0.5 })
-
-  new window.ScrollMagic.Scene({
-    triggerElement: '.third',
-    offset: 20,
-    triggerHook: 'onEnter',
-    reverse: true
-  })
-    .setTween(tl4)
-    .addTo(controller3)
-}
-
-const paperPlane = () => {
-  const tween = new TimelineLite();
-  const plane = document.querySelector('.paper-plane')
-  const div = document.querySelector('.animation-aviator');
-
-  let divWidth, divHeight;
-
-  const updatePlanePosition = () => {
-    if (div) {
-      divWidth = div.offsetWidth;
-      divHeight = div.offsetHeight;
-
-      tween.progress(0).kill();
-      tween.clear();
-
-      tween.add(
-        gsap.to(".paper-plane", 2, {
-          motionPath: {
-            curviness: 1.25,
-            autoRotate: true,
-            path: [
-              { x: 0, y: 0 },
-              { x: divWidth * 0.1, y: divHeight * 0.1 },
-              { x: divWidth * 0.2, y: divHeight * 0.4, bezier: [{ x: divWidth * 0.2 + 20, y: divHeight * 0.4 - 20 }, { x: divWidth * 0.2 + 40, y: divHeight * 0.4 - 40 }] },
-              { x: divWidth * 0.92, y: divHeight * 0.25 },
-              { x: divWidth * 0.92, y: divHeight * 0.45 }
-            ]
-          }
-        })
-      );
-    }
-  };
-
-
-  if (div) {
-    divWidth = div.offsetWidth;
-    divHeight = div.offsetHeight;
-
-    const controller = new window.ScrollMagic.Controller();
-
-    tween.add(
-      gsap.to(".paper-plane", 2, {
-        motionPath: {
-          curviness: 1.25,
-          autoRotate: true,
-          path: [
-            { x: 0, y: 0 },
-            { x: divWidth * 0.1, y: divHeight * 0.1 },
-            { x: divWidth * 0.2, y: divHeight * 0.4, bezier: [{ x: divWidth * 0.2 + 20, y: divHeight * 0.4 - 20 }, { x: divWidth * 0.2 + 40, y: divHeight * 0.4 - 40 }] },
-            { x: divWidth * 0.92, y: divHeight * 0.25 },
-            { x: divWidth * 0.92, y: divHeight * 0.45 }
-          ]
-        }
-      })
-    );
-    new window.ScrollMagic.Scene({
-      triggerElement: ".animation-aviator",
-      duration: 2000,
-      triggerHook: 0
-    })
-      .on("update", function (e) {
-        const st = e.target.controller().info("scrollDirection")
-        if (st === 'FORWARD') {
-          plane.src = 'https://static.indigoimages.ca/2016/shop/114450_img01_blueAirplane_45deg.png';
-        } else if (st === 'REVERSE') {
-          plane.src = 'https://static.indigoimages.ca/114450_img01_blueAirplane_45deg__REVERSED.png';
-        }
-      })
-      .setPin(".animation-aviator")
-      .setTween(tween)
-      .addTo(controller)
-
-    const textTween = new TimelineLite();
-
-    textTween.fromTo('.aviator-text', 1, { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1 });
-
-    new window.ScrollMagic.Scene({
-      triggerElement: ".animation-aviator",
-      duration: 1000,
-      triggerHook: 0.9,
-    })
-      .setTween(textTween)
-      .addTo(controller);
-
-    window.addEventListener("resize", updatePlanePosition);
-  }
-};
-
-const contactScrollMagic = () => {
-  const contacts = document.querySelectorAll(".contacts")
-
-  //  Percorre todas as spans de experiência e cria uma cena para cada uma
-  contacts.forEach((experience) => {
-    const spans = experience.querySelectorAll("span");
-    spans.forEach((span, index) => {
-      const delay = index * 0.2; // Adiciona um delay de 0.2s para cada span
-      createSceneForSpan(
-        span,
-        'onBegin', // Gatilho aumenta em 0.2 a cada span
-        "25%", // Duração da cena é metade do tamanho do elemento
-        delay // Adiciona o atraso na criação da timeline
-      )
-    })
-  })
-}
-
-const createScene4 = () => {
-  controller4 = new window.ScrollMagic.Controller();
-  let animFrom = { left: "0" };
-  let scrollDistance = null;
-  const element = document.querySelector('#pin');
-
-  const adjustSceneDuration = () => {
-    if (element && scene4) {
-      scrollDistance = element.scrollWidth;
-      scene4.duration(scrollDistance);
-    }
-    console.log('atulizou', scrollDistance)
-  };
-
-  // Adiciona listener de resize antes de atualizar o scrollDistance
-  window.addEventListener('resize', adjustSceneDuration);
-
-  // Atualiza scrollDistance no carregamento da página
-  scrollDistance = element ? element.scrollWidth : 0;
-  console.log('scrollDistance:', scrollDistance);
-
-  const tl5 = gsap.timeline();
-  tl5.fromTo('section.panel-card', 2, animFrom, {
-    left: -scrollDistance,
-    ease: Linear.easeNone
-  });
-
-  // Cria a cena ScrollMagic após definir o valor de scrollDistance
-  scene4 = new window.ScrollMagic.Scene({
-    triggerElement: '.pinContainer',
-    triggerHook: 0,
-    duration: scrollDistance
-  })
-    .setPin(".pinContainer")
-    .setTween(tl5)
-    .addTo(controller4);
-};
-
-
-const createScene44 = () => {
-  controller4 = new window.ScrollMagic.Controller();
-  let animFrom = { left: "0" };
-  let scrollDistance = null;
-  const element = document.querySelector('#pin2');
-
-  if (element) {
-    scrollDistance = element.scrollWidth;
-  }
-
-  const tl5 = gsap.timeline();
-  tl5.fromTo('section.panel-card2', 2, animFrom, {
-    left: -scrollDistance,
-    ease: Linear.easeNone
-  });
-
-  scene4 = new window.ScrollMagic.Scene({
-    triggerElement: '.pinContainer2',
-    triggerHook: 0,
-    duration: scrollDistance
-  })
-    .setPin(".pinContainer2")
-    .setTween(tl5)
-    .addTo(controller4);
-}
-
-const destroyScene4 = () => {
-  // if (scene4) {
-  //   scene4.destroy(true);
-  //   scene4 = null;
-  //   console.log('ssss')
-  // }
 }
 
 const sendContact = async (body) => {
@@ -644,14 +294,26 @@ const sendContact = async (body) => {
 
 const hoverPostInfo = (index) => {
   showPostInfo.value = index
-
-  console.log('in', showPostInfo.value)
 }
 
 const resetPostInfo = () => {
-  console.log('aaaa')
   showPostInfo.value = null
 }
+
+const scrollToElement = (element) => {
+  if (element) {
+    setTimeout(() => {
+      const contactArea = document.querySelector('#contact-area')
+      if (contactArea) {
+        contactArea.scrollIntoView({
+          block: 'start',
+          behavior: 'smooth'
+        })
+      }
+    }, 800)
+  }
+}
+
 </script>
 
 <style lang="scss">

@@ -7,7 +7,8 @@ export default defineEventHandler(async (event) => {
 
     const options = {
       page: page ? page : 1,
-      limit: limit ? limit : 3
+      limit: limit ? limit : 3,
+      sort: { created_at: -1 }
     }
 
     const result = await Project.paginate({}, options)

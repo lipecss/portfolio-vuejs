@@ -1,5 +1,98 @@
 <template>
-  <div>
-    projetos
+  <loading :active.sync="loadingProjects" color="#42b883" :can-cancel="false" :lock-scroll="true" :is-full-page="true"
+    background-color="#000" />
+
+  <div class="flex flex-col h-screen">
+    <div class="header text-center font-medium">Lista de Projetos</div>
+
+    <div class="flex-grow">
+      <div class="px-10 py-20 min-h-screen">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Thumb v-for="(project, index) in projects" :key="index" :data="project">
+          </Thumb>
+        </div>
+
+        <DownArrow v-if="!showNoMoreText && !!projects.length" class="mt-20"/>
+
+        <p v-else class="w-full text-center pt-20 pb-10">Sem mais conteúdo para mostrar</p>
+      </div>
+    </div>
+    <AlternativeFooter />
   </div>
 </template>
+
+<script setup>
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/css/index.css'
+
+let projects = ref([])
+let projectLimit = ref(null)
+let currentPage = ref(1)
+let maxPage = ref(0)
+let loadingProjects = ref(false)
+
+const { data: projectData, error } = await useFetch('/api/projects/paginate')
+
+if (!error.value) {
+  projectLimit.value = projectData.value.docs.length
+
+  maxPage.value = projectData.value.totalPages
+
+  for (var i = 0; i < projectLimit.value; i++) {
+    projects.value.push(projectData.value.docs[i])
+  }
+}
+
+const showNoMoreText = computed(() => {
+  return !loadingProjects.value && currentPage.value >= maxPage.value
+})
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', onScroll)
+})
+
+const onScroll = () => {
+  const bottomOfWindow = Math.round(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight;
+
+  if (bottomOfWindow && !loadingProjects.value) {
+    if (currentPage.value < maxPage.value) {
+      loadingProjects.value = true // define a variável como true antes de iniciar a solicitação
+      setTimeout(async () => {
+        currentPage.value += 1
+        // eslint-disable-next-line prefer-const
+        let page = currentPage.value
+
+        const { data: projectData, error } = await useFetch(`/api/projects/paginate/?page=${page}`)
+
+        if (!error.value) {
+          if (page <= projectData.value.totalPages) {
+            for (var i = 0; i < projectLimit.value; i++) {
+              projects.value.push(projectData.value.docs[i])
+            }
+          } else {
+            currentPage.value = maxPage.value
+          }
+        }
+
+        loadingProjects.value = false
+
+      }, 300)
+    }
+  }
+}
+
+</script>
+
+<style lang="scss" scoped>
+.header {
+  font-size: 14.888889vw;
+  line-height: 100%;
+  background: linear-gradient(180deg, #41b883 21.09%, #00DC82 64.08%, #35495e 91.34%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+</style>
