@@ -27,7 +27,7 @@ export default defineNuxtConfig({
           hid: 'icon',
           rel: 'icon',
           type: 'image/x-icon',
-          href: 'favicon.png'
+          href: '/favicon.png'
         },
       ]
     }
@@ -43,7 +43,8 @@ export default defineNuxtConfig({
   plugins: [
     { src: '~/plugins/vue-typed-js.js', mode: 'client' },
     { src: '@/plugins/aos', mode: 'client' },
-    { src: '~/plugins/vue3-toastify.js', mode: 'client' }
+    { src: '~/plugins/vue3-toastify.js', mode: 'client' },
+    { src: '~/plugins/vercel.ts', mode: 'client' }
   ],
   modules: [
     '@nuxtjs/tailwindcss',
