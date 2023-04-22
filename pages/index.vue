@@ -250,17 +250,21 @@ onMounted(async () => {
 
   if (process.client) {
     isMobile.value = window.innerWidth <= 768
-    gsap = window.gsap
-    gsap.registerPlugin(MotionPathPlugin)
+    gsap = await window.gsap
+    
+    if (gsap) {
+      console.log('gsap', gsap)
+      gsap.registerPlugin(MotionPathPlugin)
 
-    // executa as funções de scrollMagic
-    swithesScrollMagic()
-    iconsScrollMagic()
-    experiencesScrollMagic()
-    paperPlane()
-    contactScrollMagic()
-    postScrollMagic()
-    projectScrollMagic()
+      // executa as funções de scrollMagic
+      swithesScrollMagic()
+      iconsScrollMagic()
+      experiencesScrollMagic()
+      paperPlane()
+      contactScrollMagic()
+      postScrollMagic()
+      projectScrollMagic()
+    }
 
     window.addEventListener('resize', handleResize)
   }
