@@ -54,7 +54,7 @@ const { params } = useRoute()
 const config = useRuntimeConfig()
 import getSiteMeta from '@/utils/getSiteMeta'
 
-const { data: projectData, error } = await useFetch(`/api/projects/${params.slug}`)
+const { data: projectData, error } = await useAsyncData('projectData', () => $fetch(`/api/projects/${params.slug}`))
 
 if (error.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })

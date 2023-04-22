@@ -11,7 +11,7 @@
           <Thumb v-for="(project, index) in projects" :key="index" :data="project" />
         </div>
 
-        <DownArrow v-if="!showNoMoreText && !!projects.length" class="mt-20"/>
+        <DownArrow v-if="!showNoMoreText" class="mt-20"/>
 
         <p v-else class="w-full text-center pt-20 pb-10">Sem mais conteúdo para mostrar</p>
       </div>
@@ -32,17 +32,22 @@ let currentPage = ref(1)
 let maxPage = ref(0)
 let loadingProjects = ref(false)
 
-const { data: projectData, error } = await useFetch('/api/projects/paginate')
+const { data: projectData, error } = useLazyFetch('/api/projects/paginate')
 
-if (!error.value) {
-  projectLimit.value = projectData.value.docs.length
+watch(projectData, (item) => {
+  loadingProjects.value = true
 
-  maxPage.value = projectData.value.totalPages
+  projectLimit.value = item.docs.length
+
+  maxPage.value = item.totalPages
 
   for (var i = 0; i < projectLimit.value; i++) {
-    projects.value.push(projectData.value.docs[i])
+    projects.value.push(item.docs[i])
   }
-}
+
+  loadingProjects.value = false
+}, { deep: true })
+
 
 const showNoMoreText = computed(() => {
   return !loadingProjects.value && currentPage.value >= maxPage.value

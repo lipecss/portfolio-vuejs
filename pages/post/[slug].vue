@@ -85,7 +85,7 @@ const breadcrumbList = computed(() => {
   ]
 })
 
-const { data: postData, error } = await useFetch(`/api/posts/${params.slug}`)
+const { data: postData, error } = await useAsyncData('postData', () => $fetch(`/api/posts/${params.slug}`))
 
 if (error.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })

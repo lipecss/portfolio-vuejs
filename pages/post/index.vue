@@ -11,7 +11,7 @@
           <ThumbPost v-for="(post, index) in posts" :key="index" :data="post" />
         </div>
 
-        <DownArrow v-if="!showNoMoreText && !!posts.length" class="mt-20" />
+        <DownArrow v-if="!showNoMoreText" class="mt-20" />
 
         <p v-else class="w-full text-center pt-20 pb-10">Sem mais conteúdo para mostrar</p>
       </div>
@@ -30,19 +30,23 @@ let posts = ref([])
 let postLimit = ref(null)
 let currentPage = ref(1)
 let maxPage = ref(0)
-let loadingPosts = ref(false)
+let loadingPosts = ref(true)
 
-const { data: postData, error } = await useFetch('/api/posts/paginate')
+const { data: postData, error } = useLazyFetch('/api/posts/paginate')
 
-if (!error.value) {
-  postLimit.value = postData.value.docs.length
+watch(postData, (items) => {
+  loadingPosts.value = true
 
-  maxPage.value = postData.value.totalPages
+  postLimit.value = items.docs.length
+
+  maxPage.value = items.totalPages
 
   for (var i = 0; i < postLimit.value; i++) {
-    posts.value.push(postData.value.docs[i])
+    posts.value.push(items.docs[i])
   }
-}
+
+  loadingPosts.value = false
+}, { deep: true })
 
 const showNoMoreText = computed(() => {
   return !loadingPosts.value && currentPage.value >= maxPage.value
@@ -56,34 +60,33 @@ onBeforeUnmount(() => {
   window.removeEventListener('scroll', onScroll)
 })
 
-const onScroll = () => {
+const onScroll = async () => {
   const bottomOfWindow = Math.round(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight - 50;
 
   if (bottomOfWindow && !loadingPosts.value) {
     if (currentPage.value < maxPage.value) {
-      loadingPosts.value = true // define a variável como true antes de iniciar a solicitação
-      setTimeout(async () => {
-        currentPage.value += 1
-        // eslint-disable-next-line prefer-const
-        let page = currentPage.value
+      loadingPosts.value = true;
+      currentPage.value += 1;
+      let page = currentPage.value;
 
-        const { data: postData, error } = await useFetch(`/api/posts/paginate/?page=${page}`)
+      const { data: postData, error } = await useLazyFetch(`/api/posts/paginate/?page=${page}`);
 
-        if (!error.value) {
-          if (page <= postData.value.totalPages) {
-            posts.value = posts.value.concat(postData.value.docs)
-            postLimit.value += postData.value.docs.length
-          } else {
-            currentPage.value = maxPage.value
-          }
+      if (!error.value) {
+        if (page <= postData.value.totalPages) {
+          const newPosts = postData.value.docs.filter(post => !posts.value.some(p => p._id === post._id));
+          posts.value.splice(posts.value.length, 0, ...newPosts);
+          postLimit.value = posts.value.length;
+        } else {
+          currentPage.value = maxPage.value;
         }
+      }
 
-        loadingPosts.value = false
-
-      }, 300)
+      loadingPosts.value = false;
     }
   }
 }
+
+
 
 const meta = computed(() => {
   const metaData = {
