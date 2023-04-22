@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
         status
       })
 
-      return { message: `Post was ${status}d` }
+      return { posts: post.likes }
     }
   } catch (error) {
     return { message: 'Failed to process your request, verify syntax is correct' }

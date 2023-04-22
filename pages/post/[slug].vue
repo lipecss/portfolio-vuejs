@@ -43,7 +43,6 @@
 <script setup>
 import createDOMPurify from 'dompurify'
 import spacetime from 'spacetime'
-import Pusher from 'pusher-js'
 import getSiteMeta from '@/utils/getSiteMeta'
 
 const { params } = useRoute()
@@ -93,26 +92,15 @@ if (error.value) {
 }
 
 // methods
-const subscribePusher = () => {
-  const pusher = new Pusher('640cf85899a511c2c024', {
-    cluster: 'us2',
-  })
-
-  const channel = pusher.subscribe('portfolio-likes')
-  channel.bind('postAction', (data) => {
-    likes.value = data.likes
-  })
-}
-
 const toggleLikeButton = async () => {
   const { _id } = postData.value
 
-  const result = await getLikeById(_id)
+  const result = getLikeById(_id)
 
   if (result === null) {
     pushToList(_id)
 
-    const { error } = await useFetch(`/api/posts/like/${_id}`, {
+    const { data: likesData, error } = await useFetch(`/api/posts/like/${_id}`, {
       method: 'POST',
       body: {
         action: 'like'
@@ -121,12 +109,13 @@ const toggleLikeButton = async () => {
 
     if (!error.value) {
       liked.value = true
+      likes.value = likesData.value.posts
     }
 
   } else {
     removeToList(_id)
 
-    const { error } = await useFetch(`/api/posts/like/${_id}`, {
+    const { data: likesData, error } = await useFetch(`/api/posts/like/${_id}`, {
       method: 'POST',
       body: {
         action: 'dislike'
@@ -135,6 +124,7 @@ const toggleLikeButton = async () => {
 
     if (!error.value) {
       liked.value = false
+      likes.value = likesData.value.posts
     }
   }
 }
@@ -168,7 +158,7 @@ const sanitizeContent = () => {
   }
 }
 
-subscribePusher()
+// subscribePusher()
 
 // lifeCycle
 onMounted(async () => {

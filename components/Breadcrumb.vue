@@ -60,8 +60,7 @@ const noLastChild = (currentIndex) => {
 <style lang="scss" scoped>
 .breadcrumb {
   &__list {
-    padding: 6px 0px;
-    white-space: nowrap;
+    padding: 0 15px;
     text-overflow: ellipsis;
   }
 }
