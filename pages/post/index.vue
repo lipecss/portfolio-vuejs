@@ -35,8 +35,6 @@ let loadingPosts = ref(true)
 const { data: postData, error } = useLazyFetch('/api/posts/paginate')
 
 watch(postData, (items) => {
-  loadingPosts.value = true
-
   postLimit.value = items.docs.length
 
   maxPage.value = items.totalPages

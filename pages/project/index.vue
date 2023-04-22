@@ -30,13 +30,11 @@ let projects = ref([])
 let projectLimit = ref(null)
 let currentPage = ref(1)
 let maxPage = ref(0)
-let loadingProjects = ref(false)
+let loadingProjects = ref(true)
 
 const { data: projectData, error } = useLazyFetch('/api/projects/paginate')
 
 watch(projectData, (item) => {
-  loadingProjects.value = true
-
   projectLimit.value = item.docs.length
 
   maxPage.value = item.totalPages
@@ -48,6 +46,9 @@ watch(projectData, (item) => {
   loadingProjects.value = false
 }, { deep: true })
 
+if (error.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
+}
 
 const showNoMoreText = computed(() => {
   return !loadingProjects.value && currentPage.value >= maxPage.value
