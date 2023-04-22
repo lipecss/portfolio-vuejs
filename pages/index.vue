@@ -253,7 +253,6 @@ onMounted(async () => {
     gsap = await window.gsap
     
     if (gsap) {
-      console.log('gsap', gsap)
       gsap.registerPlugin(MotionPathPlugin)
 
       // executa as funções de scrollMagic
