@@ -50,6 +50,7 @@
 </template>
 
 <script setup>
+const route = useRoute()
 const user = useSupabaseUser()
 const router = useRouter()
 
@@ -60,6 +61,11 @@ const optionList = ref([
   { path: '/post', dataText: 'Postagens', text: 'Postagens' },
   { path: '/project', dataText: 'Projetos', text: 'Projetos' }
 ])
+
+// watchers 
+watch(route, () => {
+  if (expand.value) expand.value = false
+}, { deep: true })
 
 const toggle = () => {
   if (!expand.value) expand.value = true

@@ -208,12 +208,10 @@ useHead({
   script: [
     {
       src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js',
-      async: true,
       crossorigin: 'anonymous',
     },
     {
       src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js',
-      async: true,
       crossorigin: 'anonymous',
     },
     {
@@ -221,7 +219,6 @@ useHead({
     },
     {
       src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js',
-      async: true,
     },
     {
       src: 'https://unpkg.com/gsap@3/dist/MotionPathPlugin.min.js',
@@ -229,6 +226,7 @@ useHead({
     }
   ]
 })
+
 const {
   iconsScrollMagic,
   experiencesScrollMagic,
