@@ -17,8 +17,6 @@ export default defineEventHandler(async (event) => {
     const counter = action === 'like' ? 1 : -1
     const status = action
 
-    console.log('acation', action, counter)
-
     await Post.findByIdAndUpdate(new mongoose.Types.ObjectId(id), { $inc: { likes: counter } })
 
     const post = await Post.findById(new mongoose.Types.ObjectId(id))
@@ -33,7 +31,6 @@ export default defineEventHandler(async (event) => {
       return { message: `Post was ${status}d` }
     }
   } catch (error) {
-    console.log(error)
     return { message: 'Failed to process your request, verify syntax is correct' }
   }
 })

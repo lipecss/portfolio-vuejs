@@ -5,14 +5,16 @@ export default defineEventHandler(async (event) => {
   const query = getRouterParams(event)
   try {
     const { slug } = query
-    await Skill.init() // Registrar a schema do modelo Skill
+
+    await Skill.init()
     const project = await Project.findOne({ slug }).select("+skills").populate('skills')
 
-    if (!project) return { message: 'Post not found or not Exist' }
+    if (!project) {
+      throw new Error('Project not found or not Exist')
+    }
 
-    return project
+    else return project
   } catch (error) {
-    console.log('errp', error)
-    return { message: 'Failed to process your request, verify syntax is correct' }
+    throw new Error('Failed to process your request, verify syntax is correct')
   }
 })

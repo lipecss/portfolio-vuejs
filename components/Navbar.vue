@@ -7,13 +7,17 @@
     </button>
 
     <div v-if="expand" class="content">
-      <button class="card-close" aria-labelledby="card-close" @click="expand = false">
+      <button 
+        class="card-close"
+        aria-labelledby="card-close"
+        @click="expand = false"
+      >
         <ClientOnly>
           <font-awesome-icon :icon="['fas', 'x']" />
         </ClientOnly>  
       </button>
 
-      <div class="flex flex-row min-h-screen justify-center items-center">
+      <div class="flex flex-row min-h-screen justify-center items-center" v-if="expand">
         <ul>
           <li 
             v-for="(option, index) in optionList"

@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import getSiteMeta from './utils/getSiteMeta'
+
+const meta = getSiteMeta()
 
 export default defineNuxtConfig({
   app: {
@@ -8,12 +11,39 @@ export default defineNuxtConfig({
       },
       title: 'Portifolio felipecss',
       meta: [
+        ...meta,
+        { charset: 'utf-8' },
         { name: 'robots', content: 'index, follow' },
-        { name: 'description', content: 'Esse site é meu cantinho, o lugar do Felipecss, na qual você poderá conhecer um pouco de tudo, dos meus projetos, trabalhos, gostos e de mim. Estou super ansioco para trocarmos um papo!' },
-        { name: 'keywords', content: 'felipecss, felipe, vuejs, vue, javascript, developer, development, desenvolvedor' }
+        { name: 'keywords', content: 'felipecss, felipe, vuejs, vue, javascript, developer, development, desenvolvedor' },
+        { property: 'og:image:width', content: '740' },
+        { property: 'og:image:height', content: '300' },
+        { name: 'format-detection', content: 'telephone=no' },
+        { name: 'twitter:site', content: '@felipecss' },
+        { name: 'twitter:card', content: 'summary_large_image' }
       ],
       link: [
-        { rel: 'canonical', href: 'https://felipecss.com' }
+        { rel: 'canonical', href: 'https://felipecss.com' },
+        {
+          hid: 'icon',
+          rel: 'icon',
+          type: 'image/x-icon',
+          href: 'favicon.ico'
+        },
+        {
+          rel: 'apple-touch-icon',
+          sizes: '180x180',
+          href: 'icons/apple-touch-icon-180x180.png'
+        },
+        {
+          rel: 'icon',
+          sizes: '32x32',
+          href: 'icons/favicon-32x32.png'
+        },
+        {
+          rel: 'icon',
+          sizes: '16x16',
+          href: 'icons/favicon-16x16.png'
+        }
       ]
     }
   },

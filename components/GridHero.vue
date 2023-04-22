@@ -146,6 +146,31 @@ createGrid();
   opacity: 0.1 !important;
 }
 
+#tiles>.tile:hover::before {
+  content: "👆";
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  animation: fade-in-out .8s forwards;
+}
+  
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .centered {
   left: 50%;
   position: absolute;

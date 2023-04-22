@@ -1,6 +1,8 @@
 import { Schema, model } from 'mongoose'
 import paginate from 'mongoose-paginate-v2'
 import slugify from 'slugify'
+import createDOMPurify from 'dompurify'
+import { JSDOM } from 'jsdom'
 
 const postSchema = new Schema({
   title: {
@@ -10,6 +12,9 @@ const postSchema = new Schema({
   content: {
     type: String,
     required: true,
+  },
+  description: {
+    type: String,
   },
   img: {
     type: String,
@@ -38,6 +43,16 @@ postSchema.pre('validate', function (next) {
     this.slug = slugify(this.title, { lower: true, strict: true })
   }
 
+  next()
+})
+
+postSchema.pre('save', async function (next) {
+  const window = new JSDOM('').window
+  const DOMPurify = createDOMPurify(window)
+  const sanitizedHtml = DOMPurify.sanitize(this.content)
+  const div = document.createElement('div')
+  div.innerHTML = sanitizedHtml
+  this.description = div.textContent || div.innerText || ''
   next()
 })
 

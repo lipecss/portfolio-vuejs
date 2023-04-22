@@ -8,6 +8,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import the Quill styles you want */
+// @import '@vueup/vue-quill/dist/vue-quill.core.css';
 
 :root {
   --g1: #41b883;
@@ -121,4 +123,31 @@ body {
       color: #fff;
     }
   }
+}
+
+
+.ql-editor {
+  p:not(p:has(br)) {
+    font-size: 1.23rem;
+    margin-bottom: 20px;
+    line-height: 227%;
+  }
+
+  pre {
+    background: #2b2d31;
+    border: 1px solid var(--g1);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em !important;
+    display: block;
+    word-wrap: break-word;
+  }
+
+  img {
+    margin: 0 auto;
+  }
+
+  
 }

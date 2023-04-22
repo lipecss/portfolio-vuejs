@@ -4,12 +4,17 @@ export default defineEventHandler(async (event) => {
   const query = getRouterParams(event)
   try {
     const { slug } = query
+
     const post = await Post.findOne({ slug })
 
-    if (!post) return { message: 'Post not found or not Exist' }
+    if (!post) {
+      throw new Error('Post not found or not Exist')
+    }
 
-    return post
+    else return post
+
   } catch (error) {
-    return { message: 'Failed to process your request, verify syntax is correct' }
+    throw new Error('Failed to process your request, verify syntax is correct')
   }
 })
+

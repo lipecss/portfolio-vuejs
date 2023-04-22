@@ -3,13 +3,12 @@
     background-color="#000" />
 
   <div class="flex flex-col h-screen">
-    <div class="header text-center font-medium">Lista de Projetos</div>
+    <div class="header text-center font-medium leading-normal">Lista de Projetos</div>
 
     <div class="flex-grow">
       <div class="px-10 py-20 min-h-screen">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Thumb v-for="(project, index) in projects" :key="index" :data="project">
-          </Thumb>
+          <Thumb v-for="(project, index) in projects" :key="index" :data="project" />
         </div>
 
         <DownArrow v-if="!showNoMoreText && !!projects.length" class="mt-20"/>
@@ -24,6 +23,8 @@
 <script setup>
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/css/index.css'
+
+const config = useRuntimeConfig()
 
 let projects = ref([])
 let projectLimit = ref(null)
@@ -56,7 +57,7 @@ onBeforeUnmount(() => {
 })
 
 const onScroll = () => {
-  const bottomOfWindow = Math.round(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight;
+  const bottomOfWindow = Math.round(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight - 50;
 
   if (bottomOfWindow && !loadingProjects.value) {
     if (currentPage.value < maxPage.value) {
@@ -70,9 +71,8 @@ const onScroll = () => {
 
         if (!error.value) {
           if (page <= projectData.value.totalPages) {
-            for (var i = 0; i < projectLimit.value; i++) {
-              projects.value.push(projectData.value.docs[i])
-            }
+            projects.value = projects.value.concat(projectData.value.docs)
+            projectLimit.value += projectData.value.docs.length
           } else {
             currentPage.value = maxPage.value
           }
@@ -85,12 +85,26 @@ const onScroll = () => {
   }
 }
 
+const meta = computed(() => {
+  const metaData = {
+    type: 'project',
+    title: 'Listando meus projetos',
+    description: 'Explorando o mundo da programação e dos jogos, com pitadas de diversão e conhecimento. Venha conferir minhas postagens sobre os temas que mais gosto e fique por dentro das novidades do universo tecnológico.',
+    url: `${config.baseUrl}/project}`
+  }
+
+  return getSiteMeta(metaData)
+})
+
+useHead({
+  title: `Felipecss - Meus projetos`,
+  meta: () => [...meta.value]
+})
 </script>
 
 <style lang="scss" scoped>
 .header {
   font-size: 14.888889vw;
-  line-height: 100%;
   background: linear-gradient(180deg, #41b883 21.09%, #00DC82 64.08%, #35495e 91.34%);
   -webkit-background-clip: text;
   color: transparent;

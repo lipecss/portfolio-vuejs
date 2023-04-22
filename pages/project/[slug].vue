@@ -51,13 +51,17 @@
 
 <script setup>
 const { params } = useRoute()
-const router = useRouter()
+const config = useRuntimeConfig()
+import getSiteMeta from '@/utils/getSiteMeta'
 
 const { data: projectData, error } = await useFetch(`/api/projects/${params.slug}`)
 
+if (error.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
+}
+
 const breadcrumbList = computed(() => {
   const { name } = projectData.value
-  console.log
   return [
     {
       name: 'Inicio',
@@ -76,12 +80,24 @@ const breadcrumbList = computed(() => {
   ]
 })
 
-if (error.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
-}
+const meta = computed(() => {
+  const metaData = {
+    type: 'article',
+    title: projectData.value.name,
+    description: projectData.value.description,
+    mainImage: projectData.value.images[0],
+    url: `${config.baseUrl}/project/${projectData.value.slug}`
+  }
+
+  return getSiteMeta(metaData)
+})
+
+useHead({
+  title: `Felipecss - ${projectData.value.name}`,
+  meta: () => [...meta.value]
+})
 
 </script>
-
 
 <style lang="scss">
 .project-page {

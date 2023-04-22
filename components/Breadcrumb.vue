@@ -2,7 +2,7 @@
   <div :id="id" class="breadcrumb overflow-hidden">
     <ol class="breadcrumb__list">
       <li v-for="(item, index) in breadcrumbList" :key="index" class="inline-block">
-        <span v-if="emptyLink(item.link)" class="font-bold">
+        <span v-if="emptyLink(item.link)" class="font-bold text-g1">
           {{ item.name }}
         </span>
 
