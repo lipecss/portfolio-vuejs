@@ -6,9 +6,9 @@
           {{ item.name }}
         </span>
 
-        <router-link v-else :to="mountLink(item.link)" class="hover:text-g1 font-bold">
+        <NuxtLink v-else :to="mountLink(item.link)" class="hover:text-g1 font-bold">
           {{ item.name }}
-        </router-link>
+        </NuxtLink>
 
         <span v-if="noLastChild(index)" class="text-g1 px-3 font-bold">
           {{ separator }}
