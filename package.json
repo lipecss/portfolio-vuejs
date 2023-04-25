@@ -11,7 +11,7 @@
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.6.5",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
-    "nuxt": "^3.3.2",
+    "nuxt": "npm:nuxt3@latest",
     "sass": "^1.60.0",
     "sass-loader": "^13.2.2"
   },

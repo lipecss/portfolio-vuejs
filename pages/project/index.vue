@@ -1,5 +1,5 @@
 <template>
-  <loading :active.sync="loadingProjects" color="#42b883" :can-cancel="false" :lock-scroll="true" :is-full-page="true"
+  <loading :active.sync="pending || loadingProjects" color="#42b883" :can-cancel="false" :lock-scroll="true" :is-full-page="true"
     background-color="#000" />
 
   <div class="flex flex-col h-screen">
@@ -11,7 +11,7 @@
           <Thumb v-for="(project, index) in projects" :key="index" :data="project" />
         </div>
 
-        <DownArrow v-if="!showNoMoreText" class="mt-20"/>
+        <DownArrow v-if="!showNoMoreText" class="mt-20" />
 
         <p v-else class="w-full text-center pt-20 pb-10">Sem mais conteúdo para mostrar</p>
       </div>
@@ -32,23 +32,21 @@ let currentPage = ref(1)
 let maxPage = ref(0)
 let loadingProjects = ref(true)
 
-const { data: projectData, error } = useLazyFetch('/api/projects/paginate')
-
-watch(projectData, (item) => {
-  projectLimit.value = item.docs.length
-
-  maxPage.value = item.totalPages
-
-  for (var i = 0; i < projectLimit.value; i++) {
-    projects.value.push(item.docs[i])
-  }
-
-  loadingProjects.value = false
-}, { deep: true })
+const { data: projectData, error, pending } = await useAsyncData('data', () => $fetch('/api/projects/paginate'))
 
 if (error.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
+} else {
+  projectLimit.value = projectData.value.docs.length
+
+  maxPage.value = projectData.value.totalPages
+
+  for (var i = 0; i < projectLimit.value; i++) {
+    projects.value.push(projectData.value.docs[i])
+  }
 }
+
+loadingProjects.value = false
 
 const showNoMoreText = computed(() => {
   return !loadingProjects.value && currentPage.value >= maxPage.value
@@ -63,14 +61,14 @@ onBeforeUnmount(() => {
 })
 
 const onScroll = () => {
-  const bottomOfWindow = Math.round(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight - 50;
+  const bottomOfWindow = Math.round(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight - 400
 
   if (bottomOfWindow && !loadingProjects.value) {
     if (currentPage.value < maxPage.value) {
-      loadingProjects.value = true // define a variável como true antes de iniciar a solicitação
+      loadingProjects.value = true
+
       setTimeout(async () => {
         currentPage.value += 1
-        // eslint-disable-next-line prefer-const
         let page = currentPage.value
 
         const { data: projectData, error } = await useFetch(`/api/projects/paginate/?page=${page}`)
@@ -96,7 +94,7 @@ const meta = computed(() => {
     type: 'project',
     title: 'Listando meus projetos',
     description: 'Explorando o mundo da programação e dos jogos, com pitadas de diversão e conhecimento. Venha conferir minhas postagens sobre os temas que mais gosto e fique por dentro das novidades do universo tecnológico.',
-    url: `${config.baseUrl}/project}`
+    url: `${config.public.baseUrl}/project}`
   }
 
   return getSiteMeta(metaData)

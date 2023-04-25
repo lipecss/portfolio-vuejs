@@ -86,7 +86,7 @@ const meta = computed(() => {
     title: projectData.value.name,
     description: projectData.value.description,
     mainImage: projectData.value.images[0],
-    url: `${config.baseUrl}/project/${projectData.value.slug}`
+    url: `${config.public.baseUrl}/project/${projectData.value.slug}`
   }
 
   return getSiteMeta(metaData)

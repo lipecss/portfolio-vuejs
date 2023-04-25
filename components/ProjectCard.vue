@@ -26,8 +26,6 @@
 </template>
 
 <script setup>
-const { baseUrl } = useRuntimeConfig()
-
 const props = defineProps({
   data: { type: Object }
 })

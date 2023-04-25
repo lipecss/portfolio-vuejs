@@ -79,7 +79,7 @@ const goToContact = () => {
       content: url('~/assets/img/felipecss.png');
       position: absolute;
       top: 8%;
-      left: 45%;
+      left: 40%;
       z-index: -1;
       transform: translateY(-50%);
       width: 252px;

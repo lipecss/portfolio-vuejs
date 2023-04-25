@@ -64,11 +64,6 @@ export default defineNuxtConfig({
     plugins: ['~/server/index.js']
   },
   render: {
-    splitChunks: {
-      layouts: true,
-      pages: true,
-      commons: true
-    },
     http2: {
       push: true,
       cache: {

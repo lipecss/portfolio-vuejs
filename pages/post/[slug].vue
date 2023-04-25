@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <loading v-if="pending || loadingPost" :active.sync="true" color="#42b883" :can-cancel="false" :lock-scroll="true"
+    :is-full-page="true" background-color="#000" />
+
+  <div v-else>
     <div class="hero block mb-32">
       <div class="diagonal-hero-bg" :style="heroBg">
         <div class="opacity z-50 absolute inset-0 bg-gray-900 opacity-75" />
@@ -44,18 +47,28 @@
 import createDOMPurify from 'dompurify'
 import spacetime from 'spacetime'
 import getSiteMeta from '@/utils/getSiteMeta'
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/css/index.css'
+
 
 const { params } = useRoute()
 const { pushToList, getLikeById, removeToList } = likeStore()
 const config = useRuntimeConfig()
 
+const { data: postData, error, pending } = useLazyFetch(`/api/posts/${params.slug}`)
+
+if (error.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
+}
+
 // datas
 let likes = ref(0)
 let liked = ref(false)
-const heroBg = ref(null)
+let heroBg = ref(null)
 let sanitezed = ref('')
+let loadingPost = ref(true)
 
-// computeds
+// // computeds
 const likeTittleButton = computed(() => {
   return liked.value ? 'Remover curtida' : 'Curtir postagem'
 })
@@ -85,13 +98,9 @@ const breadcrumbList = computed(() => {
   ]
 })
 
-const { data: postData, error } = await useAsyncData('postData', () => $fetch(`/api/posts/${params.slug}`))
+loadingPost.value = false
 
-if (error.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
-}
-
-// methods
+// // methods
 const toggleLikeButton = async () => {
   const { _id } = postData.value
 
@@ -158,10 +167,18 @@ const sanitizeContent = () => {
   }
 }
 
-// subscribePusher()
-
 // lifeCycle
 onMounted(async () => {
+  // aguarda a conclusão da requisição
+  while (pending.value) {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  }
+
+  // verifica se houve um erro na requisição
+  if (error.value) {
+    throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
+  }
+
   isAlreadyLike(postData.value._id)
 
   likes.value = postData.value.likes
@@ -180,19 +197,23 @@ onMounted(async () => {
 })
 
 const meta = computed(() => {
+  if (!postData.value) {
+    return []
+  }
+
   const metaData = {
     type: 'post',
     title: postData.value.title,
     description: postData.value.description,
     mainImage: postData.value.img,
-    url: `${config.baseUrl}/post/${postData.value.slug}`
+    url: `${config.public.baseUrl}/post/${postData.value.slug}`
   }
 
   return getSiteMeta(metaData)
 })
 
 useHead({
-  title: `Felipecss - ${postData.value.title}`,
+  title: `Felipecss - ${postData.value ? postData.value.title : ''}`,
   meta: () => [...meta.value]
 })
 </script>

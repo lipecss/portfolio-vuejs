@@ -245,12 +245,17 @@ let showPostInfo = ref(null)
 
 let gsap = null
 
+onBeforeMount(async () => {
+  if (process.client) {
+    isMobile.value = window.innerWidth <= 768
+    gsap = await window.gsap
+  }
+})
+
 onMounted(async () => {
   scrollToElement(hash)
 
   if (process.client) {
-    isMobile.value = window.innerWidth <= 768
-    gsap = await window.gsap
     
     if (gsap) {
       gsap.registerPlugin(MotionPathPlugin)
@@ -269,8 +274,8 @@ onMounted(async () => {
   }
 })
 
-const { data: postData } = await useLazyAsyncData('postData', () => $fetch('/api/posts/latest', { initialCache: false }))
-const { data: projectData } = await useFetch('/api/projects/latest', { initialCache: false })
+const { data: postData } = await useLazyFetch('/api/posts/latest')
+const { data: projectData } = await useLazyFetch('/api/projects/latest')
 
 // methods
 const handleResize = () => {

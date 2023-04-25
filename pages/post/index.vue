@@ -1,5 +1,5 @@
 <template>
-  <loading :active.sync="loadingPosts" color="#42b883" :can-cancel="false" :lock-scroll="true" :is-full-page="true"
+  <loading :active.sync="pending || loadingPosts" color="#42b883" :can-cancel="false" :lock-scroll="true" :is-full-page="true"
     background-color="#000" />
 
   <div class="flex flex-col h-screen">
@@ -32,19 +32,21 @@ let currentPage = ref(1)
 let maxPage = ref(0)
 let loadingPosts = ref(true)
 
-const { data: postData, error } = useLazyFetch('/api/posts/paginate')
+const { data: postData, error, pending } = await useFetch('/api/posts/paginate')
 
-watch(postData, (items) => {
-  postLimit.value = items.docs.length
+if (error.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
+} else {
+  postLimit.value = postData.value.docs.length
 
-  maxPage.value = items.totalPages
+  maxPage.value = postData.value.totalPages
 
   for (var i = 0; i < postLimit.value; i++) {
-    posts.value.push(items.docs[i])
+    posts.value.push(postData.value.docs[i])
   }
+}
 
-  loadingPosts.value = false
-}, { deep: true })
+loadingPosts.value = false
 
 const showNoMoreText = computed(() => {
   return !loadingPosts.value && currentPage.value >= maxPage.value
@@ -59,39 +61,37 @@ onBeforeUnmount(() => {
 })
 
 const onScroll = async () => {
-  const bottomOfWindow = Math.round(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight - 50;
+  const bottomOfWindow = Math.round(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight - 400
 
   if (bottomOfWindow && !loadingPosts.value) {
     if (currentPage.value < maxPage.value) {
-      loadingPosts.value = true;
-      currentPage.value += 1;
-      let page = currentPage.value;
+      loadingPosts.value = true
+      currentPage.value += 1
+      let page = currentPage.value
 
-      const { data: postData, error } = await useLazyFetch(`/api/posts/paginate/?page=${page}`);
+      const { data: postData, error } = await useLazyFetch(`/api/posts/paginate/?page=${page}`)
 
       if (!error.value) {
         if (page <= postData.value.totalPages) {
-          const newPosts = postData.value.docs.filter(post => !posts.value.some(p => p._id === post._id));
-          posts.value.splice(posts.value.length, 0, ...newPosts);
-          postLimit.value = posts.value.length;
+          const newPosts = postData.value.docs.filter(post => !posts.value.some(p => p._id === post._id))
+          posts.value.splice(posts.value.length, 0, ...newPosts)
+          postLimit.value = posts.value.length
         } else {
-          currentPage.value = maxPage.value;
+          currentPage.value = maxPage.value
         }
       }
 
-      loadingPosts.value = false;
+      loadingPosts.value = false
     }
   }
 }
-
-
 
 const meta = computed(() => {
   const metaData = {
     type: 'project',
     title: 'Listando minhas postagens',
     description: 'Seja bem-vindo ao meu blog! Aqui, compartilho minhas paixões por programação e jogos, trazendo sempre conteúdos interessantes e divertidos para você. Explore meu site e fique por dentro das últimas novidades do mundo tecnológico.',
-    url: `${config.baseUrl}/project}`
+    url: `${config.public.baseUrl}/project}`
   }
 
   return getSiteMeta(metaData)
