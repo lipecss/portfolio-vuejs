@@ -7,9 +7,7 @@ export default defineNuxtRouteMiddleware(async ({ app, redirect }) => {
 
   watchEffect(async () => {
     if (!data) {
-      console.log("must be redirecting to signin now");
       router.push('/login')
-      // // await navigateTo({ name: "signin", query: { redirect: to.path } });
     }
   })
 })
