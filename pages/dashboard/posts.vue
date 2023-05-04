@@ -1,18 +1,12 @@
 <template>
-  <loading
-    :active.sync="pending || loadingPosts" 
-    color="#42b883" 
-    :can-cancel="false" 
-    :lock-scroll="true"
-    :is-full-page="true"
-    background-color="#000" 
-  />
+  <loading :active.sync="loadingPosts" color="#42b883" :can-cancel="false" :lock-scroll="true"
+    :is-full-page="true" background-color="#000" />
 
   <div class="inner-container my-0">
     <h2 class="text-3xl">Meus posts</h2>
 
     <div class="flex w-full items-center mb-7">
-      <div class="ml-auto text-g1 text-xs sm:inline-flex hidden items-center">
+      <div class="ml-auto text-g1 text-xs sm:inline-flex items-center">
         <span class="mr-3">Página {{ currentPage }} de {{ maxPage }}</span>
         <button
           class="disabled:border-gray-600 inline-flex mr-2 items-center h-8 w-8 justify-center text-g1 rounded-md shadow border border-gray-200 dark:border-g1 hover:enabled:border-white hover:enabled:text-white py-0"
@@ -33,11 +27,12 @@
         </button>
       </div>
     </div>
-    <table class="w-full text-left">
+
+    <table class="w-full text-left" v-if="!pending">
       <thead>
         <tr class="text-g1">
           <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Titulo</th>
-          <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800 hidden md:table-cell">
+          <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800 md:table-cell">
             Slug
           </th>
           <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800  text-g1">
@@ -56,38 +51,55 @@
       <tbody class="text-gray-600 dark:text-gray-100">
         <tr v-for="(post, index) in posts" :key="index">
           <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
-            <nuxt-link 
-              class="hover:text-g1"
-              :to="`/post/${post.slug}`"
-              target="_blank"
-              :title="post.title"
-            >
+            <nuxt-link class="hover:text-g1" :to="`/post/${post.slug}`" target="_blank" :title="post.title">
               {{ post.title }}
             </nuxt-link>
           </td>
 
-          <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 md:table-cell hidden"> {{ post.slug }}
+          <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 md:table-cell"> {{ post.slug }}
           </td>
-          <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 md:table-cell hidden"> {{ post.likes }}</td>
+          <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 md:table-cell"> {{ post.likes
+          }}</td>
           <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">{{ parseDate(post.created_at) }}</td>
           <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
             <div class="flex items-center">
-              <div class="sm:flex hidden flex-col">
-                24.12.2020
-                <div class="text-gray-400 text-xs">11:16 AM</div>
+              <div class="sm:flex flex-col">
+                {{ spacetime(post.updated_at).format('numeric-uk')}}
+                <div class="text-gray-400 text-xs">{{ spacetime(post.updated_at).format('time-24')}}</div>
               </div>
             </div>
           </td>
           <td class="border-b border-gray-200 dark:border-gray-800">
-            <button class="w-full flex justify-evenly content-center s text-gray-400">
-              <span class="hover:text-blue-500" id="edit"><font-awesome-icon :icon="['fas', 'pencil-alt']" /></span>
-              <span class="hover:text-red-500" id="delete"><font-awesome-icon :icon="['fas', 'trash-alt']" /></span>
-            </button>
+            <div class="w-full flex justify-evenly content-center">
+              <button class="text-gray-400" @click="editPost(post)">
+                <span class="hover:text-blue-500" id="edit">
+                <ClientOnly>
+                  <font-awesome-icon :icon="['fas', 'pencil-alt']" />
+                </ClientOnly>
+                </span>
+              </button>
+
+              <button class="text-gray-400" @click="deletePost(post)">
+                <span class="hover:text-red-500" id="delete">
+                  <ClientOnly>
+                    <font-awesome-icon :icon="['fa', 'trash-alt']" />
+                  </ClientOnly>
+                </span>
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+  <ClientOnly>
+    <NewContentModal 
+      :is-active="isEditing"
+      :item-to-edit="selectedItem"
+      @post="createContent"
+      @close="changeIsEditing"
+    /> 
+  </ClientOnly>
 </template>
 
 <script setup>
@@ -100,29 +112,22 @@ definePageMeta({
   layout: 'admin'
 })
 
-let img = ref('')
-let title = ref('')
-let content = ref('')
-let isHover = ref(false)
+let selectedItem = ref({})
+let isEditing = ref(false)
 let postLimit = ref(null)
 let currentPage = ref(1)
 let maxPage = ref(0)
 let posts = ref([])
 let loadingPosts = ref(false)
+let editorSettings = reactive({
+  theme: 'bubble',
+  modules: {
+    // imageDrop: true,
+    // imageResize: {}
+  }
+})
 
 let token = null
-
-const { data: postData, error, pending } = await useLazyFetch('/api/posts/paginate')
-
-if (!error.value) {
-  postLimit.value = postData.value.docs.length
-
-  maxPage.value = postData.value.totalPages
-
-  for (var i = 0; i < postLimit.value; i++) {
-    posts.value.push(postData.value.docs[i])
-  }
-}
 
 if (process.client) {
   token = JSON.parse(localStorage.getItem(Object.keys(localStorage).find(key => key.includes('sb-') && key.includes('auth-token')))).access_token
@@ -137,14 +142,16 @@ const parseDate = (datetime) => {
   return `${day} de ${month}, ${year}`
 }
 
-const paginatePOST = async (page) => {
+const paginatePOST = async (page, type) => {
   loadingPosts.value = true
 
   const { data: postData, error } = await useLazyFetch(`/api/posts/paginate/?page=${page}`)
 
   if (!error.value) {
+    let newPosts = postData.value.docs
 
-    const newPosts = postData.value.docs.filter(post => !posts.value.some(p => p._id === post._id))
+    //if (type !== 'delete') newPosts = postData.value.docs.filter(post => !posts.value.some(p => p._id === post._id))
+    
     posts.value = newPosts
     postLimit.value = posts.value.length
     currentPage.value = page
@@ -153,23 +160,75 @@ const paginatePOST = async (page) => {
   loadingPosts.value = false
 }
 
-const createPost = async () => {
-  const titles = `title-${Math.floor(Math.random() * 1000)}`
+const editPost = (post) => {
+  isEditing.value = true
+  selectedItem.value = post
+}
 
-  console.log('titles', titles)
+const changeIsEditing = (value) => {
+  isEditing.value = value
+  selectedItem.value = {}
+}
 
-  const { data, error } = await useFetch('/api/posts', {
-    method: 'POST',
+const createContent = async (value) => {
+  const { _id, img, title, content, method } = value
+
+  const { data, error } = await useFetch(`/api/posts/${_id}`, {
+    method,
     headers: {
       'x-access-token': token
     },
     body: {
-      img: img.value,
-      title: titles,
-      content: content.value
+      _id,
+      img,
+      title,
+      content
     }
   })
 
-  console.log('data', data.value)
+  if (!error.value) {
+    var i = posts.value.findIndex(post => post._id === data.value.post._id)
+
+    posts.value[i] = data.value.post
+  }
 }
+
+const deletePost = async (value) => {
+  const { _id } = value
+
+  if (window.confirm('Tem certeza que deseja executar esta ação?')) {
+      const { data, error } = await useFetch(`/api/posts/${_id}`, {
+      method: 'DELETE',
+      headers: {
+        'x-access-token': token
+      },
+      body: { _id }
+    })
+
+    if (!error.value) {
+      paginatePOST(currentPage.value, 'delete')
+    }
+  }
+}
+
+onBeforeMount(() => {
+  nextTick(async () => {
+    loadingPosts.value= true
+  
+    const { data: postData, error } = await useLazyAsyncData('postData', () => $fetch('/api/posts/paginate'))
+
+    console.log('postData', postData.value.docs)
+    if (!error.value) {
+      postLimit.value = postData.value.docs.length
+
+      maxPage.value = postData.value.totalPages
+
+      posts.value = []
+
+      posts.value = postData.value.docs
+
+      loadingPosts.value = false
+    }
+  })
+})
 </script>

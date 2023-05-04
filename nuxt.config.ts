@@ -76,6 +76,7 @@ export default defineNuxtConfig({
     }
   },
   runtimeConfig: {
+    connectionString: process.env.CONNECTION_STRING,
     public: {
       baseUrl: process.env.NUXT_BASE_URL ||'http://localhost:3000',
       mongodbUri: process.env.CONNECTION_STRING,

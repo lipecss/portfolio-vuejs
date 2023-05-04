@@ -1,11 +1,14 @@
 import jwt from 'jsonwebtoken'
 
 const authRoutes = ['/api/posts', 'api/projects']
+const authMethods = ['POST', 'PUT', 'DELETE']
 
 export default defineEventHandler(event => {
   const { method, url, headers } = event.node.req
 
-  if (authRoutes.includes(url) && method === 'POST') {
+  const apiEndpoint = url.substring(0, 10)
+
+  if (authRoutes.includes(apiEndpoint) && authMethods.includes(method)) {
 
     const token = headers['x-access-token']
 

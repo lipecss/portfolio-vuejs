@@ -64,7 +64,7 @@ const handleLogin = async () => {
       useNuxtApp().$toast.success('Login efetuado com sucesso!', {
         theme: 'dark'
       })
-      navigateTo('/dashboard') // redireciona para /admin após o login bem-sucedido
+      await navigateTo('/dashboard') // redireciona para /admin após o login bem-sucedido
     }
   } catch (error) {
     useNuxtApp().$toast.error('Falha ao logar. Tente novamente!', {

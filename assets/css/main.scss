@@ -9,6 +9,7 @@
 @tailwind utilities;
 
 /* Import the Quill styles you want */
+@import 'quill/dist/quill.core.css';
 // @import '@vueup/vue-quill/dist/vue-quill.core.css';
 
 :root {
@@ -24,34 +25,42 @@ body {
   overflow-y: auto !important;
 }
 
-
 .color1 {
   background-color: tomato;
 }
+
 .color2 {
   background-color: green;
 }
+
 .color3 {
   background-color: orange;
 }
+
 .color4 {
   background-color: blueviolet;
 }
+
 .color5 {
   background-color: blue;
 }
+
 .color6 {
   background-color: yellow;
 }
+
 .color7 {
   background-color: red;
 }
+
 .color8 {
   background-color: cyan;
 }
+
 .color9 {
   background-color: firebrick;
 }
+
 .color10 {
   background-color: chocolate;
 }
@@ -65,6 +74,7 @@ body {
   letter-spacing: 15px;
   user-select: none;
 }
+
 .is-typed {
   display: inline;
 }
@@ -84,14 +94,15 @@ body {
   49% {
     background-color: white;
   }
+
   50% {
     background-color: transparent;
   }
+
   99% {
     background-color: transparent;
   }
 }
-
 
 .lateral-text {
   font-weight: 400;
@@ -125,8 +136,7 @@ body {
   }
 }
 
-
-.ql-editor {
+.ql-editor, .ql-preview {
   p:not(p:has(br)) {
     font-size: 1.23rem;
     margin-bottom: 20px;
@@ -148,6 +158,71 @@ body {
   img {
     margin: 0 auto;
   }
+}
 
+.ql-toolbar {
+  .ql-picker-label {
+    color: #41b883 !important
+  }
+}
+
+.quillWrapper {
+  z-index: 99999;
+
+  .ql-container {
+    height: 57vh;
+    max-height: 57vh;
+  }
+
+  .ql-snow .ql-fill,
+  .ql-snow .ql-stroke.ql-fill {
+    fill: #41b883;
+  }
+
+  .ql-stroke,
+  .ql-stroke.ql-fill {
+    stroke: #41b883 !important;
+  }
+}
+
+.ql-preview {
+  height: 70vh;
+  max-height: 70vh;
+  overflow-x: hidden;
+}
+
+.ql-tooltip {
+  z-index: 9999 !important;
+  max-height: 200px !important;
+}
+
+@media (min-width: 1024px) {
+  .quillWrapper {
   
+    .ql-container {
+      height: 61vh;
+      max-height: 61vh;
+    }
+  }
+
+  .ql-preview {
+    height: 70vh;
+    max-height: 70vh;
+  }
+}
+
+
+@media (min-width: 1440px) {
+  .quillWrapper {
+  
+    .ql-container {
+      height: 69vh;
+      max-height: 69vh;
+    }
+  }
+
+  .ql-preview {
+    height: 78vh;
+    max-height: 78vh;
+  }
 }
