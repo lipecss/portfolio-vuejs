@@ -6,7 +6,7 @@ const authMethods = ['POST', 'PUT', 'DELETE']
 export default defineEventHandler(event => {
   const { method, url, headers } = event.node.req
 
-  const apiEndpoint = url.substring(0, 10)
+  const apiEndpoint = url.match(/^\/api\/posts\//) ? url.match(/^\/api\/posts\//)[0] : url
 
   if (authRoutes.includes(apiEndpoint) && authMethods.includes(method)) {
 
