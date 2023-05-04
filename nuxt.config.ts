@@ -60,6 +60,9 @@ export default defineNuxtConfig({
   image: {
     dir: 'public'
   },
+  supabase: {
+    redirect: true
+  },
   nitro: {
     plugins: ['~/server/index.js']
   },

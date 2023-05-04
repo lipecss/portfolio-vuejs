@@ -48,6 +48,8 @@ definePageMeta({
 })
 
 const supabase = useSupabaseClient()
+const router = useRouter()
+const config = useRuntimeConfig()
 
 const email = ref('')
 const password = ref('')
@@ -56,15 +58,19 @@ const handleLogin = async () => {
   try {
     const { user, error } = await supabase.auth.signInWithPassword({
       email: email.value,
-      password: password.value
+      password: password.value,
+      options: {
+        redirectTo: `${config.public.baseUrl}/dashboard`,
+      }
     })
     if (error) throw error
     else {
-      await supabase.auth.refreshSession()
+      // supabase.auth.refreshSession()
       useNuxtApp().$toast.success('Login efetuado com sucesso!', {
         theme: 'dark'
       })
-      await navigateTo('/dashboard') // redireciona para /admin após o login bem-sucedido
+      router.push({ path: '/dashboard' })
+      //await navigateTo('/dashboard') // redireciona para /admin após o login bem-sucedido
     }
   } catch (error) {
     useNuxtApp().$toast.error('Falha ao logar. Tente novamente!', {
