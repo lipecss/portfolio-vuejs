@@ -23,7 +23,7 @@ const props = defineProps({
 })
 
 const style = computed(() => {
-  const img = props.data.images[0]
+  const img = props.data.images[0].url
 
   return {
     position: 'relative',

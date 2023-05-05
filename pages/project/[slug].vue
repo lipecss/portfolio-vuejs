@@ -38,7 +38,7 @@
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-20 justify-items-center mb-20">
           <div v-for="skill in projectData.skills" :key="skill._id" class="w-1/2 lg:w-1/4 max-w-xs h-full">
             <div class="w-full h-full">
-              <div v-html="skill.image" class="max-w-xs"></div>
+              <div v-html="skill.image" class="max-w-xs" :id="skill.name"/>
             </div>
             <p class="mt-2">{{ skill.name }}</p>
           </div>
@@ -85,7 +85,7 @@ const meta = computed(() => {
     type: 'article',
     title: projectData.value.name,
     description: projectData.value.description,
-    mainImage: projectData.value.images[0],
+    mainImage: projectData.value.images[0] || projectData.value.images[0].url,
     url: `${config.public.baseUrl}/project/${projectData.value.slug}`
   }
 
@@ -126,5 +126,10 @@ useHead({
   width: 100%;
   height: 100px;
   max-width: 100px;
+}
+
+#Unity svg {
+  fill: white;
+  stroke: white;
 }
 </style>

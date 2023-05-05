@@ -92,8 +92,10 @@
       </tbody>
     </table>
   </div>
+  
   <ClientOnly>
-    <NewContentModal 
+    <NewContentModal
+      type="post"
       :is-active="isEditing"
       :item-to-edit="selectedItem"
       @post="createContent"
@@ -227,6 +229,8 @@ onBeforeMount(() => {
       posts.value = postData.value.docs
 
       loadingPosts.value = false
+    } else {
+      return
     }
   })
 })

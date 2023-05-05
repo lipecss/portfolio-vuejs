@@ -9,7 +9,7 @@
         loading="lazy"
         alt="data.name"
         quality="80"
-        :src="data.images[0]"
+        :src="data.images[0].url"
         class="absolute top-0 left-0 w-full h-full object-cover"
         width="800"
         height="800"

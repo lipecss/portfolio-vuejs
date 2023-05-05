@@ -12,7 +12,7 @@ const projectSchema = new Schema({
     required: true,
   },
   images: {
-    type: [String],
+    type: [Object],
   },
   skills: {
     type: [{ type: Schema.Types.ObjectId, ref: 'Skills', select: false }],

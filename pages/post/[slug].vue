@@ -209,8 +209,6 @@ const meta = computed(() => {
     url: `${config.public.baseUrl}/post/${postData.value.slug}`
   }
 
-  console.log('meta', metaData)
-
   return getSiteMeta(metaData)
 })
 

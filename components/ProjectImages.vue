@@ -2,7 +2,7 @@
   <div class="container">
     <div v-for="image in images" :key="image" class="card">
       <NuxtImg 
-        :src="image"
+        :src="image.url || image"
         quality="80"
         loading="lazy"
         width="500" 
@@ -10,7 +10,7 @@
         format="webp"
         sizes="sm:100vw md:100vw lg:100vw"
       />
-      <div class="card__head">Plotting Cat</div>
+      <div class="card__head">{{ image.description || '' }}</div>
     </div>
   </div>
 </template>
@@ -75,7 +75,7 @@ body {
         text-align: center;
         top: calc(100% - 2em);
         color: white;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.713);
         font-size: 2em;
         transform: rotate(0deg) skew(-5deg);
       }

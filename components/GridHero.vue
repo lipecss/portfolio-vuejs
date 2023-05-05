@@ -15,8 +15,9 @@
 
     <div v-show="toggled" id="title" ref="title" class="centered items-center">
       <span class="font-bold inline">
-        Eu 
-        
+        Eu
+        <VueWriter :typeSpeed="70" :array="array" />
+
       </span>
     </div>
   </div>
@@ -154,17 +155,20 @@ createGrid();
   font-size: 40px;
   animation: fade-in-out .8s forwards;
 }
-  
+
 @keyframes fade-in-out {
   0% {
     opacity: 0;
   }
+
   25% {
     opacity: 1;
   }
+
   75% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
   }

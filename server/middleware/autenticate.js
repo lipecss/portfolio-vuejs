@@ -1,12 +1,12 @@
 import jwt from 'jsonwebtoken'
 
-const authRoutes = ['/api/posts', 'api/projects', '/api/skills']
+const authRoutes = ['/api/posts/', '/api/projects/', '/api/skills']
 const authMethods = ['POST', 'PUT', 'DELETE']
 
 export default defineEventHandler(event => {
   const { method, url, headers } = event.node.req
 
-  const apiEndpoint = url.match(/^\/api\/posts\//) ? url.match(/^\/api\/posts\//)[0] : url
+  const apiEndpoint = url.match(/^\/api\/(posts|projects)\//) ? url.match(/^\/api\/(posts|projects)\//)[0] : url;
 
   if (authRoutes.includes(apiEndpoint) && authMethods.includes(method)) {
 
