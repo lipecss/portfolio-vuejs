@@ -6,7 +6,7 @@ export default defineNuxtRouteMiddleware(async ({ app, redirect }) => {
   const { data } = await client.auth.getUser()
 
   watchEffect(async () => {
-    if (!data) {
+    if (!data.user) {
       router.push('/login')
     }
   })

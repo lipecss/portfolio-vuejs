@@ -217,7 +217,6 @@ onBeforeMount(() => {
   
     const { data: postData, error } = await useLazyAsyncData('postData', () => $fetch('/api/posts/paginate'))
 
-    console.log('postData', postData.value.docs)
     if (!error.value) {
       postLimit.value = postData.value.docs.length
 
