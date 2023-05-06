@@ -8,7 +8,6 @@ export default defineEventHandler(event => {
 
   const apiEndpoint = authRoutes.some(route => url.includes(route))
 
-  console.log('apiEndpoint', apiEndpoint)
   if (authRoutes.includes(apiEndpoint) && authMethods.includes(method)) {
 
     const token = headers['x-access-token']

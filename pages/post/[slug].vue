@@ -132,7 +132,7 @@ const toggleLikeButton = async () => {
 
     if (!error.value) {
       liked.value = true
-    //   likes.value = likesData.value.posts
+      likes.value = likesData.value.posts
     }
 
   } else {
