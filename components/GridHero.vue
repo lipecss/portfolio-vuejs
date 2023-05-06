@@ -16,7 +16,9 @@
     <div v-show="toggled" id="title" ref="title" class="centered items-center">
       <span class="font-bold inline">
         Eu
-        <VueWriter :typeSpeed="70" :array="array" />
+        <ClientOnly>
+          <VueWriter :typeSpeed="70" :array="array" />
+        </ClientOnly>
 
       </span>
     </div>

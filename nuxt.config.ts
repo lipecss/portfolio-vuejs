@@ -67,18 +67,18 @@ export default defineNuxtConfig({
   nitro: {
     plugins: ['~/server/index.js']
   },
-  render: {
-    http2: {
-      push: true,
-      cache: {
-        max: 100,
-        maxAge: 1000 * 60 * 60 // 1 hora
-      }
-    },
-    static: {
-      maxAge: 1000 * 60 * 60 * 24 * 7
-    }
-  },
+  // render: {
+  //   http2: {
+  //     push: true,
+  //     cache: {
+  //       max: 100,
+  //       maxAge: 1000 * 60 * 60 // 1 hora
+  //     }
+  //   },
+  //   static: {
+  //     maxAge: 1000 * 60 * 60 * 24 * 7
+  //   }
+  // },
   runtimeConfig: {
     connectionString: process.env.CONNECTION_STRING,
     public: {
