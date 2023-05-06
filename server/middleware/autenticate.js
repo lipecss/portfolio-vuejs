@@ -8,6 +8,7 @@ export default defineEventHandler(event => {
 
   const apiEndpoint = url.match(/^\/api\/(posts(?!\/like\/)|projects)\//) ? url.match(/^\/api\/(posts(?!\/like\/)|projects)\//)[0] : url;
 
+  console.log('apiEndpoint', apiEndpoint)
   if (authRoutes.includes(apiEndpoint) && authMethods.includes(method)) {
 
     const token = headers['x-access-token']
