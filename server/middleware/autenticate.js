@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 
-const authRoutes = ['/api/posts/', '/api/projects/', '/api/skills']
+const authRoutes = ['/api/posts', '/api/projects', '/api/skills']
 const authMethods = ['POST', 'PUT', 'DELETE']
 
 export default defineEventHandler(event => {
@@ -8,15 +8,14 @@ export default defineEventHandler(event => {
 
   const apiEndpoint = authRoutes.some(route => url.includes(route))
 
-  console.log('apiEndpoint', authMethods.includes(method))
   if (apiEndpoint && authMethods.includes(method)) {
 
     const token = headers['x-access-token']
 
+    console.log('Passou, a rota tem apiEndpoint e authMethods.includes')
+
     if (token) {
-      console.log('token', token)
-      const config = useRuntimeConfig()
-      const cookies = parseCookies(event)
+      console.log('tem token')
 
       jwt.verify(token, process.env.SUPABASE_JWT_SECRET, (error, decoded) => {
         if (error) return setResponseStatus(event, 401, 'Invalid Token')
@@ -24,6 +23,7 @@ export default defineEventHandler(event => {
         event.tokenDecoded = decoded
       })
     } else {
+      console.log('nao tem token')
       event.tokenDecoded = false
       return setResponseStatus(event, 401, 'Token not provide')
     }

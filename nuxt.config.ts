@@ -68,9 +68,16 @@ export default defineNuxtConfig({
     plugins: ['~/server/index.js']
   },
   render: {
-    static: {
-      maxAge: 1000 * 60 * 60 * 24 * 7
-    }
+    // http2: {
+    //   push: true,
+    //   cache: {
+    //     max: 100,
+    //     maxAge: 1000 * 60 * 60 // 1 hora
+    //   }
+    // },
+    // static: {
+    //   maxAge: 1000 * 60 * 60 * 24 * 7
+    // }
   },
   runtimeConfig: {
     connectionString: process.env.CONNECTION_STRING,
