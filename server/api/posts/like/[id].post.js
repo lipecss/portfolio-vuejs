@@ -21,15 +21,13 @@ export default defineEventHandler(async (event) => {
 
     const post = await Post.findById(new mongoose.Types.ObjectId(id))
 
-    if (post) {
-      pusher.trigger('portfolio-likes-sp', 'postAction', {
-        id: post.id,
-        likes: post.likes,
-        status
-      })
+    pusher.trigger('portfolio-likes-sp', 'postAction', {
+      id: post.id,
+      likes: post.likes,
+      status
+    })
 
-      return { posts: post.likes }
-    }
+    return { posts: post.likes }
   } catch (error) {
     return { message: 'Failed to process your request, verify syntax is correct' }
   }

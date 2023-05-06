@@ -67,6 +67,7 @@ let liked = ref(false)
 let heroBg = ref(null)
 let sanitezed = ref('')
 let loadingPost = ref(true)
+let pusher = ref(null)
 
 // // computeds
 const likeTittleButton = computed(() => {
@@ -102,13 +103,13 @@ loadingPost.value = false
 
 // // methods
 const subscribePusher = () => {
-  const pusher = new Pusher('ba97ea9fb7203985d8f2', {
+  pusher.value = new Pusher('ba97ea9fb7203985d8f2', {
     cluster: 'sa1',
   })
 
-  const channel = pusher.subscribe('portfolio-likes-sp')
+  const channel = pusher.value.subscribe('portfolio-likes-sp')
 
-  channel.bind('postAction', (data) => {
+  pusher.value.bind('postAction', (data) => {
     console.log('data', data)
     likes.value = data.likes
   })
@@ -214,7 +215,7 @@ onBeforeUnmount(() => {
   //   cluster: 'us2',
   // })
 
-  // pusher.unsubscribe('portfolio-likes')
+  pusher.value.disconnect()
 })
 
 const meta = computed(() => {
