@@ -5,7 +5,6 @@ import { Skill } from '../../models/Skill'
 export default defineEventHandler(async (event) => {
   console.log('CHEGUEI AQUIIII!!!!')
   const query = getRouterParams(event)
-  console.log('event.tokenDecoded', !!event.tokenDecoded)
 
   if (event.node.req.method === 'GET') {
     try {

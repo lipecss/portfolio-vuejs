@@ -335,6 +335,8 @@ const insertNewImage = () => {
     description: ''
   }
 
+  console.log('newIamge', newIamge,  selectImages.value)
+
   selectImages.value.push(newIamge)
 }
 
