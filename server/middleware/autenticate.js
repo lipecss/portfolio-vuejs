@@ -12,7 +12,11 @@ export default defineEventHandler(event => {
 
     const token = headers['x-access-token']
 
+    console.log('headers', headers)
+
     console.log('Passou, a rota tem apiEndpoint e authMethods.includes')
+
+    console.log('token', token)
 
     if (token) {
       console.log('tem token')
