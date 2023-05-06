@@ -8,10 +8,13 @@ export default defineEventHandler(event => {
 
   const apiEndpoint = authRoutes.some(route => url.includes(route))
 
+  console.log('apiEndpoint', authMethods.includes(method))
   if (apiEndpoint && authMethods.includes(method)) {
+
     const token = headers['x-access-token']
 
     if (token) {
+      console.log('token', token)
       const config = useRuntimeConfig()
       const cookies = parseCookies(event)
 
