@@ -198,11 +198,11 @@ watch(() => props.itemToEdit, async (value) => {
     title.value = deepClone.title
     postImage.value = deepClone.img
   } else {
-    projectName.value = deepClone.name
-    projectDescription.value = deepClone.description
-    projectUrl.value = deepClone.url
+    projectName.value = deepClone.name ? deepClone.name : ''
+    projectDescription.value = deepClone.description ? deepClone.description : ''
+    projectUrl.value = deepClone.url ? deepClone.url : ''
     selectSkills.value = deepClone.skills?.length ? deepClone.skills.map(skill => skill._id) : []
-    selectImages.value = deepClone.images
+    selectImages.value = deepClone.images?.length ? deepClone.images : []
   }
 
   isEditing.value = Object.keys(deepClone).length !== 0 ? true : false
