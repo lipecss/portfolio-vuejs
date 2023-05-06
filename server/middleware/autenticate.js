@@ -10,18 +10,19 @@ const authMethods = ['POST', 'PUT', 'DELETE']
 export default defineEventHandler(event => {
   const { method, url, headers } = event.node.req
 
-  const apiEndpoint = authRoutes.some(route => url.includes(route))
-  const regex = /\/api\/(posts\/|projects\/|skills\/)/
+  // const apiEndpoint = authRoutes.some(route => url.includes(route))
+  const authRoutes = /\/api\/(posts|projects|skills)\//
+  const authRoutesRegex = new RegExp(`^/api/(?:posts|projects|skills)(?!/like/)`)
 
-  const validRoutes = regex.test(url)
+  const validRoutes = authRoutesRegex.test(url)
 
-  console.log('validRoutes', validRoutes)
+  const match = url.match(authRoutes)
 
-  if (apiEndpoint && authMethods.includes(method)) {
+  console.log('match', validRoutes)
+
+  if (validRoutes && authMethods.includes(method)) {
 
     const token = headers['x-access-token']
-
-    console.log('headers', headers)
 
     console.log('Passou, a rota tem apiEndpoint e authMethods.includes')
 
