@@ -65,7 +65,7 @@ const handleLogin = async () => {
     })
     if (error) throw error
     else {
-      // supabase.auth.refreshSession()
+      supabase.auth.refreshSession()
       useNuxtApp().$toast.success('Login efetuado com sucesso!', {
         theme: 'dark'
       })

@@ -1,4 +1,4 @@
-export default defineNuxtRouteMiddleware(async (to, _from) => {
+export default defineNuxtRouteMiddleware(async () => {
   const client = useSupabaseAuthClient()
   const { data } = await client.auth.getUser()
 
