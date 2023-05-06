@@ -189,9 +189,13 @@ const createContent = async (value) => {
   })
 
   if (!error.value) {
+    useNuxtApp().$toast.success('Operação efetuada com sucesso', { theme: 'dark' })
+    
     var i = posts.value.findIndex(post => post._id === data.value.post._id)
 
     posts.value[i] = data.value.post
+  } else {
+    useNuxtApp().$toast.error('Falha na operação. Tente novamente', { theme: 'dark' })
   }
 }
 

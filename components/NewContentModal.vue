@@ -18,11 +18,11 @@
               Cancel
             </button>
 
-            <button class="button border-2 border-blue-500 text-blue-500 ml-6" @click="showPreview = !showPreview">
+            <button class="button border-2 border-blue-500 text-blue-500 ml-3" @click="showPreview = !showPreview">
               Preview
             </button>
 
-            <button class="disabled:opacity-75 disabled:cursor-not-allowed button border-2 border-g1 text-g1 ml-6"
+            <button class="disabled:opacity-75 disabled:cursor-not-allowed button border-2 border-g1 text-g1 ml-3"
               :disabled="!canSendContent" @click="emitContentData">
               Send
             </button>
