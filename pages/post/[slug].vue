@@ -45,11 +45,11 @@
 
 <script setup>
 import createDOMPurify from 'dompurify'
+import Pusher from 'pusher-js'
 import spacetime from 'spacetime'
 import getSiteMeta from '@/utils/getSiteMeta'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/css/index.css'
-
 
 const { params } = useRoute()
 const { pushToList, getLikeById, removeToList } = likeStore()
@@ -101,6 +101,18 @@ const breadcrumbList = computed(() => {
 loadingPost.value = false
 
 // // methods
+const subscribePusher = () => {
+  const pusher = new Pusher('640cf85899a511c2c024', {
+    cluster: 'us2',
+  })
+
+  const channel = pusher.subscribe('portfolio-likes')
+
+  channel.bind('postAction', (data) => {
+    likes.value = data.likes
+  })
+}
+
 const toggleLikeButton = async () => {
   const { _id } = postData.value
 
@@ -118,7 +130,7 @@ const toggleLikeButton = async () => {
 
     if (!error.value) {
       liked.value = true
-      likes.value = likesData.value.posts
+    //   likes.value = likesData.value.posts
     }
 
   } else {
@@ -208,6 +220,8 @@ const meta = computed(() => {
     mainImage: postData.value.img,
     url: `${config.public.baseUrl}/post/${postData.value.slug}`
   }
+
+  subscribePusher()
 
   return getSiteMeta(metaData)
 })
