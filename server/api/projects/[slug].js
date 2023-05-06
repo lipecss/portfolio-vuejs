@@ -61,6 +61,7 @@ export default defineEventHandler(async (event) => {
         return updated
 
       } catch (error) {
+        console.log(error)
         return setResponseStatus(event, 400, 'Failed to process your request, verify syntax is correct')
       }
     }
