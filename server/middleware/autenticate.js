@@ -21,11 +21,16 @@ export default defineEventHandler(event => {
     if (token) {
       console.log('tem token')
 
-      jwt.verify(token, process.env.SUPABASE_JWT_SECRET, (error, decoded) => {
-        if (error) return setResponseStatus(event, 401, 'Invalid Token')
+      try {
+        jwt.verify(token, process.env.SUPABASE_JWT_SECRET, (error, decoded) => {
+          console.log('verify', error)
+          // if (error) return setResponseStatus(event, 401, 'Invalid Token')
 
-        event.tokenDecoded = decoded
-      })
+          event.tokenDecoded = decoded
+        })
+      } catch (error) {
+        console.log('verify catch', error)
+      }
     } else {
       console.log('nao tem token')
       event.tokenDecoded = false
