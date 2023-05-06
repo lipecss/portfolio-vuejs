@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
     const post = await Post.findById(new mongoose.Types.ObjectId(id))
 
     if (post) {
-      pusher.trigger('portfolio-likes', 'postAction', {
+      pusher.trigger('portfolio-likes-sp', 'postAction', {
         id: post.id,
         likes: post.likes,
         status

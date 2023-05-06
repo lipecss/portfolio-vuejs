@@ -102,13 +102,14 @@ loadingPost.value = false
 
 // // methods
 const subscribePusher = () => {
-  const pusher = new Pusher('640cf85899a511c2c024', {
-    cluster: 'us2',
+  const pusher = new Pusher('ba97ea9fb7203985d8f2', {
+    cluster: 'sa1',
   })
 
-  const channel = pusher.subscribe('portfolio-likes')
+  const channel = pusher.subscribe('portfolio-likes-sp')
 
   channel.bind('postAction', (data) => {
+    console.log('data', data)
     likes.value = data.likes
   })
 }
@@ -206,6 +207,14 @@ onMounted(async () => {
   if (process.client) {
     sanitizeContent()
   }
+})
+
+onBeforeUnmount(() => {
+  // const pusher = new Pusher('640cf85899a511c2c024', {
+  //   cluster: 'us2',
+  // })
+
+  // pusher.unsubscribe('portfolio-likes')
 })
 
 const meta = computed(() => {

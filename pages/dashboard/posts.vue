@@ -151,8 +151,6 @@ const paginatePOST = async (page, type) => {
 
   if (!error.value) {
     let newPosts = postData.value.docs
-
-    //if (type !== 'delete') newPosts = postData.value.docs.filter(post => !posts.value.some(p => p._id === post._id))
     
     posts.value = newPosts
     postLimit.value = posts.value.length
