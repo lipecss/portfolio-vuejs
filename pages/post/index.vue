@@ -2,24 +2,24 @@
   <loading :active.sync="pending || loadingPosts" color="#42b883" :can-cancel="false" :lock-scroll="true"
     :is-full-page="true" background-color="#000" />
 
-  <ClientOnly>
-    <div class="flex flex-col h-screen">
-      <div class="header text-center font-medium leading-normal">Lista de Postagens</div>
+  <div class="flex flex-col h-screen">
+    <div class="header text-center font-medium leading-normal">Lista de Postagens</div>
 
-      <div class="flex-grow">
-        <div class="px-10 py-20 min-h-screen">
+    <div class="flex-grow">
+      <div class="px-10 py-20 min-h-screen">
+        <ClientOnly>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <ThumbPost v-for="(post, index) in posts" :key="index" :data="post" />
           </div>
+        </ClientOnly>
 
-          <DownArrow v-if="!showNoMoreText" class="mt-20" />
+        <DownArrow v-if="!showNoMoreText" class="mt-20" />
 
-          <p v-else class="w-full text-center pt-20 pb-10">Sem mais conteúdo para mostrar</p>
-        </div>
+        <p v-else class="w-full text-center pt-20 pb-10">Sem mais conteúdo para mostrar</p>
       </div>
-      <AlternativeFooter />
     </div>
-  </ClientOnly>
+    <AlternativeFooter />
+  </div>
 </template>
 
 <script setup>
@@ -34,21 +34,22 @@ let currentPage = ref(1)
 let maxPage = ref(0)
 let loadingPosts = ref(true)
 
-const { data: postData, error, pending } = await useFetch('/api/posts/paginate')
+const { data: postData, error, pending } = await useLazyFetch('/api/posts/paginate')
 
-if (error.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
-} else {
-  postLimit.value = postData.value.docs.length
+watchEffect(() => {
+  if (postData.value) {
+    postLimit.value = postData.value.docs.length
+    maxPage.value = postData.value.totalPages
 
-  maxPage.value = postData.value.totalPages
-
-  for (var i = 0; i < postLimit.value; i++) {
-    posts.value.push(postData.value.docs[i])
+    posts.value = [...postData.value.docs]
   }
-}
 
-loadingPosts.value = false
+  if (error.value) {
+    throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
+  }
+
+  loadingPosts.value = false
+})
 
 const showNoMoreText = computed(() => {
   return !loadingPosts.value && currentPage.value >= maxPage.value
@@ -71,10 +72,7 @@ const onScroll = async () => {
       currentPage.value += 1
       let page = currentPage.value
 
-      const { data: postData, error } = await useLazyFetch(`/api/posts/paginate/?page=${page}`, {
-        cache: false,
-        initialCache: false
-      })
+      const { data: postData, error } = await useLazyFetch(`/api/posts/paginate/?page=${page}`)
 
       if (!error.value) {
         if (page <= postData.value.totalPages) {

@@ -1,23 +1,25 @@
 <template>
-  <loading :active.sync="pending || loadingProjects" color="#42b883" :can-cancel="false" :lock-scroll="true" :is-full-page="true"
-    background-color="#000" />
+  <loading :active.sync="pending || loadingProjects" color="#42b883" :can-cancel="false" :lock-scroll="true"
+    :is-full-page="true" background-color="#000" />
 
-  <div class="flex flex-col h-screen">
-    <div class="header text-center font-medium leading-normal">Lista de Projetos</div>
+  <ClientOnly>
+    <div class="flex flex-col h-screen">
+      <div class="header text-center font-medium leading-normal">Lista de Projetos</div>
 
-    <div class="flex-grow">
-      <div class="px-10 py-20 min-h-screen">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Thumb v-for="(project, index) in projects" :key="index" :data="project" />
+      <div class="flex-grow">
+        <div class="px-10 py-20 min-h-screen">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Thumb v-for="(project, index) in projects" :key="index" :data="project" />
+          </div>
+
+          <DownArrow v-if="!showNoMoreText" class="mt-20" />
+
+          <p v-else class="w-full text-center pt-20 pb-10">Sem mais conteúdo para mostrar</p>
         </div>
-
-        <DownArrow v-if="!showNoMoreText" class="mt-20" />
-
-        <p v-else class="w-full text-center pt-20 pb-10">Sem mais conteúdo para mostrar</p>
       </div>
+      <AlternativeFooter />
     </div>
-    <AlternativeFooter />
-  </div>
+  </ClientOnly>
 </template>
 
 <script setup>
@@ -32,21 +34,23 @@ let currentPage = ref(1)
 let maxPage = ref(0)
 let loadingProjects = ref(true)
 
-const { data: projectData, error, pending } = await useAsyncData('data', () => $fetch('/api/projects/paginate'))
+const { data: projectData, error, pending } = await useLazyFetch('/api/projects/paginate')
 
-if (error.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
-} else {
-  projectLimit.value = projectData.value.docs.length
+watchEffect(() => {
+  if (projectData.value) {
+    projectLimit.value = projectData.value.docs.length
+    maxPage.value = projectData.value.totalPages
 
-  maxPage.value = projectData.value.totalPages
-
-  for (var i = 0; i < projectLimit.value; i++) {
-    projects.value.push(projectData.value.docs[i])
+    
+    projects.value = [...projectData.value.docs]
   }
-}
 
-loadingProjects.value = false
+  if (error.value) {
+    throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
+  }
+
+  loadingProjects.value = false
+})
 
 const showNoMoreText = computed(() => {
   return !loadingProjects.value && currentPage.value >= maxPage.value
