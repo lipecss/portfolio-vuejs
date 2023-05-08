@@ -1,23 +1,25 @@
 <template>
-  <loading :active.sync="pending || loadingPosts" color="#42b883" :can-cancel="false" :lock-scroll="true" :is-full-page="true"
-    background-color="#000" />
+  <loading :active.sync="pending || loadingPosts" color="#42b883" :can-cancel="false" :lock-scroll="true"
+    :is-full-page="true" background-color="#000" />
 
-  <div class="flex flex-col h-screen">
-    <div class="header text-center font-medium leading-normal">Lista de Postagens</div>
+  <ClientOnly>
+    <div class="flex flex-col h-screen">
+      <div class="header text-center font-medium leading-normal">Lista de Postagens</div>
 
-    <div class="flex-grow">
-      <div class="px-10 py-20 min-h-screen">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <ThumbPost v-for="(post, index) in posts" :key="index" :data="post" />
+      <div class="flex-grow">
+        <div class="px-10 py-20 min-h-screen">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <ThumbPost v-for="(post, index) in posts" :key="index" :data="post" />
+          </div>
+
+          <DownArrow v-if="!showNoMoreText" class="mt-20" />
+
+          <p v-else class="w-full text-center pt-20 pb-10">Sem mais conteúdo para mostrar</p>
         </div>
-
-        <DownArrow v-if="!showNoMoreText" class="mt-20" />
-
-        <p v-else class="w-full text-center pt-20 pb-10">Sem mais conteúdo para mostrar</p>
       </div>
+      <AlternativeFooter />
     </div>
-    <AlternativeFooter />
-  </div>
+  </ClientOnly>
 </template>
 
 <script setup>
