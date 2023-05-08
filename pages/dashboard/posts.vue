@@ -1,9 +1,12 @@
 <template>
   <loading :active.sync="loadingPosts" color="#42b883" :can-cancel="false" :lock-scroll="true"
     :is-full-page="true" background-color="#000" />
-
     <Suspense>
-    <div class="inner-container my-0">
+      <div v-if="pending || loadingPosts">
+        Loading ...
+      </div>
+
+    <div v-else class="inner-container my-0">
       <h2 class="text-3xl">Meus posts</h2>
 
       <div class="flex w-full items-center mb-7">
@@ -133,6 +136,18 @@ if (process.client) {
   token = JSON.parse(localStorage.getItem(Object.keys(localStorage).find(key => key.includes('sb-') && key.includes('auth-token')))).access_token
 }
 
+const { pending, data: postData } = await useLazyFetch('/api/posts/paginate')
+
+watchEffect(() => {
+  if (postData.value) {
+    postLimit.value = postData.value.docs.length
+
+    maxPage.value = postData.value.totalPages
+
+    posts.value = postData.value.docs
+  }
+})
+
 const parseDate = (datetime) => {
   const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
   const month = months[spacetime(datetime).month()]
@@ -212,26 +227,4 @@ const deletePost = async (value) => {
     }
   }
 }
-
-onBeforeMount(() => {
-  nextTick(async () => {
-    loadingPosts.value= true
-  
-    const { data: postData, error } = await useLazyAsyncData('postData', () => $fetch('/api/posts/paginate'))
-    console.log('error', error.value)
-    console.log('postData', postData.value)
-    if (!error.value) {
-      postLimit.value = postData.value.docs.length
-
-      maxPage.value = postData.value.totalPages
-
-      posts.value = postData.value.docs
-
-    } else {
-      console.log('errpr', error.value)
-    }
-
-    loadingPosts.value = false
-  })
-})
 </script>
