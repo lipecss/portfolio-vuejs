@@ -1,15 +1,19 @@
 <template>
-  <loading :active.sync="loadingProjetcs" color="#42b883" :can-cancel="false" :lock-scroll="true"
-    :is-full-page="true" background-color="#000" />
+  <loading :active.sync="loadingProjetcs" color="#42b883" :can-cancel="false" :lock-scroll="true" :is-full-page="true"
+    background-color="#000" />
 
-  <div class="inner-container my-0">
+  <div v-if="pending || loadingProjetcs">
+    Loading ...
+  </div>
+
+  <div v-else class="inner-container my-0">
     <h2 class="text-3xl">Meus projetos</h2>
 
     <div class="flex w-full items-center mb-7">
       <div class="ml-auto text-g1 text-xs sm:inline-flex items-center">
-        <button 
-          class="disabled:opacity-75 h-12 p-2 disabled:cursor-not-allowed button border-2 border-g1 text-g1 mr-3" @click="creatProject">
-            Criar novo projeto
+        <button class="disabled:opacity-75 h-12 p-2 disabled:cursor-not-allowed button border-2 border-g1 text-g1 mr-3"
+          @click="creatProject">
+          Criar novo projeto
         </button>
 
         <span class="mr-3">Página {{ currentPage }} de {{ maxPage }}</span>
@@ -33,7 +37,7 @@
       </div>
     </div>
 
-    <table class="w-full text-left">
+    <table class="w-full text-left" v-if="!loadingProjetcs">
       <thead>
         <tr class="text-g1">
           <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Titulo</th>
@@ -51,7 +55,7 @@
       </thead>
 
       <tbody class="text-gray-600 dark:text-gray-100">
-        <tr v-for="(post, index) in projects">
+        <tr v-for="(post, index) in projects" :key="index">
           <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
             <nuxt-link class="hover:text-g1" :to="`/project/${post.slug}`" target="_blank" :title="post.name">
               {{ post.name }}
@@ -64,8 +68,8 @@
           <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
             <div class="flex items-center">
               <div class="sm:flex flex-col">
-                {{ spacetime(post.updated_at).format('numeric-uk')}}
-                <div class="text-gray-400 text-xs">{{ spacetime(post.updated_at).format('time-24')}}</div>
+                {{ spacetime(post.updated_at).format('numeric-uk') }}
+                <div class="text-gray-400 text-xs">{{ spacetime(post.updated_at).format('time-24') }}</div>
               </div>
             </div>
           </td>
@@ -73,9 +77,9 @@
             <div class="w-full flex justify-evenly content-center">
               <button class="text-gray-400" @click="editProject(post)">
                 <span class="hover:text-blue-500" id="edit">
-                <ClientOnly>
-                  <font-awesome-icon :icon="['fas', 'pencil-alt']" />
-                </ClientOnly>
+                  <ClientOnly>
+                    <font-awesome-icon :icon="['fas', 'pencil-alt']" />
+                  </ClientOnly>
                 </span>
               </button>
 
@@ -91,17 +95,12 @@
         </tr>
       </tbody>
     </table>
+
+    <ClientOnly>
+      <NewContentModal type="project" :is-active="isEditing" :item-to-edit="selectedItem" :skills="skills"
+        @project="createContent" @close="changeIsEditing" />
+    </ClientOnly>
   </div>
-  <ClientOnly>
-    <NewContentModal
-      type="project"
-      :is-active="isEditing"
-      :item-to-edit="selectedItem"
-      :skills="skills"
-      @project="createContent"
-      @close="changeIsEditing"
-    /> 
-  </ClientOnly>
 </template>
 
 <script setup>
@@ -116,7 +115,7 @@ definePageMeta({
 
 let selectedItem = ref({})
 let isEditing = ref(false)
-let postLimit = ref(null)
+let projectLimit = ref(null)
 let skills = ref([])
 let currentPage = ref(1)
 let maxPage = ref(0)
@@ -145,6 +144,20 @@ if (process.client) {
   token = JSON.parse(localStorage.getItem(Object.keys(localStorage).find(key => key.includes('sb-') && key.includes('auth-token')))).access_token
 }
 
+const { pending, data: projectData } = await useLazyFetch('/api/projects/paginate')
+
+watchEffect(() => {
+  if (projectData.value) {
+    projectLimit.value = projectData.value.docs.length
+    maxPage.value = projectData.value.totalPages
+
+    projects.value.splice(0, projects.value.length) // limpa o array antes de adicionar os novos posts
+    projects.value.push(...projectData.value.docs) // adiciona os novos posts ao array
+  }
+
+  loadingProjetcs.value = false
+})
+
 const parseDate = (datetime) => {
   const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
   const month = months[spacetime(datetime).month()]
@@ -161,7 +174,7 @@ const editProject = (project) => {
 
 const creatProject = () => {
   isEditing.value = true
-  selectedItem.value = { }
+  selectedItem.value = {}
 }
 
 const changeIsEditing = (value) => {
@@ -172,14 +185,17 @@ const changeIsEditing = (value) => {
 const paginateProjects = async (page, type) => {
   loadingProjetcs.value = true
 
-  const { data: postData, error } = await useLazyFetch(`/api/projects/paginate/?page=${page}`)
+  const { data: newProjectData, error } = await useLazyFetch(`/api/projects/paginate/?page=${page}`)
 
   if (!error.value) {
-    let newprojects = postData.value.docs
-    
-    projects.value = newprojects
-    postLimit.value = projects.value.length
+    projectLimit.value = newProjectData.value.docs.length
+    maxPage.value = newProjectData.value.totalPages
+
+    projects.value.splice(0, projects.value.length) // limpa o array antes de adicionar os novos posts
+    projects.value.push(...newProjectData.value.docs) // adiciona os novos posts ao array
+
     currentPage.value = page
+    projectData.value = newProjectData.value // atualiza postData
   }
 
   loadingProjetcs.value = false
@@ -200,7 +216,7 @@ const createContent = async (value) => {
 
   if (!error.value) {
     useNuxtApp().$toast.success('Operação efetuada com sucesso', { theme: 'dark' })
-    
+
     if (method === 'PUT') {
       var i = projects.value.findIndex(project => project._id === data.value._id)
 
@@ -221,7 +237,7 @@ const deletePost = async (value) => {
   const { _id } = value
 
   if (window.confirm('Tem certeza que deseja executar esta ação?')) {
-      const { data, error } = await useFetch(`/api/projects/${_id}`, {
+    const { data, error } = await useFetch(`/api/projects/${_id}`, {
       method: 'DELETE',
       headers: {
         'x-access-token': token
@@ -234,24 +250,4 @@ const deletePost = async (value) => {
     }
   }
 }
-
-onBeforeMount(() => {
-  nextTick(async () => {
-    loadingProjetcs.value= true
-  
-    const { data: postData, error } = await useLazyAsyncData('postData', () => $fetch('/api/projects/paginate'))
-
-    if (!error.value) {
-      postLimit.value = postData.value.docs.length
-
-      maxPage.value = postData.value.totalPages
-
-      projects.value = []
-
-      projects.value = postData.value.docs
-
-      loadingProjetcs.value = false
-    }
-  })
-})
 </script>
