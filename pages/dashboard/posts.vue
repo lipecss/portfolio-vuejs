@@ -1,7 +1,7 @@
 <template>
   <loading :active.sync="loadingPosts" color="#42b883" :can-cancel="false" :lock-scroll="true" :is-full-page="true"
     background-color="#000" />
-    
+
   <div v-if="pending || loadingPosts">
     Loading ...
   </div>
@@ -137,6 +137,8 @@ if (process.client) {
 
 const { pending, data: postData } = await useLazyFetch('/api/posts/paginate')
 
+let newPosts = postData.value.docs.filter(post => !posts.value.some(p => p._id === post._id))
+
 watchEffect(() => {
   if (postData.value) {
     postLimit.value = postData.value.docs.length
@@ -161,18 +163,22 @@ const parseDate = (datetime) => {
 const paginatePOST = async (page, type) => {
   loadingPosts.value = true
 
-  const { data: postData, error } = await useLazyFetch(`/api/posts/paginate/?page=${page}`)
+  const { data: newPostsData, error } = await useLazyFetch(`/api/posts/paginate/?page=${page}`)
 
   if (!error.value) {
-    let newPosts = postData.value.docs
+    postLimit.value = newPostsData.value.docs.length
+    maxPage.value = newPostsData.value.totalPages
 
-    posts.value = newPosts
-    postLimit.value = posts.value.length
+    posts.value.splice(0, posts.value.length) // limpa o array antes de adicionar os novos posts
+    posts.value.push(...newPostsData.value.docs) // adiciona os novos posts ao array
+
     currentPage.value = page
+    postData.value = newPostsData.value // atualiza postData
   }
 
   loadingPosts.value = false
 }
+
 
 const editPost = (post) => {
   isEditing.value = true
