@@ -256,18 +256,27 @@ onMounted(async () => {
   scrollToElement(hash)
 
   if (process.client) {
-    
-    if (gsap) {
-      gsap.registerPlugin(MotionPathPlugin)
+    gsap.registerPlugin(MotionPathPlugin)
 
-      // executa as funções de scrollMagic
-      swithesScrollMagic()
-      iconsScrollMagic()
-      experiencesScrollMagic()
-      paperPlane()
-      contactScrollMagic()
-      postScrollMagic()
-      projectScrollMagic()
+    // executa as funções de scrollMagic
+    swithesScrollMagic()
+    iconsScrollMagic()
+    experiencesScrollMagic()
+    paperPlane()
+    contactScrollMagic()
+    postScrollMagic()
+    projectScrollMagic()
+    if (gsap) {
+      // gsap.registerPlugin(MotionPathPlugin)
+
+      // // executa as funções de scrollMagic
+      // swithesScrollMagic()
+      // iconsScrollMagic()
+      // experiencesScrollMagic()
+      // paperPlane()
+      // contactScrollMagic()
+      // postScrollMagic()
+      // projectScrollMagic()
     }
 
     window.addEventListener('resize', handleResize)
