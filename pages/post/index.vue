@@ -69,7 +69,10 @@ const onScroll = async () => {
       currentPage.value += 1
       let page = currentPage.value
 
-      const { data: postData, error } = await useLazyFetch(`/api/posts/paginate/?page=${page}`)
+      const { data: postData, error } = await useLazyFetch(`/api/posts/paginate/?page=${page}`, {
+        cache: false,
+        initialCache: false
+      })
 
       if (!error.value) {
         if (page <= postData.value.totalPages) {
@@ -99,7 +102,14 @@ const meta = computed(() => {
 
 useHead({
   title: `Felipecss - Minhas postagens`,
-  meta: () => [...meta.value]
+  meta: () => [
+    ...meta.value,
+    {
+      hid: 'cache-control',
+      name: 'cache-control',
+      content: 'no-cache'
+    }
+  ]
 })
 </script>
 
