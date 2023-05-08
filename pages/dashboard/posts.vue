@@ -1,8 +1,8 @@
 <template>
-  <loading :active.sync="loadingPosts" color="#42b883" :can-cancel="false" :lock-scroll="true" :is-full-page="true"
-    background-color="#000" />
+  <loading :active.sync="loadingPosts" color="#42b883" :can-cancel="false" :lock-scroll="true"
+    :is-full-page="true" background-color="#000" />
 
-  <Suspense>
+    <Suspense>
     <div class="inner-container my-0">
       <h2 class="text-3xl">Meus posts</h2>
 
@@ -118,7 +118,7 @@ let postLimit = ref(null)
 let currentPage = ref(1)
 let maxPage = ref(0)
 let posts = ref([])
-let loadingPosts = ref(true)
+let loadingPosts = ref(false)
 let editorSettings = reactive({
   theme: 'bubble',
   modules: {
@@ -149,7 +149,7 @@ const paginatePOST = async (page, type) => {
 
   if (!error.value) {
     let newPosts = postData.value.docs
-
+    
     posts.value = newPosts
     postLimit.value = posts.value.length
     currentPage.value = page
@@ -186,7 +186,7 @@ const createContent = async (value) => {
 
   if (!error.value) {
     useNuxtApp().$toast.success('Operação efetuada com sucesso', { theme: 'dark' })
-
+    
     var i = posts.value.findIndex(post => post._id === data.value.post._id)
 
     posts.value[i] = data.value.post
@@ -199,7 +199,7 @@ const deletePost = async (value) => {
   const { _id } = value
 
   if (window.confirm('Tem certeza que deseja executar esta ação?')) {
-    const { data, error } = await useFetch(`/api/posts/${_id}`, {
+      const { data, error } = await useFetch(`/api/posts/${_id}`, {
       method: 'DELETE',
       headers: {
         'x-access-token': token
@@ -213,23 +213,25 @@ const deletePost = async (value) => {
   }
 }
 
-const { data: postData, error } = useLazyFetch('/api/posts/paginate')
+onBeforeMount(() => {
+  nextTick(async () => {
+    loadingPosts.value= true
+  
+    const { data: postData, error } = await useLazyAsyncData('postData', () => $fetch('/api/posts/paginate'))
 
-watchEffect(async () => {
-  if (postData.value) {
-    postLimit.value = await postData.value.docs.length
+    if (!error.value) {
+      postLimit.value = postData.value.docs.length
 
-    maxPage.value = postData.value.totalPages
+      maxPage.value = postData.value.totalPages
 
-    posts.value = []
+      posts.value = []
 
-    posts.value = postData.value.docs
-  }
+      posts.value = postData.value.docs
 
-  if (error.value) {
-    throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
-  }
-
-  loadingPosts.value = false
+      loadingPosts.value = false
+    } else {
+      return
+    }
+  })
 })
 </script>
