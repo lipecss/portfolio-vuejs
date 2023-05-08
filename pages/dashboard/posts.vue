@@ -137,8 +137,6 @@ if (process.client) {
 
 const { pending, data: postData } = await useLazyFetch('/api/posts/paginate')
 
-let newPosts = postData.value.docs.filter(post => !posts.value.some(p => p._id === post._id))
-
 watchEffect(() => {
   if (postData.value) {
     postLimit.value = postData.value.docs.length
