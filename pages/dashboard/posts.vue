@@ -222,7 +222,7 @@ onBeforeMount(() => {
   nextTick(async () => {
     loadingPosts.value = true
 
-    const { data: postData, error } = await useLazyAsyncData('postData', () => $fetch('/api/posts/paginate'))
+    const { data: postData, error } = useLazyFetch('/api/posts/paginate')
 
     if (!error.value) {
       postLimit.value = postData.value.docs.length
@@ -237,6 +237,8 @@ onBeforeMount(() => {
     } else {
       return
     }
+
+    loadingPosts.value = false
   })
 })
 </script>
