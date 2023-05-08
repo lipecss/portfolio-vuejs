@@ -1,7 +1,7 @@
 const type = 'website'
 const url = 'https://casamentotafe.com/'
 const title = 'Portifolio felipecss'
-const description = 'Esse site é meu cantinho, o lugar do Felipecss, na qual você poderá conhecer um pouco de tudo, dos meus projetos, trabalhos, gostos e de mim. Estou super ansioco para trocarmos um papo!'
+const description = 'Esse site é meu cantinho, o lugar do Felipecss, na qual você poderá conhecer um pouco de tudo, dos meus projetos, trabalhos, gostos e de mim. Estou super ansioso para trocarmos um papo!'
 const mainImage = ''
 const twitterSite = ''
 const twitterCard = 'summary_large_image'
