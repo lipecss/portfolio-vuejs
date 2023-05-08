@@ -225,14 +225,13 @@ onBeforeMount(() => {
 
       maxPage.value = postData.value.totalPages
 
-      posts.value = []
-
       posts.value = postData.value.docs
 
-      loadingPosts.value = false
     } else {
-      return
+      console.log('errpr', error.value)
     }
+
+    loadingPosts.value = false
   })
 })
 </script>
