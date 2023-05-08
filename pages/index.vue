@@ -13,17 +13,8 @@
         <div id="stage" class="overflow-hidden my-20">
           <div class="section lg:flex">
             <div class="w-full lg:w-9/12 h-full lg:h-1/2 rounded-lg">
-              <NuxtImg 
-                format="webp"
-                loading="lazy"
-                class="rounded-full"
-                src="contact.png"
-                quality="80"
-                alt="Imagem de Felipe"
-                width="800"
-                height="800" 
-                sizes="sm:100vw md:100vw lg:100vw"
-              />
+              <NuxtImg format="webp" loading="lazy" class="rounded-full" src="contact.png" quality="80"
+                alt="Imagem de Felipe" width="800" height="800" sizes="sm:100vw md:100vw lg:100vw" />
             </div>
 
             <div class="mt-10 lg:mt-0 lg:mx-6">
@@ -39,23 +30,39 @@
                 Tive a oportunidade de estar em várias posições e cenários de negócios. Uma variedade de campos que me
                 ajudaram a aumentar ainda mais meu conhecimento 😊
               </p>
+            </div>
+          </div>
+        </div>
 
-              <div class="my-8 flex justify-between">
-                <NuxtImg 
-                  v-for="(icon, index) in profileIcons"
-                  :key="index"
-                  :src="icon.imgUrl"
-                  loading="lazy"
-                  height="100"
-                  width="100"
-                  format="webp"
-                  quality="80"
-                  class="box w-10"
-                  style="margin-right: 5vw;"
-                  alt="Imagem de contato"
-                  sizes="sm:100vw md:100vw lg:100vw"
-                />
-              </div>
+        <div class="grid grid-cols-1 gap-x-10 md:grid-cols-2">
+          <h2 class="text-2xl absolute uppercase mb-10">Competências</h2>
+          <div class="grid grid-cols-2">
+            <span v-for="competence in competences.array" :key="competence.index">
+              <Donut :text="competence.text" value="100%" />
+            </span>
+
+            <span v-for="competence in competences.array2" :key="competence.index">
+              <Donut :text="competence.text" value="100%" />
+            </span>
+          </div>
+
+          <div class="">
+            <h2 class="text-2xl uppercase mb-10 block">Social</h2>
+
+            <div class="grid gap-8 grid-cols-2">
+              <NuxtLink 
+                v-for="(icon, index) in profileIcons"
+                :key="index"
+                :to="icon.url"
+                target="_blank"
+                :alt="icon.text"
+                :title="icon.text"
+                style="width: min-content"
+              >
+                <NuxtImg :src="icon.imgUrl" loading="lazy" height="100"
+                width="100" format="webp" quality="80" class="box w-10" style="margin-right: 5vw;" alt="Imagem de contato"
+                sizes="sm:100vw md:100vw lg:100vw" />
+              </NuxtLink>
             </div>
           </div>
         </div>
@@ -64,7 +71,7 @@
           <div class="relative w-full z-50 h-full" style="overflow: hidden;">
             <img class="paper-plane absolute"
               src="https://static.indigoimages.ca/2016/shop/114450_img01_blueAirplane_45deg.png" width="70" height="70"
-              alt="aviao"/>
+              alt="aviao" />
 
             <div class="aviator-text block w-full md:w-2/3 lg:w-1/2 lg:absolute top-80">
               <p class="text-3xl xl:text-6xl my-10 lg:my-0 font-normal">
@@ -73,12 +80,7 @@
               </p>
             </div>
 
-            <NuxtImg 
-              format="webp"
-              src="brazil.png"
-              quality="80"
-              alt="Brasil"
-              loading="lazy"
+            <NuxtImg format="webp" src="brazil.png" quality="80" alt="Brasil" loading="lazy"
               class="absolute right-0 xl:w-1/3 lg:bottom-40" width="500" height="500"
               sizes="sm:100vw md:100vw lg:100vw" />
           </div>
@@ -104,46 +106,28 @@
           <section class="panel-card" id="panel-card">
             <div class="intro">
               <h1 class="text-5xl text-g1 font-bold mb-10">Confira algumas das minhas ultimas postagens.</h1>
-              <p class="drop-shadow-md">Aqui é onde compartilho minhas paixões. 
-                Então, prepare-se para mergulhar em um mundo de linhas de código e aventuras de jogo enquanto exploramos o emocionante universo da tecnologia juntos!
+              <p class="drop-shadow-md">Aqui é onde compartilho minhas paixões.
+                Então, prepare-se para mergulhar em um mundo de linhas de código e aventuras de jogo enquanto exploramos o
+                emocionante universo da tecnologia juntos!
               </p>
             </div>
-            
-            <div 
-              v-for="(post, index) in postData"
-              :key="index"
-              class="panel-box my-8 lg:my-0 relative"
-              @mouseenter="hoverPostInfo(index)"
-              @mouseleave="resetPostInfo"
-            >
-              <NuxtImg 
-                class="w-full h-full object-cover"
-                loading="lazy"
-                format="webp"
-                :src="post.img"
-                :alt="post.title"
-                width="800"
-                height="800"
-                quality="80"
-                sizes="sm:100vw md:100vw lg:100vw"
-              />
-                <div class="absolute inset-0 bg-gray-900 opacity-50 w-full h-full"></div>
 
-                <div 
-                  class="z-50 flex items-center flex-col justify-center colum hover:bg-g1 hover:opacity-75 top-0 left-0 right-0 bottom-0 absolute"
-                >
-                  <h2
-                    class="text-xl uppercase mb-10">
-                    {{ post.title }}
-                  </h2>
-                  <NuxtLink
-                    v-if="showPostInfo === index"
-                    :to="`/post/${post.slug}`"
-                    class="button-read-more hover:cursor-pointer"
-                    >
-                    Leia mais
-                  </NuxtLink>
-                </div>
+            <div v-for="(post, index) in postData" :key="index" class="panel-box my-8 lg:my-0 relative"
+              @mouseenter="hoverPostInfo(index)" @mouseleave="resetPostInfo">
+              <NuxtImg class="w-full h-full object-cover" loading="lazy" format="webp" :src="post.img" :alt="post.title"
+                width="800" height="800" quality="80" sizes="sm:100vw md:100vw lg:100vw" />
+              <div class="absolute inset-0 bg-gray-900 opacity-50 w-full h-full"></div>
+
+              <div
+                class="z-50 flex items-center flex-col justify-center colum hover:bg-g1 hover:opacity-75 top-0 left-0 right-0 bottom-0 absolute">
+                <h2 class="text-xl uppercase mb-10">
+                  {{ post.title }}
+                </h2>
+                <NuxtLink v-if="showPostInfo === index" :to="`/post/${post.slug}`"
+                  class="button-read-more hover:cursor-pointer">
+                  Leia mais
+                </NuxtLink>
+              </div>
             </div>
           </section>
         </div>
@@ -169,7 +153,7 @@
           <div class="end-element h-80"></div>
         </div>
 
-        <p class="about-play b-big-text" style="height: 90vh;">
+        <p class="about-play b-big-text" style="height: 70vh;">
           Fora da minha vida profissional, amo jogar <span style="color: #fa4454"> Valorant</span> e <span
             style="color: #2cb49c">Sea of Thieves</span>.
         </p>
@@ -192,8 +176,8 @@
               </div>
 
               <div class="order-1 lg:order-2 md:hidden">
-                <NuxtImg quality="80" loading="lazy" format="webp" class="w-full bg-center" src="/about.png" alt="Imagem de Felipe"
-                  width="300" height="295" sizes="sm:100vw md:100vw lg:100vw" />
+                <NuxtImg quality="80" loading="lazy" format="webp" class="w-full bg-center" src="/about.png"
+                  alt="Imagem de Felipe" width="300" height="295" sizes="sm:100vw md:100vw lg:100vw" />
               </div>
             </div>
           </div>
@@ -242,6 +226,17 @@ const { hash } = useRoute()
 //data
 let isMobile = ref(0)
 let showPostInfo = ref(null)
+const competences = ref({
+  title: 'Competências',
+  array: [
+    { index: 1, text: 'criatividade' },
+    { index: 2, text: 'trabalho em equipe' }
+  ],
+  array2: [
+    { index: 1, text: 'solucionador de problemas' },
+    { index: 2, text: 'autodidata' }
+  ]
+})
 
 let gsap = null
 
@@ -593,25 +588,5 @@ textarea {
   height: 150px;
   line-height: 150%;
   resize: vertical;
-}
-
-[type="submit"] {
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  width: 100%;
-  background: #CC6666;
-  border-radius: 5px;
-  border: 0;
-  cursor: pointer;
-  color: white;
-  font-size: 24px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  transition: all 0.3s;
-  margin-top: -4px;
-  font-weight: 700;
-}
-
-[type="submit"]:hover {
-  background: #CC4949;
 }
 </style>

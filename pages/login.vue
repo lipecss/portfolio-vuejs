@@ -36,7 +36,14 @@
         >
       </label>
 
-      <button class="w-full" type="submit" value="submit" name="submit">Enviar</button>
+      <button 
+        class="disabled:opacity-75 w-full h-12 p-2 disabled:cursor-not-allowed button border-2 border-g1 text-g1 mr-3 hover:border-g3 active:border-g3"
+        type="submit"
+        name="submit"
+        value="submit"
+      >
+        Enviar
+      </button>
       </form>
     </div>
   </div>
@@ -112,25 +119,5 @@ textarea {
   margin-bottom: 20px;
   height: 153px;
   resize: none;
-}
-
-button {
-  background: #42b883;
-  font-size: 16px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  padding: 15px 40px;
-  border: 2px solid #42b883;
-  border-radius: 6px;
-  display: inline-block;
-  font-weight: 500;
-  transition: .3s;
-
-  &:hover {
-    background: transparent;
-    color: #42b883;
-    box-shadow: 0 10px 15px 0 rgb(0 0 0 / 10%);
-    transform: translateY(-5px);
-  }
 }
 </style>

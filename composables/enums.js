@@ -21,11 +21,36 @@ export const useEnums = () => {
   ]
 
   const profileIcons = [
-    { name: 'github', imgUrl: 'https://cdn-icons-png.flaticon.com/512/733/733553.png' },
-    { name: 'xbox', imgUrl: 'https://cdn-icons-png.flaticon.com/512/732/732260.png' },
-    { name: 'twitch', imgUrl: 'https://cdn-icons-png.flaticon.com/512/5968/5968819.png' },
-    { name: 'youtube music', imgUrl: 'https://cdn-icons-png.flaticon.com/512/1377/1377212.png' },
-    { name: 'pdf', imgUrl: 'https://cdn-icons-png.flaticon.com/512/337/337946.png' }
+    {
+      name: 'Github',
+      imgUrl: 'https://cdn-icons-png.flaticon.com/512/733/733553.png',
+      url: 'https://github.com/lipecss',
+      text: 'Meu Github'
+    },
+    {
+      name: 'Xbox',
+      imgUrl: 'https://cdn-icons-png.flaticon.com/512/732/732260.png',
+      url: 'https://account.xbox.com/pt-br/Profile?xr=socialtwistnav&activetab=main:mainTab2',
+      text: 'Meu perfil Xbox'
+    },
+    {
+      name: 'Twitch',
+      imgUrl: 'https://cdn-icons-png.flaticon.com/512/5968/5968819.png',
+      url: 'https://www.twitch.tv/felipecss',
+      text: 'Meu canal na Twitch'
+    },
+    {
+      name: 'youtube music',
+      imgUrl: 'https://cdn-icons-png.flaticon.com/512/1377/1377212.png',
+      url: 'https://music.youtube.com/channel/UCgV-XyYiMhHUmZWws0XyCeg?feature=share',
+      text: 'Lista do que escuto'
+    },
+    {
+      name: 'CV',
+      imgUrl: 'https://cdn-icons-png.flaticon.com/512/337/337946.png',
+      url: '',
+      text: 'Baixe meu CV'
+    }
   ]
 
 

@@ -42,9 +42,10 @@ export default defineNuxtConfig({
   },
   plugins: [
     { src: '~/plugins/vue-typed-js.js', mode: 'client' },
-    { src: '@/plugins/aos', mode: 'client' },
+    { src: '~/plugins/aos', mode: 'client' },
     { src: '~/plugins/vue3-toastify.js', mode: 'client' },
-    { src: '~/plugins/vercel.js', mode: 'client' }
+    { src: '~/plugins/vercel.js', mode: 'client' },
+    { src: '~/plugins/donut.js', mode: 'client' }
   ],
   modules: [
     '@nuxtjs/tailwindcss',
