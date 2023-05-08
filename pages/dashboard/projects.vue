@@ -51,7 +51,7 @@
       </thead>
 
       <tbody class="text-gray-600 dark:text-gray-100">
-        <tr v-for="(post, index) in projects" :key="index">
+        <tr v-for="(post, index) in projects">
           <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
             <nuxt-link class="hover:text-g1" :to="`/project/${post.slug}`" target="_blank" :title="post.name">
               {{ post.name }}
