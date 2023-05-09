@@ -25,31 +25,36 @@ export const useEnums = () => {
       name: 'Github',
       imgUrl: 'https://cdn-icons-png.flaticon.com/512/733/733553.png',
       url: 'https://github.com/lipecss',
-      text: 'Meu Github'
+      alt: 'Meu Github',
+      description: 'Confira meus projetos e contribuições no Github, onde compartilho meu conhecimento em desenvolvimento de software e colaboro com a comunidade de código aberto.'
     },
     {
       name: 'Xbox',
       imgUrl: 'https://cdn-icons-png.flaticon.com/512/732/732260.png',
       url: 'https://account.xbox.com/pt-br/Profile?xr=socialtwistnav&activetab=main:mainTab2',
-      text: 'Meu perfil Xbox'
+      alt: 'Meu perfil Xbox',
+      description: 'Veja minhas conquistas e jogos favoritos no Xbox, onde tenho a oportunidade de relaxar e me divertir com amigos e familiares.'
     },
     {
       name: 'Twitch',
       imgUrl: 'https://cdn-icons-png.flaticon.com/512/5968/5968819.png',
       url: 'https://www.twitch.tv/felipecss',
-      text: 'Meu canal na Twitch'
+      alt: 'Meu canal na Twitch',
+      description: 'Assista minhas transmissões e interaja comigo na Twitch, onde compartilho meu amor por jogos e tecnologia com uma comunidade apaixonada.'
     },
     {
       name: 'youtube music',
       imgUrl: 'https://cdn-icons-png.flaticon.com/512/1377/1377212.png',
       url: 'https://music.youtube.com/channel/UCgV-XyYiMhHUmZWws0XyCeg?feature=share',
-      text: 'Lista do que escuto'
+      alt: 'Lista do que escuto',
+      description: 'Curta minha seleção de músicas favoritas no Youtube Music, onde compartilho minha paixão por diferentes gêneros musicais e artistas.'
     },
     {
       name: 'CV',
       imgUrl: 'https://cdn-icons-png.flaticon.com/512/337/337946.png',
       url: '',
-      text: 'Baixe meu CV'
+      alt: 'Baixe meu CV',
+      description: 'Baixe meu currículo e conheça minhas habilidades e experiências profissionais, onde apresento minha trajetória profissional, habilidades técnicas e competências pessoais.'
     }
   ]
 

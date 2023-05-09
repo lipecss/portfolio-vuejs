@@ -12,7 +12,7 @@
         <!-- sobre mim -->
         <div id="stage" class="overflow-hidden my-20">
           <div class="section lg:flex">
-            <div class="w-full lg:w-9/12 h-full lg:h-1/2 rounded-lg">
+            <div class="w-full lg:w-6/12 h-full lg:h-1/2 rounded-lg">
               <NuxtImg format="webp" loading="lazy" class="rounded-full" src="contact.png" quality="80"
                 alt="Imagem de Felipe" width="800" height="800" sizes="sm:100vw md:100vw lg:100vw" />
             </div>
@@ -34,8 +34,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 gap-x-10 md:grid-cols-2">
-          <h2 class="text-2xl absolute uppercase mb-10">Competências</h2>
+        <div class="grid gap-6">
           <div class="grid grid-cols-2">
             <span v-for="competence in competences.array" :key="competence.index">
               <Donut :text="competence.text" value="100%" />
@@ -45,27 +44,27 @@
               <Donut :text="competence.text" value="100%" />
             </span>
           </div>
+        </div>
 
-          <div class="">
-            <h2 class="text-2xl uppercase mb-10 block">Social</h2>
+        <section class="horizontal">
+          <div class="intro bg-white">
+            <h1 class="font-bold text-3xl mb-6 text-g1">Clique no icone para ir num determinado link social</h1>
+            <p>Aqui estão meus links sociais. Caso queira ter um contato maior comigo escolha a plataforma. Por favor aproveite.</p>
+          </div>
 
-            <div class="grid gap-8 grid-cols-2">
-              <NuxtLink 
-                v-for="(icon, index) in profileIcons"
-                :key="index"
-                :to="icon.url"
-                target="_blank"
-                :alt="icon.text"
-                :title="icon.text"
-                style="width: min-content"
-              >
-                <NuxtImg :src="icon.imgUrl" loading="lazy" height="100"
-                width="100" format="webp" quality="80" class="box w-10" style="margin-right: 5vw;" alt="Imagem de contato"
-                sizes="sm:100vw md:100vw lg:100vw" />
-              </NuxtLink>
+          <div class="pin-wrap">
+            <div class="animation-wrap to-right">
+              <div v-for="(icon, index) in profileIcons" class="item-social">
+                <NuxtLink :key="index" :to="icon.url" target="_blank" :alt="icon.alt" :title="icon.alt"
+                  class="transition-transform duration-300 ease-in-out transform hover:scale-110">
+                  <NuxtImg :src="icon.imgUrl" loading="lazy" height="100" width="100" format="webp" quality="80"
+                    class="box" style="margin-right: 5vw;" :alt="icon.alt" sizes="sm:100vw md:100vw lg:100vw" />
+                </NuxtLink>
+                <span class="italic font-extralight text-lg ml-3">{{ icon.description }}</span>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
 
         <div class="animation-aviator relative block lg:flex" style="height: 92vh; overflow: hidden;">
           <div class="relative w-full z-50 h-full" style="overflow: hidden;">
@@ -217,6 +216,7 @@ const {
   swithesScrollMagic,
   paperPlane,
   contactScrollMagic,
+  socialScrollMagic,
   postScrollMagic,
   projectScrollMagic
 } = useScrollAnimation()
@@ -259,6 +259,7 @@ onMounted(async () => {
     experiencesScrollMagic()
     paperPlane()
     contactScrollMagic()
+    socialScrollMagic()
     postScrollMagic()
     projectScrollMagic()
     if (gsap) {
@@ -367,7 +368,6 @@ body {
   justify-items: center;
 }
 
-
 .item {
   position: relative;
   width: 38px;
@@ -389,7 +389,6 @@ body {
   width: 100%;
   height: 100%;
 }
-
 
 .color>* {
   position: absolute;
@@ -536,7 +535,6 @@ body {
   align-items: center;
 }
 
-
 .intro {
   width: 600px;
   max-width: 80vw;
@@ -588,5 +586,90 @@ textarea {
   height: 150px;
   line-height: 150%;
   resize: vertical;
+}
+
+.horizontal .intro {
+  width: 80vw;
+  max-width: 800px;
+  padding: 2em;
+  border: 1px solid #ccc;
+  color: #333;
+  display: block;
+  margin: auto;
+  line-height: 1.6;
+}
+
+section.horizontal {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+section.horizontal {
+  overflow-x: hidden;
+}
+
+section.horizontal .pin-wrap,
+section.horizontal .animation-wrap {
+  display: flex;
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+}
+
+section.horizontal .item-social {
+  position: relative;
+  padding: 150px 80px;
+  flex: 0 0 500px;
+  height: calc(100vh - 300px);
+  display: flex;
+  align-items: center;
+  line-height: 1.7;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
+  background-color: transparent;
+}
+
+section.horizontal .item-social:before {
+  position: absolute;
+  font-size: 100px;
+  opacity: .5;
+  font-weight: bold;
+  z-index: -1;
+  -webkit-transform: translate(-50px, -30px);
+  transform: translate(-50px, -30px);
+  line-height: 1;
+  color: #41b883;
+}
+
+section.horizontal .animation-wrap.to-right {
+  counter-reset: item;
+  float: left;
+}
+
+section.horizontal .animation-wrap.to-left {
+  counter-reset: item 11;
+  float: right;
+}
+
+section.horizontal .animation-wrap.to-right .item-social:before {
+  counter-increment: item;
+  content: counter(item);
+}
+
+section.horizontal .animation-wrap.to-left .item-social:before {
+  counter-increment: item -1;
+  content: counter(item);
+}
+
+section.horizontal .animation-wrap .item-social:nth-child(2n+2) {
+  align-items: flex-start;
+}
+
+section.horizontal .animation-wrap .item-social:nth-child(4n+4) {
+  align-items: flex-end;
 }
 </style>

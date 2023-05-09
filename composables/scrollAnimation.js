@@ -240,8 +240,38 @@ export const useScrollAnimation = () => {
     })
   }
 
+  const socialScrollMagic = () => {
+    const horizontalSections = gsap.utils.toArray('section.horizontal')
+
+    horizontalSections.forEach(function (sec, i) {
+
+      var thisPinWrap = sec.querySelector('.pin-wrap');
+      var thisAnimWrap = thisPinWrap.querySelector('.animation-wrap');
+
+      var getToValue = () => -(thisAnimWrap.scrollWidth - window.innerWidth);
+
+      gsap.fromTo(thisAnimWrap, {
+        x: () => thisAnimWrap.classList.contains('to-right') ? 0 : getToValue()
+      }, {
+        x: () => thisAnimWrap.classList.contains('to-right') ? getToValue() : 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sec,
+          start: "top top",
+          end: () => "+=" + (thisAnimWrap.scrollWidth - window.innerWidth),
+          pin: thisPinWrap,
+          invalidateOnRefresh: true,
+          //anticipatePin: 1,
+          scrub: true,
+          //markers: true,
+        }
+      });
+
+    });
+  }
+
   const postScrollMagic = () => {
-    const controller4 = new window.ScrollMagic.Controller()
+    const controller9 = new window.ScrollMagic.Controller()
     let animFrom = { left: '0' }
     let scrollDistance = null
     const element = document.querySelector('#pin')
@@ -273,8 +303,9 @@ export const useScrollAnimation = () => {
     })
       .setPin('.pinContainer')
       .setTween(tl5)
-      .addTo(controller4)
+      .addTo(controller9)
   }
+
 
   const projectScrollMagic = () => {
     const cards = gsap.utils.toArray(".project-card");
@@ -309,6 +340,7 @@ export const useScrollAnimation = () => {
     projetTitleScrollMagic,
     paperPlane,
     contactScrollMagic,
+    socialScrollMagic,
     postScrollMagic,
     projectScrollMagic
   }
