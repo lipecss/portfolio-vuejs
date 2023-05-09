@@ -73,25 +73,27 @@ export const useScrollAnimation = () => {
 
     if (element) containerHeight = element.offsetHeight
 
-    switches.forEach((stack, index) => {
-      const controller2 = new window.ScrollMagic.Controller()
-      controllers.push(controller2)
+    if (switches.length) {
+      switches.forEach((stack, index) => {
+        const controller2 = new window.ScrollMagic.Controller()
+        controllers.push(controller2)
 
-      // Cria uma cena para o elemento atual
-      new window.ScrollMagic.Scene({
-        triggerElement: `#switch-${index}`,
-        triggerHook: 'onEnter',
-        duration: containerHeight * 0.8, // Define a duração com base na altura do container
-      })
-        .setTween(
-          gsap.fromTo(
-            `#switch-${index}`,
-            { y: containerHeight }, // Posição inicial
-            { y: 0, opacity: 1 } // Posição final
+        // Cria uma cena para o elemento atual
+        new window.ScrollMagic.Scene({
+          triggerElement: `#switch-${index}`,
+          triggerHook: 'onEnter',
+          duration: containerHeight * 0.8, // Define a duração com base na altura do container
+        })
+          .setTween(
+            gsap.fromTo(
+              `#switch-${index}`,
+              { y: containerHeight }, // Posição inicial
+              { y: 0, opacity: 1 } // Posição final
+            )
           )
-        )
-        .addTo(controller2)
-    })
+          .addTo(controller2)
+      })
+    }
   }
 
   const projetTitleScrollMagic = () => {

@@ -152,7 +152,7 @@
           <div class="end-element h-80"></div>
         </div>
 
-        <p class="about-play b-big-text" style="height: 70vh;">
+        <p class="about-play b-big-text" style="height: 90vh;">
           Fora da minha vida profissional, amo jogar <span style="color: #fa4454"> Valorant</span> e <span
             style="color: #2cb49c">Sea of Thieves</span>.
         </p>

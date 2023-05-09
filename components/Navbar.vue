@@ -72,7 +72,7 @@ const toggle = () => {
 }
 
 const gotTo = (path) => {
-  router.replace({ path })
+  router.push({ path })
   expand.value = false
 }
 </script>
