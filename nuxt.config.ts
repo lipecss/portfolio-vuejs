@@ -58,7 +58,11 @@ export default defineNuxtConfig({
         autoImports: ['defineStore', 'definePiniaStore', 'acceptHMRUpdate'],
       },
     ],
+    '@nuxtjs/google-adsense'
   ],
+  'google-adsense': {
+    id: 'ca-pub-5137005946472400'
+  },
   image: {
     dir: 'public'
   },
@@ -85,6 +89,7 @@ export default defineNuxtConfig({
     public: {
       baseUrl: process.env.NUXT_BASE_URL ||'http://localhost:3000',
       mongodbUri: process.env.CONNECTION_STRING,
+      googleId: process.env.GOOGLE_ADSENSE_ID,
       pusherEnv: {
         appId: process.env.PUSHER_APP_ID,
         key: process.env.PUSHER_APP_KEY,
