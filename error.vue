@@ -8,14 +8,44 @@
             src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Face%20with%20Crossed-Out%20Eyes.png" alt="Face with Crossed-Out Eyes"
             width="100" 
             height="100"
+            format="webp"
+            quality="80"
+            sizes="sm:100vw md:100vw lg:100vw"
           />
           4
         </h2>
 
         <p class="mt-4 mb-8 dark:text-white">A página que você está procurando não foi encontrada.</p>
-        <NuxtLink to="/"
-          class="px-8 py-3 font-semibold rounded dark:bg-g1">Voltar ao inicio</NuxtLink>
+        <NuxtLink to="/" class="px-8 py-3 font-semibold rounded dark:bg-g1">Voltar ao inicio</NuxtLink>
       </div>
     </div>
   </section>
 </template>
+
+<script setup>
+useHead({
+  script: [
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js',
+      crossorigin: 'anonymous'
+    },
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js',
+    },
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js',
+    },
+    {
+      src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js',
+    },
+    {
+      src: 'https://unpkg.com/gsap@3/dist/MotionPathPlugin.min.js',
+      crossorigin: 'anonymous'
+    }
+  ]
+})
+
+const router = useRouter()
+
+const gotTo = (path) => { router.push({ path }) }
+</script>

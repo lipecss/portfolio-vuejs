@@ -73,27 +73,25 @@ export const useScrollAnimation = () => {
 
     if (element) containerHeight = element.offsetHeight
 
-    if (switches.length) {
-      switches.forEach((stack, index) => {
-        const controller2 = new window.ScrollMagic.Controller()
-        controllers.push(controller2)
+    switches.forEach((stack, index) => {
+      const controller2 = new window.ScrollMagic.Controller()
+      controllers.push(controller2)
 
-        // Cria uma cena para o elemento atual
-        new window.ScrollMagic.Scene({
-          triggerElement: `#switch-${index}`,
-          triggerHook: 'onEnter',
-          duration: containerHeight * 0.8, // Define a duração com base na altura do container
-        })
-          .setTween(
-            gsap.fromTo(
-              `#switch-${index}`,
-              { y: containerHeight }, // Posição inicial
-              { y: 0, opacity: 1 } // Posição final
-            )
-          )
-          .addTo(controller2)
+      // Cria uma cena para o elemento atual
+      new window.ScrollMagic.Scene({
+        triggerElement: `#switch-${index}`,
+        triggerHook: 'onEnter',
+        duration: containerHeight * 0.8, // Define a duração com base na altura do container
       })
-    }
+        .setTween(
+          gsap.fromTo(
+            `#switch-${index}`,
+            { y: containerHeight }, // Posição inicial
+            { y: 0, opacity: 1 } // Posição final
+          )
+        )
+        .addTo(controller2)
+    })
   }
 
   const projetTitleScrollMagic = () => {
@@ -259,10 +257,10 @@ export const useScrollAnimation = () => {
         ease: "none",
         scrollTrigger: {
           trigger: sec,
-          start: "top top",
+          start: "center center",
           end: () => "+=" + (thisAnimWrap.scrollWidth - window.innerWidth),
           pin: thisPinWrap,
-          invalidateOnRefresh: true,
+          //invalidateOnRefresh: true,
           //anticipatePin: 1,
           scrub: true,
           //markers: true,
@@ -277,6 +275,7 @@ export const useScrollAnimation = () => {
     let animFrom = { left: '0' }
     let scrollDistance = null
     const element = document.querySelector('#pin')
+    const panel = document.querySelector('#panel-card')
 
     const adjustSceneDuration = () => {
       if (element && scene4) {
@@ -288,8 +287,12 @@ export const useScrollAnimation = () => {
     // Adiciona listener de resize antes de atualizar o scrollDistance
     window.addEventListener('resize', adjustSceneDuration)
 
+    //scrollDistance = element ? element.scrollWidth : 0
+    //scrollDistance = panel.clientWidth - element.clientWidth
+    // scrollDistance = 3020
+
     // Atualiza scrollDistance no carregamento da página
-    scrollDistance = element ? element.scrollWidth : 0
+    scrollDistance = element ? element.scrollWidth - 300 : 0
 
     const tl5 = gsap.timeline()
     tl5.fromTo('section.panel-card', 4, animFrom, {
@@ -308,9 +311,11 @@ export const useScrollAnimation = () => {
       .addTo(controller9)
   }
 
-
   const projectScrollMagic = () => {
-    const cards = gsap.utils.toArray(".project-card");
+    gsap.registerPlugin(ScrollTrigger)
+    //const cards = gsap.utils.toArray(".project-card")
+
+    const cards = document.querySelectorAll('.project-card')
 
     cards.forEach((card, i) => {
       gsap.to(card, {
@@ -318,20 +323,21 @@ export const useScrollAnimation = () => {
         ease: "none",
         scrollTrigger: {
           trigger: card,
-          start: "top-=" + 40 * i + " 40%",
+          start: "center-=" + 40 * i + " 40%",
           end: "center 20%",
           scrub: true
         }
-      });
+      })
+
       ScrollTrigger.create({
         trigger: card,
         start: "center-=" + 40 * i + " 40%",
-        end: "top center",
+        end: "center center",
         endTrigger: ".end-element",
         pin: true,
         pinSpacing: false,
         id: "card-" + i
-      });
+      })
     })
   }
 

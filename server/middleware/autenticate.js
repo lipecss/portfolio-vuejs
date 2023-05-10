@@ -18,10 +18,7 @@ export default defineEventHandler(event => {
 
     const token = headers['x-access-token']
 
-    console.log('Passou, a rota tem apiEndpoint e authMethods.includes')
-
     if (token) {
-      console.log('tem token')
 
       try {
         jwt.verify(token, process.env.SUPABASE_JWT_SECRET, (error, decoded) => {
@@ -34,7 +31,6 @@ export default defineEventHandler(event => {
         console.log('verify catch', error)
       }
     } else {
-      console.log('nao tem token')
       event.tokenDecoded = false
       return setResponseStatus(event, 401, 'Token not provide')
     }

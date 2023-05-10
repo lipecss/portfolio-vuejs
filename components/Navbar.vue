@@ -23,9 +23,10 @@
             v-for="(option, index) in optionList"
             :key="index"
             class="hover:cursor-pointer"
-            @click="gotTo(option.path)"
           >
-            <span :data-text="option.dataText">{{ option.text }}</span>
+            <NuxtLink :to="option.path">
+              <span :data-text="option.dataText">{{ option.text }}</span>
+            </NuxtLink>
           </li>
 
           <li
@@ -33,15 +34,18 @@
             class="hover:cursor-pointer"
             @click="gotTo('/login')"
           >
-            <span data-text="Login">Login</span>
+            <NuxtLink to="/login">
+              <span data-text="Login">Login</span>
+            </NuxtLink>
           </li>
 
           <li
             v-else
             class="hover:cursor-pointer"
-            @click="gotTo('/dashboard')"
           >
-            <span data-text="Dashboard">Dashboard</span>
+            <NuxtLink to="/dashboard">
+              <span data-text="Dashboard">Dashboard</span>
+            </NuxtLink>
           </li>
         </ul>
       </div>

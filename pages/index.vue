@@ -34,7 +34,7 @@
           </div>
         </div>
 
-        <div class="grid gap-6">
+        <div class="flex justify-center mb-20">
           <div class="grid grid-cols-2">
             <span v-for="competence in competences.array" :key="competence.index">
               <Donut :text="competence.text" value="100%" />
@@ -49,7 +49,8 @@
         <section class="horizontal">
           <div class="intro bg-white">
             <h1 class="font-bold text-3xl mb-6 text-g1">Clique no icone para ir num determinado link social</h1>
-            <p>Aqui estão meus links sociais. Caso queira ter um contato maior comigo escolha a plataforma. Por favor aproveite.</p>
+            <p>Aqui estão meus links sociais. Caso queira ter um contato maior comigo escolha a plataforma. Por favor
+              aproveite.</p>
           </div>
 
           <div class="pin-wrap">
@@ -92,17 +93,48 @@
           </div>
         </div>
 
+        <div>
+          <h1 class="title text-8xl">
+            <span class="brand-project-title block text-left first">
+              Meus
+            </span>
+
+            <span class="brand-project-title block text-right second">
+              projetos
+            </span>
+
+            <span class="brand-project-title block text-center third">recentes</span>
+          </h1>
+        </div>
+
+        <ClientOnly>
+          <div class="container-project">
+          <div v-if="pendingProject">
+            Carregando posts ...
+          </div>
+
+          <div v-else class="stackingcards">
+            <ProjectCard v-for="(project, index) in projectData" :key="index" class="stackingcard" :data="project" />
+          </div>
+          <div class="end-element h-60" />
+        </div>
+        </ClientOnly>
+
         <div class="my-20">
           <h2 class="experiences" style="line-height: 100%; margin: 0;">
-            <span class="block text-8xl md:text-9xl" style="backface-visibility: hidden;">Inovar</span>
-            <span class="block text-8xl md:text-9xl" style="backface-visibility: hidden;">Criar</span>
-            <span class="block text-8xl md:text-9xl text-g1" style="backface-visibility: hidden;">Crescer junto</span>
-            <span class="block text-8xl md:text-9xl" style="backface-visibility: hidden;">Liderar</span>
+            <span class="block text-6xl sm:text-7xl md:text-9xl" style="backface-visibility: hidden;">Inovar</span>
+            <span class="block text-6xl sm:text-7xl md:text-9xl" style="backface-visibility: hidden;">Criar</span>
+            <span class="block text-6xl sm:text-7xl md:text-9xl text-g1" style="backface-visibility: hidden;">Crescer junto</span>
+            <span class="block text-6xl sm:text-7xl md:text-9xl" style="backface-visibility: hidden;">Liderar</span>
           </h2>
         </div>
 
         <div class="pinContainer" id="pin">
           <section class="panel-card" id="panel-card">
+            <div v-if="pending">
+              Carregando posts ...
+            </div>
+
             <div class="intro">
               <h1 class="text-5xl text-g1 font-bold mb-10">Confira algumas das minhas ultimas postagens.</h1>
               <p class="drop-shadow-md">Aqui é onde compartilho minhas paixões.
@@ -111,7 +143,7 @@
               </p>
             </div>
 
-            <div v-for="(post, index) in postData" :key="index" class="panel-box my-8 lg:my-0 relative"
+            <div v-if="!pending" v-for="(post, index) in postData" :key="index" class="panel-box my-8 lg:my-0 relative"
               @mouseenter="hoverPostInfo(index)" @mouseleave="resetPostInfo">
               <NuxtImg class="w-full h-full object-cover" loading="lazy" format="webp" :src="post.img" :alt="post.title"
                 width="800" height="800" quality="80" sizes="sm:100vw md:100vw lg:100vw" />
@@ -131,45 +163,24 @@
           </section>
         </div>
 
-        <div>
-          <h1 class="title text-8xl">
-            <span class="brand-project-title block text-left first">
-              Meus
-            </span>
-
-            <span class="brand-project-title block text-right second">
-              projetos
-            </span>
-
-            <span class="brand-project-title block text-center third">recentes</span>
-          </h1>
-        </div>
-
-        <div class="container-project">
-          <div class="stackingcards">
-            <ProjectCard v-for="(project, index) in projectData" :key="index" class="stackingcard" :data="project" />
-          </div>
-          <div class="end-element h-80"></div>
-        </div>
-
-        <p class="about-play b-big-text" style="height: 90vh;">
+        <p class="about-play b-big-text">
           Fora da minha vida profissional, amo jogar <span style="color: #fa4454"> Valorant</span> e <span
             style="color: #2cb49c">Sea of Thieves</span>.
         </p>
-
-        <div id="contact-form mt-20">
-          <div class="mt-20">
+        
+        <div id="contact-form">
+          <div class="">
             <h2 class="contacts" style="line-height: 100%; margin: 0;">
-              <span class="block text-8xl md:text-9xl" style="backface-visibility: hidden;">Contato</span>
-              <span class="block text-8xl md:text-9xl" style="backface-visibility: hidden;">Contato</span>
-              <span class="block text-8xl md:text-9xl text-g1 gradient" style="backface-visibility: hidden;">Falar
+              <span class="block text-xl sm:text-8xl md:text-9xl text-center" style="backface-visibility: hidden;">Contato</span>
+              <span class="block text-xl sm:text-8xl md:text-9xl text-center" style="backface-visibility: hidden;">Contato</span>
+              <span class="block text-xl sm:text-8xl md:text-9xl text-center text-g1 gradient" style="backface-visibility: hidden;">Falar
                 comigo</span>
-              <span class="block text-8xl md:text-9xl" style="backface-visibility: hidden;">Contato</span>
+              <span class="block text-xl sm:text-8xl md:text-9xl text-center" style="backface-visibility: hidden;">Contato</span>
             </h2>
           </div>
 
           <div class="py-14">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 gap-8 max-w-screen-md" style="margin: 0 auto;">
               <div id="contact-area" class="order-2 lg:order-1">
                 <ContactForm @contact="sendContact" />
               </div>
@@ -199,9 +210,11 @@ useHead({
     },
     {
       src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js',
+      crossorigin: 'anonymous',
     },
     {
       src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js',
+      crossorigin: 'anonymous',
     },
     {
       src: 'https://unpkg.com/gsap@3/dist/MotionPathPlugin.min.js',
@@ -237,50 +250,55 @@ const competences = ref({
     { index: 2, text: 'autodidata' }
   ]
 })
+let gsap = 'null'
 
-let gsap = null
+if (process.client) gsap = window.gsap
 
-onBeforeMount(async () => {
-  if (process.client) {
-    isMobile.value = window.innerWidth <= 768
-    gsap = await window.gsap
-  }
-})
-
-onMounted(async () => {
+onMounted(() => {
   scrollToElement(hash)
 
   if (process.client) {
-    gsap.registerPlugin(MotionPathPlugin)
+    isMobile.value = window.innerWidth <= 768
 
-    // executa as funções de scrollMagic
-    swithesScrollMagic()
-    iconsScrollMagic()
-    experiencesScrollMagic()
-    paperPlane()
-    contactScrollMagic()
-    socialScrollMagic()
-    postScrollMagic()
-    projectScrollMagic()
-    if (gsap) {
-      // gsap.registerPlugin(MotionPathPlugin)
+    if (window) {
+      gsap.registerPlugin(ScrollTrigger)
+      gsap.registerPlugin(MotionPathPlugin)
 
-      // // executa as funções de scrollMagic
-      // swithesScrollMagic()
-      // iconsScrollMagic()
-      // experiencesScrollMagic()
-      // paperPlane()
-      // contactScrollMagic()
+      // executa as funções de scrollMagic
+      swithesScrollMagic()
+      iconsScrollMagic()
+      experiencesScrollMagic()
+      paperPlane()
+      contactScrollMagic()
+      socialScrollMagic()
       // postScrollMagic()
-      // projectScrollMagic()
+      //projectScrollMagic()
     }
 
     window.addEventListener('resize', handleResize)
   }
 })
 
-const { data: postData } = await useLazyFetch('/api/posts/latest')
-const { data: projectData } = await useLazyFetch('/api/projects/latest')
+const { pending: pendingProject, data: projectData } = useLazyFetch('/api/projects/latest')
+const { pending, data: postData } = useAsyncData('count', () => $fetch('/api/posts/latest'))
+
+watch(() => pendingProject, (newVulue) => {
+  if (!newVulue.value) {
+    setTimeout(() => {
+
+      if (process.client) projectScrollMagic()
+    }, 800)
+  }
+}, { immediate: true })
+
+watchEffect(() => {
+  if (!pending.value) {
+    setTimeout(() => {
+
+      if (process.client) postScrollMagic()
+    }, 800)
+  }
+})
 
 // methods
 const handleResize = () => {
@@ -329,8 +347,14 @@ const scrollToElement = (element) => {
 </script>
 
 <style lang="scss">
+html,
+body {
+  background-color: #000000;
+  height: 100vh;
+}
+
 .container-project {
-  padding: 5rem 0rem 20rem 0rem;
+  padding: 5rem 0rem 10rem 0rem;
   width: 100%;
   box-sizing: border-box;
 }
@@ -344,13 +368,6 @@ const scrollToElement = (element) => {
   position: absolute;
   top: 0;
   left: -100px;
-  /* mudança aqui */
-}
-
-html,
-body {
-  background-color: #000000;
-  height: 100vh;
 }
 
 .b-big-text {
@@ -404,73 +421,6 @@ body {
   &:hover {
     transform: scale(1.03);
     transition: transform 0.33s;
-  }
-}
-
-@media (max-width: 767px) {
-  .item:hover {
-    width: 68px;
-    height: 68px;
-    margin: calc((100% - (68px * 4)) / 8);
-    transform-origin: center;
-    transform: scale(1.6);
-  }
-}
-
-@media (min-width: 768px) {
-  .grid-t {
-    grid-template-columns: repeat(6, 1fr);
-  }
-
-  .panel-box {
-    width: 80vw;
-    max-width: 800px;
-    height: 60vh;
-  }
-}
-
-@media (min-width: 1024px) {
-
-  .experiences span,
-  .contacts span {
-    font-size: 200px;
-  }
-
-  .about {
-    &__text-one {
-      top: 6vh;
-      left: 45vw;
-    }
-
-    &__text-two {
-      bottom: 40vh;
-      left: 45vw
-    }
-
-    &__text-three {
-      bottom: 2vh;
-      left: 45vw
-    }
-  }
-
-  .project-container {
-    .inner {
-      .title {
-        font-size: 274px;
-      }
-    }
-  }
-
-  .stackingcards {
-    width: 90%;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .container-project {
-    padding: 10rem 3rem 20rem 3rem;
   }
 }
 
@@ -671,5 +621,90 @@ section.horizontal .animation-wrap .item-social:nth-child(2n+2) {
 
 section.horizontal .animation-wrap .item-social:nth-child(4n+4) {
   align-items: flex-end;
+}
+
+.inner-container { height: 65vh; }
+
+.about-play  { height: 30vh; }
+
+@media (max-width: 767px) {
+  .item:hover {
+    width: 68px;
+    height: 68px;
+    margin: calc((100% - (68px * 4)) / 8);
+    transform-origin: center;
+    transform: scale(1.6);
+  }
+}
+
+@media (min-width: 768px) {
+  .grid-t {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .panel-box {
+    width: 80vw;
+    max-width: 800px;
+    height: 60vh;
+  }
+
+  .inner-container { height: 45vh; }
+
+  .about-play  { height: 45vh; }
+}
+
+@media (min-width: 1024px) {
+
+  .experiences span,
+  .contacts span {
+    font-size: 200px;
+  }
+
+  .about {
+    &__text-one {
+      top: 6vh;
+      left: 45vw;
+    }
+
+    &__text-two {
+      bottom: 40vh;
+      left: 45vw
+    }
+
+    &__text-three {
+      bottom: 2vh;
+      left: 45vw
+    }
+  }
+
+  .project-container {
+    .inner {
+      .title {
+        font-size: 274px;
+      }
+    }
+  }
+
+  .stackingcards {
+    width: 90%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .container-project {
+    padding: 10rem 3rem 10rem 3rem;
+  }
+
+  .inner-container { height: 65vh; }
+
+  .about-play  { height: 75vh; }
+}
+
+@media (min-width: 1280px) {
+  .inner-container { height: 65vh; }
+
+  .about-play  { height: 95vh; }
 }
 </style>

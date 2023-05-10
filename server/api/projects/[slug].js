@@ -3,7 +3,6 @@ import { Project } from '../../models/Project'
 import { Skill } from '../../models/Skill'
 
 export default defineEventHandler(async (event) => {
-  console.log('CHEGUEI AQUIIII!!!!')
   const query = getRouterParams(event)
 
   if (event.node.req.method === 'GET') {
@@ -62,7 +61,6 @@ export default defineEventHandler(async (event) => {
         return updated
 
       } catch (error) {
-        console.log(error)
         return setResponseStatus(event, 400, 'Failed to process your request, verify syntax is correct')
       }
     }
