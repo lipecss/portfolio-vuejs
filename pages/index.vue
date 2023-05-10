@@ -107,7 +107,6 @@
           </h1>
         </div>
 
-        <ClientOnly>
           <div class="container-project">
           <div v-if="pendingProject">
             Carregando posts ...
@@ -118,7 +117,6 @@
           </div>
           <div class="end-element h-60" />
         </div>
-        </ClientOnly>
 
         <div class="my-20">
           <h2 class="experiences" style="line-height: 100%; margin: 0;">
@@ -271,18 +269,17 @@ onMounted(() => {
       paperPlane()
       contactScrollMagic()
       socialScrollMagic()
-      // postScrollMagic()
-      //projectScrollMagic()
     }
 
     window.addEventListener('resize', handleResize)
   }
 })
 
-const { pending: pendingProject, data: projectData } = useLazyFetch('/api/projects/latest')
+const { pending: pendingProject, data: projectData } = await useLazyFetch('/api/projects/latest')
 const { pending, data: postData } = useAsyncData('count', () => $fetch('/api/posts/latest'))
 
 watch(() => pendingProject, (newVulue) => {
+
   if (!newVulue.value) {
     setTimeout(() => {
 
@@ -375,7 +372,6 @@ body {
   font-size: 10vw;
   line-height: 100%;
   letter-spacing: -0.006em;
-  @apply py-14;
 }
 
 .grid-t {

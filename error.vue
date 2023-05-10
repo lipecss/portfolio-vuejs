@@ -16,7 +16,6 @@
         </h2>
 
         <p class="mt-4 mb-8 dark:text-white">A página que você está procurando não foi encontrada.</p>
-        <NuxtLink to="/" class="px-8 py-3 font-semibold rounded dark:bg-g1">Voltar ao inicio</NuxtLink>
       </div>
     </div>
   </section>
