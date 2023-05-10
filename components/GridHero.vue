@@ -34,7 +34,7 @@ let rows = ref(0)
 let toggled = ref(false)
 const tilesRef = ref(null)
 const array = ref([
-  'sou um criatvo desenvolvedor Front End',
+  'sou um criativo desenvolvedor Front End',
   'sou desenvolvedor de game',
   'amo Vuejs',
   'amo jogar video game',
