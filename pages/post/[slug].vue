@@ -44,7 +44,7 @@
       <div v-html="sanitezed" class="ql-editor innerhtml"></div>
     </div>
 
-    <adsbygoogle :id="config.googleId" ad-slot="4077674670" ad-format="auto" :ad-full-width-responsive="true" />
+    <adsbygoogle style="display:block" :id="config.googleId" ad-slot="4077674670" ad-format="auto" :ad-full-width-responsive="true" />
 
     <AlternativeFooter />
   </div>
