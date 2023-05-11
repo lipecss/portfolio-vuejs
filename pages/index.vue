@@ -48,8 +48,8 @@
 
         <section class="horizontal">
           <div class="intro bg-white">
-            <h1 class="font-bold text-3xl mb-6 text-g1">Clique no icone para ir num determinado link social</h1>
-            <p>Aqui estão meus links sociais. Caso queira ter um contato maior comigo escolha a plataforma. Por favor
+            <h1 class="font-bold text-xl md:text-3xl mb-6 text-g1">Clique no icone para ir num determinado link social</h1>
+            <p class="text-lg md:text-xl">Aqui estão meus links sociais. Caso queira ter um contato maior comigo escolha a plataforma. Por favor
               aproveite.</p>
           </div>
 
@@ -169,11 +169,11 @@
         <div id="contact-form">
           <div class="">
             <h2 class="contacts" style="line-height: 100%; margin: 0;">
-              <span class="block text-xl sm:text-8xl md:text-9xl text-center" style="backface-visibility: hidden;">Contato</span>
-              <span class="block text-xl sm:text-8xl md:text-9xl text-center" style="backface-visibility: hidden;">Contato</span>
-              <span class="block text-xl sm:text-8xl md:text-9xl text-center text-g1 gradient" style="backface-visibility: hidden;">Falar
+              <span class="block text-6xl sm:text-8xl md:text-9xl text-center" style="backface-visibility: hidden;">Contato</span>
+              <span class="block text-6xl sm:text-8xl md:text-9xl text-center" style="backface-visibility: hidden;">Contato</span>
+              <span class="block text-6xl sm:text-8xl md:text-9xl text-center text-g1 gradient" style="backface-visibility: hidden;">Falar
                 comigo</span>
-              <span class="block text-xl sm:text-8xl md:text-9xl text-center" style="backface-visibility: hidden;">Contato</span>
+              <span class="block text-6xl sm:text-8xl md:text-9xl text-center" style="backface-visibility: hidden;">Contato</span>
             </h2>
           </div>
 

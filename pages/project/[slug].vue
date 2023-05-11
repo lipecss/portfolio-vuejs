@@ -61,7 +61,6 @@ if (error.value) {
 }
 
 const breadcrumbList = computed(() => {
-  const { name } = projectData.value
   return [
     {
       name: 'Inicio',

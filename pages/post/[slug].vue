@@ -72,6 +72,7 @@ let heroBg = ref(null)
 let sanitezed = ref('')
 let loadingPost = ref(true)
 let pusher = ref(null)
+let data = ref(null)
 
 // // computeds
 const likeTittleButton = computed(() => {
@@ -79,7 +80,7 @@ const likeTittleButton = computed(() => {
 })
 
 const breadcrumbList = computed(() => {
-  const { title } = postData.value
+  const { title } = data.value
 
   return [
     {
@@ -102,6 +103,12 @@ const breadcrumbList = computed(() => {
     }
   ]
 })
+
+// watchers
+watch(() => postData.value, value => {
+  data.value = value
+}, {deep: true })
+
 
 loadingPost.value = false
 
@@ -240,8 +247,9 @@ const meta = computed(() => {
   return getSiteMeta(metaData)
 })
 
+
 useHead({
-  title: `Felipecss - ${postData.value ? postData.value.title : ''}`,
+  title: () => `Felipecss - ${data.value ? data.value.title : ''}`,
   meta: () => [...meta.value]
 })
 </script>
