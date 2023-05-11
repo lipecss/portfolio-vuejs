@@ -80,7 +80,7 @@ const likeTittleButton = computed(() => {
 })
 
 const breadcrumbList = computed(() => {
-  const { title } = data.value
+  const { title } = postData.value
 
   return [
     {
@@ -106,8 +106,9 @@ const breadcrumbList = computed(() => {
 
 // watchers
 watch(() => postData.value, value => {
+  console.log('value', value)
   data.value = value
-}, {deep: true })
+}, {deep: true, immediate: true })
 
 
 loadingPost.value = false
