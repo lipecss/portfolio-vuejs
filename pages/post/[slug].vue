@@ -37,14 +37,15 @@
       <Breadcrumb id="basebreadcrumb-articles" :breadcrumbList="breadcrumbList" />
     </div>
 
-    <adsbygoogle style="display:block" :id="config.googleId" ad-slot="9861534144" ad-format="auto" :ad-full-width-responsive="true" />
+    <adsbygoogle style="display:block" :id="config.googleId" ad-slot="9861534144" ad-format="auto"
+      :ad-full-width-responsive="true" />
 
     <div class="content px-6">
       <div v-html="sanitezed" class="ql-editor innerhtml"></div>
     </div>
 
     <adsbygoogle :id="config.googleId" ad-slot="4077674670" ad-format="auto" :ad-full-width-responsive="true" />
-  
+
     <AlternativeFooter />
   </div>
 </template>
@@ -109,7 +110,7 @@ const breadcrumbList = computed(() => {
 // watchers
 watch(() => postData.value, value => {
   data.value = value
-}, {deep: true, immediate: true })
+}, { deep: true, immediate: true })
 
 
 loadingPost.value = false
@@ -184,14 +185,21 @@ const sanitizeContent = () => {
   const purify = createDOMPurify(window)
   sanitezed.value = purify.sanitize(postData.value.content)
 
-  const div = document.createElement('div')
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(sanitezed.value, 'text/html')
 
-  div.innerHTML = sanitezed.value;
-  const links = div.querySelectorAll('a')
+  const images = doc.querySelectorAll('img')
+  const links = doc.querySelectorAll('a')
 
   for (let i = 0; i < links.length; i++) {
     links[i].setAttribute('target', '_blank')
   }
+
+  for (let i = 0; i < images.length; i++) {
+    images[i].setAttribute('alt', `Descrição da imagem ${i}`)
+  }
+  
+  sanitezed.value = doc.documentElement.innerHTML
 }
 
 // lifeCycle

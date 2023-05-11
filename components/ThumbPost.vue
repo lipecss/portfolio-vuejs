@@ -2,7 +2,7 @@
   <div class="stream" @mouseenter="changeHover" @mouseleave="changeHover">
     <div class="stream__thumbnail" :style="style">
       <div class="w-full h-full flex flex-col items-center justify-center">
-        <h2 class="mb-10">{{ data.title }}</h2>
+        <h2 class="mb-10 text-center">{{ data.title }}</h2>
         <NuxtLink
           v-if="isHover"
           :to="`/post/${data.slug}`"
