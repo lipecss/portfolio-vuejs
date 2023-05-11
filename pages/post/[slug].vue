@@ -269,7 +269,6 @@ const meta = computed(() => {
 
 useHead({
   title: () => `Felipecss - ${data.value ? data.value.title : ''}`,
-  description: () => sliceContent(postData.value.content),
   meta: () => [...meta.value]
 })
 </script>

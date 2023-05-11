@@ -7,11 +7,13 @@ const twitterSite = ''
 const twitterCard = 'summary_large_image'
 
 export default (meta) => {
+
+  console.log('(meta && meta.description)', (meta && meta.description))
   return [
     {
       hid: 'description',
       name: 'description',
-      content: (meta && meta.description) || description
+      content: (meta && meta.description)
     },
     {
       hid: 'og:type',
