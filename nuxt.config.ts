@@ -3,6 +3,8 @@ import getSiteMeta from './utils/getSiteMeta'
 
 const meta = getSiteMeta()
 
+import sitemapRoutes from './helpers/sitemapRoutes'
+
 export default defineNuxtConfig({
   app: {
     head: {
@@ -29,6 +31,28 @@ export default defineNuxtConfig({
           type: 'image/x-icon',
           href: '/favicon.png'
         },
+      ],
+      script: [
+        {
+          src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js',
+          crossorigin: 'anonymous',
+        },
+        {
+          src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js',
+          crossorigin: 'anonymous',
+        },
+        {
+          src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js',
+          crossorigin: 'anonymous',
+        },
+        {
+          src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js',
+          crossorigin: 'anonymous',
+        },
+        {
+          src: 'https://unpkg.com/gsap@3/dist/MotionPathPlugin.min.js',
+          crossorigin: 'anonymous'
+        }
       ]
     }
   },
@@ -49,6 +73,7 @@ export default defineNuxtConfig({
   ],
   modules: [
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/robots',
     '@nuxt/image-edge',
     '@nuxtjs/supabase',
     '@pinia-plugin-persistedstate/nuxt',
@@ -58,7 +83,8 @@ export default defineNuxtConfig({
         autoImports: ['defineStore', 'definePiniaStore', 'acceptHMRUpdate'],
       },
     ],
-    '@nuxtjs/google-adsense'
+    '@nuxtjs/google-adsense',
+    ['@funken-studio/sitemap-nuxt-3', { generateOnBuild: true }]
   ],
   'google-adsense': {
     id: 'ca-pub-5137005946472400'
@@ -68,6 +94,19 @@ export default defineNuxtConfig({
   },
   supabase: {
     redirect: true
+  },
+  sitemap: {
+    hostname: 'http://localhost:3000',
+    cacheTime: 1000 * 60 * 15,
+    exclude: [
+      '/login',
+      '/dashboard/**'
+    ],
+    defaults: {
+      changefreq: 'daily',
+      priority: 1,
+      lastmod: new Date().toISOString()
+    },
   },
   nitro: {
     plugins: ['~/server/index.js']
@@ -87,7 +126,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     connectionString: process.env.CONNECTION_STRING,
     public: {
-      baseUrl: process.env.NUXT_BASE_URL ||'http://localhost:3000',
+      baseUrl: process.env.NUXT_BASE_URL || 'http://localhost:3000',
       mongodbUri: process.env.CONNECTION_STRING,
       googleId: process.env.GOOGLE_ADSENSE_ID,
       pusherEnv: {

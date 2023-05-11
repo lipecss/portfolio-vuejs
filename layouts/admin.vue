@@ -164,6 +164,7 @@ const signOut = async () => {
   } catch (error) {
     alert(error.message)
   } finally {
+    supabase.auth.refreshSession()
     router.push('/')
   }
 }

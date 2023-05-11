@@ -112,7 +112,7 @@ useHead({
 
 <style lang="scss" scoped>
 .header {
-  font-size: 14.888889vw;
+  font-size: 8.888889vw;
   background: linear-gradient(180deg, #41b883 21.09%, #00DC82 64.08%, #35495e 91.34%);
   -webkit-background-clip: text;
   color: transparent;
