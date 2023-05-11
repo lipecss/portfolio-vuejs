@@ -46,6 +46,8 @@
       </div>
       <br>
     </div>
+
+    <AlternativeFooter />
   </div>
 </template>
 

@@ -12,7 +12,13 @@
 
       <div class="flex w-full items-center mb-7">
         <div class="ml-auto text-g1 text-xs sm:inline-flex items-center">
+          <button class="disabled:opacity-75 h-12 p-2 disabled:cursor-not-allowed button border-2 border-g1 text-g1 mr-3"
+            @click="creatPost">
+            Criar novo post
+          </button>
+          
           <span class="mr-3">Página {{ currentPage }} de {{ maxPage }}</span>
+          
           <button
             class="disabled:border-gray-600 inline-flex mr-2 items-center h-8 w-8 justify-center text-g1 rounded-md shadow border border-gray-200 dark:border-g1 hover:enabled:border-white hover:enabled:text-white py-0"
             :disabled="currentPage === 1" @click="paginatePOST(currentPage - 1)">
@@ -179,10 +185,14 @@ const paginatePOST = async (page, type) => {
   loadingPosts.value = false
 }
 
-
 const editPost = (post) => {
   isEditing.value = true
   selectedItem.value = post
+}
+
+const creatPost = () => {
+  isEditing.value = true
+  selectedItem.value = {}
 }
 
 const changeIsEditing = (value) => {

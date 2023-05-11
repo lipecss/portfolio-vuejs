@@ -6,7 +6,7 @@
         <NuxtLink
           v-if="isHover"
           :to="`/post/${data.slug}`"
-          class="button-read-more"
+          class="button-read-more text-center"
         >
           Leia mais
         </NuxtLink>

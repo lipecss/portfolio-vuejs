@@ -44,6 +44,8 @@
     </div>
 
     <adsbygoogle :id="config.googleId" ad-slot="4077674670" ad-format="auto" :ad-full-width-responsive="true" />
+  
+    <AlternativeFooter />
   </div>
 </template>
 
