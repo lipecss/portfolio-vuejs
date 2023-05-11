@@ -3,8 +3,6 @@ import getSiteMeta from './utils/getSiteMeta'
 
 const meta = getSiteMeta()
 
-import sitemapRoutes from './helpers/sitemapRoutes'
-
 export default defineNuxtConfig({
   app: {
     head: {

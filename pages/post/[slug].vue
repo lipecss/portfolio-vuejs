@@ -185,7 +185,7 @@ const sanitizeContent = () => {
   const purify = createDOMPurify(window)
   sanitezed.value = purify.sanitize(postData.value.content)
 
-  const parser = new DOMParser();
+  const parser = new DOMParser()
   const doc = parser.parseFromString(sanitezed.value, 'text/html')
 
   const images = doc.querySelectorAll('img')
@@ -200,6 +200,16 @@ const sanitizeContent = () => {
   }
   
   sanitezed.value = doc.documentElement.innerHTML
+}
+
+const sliceContent = (content) => {
+  if (process.client) {
+    const purify = createDOMPurify(window)
+    const sanitized = purify.sanitize(content, { ALLOWED_TAGS: '' })
+    const textContent = sanitized.replace(/(<([^>]+)>)/gi, '')
+
+    return `${textContent.slice(0, 300)}...`
+  }
 }
 
 // lifeCycle
@@ -247,7 +257,7 @@ const meta = computed(() => {
   const metaData = {
     type: 'post',
     title: postData.value.title,
-    description: postData.value.description,
+    description: sliceContent(postData.value.content),
     mainImage: postData.value.img,
     url: `${config.public.baseUrl}/post/${postData.value.slug}`
   }
