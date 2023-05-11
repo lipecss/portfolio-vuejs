@@ -22,7 +22,6 @@ export default defineNuxtConfig({
         { name: 'twitter:card', content: 'summary_large_image' }
       ],
       link: [
-        { rel: 'canonical', href: 'https://felipecss.com' },
         {
           hid: 'icon',
           rel: 'icon',
