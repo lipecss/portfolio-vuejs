@@ -22,34 +22,13 @@ export default defineNuxtConfig({
         { name: 'twitter:card', content: 'summary_large_image' }
       ],
       link: [
+        { rel: 'canonical', href: 'https://felipecss.com' },
         {
           hid: 'icon',
           rel: 'icon',
           type: 'image/x-icon',
           href: '/favicon.png'
         },
-      ],
-      script: [
-        {
-          src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js',
-          crossorigin: 'anonymous',
-        },
-        {
-          src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js',
-          crossorigin: 'anonymous',
-        },
-        {
-          src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js',
-          crossorigin: 'anonymous',
-        },
-        {
-          src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js',
-          crossorigin: 'anonymous',
-        },
-        {
-          src: 'https://unpkg.com/gsap@3/dist/MotionPathPlugin.min.js',
-          crossorigin: 'anonymous'
-        }
       ]
     }
   },
