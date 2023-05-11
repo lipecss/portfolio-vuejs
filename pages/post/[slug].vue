@@ -106,7 +106,6 @@ const breadcrumbList = computed(() => {
 
 // watchers
 watch(() => postData.value, value => {
-  console.log('value', value)
   data.value = value
 }, {deep: true, immediate: true })
 
