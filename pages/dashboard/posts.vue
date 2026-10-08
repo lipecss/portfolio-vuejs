@@ -86,7 +86,7 @@
                 <button class="text-gray-400" @click="editPost(post)">
                   <span class="hover:text-blue-500" id="edit">
                     <ClientOnly>
-                      <font-awesome-icon :icon="['fas', 'pencil-alt']" />
+                      <AppIcon name="pencil" />
                     </ClientOnly>
                   </span>
                 </button>
@@ -94,7 +94,7 @@
                 <button class="text-gray-400" @click="deletePost(post)">
                   <span class="hover:text-red-500" id="delete">
                     <ClientOnly>
-                      <font-awesome-icon :icon="['fa', 'trash-alt']" />
+                      <AppIcon name="trash" />
                     </ClientOnly>
                   </span>
                 </button>

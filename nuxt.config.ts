@@ -36,8 +36,7 @@ export default defineNuxtConfig({
     '@fontsource/jetbrains-mono/800.css',
     '@/assets/css/main.scss',
     '@/assets/css/arcade.css',
-    '@/assets/fonts/roobert.css',
-    '@fortawesome/fontawesome-svg-core/styles.css'
+    '@/assets/fonts/roobert.css'
   ],
   imports: {
     dirs: ['stores']

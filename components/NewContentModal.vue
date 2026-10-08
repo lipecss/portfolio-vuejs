@@ -3,7 +3,7 @@
     :style="{ height: `${dividerPosition}%` }">
     <div v-if="type === 'post'">
       <button class="relative block text-center hover:cursor-n-resize" id="btn-resize" @mousedown="startDrag">
-        <span><font-awesome-icon :icon="['fas', 'arrows-alt-v']" /></span>
+        <span><AppIcon name="arrows-v" /></span>
       </button>
 
       <div class="w-full">
@@ -45,7 +45,7 @@
 
     <div v-else>
       <button class="relative block text-center hover:cursor-n-resize" id="btn-resize" @mousedown="startDrag">
-        <span><font-awesome-icon :icon="['fas', 'arrows-alt-v']" /></span>
+        <span><AppIcon name="arrows-v" /></span>
       </button>
 
       <div class="block lg:flex gap-x-4">
@@ -108,7 +108,7 @@
 
                         <button class="p-4" @click="removeImage(index)">
                           <ClientOnly>
-                            <font-awesome-icon class="text-red-500" :icon="['fa', 'trash-alt']" />
+                            <AppIcon class="text-red-500" name="trash" />
                           </ClientOnly>
                         </button>
                       </div>

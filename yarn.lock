@@ -597,41 +597,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/fontawesome-common-types@npm:6.4.0":
-  version: 6.4.0
-  resolution: "@fortawesome/fontawesome-common-types@npm:6.4.0"
-  checksum: 10c0/fa5028a04188ca3bb36ee14b2df65d382b3d7344fbfcd596315612370b292e0eafa7408ce6498ba675441e72b2a28d64afe20fdd93ebc755aa385d8dd619a63a
-  languageName: node
-  linkType: hard
-
-"@fortawesome/fontawesome-svg-core@npm:^6.4.0":
-  version: 6.4.0
-  resolution: "@fortawesome/fontawesome-svg-core@npm:6.4.0"
-  dependencies:
-    "@fortawesome/fontawesome-common-types": "npm:6.4.0"
-  checksum: 10c0/fae9957c4ac453c89b6b5654106db35733d110932d291d78b039e3e00419015245e40bd627cfa48156be995e5daa0782597be504fac40c53c76ab131f1424658
-  languageName: node
-  linkType: hard
-
-"@fortawesome/free-solid-svg-icons@npm:^6.4.0":
-  version: 6.4.0
-  resolution: "@fortawesome/free-solid-svg-icons@npm:6.4.0"
-  dependencies:
-    "@fortawesome/fontawesome-common-types": "npm:6.4.0"
-  checksum: 10c0/b3fc24fa9fca18dfe7a5ca10e48ae248cefe35c22eba02e374625b3649ae9c5bd6b53a41c9f7453f28d96b4b70abd1b946f5758a64eb34fcdf84844b850b85e2
-  languageName: node
-  linkType: hard
-
-"@fortawesome/vue-fontawesome@npm:^3.0.3":
-  version: 3.0.3
-  resolution: "@fortawesome/vue-fontawesome@npm:3.0.3"
-  peerDependencies:
-    "@fortawesome/fontawesome-svg-core": ~1 || ~6
-    vue: ">= 3.0.0 < 4"
-  checksum: 10c0/fec7249549c0b520454acfd225384aae609211d2b17c74057dbbf29d96d36f508eee1f07eefc11c66d3ab879e03c242f29699f10e568ceecc8d217e73c1a87bd
-  languageName: node
-  linkType: hard
-
 "@funken-studio/sitemap-nuxt-3@npm:^4.0.4":
   version: 4.0.4
   resolution: "@funken-studio/sitemap-nuxt-3@npm:4.0.4"
@@ -6006,9 +5971,6 @@ __metadata:
   resolution: "nuxt-app@workspace:."
   dependencies:
     "@fontsource/jetbrains-mono": "npm:^5.3.0"
-    "@fortawesome/fontawesome-svg-core": "npm:^6.4.0"
-    "@fortawesome/free-solid-svg-icons": "npm:^6.4.0"
-    "@fortawesome/vue-fontawesome": "npm:^3.0.3"
     "@funken-studio/sitemap-nuxt-3": "npm:^4.0.4"
     "@nuxt/image-edge": "npm:^1.0.0-28008586.381b906"
     "@nuxtjs/google-adsense": "npm:^2.1.0"
