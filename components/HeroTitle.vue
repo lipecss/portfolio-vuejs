@@ -12,18 +12,13 @@
       </p>
       <div class="hero__cta">
         <a href="#missoes" class="press arc-btn arc-btn--solid">VER MISSÕES →</a>
-        <a v-if="cvUrl" :href="cvUrl" class="press arc-btn arc-btn--ghost" target="_blank" rel="noopener">CARREGAR CV</a>
-        <span v-else class="arc-btn arc-btn--ghost" role="link" aria-disabled="true" title="Em breve">CARREGAR CV</span>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { links } from '~/data/home'
-
 const letters = ['F', 'e', 'l', 'i', 'p', 'e']
-const cvUrl = links.cv
 </script>
 
 <style scoped>

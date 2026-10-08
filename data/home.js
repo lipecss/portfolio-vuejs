@@ -1,10 +1,7 @@
-// Conteúdo da home. Links com `null` ainda não têm destino e aparecem desabilitados.
+// Conteúdo estático da home. Os projetos e os posts vêm da API (Mongo).
 export const links = {
-  cv: null,
   twitch: 'https://www.twitch.tv/felipecss',
-  github: 'https://github.com/lipecss',
-  xbox: null,
-  music: null
+  github: 'https://github.com/lipecss'
 }
 
 export const inventoryTabs = [
@@ -46,15 +43,10 @@ export const traits = [
 ]
 
 export const mainQuest = {
+  slug: 'encurtee-me', // slug do projeto no Mongo; dele vêm o link
   name: 'Encurtee.me',
   url: 'https://encurtee.me',
   description: 'Encurtador de URLs com analytics e plano pago. Do primeiro commit à primeira cobrança.',
   loot: ['Nuxt', 'Supabase', 'Stripe', 'Vercel']
 }
 
-// Preencher `name`, `image` e `url` conforme os projetos forem entrando.
-export const sideQuests = [
-  { n: '01', name: '[Nome do projeto]', url: null, image: null },
-  { n: '02', name: '[Nome do projeto]', url: null, image: null },
-  { n: '03', name: '[Nome do projeto]', url: null, image: null }
-]

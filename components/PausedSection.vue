@@ -6,14 +6,10 @@
         <p>Fora do editor, estou no Valorant ou navegando no Sea of Thieves.</p>
       </div>
       <div class="paused__links">
-        <template v-for="item in items" :key="item.label">
-          <a v-if="item.url" :href="item.url" class="row paused__link" target="_blank" rel="noopener">
-            <span>{{ item.label }}</span><span aria-hidden="true">↗</span>
-          </a>
-          <span v-else class="paused__link paused__link--off" aria-disabled="true" title="Em breve">
-            <span>{{ item.label }}</span><span aria-hidden="true">↗</span>
-          </span>
-        </template>
+        <a v-for="item in items" :key="item.label" :href="item.url" class="row paused__link" target="_blank"
+          rel="noopener">
+          <span>{{ item.label }}</span><span aria-hidden="true">↗</span>
+        </a>
       </div>
     </div>
   </section>
@@ -24,9 +20,7 @@ import { links } from '~/data/home'
 
 const items = [
   { label: 'TWITCH', url: links.twitch },
-  { label: 'GITHUB', url: links.github },
-  { label: 'XBOX', url: links.xbox },
-  { label: 'TRILHA SONORA', url: links.music }
+  { label: 'GITHUB', url: links.github }
 ]
 </script>
 
@@ -87,10 +81,5 @@ const items = [
 
 .paused__link:last-child {
   border-bottom: 0;
-}
-
-.paused__link--off {
-  opacity: 0.45;
-  cursor: not-allowed;
 }
 </style>

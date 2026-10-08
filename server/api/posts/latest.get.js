@@ -2,7 +2,7 @@ import { Post } from '../../models/Post'
 
 export default defineEventHandler(async (req, res) => {
   try {
-    const posts = await Post.find().limit(6).sort({ 'created_at': -1 })
+    const posts = await Post.find().select('title slug img created_at').limit(6).sort({ 'created_at': -1 }).lean()
 
     return posts
   } catch (error) {

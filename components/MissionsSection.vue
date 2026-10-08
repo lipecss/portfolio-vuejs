@@ -5,7 +5,7 @@
       <h2 class="arc-h2">Fases concluídas</h2>
     </div>
 
-    <a :href="mainQuest.url" class="lift mis__main" target="_blank" rel="noopener">
+    <a :href="mainUrl" class="lift mis__main" target="_blank" rel="noopener">
       <div class="mis__main-body">
         <span class="mis__badge">MISSÃO PRINCIPAL · CONCLUÍDA</span>
         <span class="mis__main-name">{{ mainQuest.name }}</span>
@@ -19,23 +19,35 @@
       </div>
     </a>
 
-    <div class="mis__grid">
-      <component :is="q.url ? 'a' : 'div'" v-for="q in sideQuests" :key="q.n" :href="q.url || undefined"
-        :target="q.url ? '_blank' : undefined" :rel="q.url ? 'noopener' : undefined" class="mis__card"
-        :class="{ lift: q.url }">
+    <div v-if="sideQuests.length" class="mis__grid">
+      <NuxtLink v-for="(q, i) in sideQuests" :key="q.slug" :to="`/project/${q.slug}`" class="lift mis__card">
         <div class="mis__thumb">
-          <NuxtImg v-if="q.image" :src="q.image" format="webp" loading="lazy" :alt="q.name" />
-          <span v-else>[IMAGEM DO PROJETO]</span>
+          <img v-if="q.image" :src="q.image" :alt="q.imageAlt" loading="lazy">
+          <span v-else>SEM IMAGEM</span>
         </div>
-        <span class="mis__card-kicker">MISSÃO SECUNDÁRIA {{ q.n }}</span>
+        <span class="mis__card-kicker">MISSÃO SECUNDÁRIA {{ String(i + 1).padStart(2, '0') }}</span>
         <span class="mis__card-name">{{ q.name }}</span>
-      </component>
+      </NuxtLink>
     </div>
   </section>
 </template>
 
 <script setup>
-import { mainQuest, sideQuests } from '~/data/home'
+import { mainQuest } from '~/data/home'
+
+// Projetos do Mongo. Se a API falhar a lista fica vazia e só a missão principal aparece.
+const { data } = await useFetch('/api/projects/latest', { server: false, lazy: true, default: () => [] })
+
+const projects = computed(() => (Array.isArray(data.value) ? data.value.filter((p) => p?.slug && p?.name) : []))
+const isMain = (p) => p.slug === mainQuest.slug
+
+const mainUrl = computed(() => projects.value.find(isMain)?.url || mainQuest.url)
+const sideQuests = computed(() =>
+  projects.value
+    .filter((p) => !isMain(p))
+    .slice(0, 3)
+    .map((p) => ({ slug: p.slug, name: p.name, image: p.images?.[0]?.url, imageAlt: p.images?.[0]?.description || p.name }))
+)
 </script>
 
 <style scoped>
