@@ -1,0 +1,237 @@
+/* Home "arcade": tokens, utilitários e animações compartilhadas. */
+:root {
+  --arc-bg: #0d0c10;
+  --arc-screen: #0a090d;
+  --arc-ink: #f4efe6;
+  --arc-acc: #ff5a1f;
+  --arc-yel: #ffd23f;
+  --arc-lil: #b8a6ff;
+  --arc-pink: #ff4f8b;
+  --arc-line: #2a2733;
+  --arc-line-soft: #3a3645;
+  --arc-panel: #17151d;
+  --arc-panel-hi: #1d1a25;
+  --arc-dim: #a8a2b8;
+  --arc-soft: #d6d0e0;
+  --arc-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --arc-gutter: clamp(16px, 4vw, 48px);
+}
+
+html {
+  scroll-padding-top: 76px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+.arcade {
+  background: var(--arc-bg);
+  color: var(--arc-ink);
+  font-family: Roobert, system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+.arcade a {
+  color: inherit;
+}
+
+.arcade a:hover {
+  color: var(--arc-yel);
+}
+
+.arcade :focus-visible {
+  outline: 3px solid var(--arc-yel);
+  outline-offset: 3px;
+}
+
+.arc-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: var(--arc-gutter);
+  padding-right: var(--arc-gutter);
+}
+
+.arc-eyebrow {
+  font-family: var(--arc-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--arc-lil);
+}
+
+.arc-h2 {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(44px, 5.5vw, 80px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.arc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  padding: 0 22px;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  font-family: var(--arc-mono);
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.arc-btn--solid {
+  background: var(--arc-acc);
+  color: var(--arc-bg) !important;
+}
+
+.arc-btn--ghost {
+  border-color: var(--arc-ink);
+  background: transparent;
+  color: var(--arc-ink);
+}
+
+.arc-btn[aria-disabled='true'] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Interações */
+.jl {
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.3, 1.8, 0.5, 1), color 0.2s;
+  cursor: default;
+}
+.jl:hover {
+  transform: translateY(-0.14em) rotate(-6deg);
+  color: var(--arc-yel);
+}
+
+.blink {
+  animation: arc-blink 1s steps(2, start) infinite;
+}
+@keyframes arc-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+.tickwrap {
+  overflow: hidden;
+}
+.tick {
+  display: flex;
+  width: max-content;
+  animation: arc-tick 28s linear infinite;
+}
+.tickwrap:hover .tick {
+  animation-play-state: paused;
+}
+@keyframes arc-tick {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.lift {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.lift:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 8px 8px 0 var(--arc-acc);
+}
+
+.press {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.press:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--arc-ink);
+}
+.press:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 var(--arc-ink);
+}
+
+.slot {
+  transition: transform 0.2s cubic-bezier(0.3, 1.6, 0.5, 1), border-color 0.2s, background 0.2s;
+}
+.slot:hover {
+  transform: translateY(-6px) rotate(-2deg);
+  border-color: var(--arc-acc);
+  background: var(--arc-panel-hi);
+}
+
+.row {
+  transition: padding 0.2s ease, color 0.2s;
+}
+.row:hover {
+  padding-left: 16px;
+  color: var(--arc-acc) !important;
+}
+
+.float {
+  animation: arc-float 4s ease-in-out infinite;
+}
+@keyframes arc-float {
+  50% {
+    transform: translateY(-10px) rotate(1.5deg);
+  }
+}
+
+.pop {
+  animation: arc-pop 0.5s cubic-bezier(0.3, 1.8, 0.5, 1);
+}
+@keyframes arc-pop {
+  0% {
+    transform: scale(0.6);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tick,
+  .float,
+  .blink,
+  .pop {
+    animation: none;
+  }
+  .jl,
+  .lift,
+  .slot,
+  .row,
+  .press {
+    transition: none;
+  }
+  .jl:hover,
+  .lift:hover,
+  .slot:hover,
+  .press:hover {
+    transform: none;
+  }
+}
+
+/* Capas de post */
+.cover {
+  transition: transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+.lift:hover .cover {
+  transform: scale(1.04) rotate(-1deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover {
+    transition: none;
+  }
+  .lift:hover .cover {
+    transform: none;
+  }
+}
