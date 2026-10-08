@@ -218,3 +218,20 @@ html {
     transform: none;
   }
 }
+
+/* Capas de post */
+.cover {
+  transition: transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+.lift:hover .cover {
+  transform: scale(1.04) rotate(-1deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover {
+    transition: none;
+  }
+  .lift:hover .cover {
+    transform: none;
+  }
+}

@@ -1,6 +1,6 @@
 <template>
   <div class="arcade">
-    <HudNav />
+    <HudNav :reading="Boolean($route.meta.reading)" />
     <main>
       <slot />
     </main>
