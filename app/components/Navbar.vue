@@ -26,17 +26,7 @@
           </li>
 
           <li
-            v-if="!user"
-            class="hover:cursor-pointer"
-            @click="gotTo('/login')"
-          >
-            <NuxtLink to="/login">
-              <span data-text="Login">Login</span>
-            </NuxtLink>
-          </li>
-
-          <li
-            v-else
+            v-if="user"
             class="hover:cursor-pointer"
           >
             <NuxtLink to="/dashboard">
@@ -52,7 +42,6 @@
 <script setup>
 const route = useRoute()
 const user = useSupabaseUser()
-const router = useRouter()
 
 let expand = ref(false)
 
@@ -69,11 +58,6 @@ watch(route, () => {
 
 const toggle = () => {
   if (!expand.value) expand.value = true
-}
-
-const gotTo = (path) => {
-  router.push({ path })
-  expand.value = false
 }
 </script>
 

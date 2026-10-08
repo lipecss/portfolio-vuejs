@@ -1,10 +1,9 @@
+// Sem tela de login por enquanto: quem não tem sessão volta para a home.
 export default defineNuxtRouteMiddleware(async () => {
-  const router = useRouter()
-
   const client = useSupabaseClient()
   const { data } = await client.auth.getUser()
 
   if (!data.user) {
-    return router.push('/login')
+    return navigateTo('/')
   }
 })

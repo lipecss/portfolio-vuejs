@@ -64,14 +64,14 @@ export default defineNuxtConfig({
   },
   robots: {
     allow: ["/img"],
-    disallow: ["/404", "/login", "/dashboard"],
+    disallow: ["/404", "/dashboard"],
   },
   sitemap: {
-    exclude: ["/login", "/dashboard/**"],
+    exclude: ["/dashboard/**"],
     // slugs de posts e projetos vêm do Mongo
     sources: ["/api/__sitemap__/urls"],
   },
-  // o redirecionamento de login é feito pelos middlewares auth/guest
+  // o redirecionamento sem sessão é feito pelo middleware auth
   supabase: {
     redirect: false,
     types: false,
