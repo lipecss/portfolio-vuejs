@@ -5717,13 +5717,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"neo-async@npm:^2.6.2":
-  version: 2.6.2
-  resolution: "neo-async@npm:2.6.2"
-  checksum: 10c0/c2f5a604a54a8ec5438a342e1f356dff4bc33ccccdb6dc668d94fe8e5eccfc9d2c2eea6064b0967a767ba63b33763f51ccf2cd2441b461a7322656c1f06b3f5d
-  languageName: node
-  linkType: hard
-
 "next-tick@npm:^1.1.0":
   version: 1.1.0
   resolution: "next-tick@npm:1.1.0"
@@ -6036,11 +6029,9 @@ __metadata:
     pusher: "npm:^5.1.2"
     pusher-js: "npm:^8.0.2"
     sass: "npm:^1.60.0"
-    sass-loader: "npm:^13.2.2"
     slugify: "npm:^1.6.6"
     spacetime: "npm:^7.4.3"
     vue: "npm:^3.2.47"
-    vue-html-secure: "npm:^1.0.10"
     vue-loading-overlay: "npm:^6.0"
     vue3-editor: "npm:^0.1.1"
     vue3-toastify: "npm:^0.1.6"
@@ -7527,31 +7518,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass-loader@npm:^13.2.2":
-  version: 13.2.2
-  resolution: "sass-loader@npm:13.2.2"
-  dependencies:
-    klona: "npm:^2.0.6"
-    neo-async: "npm:^2.6.2"
-  peerDependencies:
-    fibers: ">= 3.1.0"
-    node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
-    sass: ^1.3.0
-    sass-embedded: "*"
-    webpack: ^5.0.0
-  peerDependenciesMeta:
-    fibers:
-      optional: true
-    node-sass:
-      optional: true
-    sass:
-      optional: true
-    sass-embedded:
-      optional: true
-  checksum: 10c0/3d474ca1e7c607a905c2220afb25cf117ff025264de7b4b54f0e2a4763f99c9eefbe8f7712a883bc025ecf06661bd242d74ac18d5e04f223f1fc2c94987e8c94
-  languageName: node
-  linkType: hard
-
 "sass@npm:^1.60.0":
   version: 1.62.1
   resolution: "sass@npm:1.62.1"
@@ -8863,13 +8829,6 @@ __metadata:
   version: 0.1.0
   resolution: "vue-devtools-stub@npm:0.1.0"
   checksum: 10c0/527af4b887eb82b000e5f56d555618d0ef5494a10d0f701899e4e8b98773a6e4af33d282c47283fb2e8f7f640d05bced7c94b31968abf4a949bc3d92075c7ce0
-  languageName: node
-  linkType: hard
-
-"vue-html-secure@npm:^1.0.10":
-  version: 1.0.10
-  resolution: "vue-html-secure@npm:1.0.10"
-  checksum: 10c0/814cbb2ee2b55ae4a1b572a5de0cfcfb4b08337cd1bf6e309fe314f4233a6f0a60b36426ff3fe82e6d0cc375a02b1a9cea571736ca01cded80095424446ad872
   languageName: node
   linkType: hard
 
