@@ -32,6 +32,8 @@ export const skillMeta = {
   Unity: { cat: 'GAMES' }
 }
 
+export const skillLabel = (name) => skillMeta[name]?.label || name
+
 export const categoryOrder = ['FRONT', 'BACK', 'FERRAMENTAS', 'GAMES', 'OUTROS']
 
 // Usado só se a API não responder.

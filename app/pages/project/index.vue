@@ -1,120 +1,81 @@
 <template>
-  <loading :active.sync="pending || loadingProjects" color="#42b883" :can-cancel="false" :lock-scroll="true"
-    :is-full-page="true" background-color="#000" />
-
-  <ClientOnly>
-    <div class="flex flex-col h-screen">
-      <div class="header text-center font-medium leading-normal">Lista de Projetos</div>
-
-      <div class="flex-grow">
-        <div class="px-10 py-20 min-h-screen">
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Thumb v-for="(project, index) in projects" :key="index" :data="project" />
-          </div>
-
-          <DownArrow v-if="!showNoMoreText" class="mt-20" />
-
-          <p v-else class="w-full text-center pt-20 pb-10">Sem mais conteúdo para mostrar</p>
-        </div>
-      </div>
-      <AlternativeFooter />
+  <section class="arc-wrap plist">
+    <div class="plist__head">
+      <span class="arc-eyebrow">03 · MISSÕES</span>
+      <h1 class="arc-h2">Todas as missões</h1>
+      <p class="plist__lead">Projetos que tirei do papel: do primeiro commit ao deploy.</p>
     </div>
-  </ClientOnly>
+
+    <div v-if="projects.length" class="plist__grid">
+      <ProjectCard v-for="(project, i) in projects" :key="project.slug" :project="project"
+        :kicker="`MISSÃO ${String(projects.length - i).padStart(2, '0')}`" />
+    </div>
+    <p v-else class="plist__empty">Nenhuma missão encontrada por aqui ainda.</p>
+  </section>
 </template>
 
 <script setup>
-import Loading from 'vue-loading-overlay'
-import 'vue-loading-overlay/dist/css/index.css'
+import getSiteMeta from '~/utils/getSiteMeta'
+
+definePageMeta({ layout: 'arcade' })
 
 const config = useRuntimeConfig()
 
-let projects = ref([])
-let projectLimit = ref(null)
-let currentPage = ref(1)
-let maxPage = ref(0)
-let loadingProjects = ref(true)
+const { data } = await useFetch('/api/projects/paginate', { query: { limit: 100 } })
 
-const { data: projectData, error, pending } = await useLazyFetch('/api/projects/paginate')
+const projects = computed(() => {
+  const docs = Array.isArray(data.value?.docs) ? data.value.docs : []
 
-watchEffect(() => {
-  if (projectData.value) {
-    projectLimit.value = projectData.value.docs.length
-    maxPage.value = projectData.value.totalPages
-
-    
-    projects.value = [...projectData.value.docs]
-  }
-
-  if (error.value) {
-    throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
-  }
-
-  loadingProjects.value = false
+  return docs
+    .filter((p) => p?.slug && p?.name)
+    .map((p) => ({ slug: p.slug, name: p.name, image: p.images?.[0]?.url, imageAlt: p.images?.[0]?.description }))
 })
 
-const showNoMoreText = computed(() => {
-  return !loadingProjects.value && currentPage.value >= maxPage.value
-})
-
-onMounted(() => {
-  window.addEventListener('scroll', onScroll)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('scroll', onScroll)
-})
-
-const onScroll = () => {
-  const bottomOfWindow = Math.round(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight - 400
-
-  if (bottomOfWindow && !loadingProjects.value) {
-    if (currentPage.value < maxPage.value) {
-      loadingProjects.value = true
-
-      setTimeout(async () => {
-        currentPage.value += 1
-        let page = currentPage.value
-
-        const { data: projectData, error } = await useFetch(`/api/projects/paginate/?page=${page}`)
-
-        if (!error.value) {
-          if (page <= projectData.value.totalPages) {
-            projects.value = projects.value.concat(projectData.value.docs)
-            projectLimit.value += projectData.value.docs.length
-          } else {
-            currentPage.value = maxPage.value
-          }
-        }
-
-        loadingProjects.value = false
-
-      }, 300)
-    }
-  }
-}
-
-const meta = computed(() => {
-  const metaData = {
-    type: 'project',
-    title: 'Listando meus projetos',
-    description: 'Explorando o mundo da programação e dos jogos, com pitadas de diversão e conhecimento. Venha conferir minhas postagens sobre os temas que mais gosto e fique por dentro das novidades do universo tecnológico.',
-    url: `${config.public.baseUrl}/project}`
-  }
-
-  return getSiteMeta(metaData)
+const meta = getSiteMeta({
+  type: 'website',
+  title: 'Listando meus projetos',
+  description: 'Explorando o mundo da programação e dos jogos, com pitadas de diversão e conhecimento. Veja os projetos que já tirei do papel.',
+  url: `${config.public.baseUrl}/project`
 })
 
 useHead({
-  title: `Felipecss - Meus projetos`,
-  meta: () => [...meta.value]
+  title: 'Felipecss - Meus projetos',
+  meta
 })
 </script>
 
-<style lang="scss" scoped>
-.header {
-  font-size: 8.888889vw;
-  background: linear-gradient(180deg, #41b883 21.09%, #00DC82 64.08%, #35495e 91.34%);
-  -webkit-background-clip: text;
-  color: transparent;
+<style scoped>
+.plist {
+  padding-top: clamp(48px, 7vw, 96px);
+  padding-bottom: 112px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.plist__head {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.plist__lead {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--arc-soft);
+  max-width: 48ch;
+}
+
+.plist__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.plist__empty {
+  margin: 0;
+  font-family: var(--arc-mono);
+  color: var(--arc-dim);
 }
 </style>

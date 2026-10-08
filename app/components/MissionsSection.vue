@@ -20,15 +20,11 @@
     </a>
 
     <div v-if="sideQuests.length" class="mis__grid">
-      <NuxtLink v-for="(q, i) in sideQuests" :key="q.slug" :to="`/project/${q.slug}`" class="lift mis__card">
-        <div class="mis__thumb">
-          <img v-if="q.image" :src="q.image" :alt="q.imageAlt" loading="lazy">
-          <span v-else>SEM IMAGEM</span>
-        </div>
-        <span class="mis__card-kicker">MISSÃO SECUNDÁRIA {{ String(i + 1).padStart(2, '0') }}</span>
-        <span class="mis__card-name">{{ q.name }}</span>
-      </NuxtLink>
+      <ProjectCard v-for="(q, i) in sideQuests" :key="q.slug" :project="q"
+        :kicker="`MISSÃO SECUNDÁRIA ${String(i + 1).padStart(2, '0')}`" />
     </div>
+
+    <NuxtLink to="/project" class="press arc-btn arc-btn--ghost mis__all">VER TODAS AS MISSÕES →</NuxtLink>
   </section>
 </template>
 
@@ -148,46 +144,7 @@ const sideQuests = computed(() =>
   gap: 24px;
 }
 
-.mis__card {
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 20px;
-  border: 2px solid var(--arc-line);
-  border-radius: 10px;
-  background: var(--arc-bg);
-}
-
-.mis__thumb {
-  aspect-ratio: 16 / 10;
-  background: var(--arc-panel);
-  border-radius: 4px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--arc-mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: #8a8499;
-}
-
-.mis__thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.mis__card-kicker {
-  font-family: var(--arc-mono);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  color: var(--arc-lil);
-}
-
-.mis__card-name {
-  font-size: 24px;
-  font-weight: 600;
+.mis__all {
+  align-self: flex-start;
 }
 </style>

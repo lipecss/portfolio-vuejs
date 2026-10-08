@@ -2,7 +2,7 @@
   <header class="hud">
     <nav class="arc-wrap hud__nav" aria-label="Principal">
       <div class="hud__left">
-        <a href="#start" class="hud__brand">FELIPE<span>CSS</span></a>
+        <NuxtLink to="/" class="hud__brand">FELIPE<span>CSS</span></NuxtLink>
         <div class="hud__stats" aria-live="off">
           <span>SCORE <b class="hud__score">{{ padScore(score) }}</b></span>
           <span>RECORDE <b class="hud__best">{{ padScore(Math.max(best, score)) }}</b></span>
@@ -10,11 +10,11 @@
         </div>
       </div>
       <div class="hud__links">
-        <a href="#personagem">PERSONAGEM</a>
-        <a href="#inventario">INVENTÁRIO</a>
-        <a href="#missoes">MISSÕES</a>
+        <NuxtLink to="/#personagem">PERSONAGEM</NuxtLink>
+        <NuxtLink to="/#inventario">INVENTÁRIO</NuxtLink>
+        <NuxtLink to="/project">MISSÕES</NuxtLink>
         <NuxtLink to="/post">LOG</NuxtLink>
-        <a href="#coop" class="press hud__coop">CO-OP</a>
+        <NuxtLink to="/#coop" class="press hud__coop">CO-OP</NuxtLink>
       </div>
     </nav>
   </header>

@@ -1,25 +1,25 @@
 <template>
-  <div class="arcade">
-    <HudNav />
-    <main>
-      <HeroTitle />
+  <div>
+    <HeroTitle />
 
-      <section class="arc-wrap arcade-stage">
-        <BugInvaders class="arcade-stage__game" />
-        <AchievementList />
-      </section>
+    <section class="arc-wrap arcade-stage">
+      <BugInvaders class="arcade-stage__game" />
+      <AchievementList />
+    </section>
 
-      <MarqueeTicker />
-      <CharacterCard />
-      <InventoryGrid />
-      <MissionsSection />
-      <LogSection />
-      <PausedSection />
-      <CoopContact />
-    </main>
-    <SiteFooter />
+    <MarqueeTicker />
+    <CharacterCard />
+    <InventoryGrid />
+    <MissionsSection />
+    <LogSection />
+    <PausedSection />
+    <CoopContact />
   </div>
 </template>
+
+<script setup>
+definePageMeta({ layout: 'arcade' })
+</script>
 
 <style scoped>
 .arcade-stage {
