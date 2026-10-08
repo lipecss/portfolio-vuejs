@@ -15,11 +15,9 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         { name: 'robots', content: 'index, follow' },
         { name: 'keywords', content: 'felipecss, felipe, vuejs, vue, javascript, developer, development, desenvolvedor' },
-        { property: 'og:image:width', content: '740' },
-        { property: 'og:image:height', content: '300' },
-        { name: 'format-detection', content: 'telephone=no' },
-        { name: 'twitter:site', content: '@felipecss' },
-        { name: 'twitter:card', content: 'summary_large_image' }
+        { property: 'og:image:width', content: '540' },
+        { property: 'og:image:height', content: '570' },
+        { name: 'format-detection', content: 'telephone=no' }
       ],
       link: [
         {
@@ -28,33 +26,16 @@ export default defineNuxtConfig({
           type: 'image/x-icon',
           href: '/favicon.png'
         },
-      ],
-      script: [
-        {
-          src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js',
-          crossorigin: 'anonymous',
-        },
-        {
-          src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js',
-          crossorigin: 'anonymous',
-        },
-        {
-          src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js',
-          crossorigin: 'anonymous',
-        },
-        {
-          src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js',
-          crossorigin: 'anonymous',
-        },
-        {
-          src: 'https://unpkg.com/gsap@3/dist/MotionPathPlugin.min.js',
-          crossorigin: 'anonymous'
-        }
       ]
     }
   },
   css: [
+    '@fontsource/jetbrains-mono/400.css',
+    '@fontsource/jetbrains-mono/600.css',
+    '@fontsource/jetbrains-mono/700.css',
+    '@fontsource/jetbrains-mono/800.css',
     '@/assets/css/main.scss',
+    '@/assets/css/arcade.css',
     '@/assets/fonts/roobert.css',
     '@fortawesome/fontawesome-svg-core/styles.css'
   ],
@@ -62,11 +43,8 @@ export default defineNuxtConfig({
     dirs: ['stores']
   },
   plugins: [
-    { src: '~/plugins/vue-typed-js.js', mode: 'client' },
-    { src: '~/plugins/aos', mode: 'client' },
     { src: '~/plugins/vue3-toastify.js', mode: 'client' },
-    { src: '~/plugins/vercel.js', mode: 'client' },
-    { src: '~/plugins/donut.js', mode: 'client' }
+    { src: '~/plugins/vercel.js', mode: 'client' }
   ],
   modules: [
     '@nuxtjs/tailwindcss',
@@ -106,7 +84,9 @@ export default defineNuxtConfig({
     },
   },
   nitro: {
-    plugins: ['~/server/index.js']
+    plugins: ['~/server/index.js'],
+    // o jsdom depende de whatwg-url@12 aninhado; bundlado, o Nitro resolveria a v5 da raiz
+    externals: { external: ['jsdom'] }
   },
   // render: {
   //   http2: {
@@ -124,6 +104,8 @@ export default defineNuxtConfig({
     connectionString: process.env.CONNECTION_STRING,
     public: {
       baseUrl: process.env.NUXT_BASE_URL || 'http://localhost:3000',
+      contactEmail: process.env.NUXT_PUBLIC_CONTACT_EMAIL || 'seu-email@exemplo.com',
+      contactEmail: process.env.NUXT_PUBLIC_CONTACT_EMAIL || 'seu-email@exemplo.com',
       mongodbUri: process.env.CONNECTION_STRING,
       googleId: process.env.GOOGLE_ADSENSE_ID,
       pusherEnv: {

@@ -22,28 +22,6 @@
 </template>
 
 <script setup>
-useHead({
-  script: [
-    {
-      src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js',
-      crossorigin: 'anonymous'
-    },
-    {
-      src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js',
-    },
-    {
-      src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js',
-    },
-    {
-      src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js',
-    },
-    {
-      src: 'https://unpkg.com/gsap@3/dist/MotionPathPlugin.min.js',
-      crossorigin: 'anonymous'
-    }
-  ]
-})
-
 const router = useRouter()
 
 const gotTo = (path) => { router.push({ path }) }

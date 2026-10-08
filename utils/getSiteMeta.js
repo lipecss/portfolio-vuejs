@@ -1,9 +1,9 @@
 const type = 'website'
-const url = 'https://casamentotafe.com/'
+const url = 'https://felipecss.com/'
 const title = 'Portifolio felipecss'
 const description = 'Esse site é meu cantinho, o lugar do Felipecss, na qual você poderá conhecer um pouco de tudo, dos meus projetos, trabalhos, gostos e de mim. Estou super ansioso para trocarmos um papo!'
-const mainImage = ''
-const twitterSite = ''
+const mainImage = 'https://felipecss.com/contact.png'
+const twitterSite = '@felipecss'
 const twitterCard = 'summary_large_image'
 
 export default (meta) => {
@@ -11,7 +11,7 @@ export default (meta) => {
     {
       hid: 'description',
       name: 'description',
-      content: (meta && meta.description)
+      content: (meta && meta.description) || description
     },
     {
       hid: 'og:type',
