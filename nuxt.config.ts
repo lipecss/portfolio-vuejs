@@ -1,9 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import getSiteMeta from './utils/getSiteMeta'
+import getSiteMeta from './app/utils/getSiteMeta'
 
 const meta = getSiteMeta()
 
 export default defineNuxtConfig({
+  compatibilityDate: '2025-07-15',
+  future: { compatibilityVersion: 4 },
   app: {
     head: {
       htmlAttrs: {
@@ -13,7 +15,6 @@ export default defineNuxtConfig({
       meta: [
         ...meta,
         { charset: 'utf-8' },
-        { name: 'robots', content: 'index, follow' },
         { name: 'keywords', content: 'felipecss, felipe, vuejs, vue, javascript, developer, development, desenvolvedor' },
         { property: 'og:image:width', content: '540' },
         { property: 'og:image:height', content: '570' },
@@ -21,11 +22,10 @@ export default defineNuxtConfig({
       ],
       link: [
         {
-          hid: 'icon',
           rel: 'icon',
-          type: 'image/x-icon',
+          type: 'image/png',
           href: '/favicon.png'
-        },
+        }
       ]
     }
   },
@@ -34,9 +34,9 @@ export default defineNuxtConfig({
     '@fontsource/jetbrains-mono/600.css',
     '@fontsource/jetbrains-mono/700.css',
     '@fontsource/jetbrains-mono/800.css',
-    '@/assets/css/main.scss',
-    '@/assets/css/arcade.css',
-    '@/assets/fonts/roobert.css'
+    '~/assets/css/main.scss',
+    '~/assets/css/arcade.css',
+    '~/assets/fonts/roobert.css'
   ],
   imports: {
     dirs: ['stores']
@@ -48,71 +48,38 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/robots',
-    '@nuxt/image-edge',
+    '@nuxtjs/sitemap',
+    '@nuxt/image',
     '@nuxtjs/supabase',
     '@pinia-plugin-persistedstate/nuxt',
-    [
-      '@pinia/nuxt',
-      {
-        autoImports: ['defineStore', 'definePiniaStore', 'acceptHMRUpdate'],
-      },
-    ],
-    '@nuxtjs/google-adsense',
-    ['@funken-studio/sitemap-nuxt-3', { generateOnBuild: true }]
+    '@pinia/nuxt'
   ],
-  'google-adsense': {
-    id: 'ca-pub-5137005946472400'
+  site: {
+    url: 'https://felipecss.com',
+    name: 'felipecss'
   },
-  image: {
-    dir: 'public'
-  },
-  supabase: {
-    redirect: true
+  robots: {
+    allow: ['/img'],
+    disallow: ['/404', '/login', '/dashboard']
   },
   sitemap: {
-    hostname: 'http://localhost:3000',
-    cacheTime: 1000 * 60 * 15,
-    exclude: [
-      '/login',
-      '/dashboard/**'
-    ],
-    defaults: {
-      changefreq: 'daily',
-      priority: 1,
-      lastmod: new Date().toISOString()
-    },
+    exclude: ['/login', '/dashboard/**'],
+    // slugs de posts e projetos vêm do Mongo
+    sources: ['/api/__sitemap__/urls']
+  },
+  // o redirecionamento de login é feito pelos middlewares auth/guest
+  supabase: {
+    redirect: false,
+    types: false
   },
   nitro: {
-    plugins: ['~/server/index.js'],
-    // o jsdom depende de whatwg-url@12 aninhado; bundlado, o Nitro resolveria a v5 da raiz
-    externals: { external: ['jsdom'] }
+    plugins: ['~~/server/index.js']
   },
-  // render: {
-  //   http2: {
-  //     push: true,
-  //     cache: {
-  //       max: 100,
-  //       maxAge: 1000 * 60 * 60 // 1 hora
-  //     }
-  //   },
-  //   static: {
-  //     maxAge: 1000 * 60 * 60 * 24 * 7
-  //   }
-  // },
   runtimeConfig: {
     connectionString: process.env.CONNECTION_STRING,
     public: {
       baseUrl: process.env.NUXT_BASE_URL || 'http://localhost:3000',
-      contactEmail: process.env.NUXT_PUBLIC_CONTACT_EMAIL || 'seu-email@exemplo.com',
-      contactEmail: process.env.NUXT_PUBLIC_CONTACT_EMAIL || 'seu-email@exemplo.com',
-      mongodbUri: process.env.CONNECTION_STRING,
-      googleId: process.env.GOOGLE_ADSENSE_ID,
-      pusherEnv: {
-        appId: process.env.PUSHER_APP_ID,
-        key: process.env.PUSHER_APP_KEY,
-        secret: process.env.PUSHER_APP_SECRET,
-        cluster: process.env.PUSHER_APP_CLUSTER
-      }
+      contactEmail: process.env.NUXT_PUBLIC_CONTACT_EMAIL || 'seu-email@exemplo.com'
     }
   }
 })

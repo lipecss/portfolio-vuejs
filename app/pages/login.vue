@@ -63,7 +63,7 @@ const password = ref('')
 
 const handleLogin = async () => {
   try {
-    const { user, error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signInWithPassword({
       email: email.value,
       password: password.value,
       options: {

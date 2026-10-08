@@ -1,7 +1,7 @@
 export default defineNuxtRouteMiddleware(async () => {
   const router = useRouter()
 
-  const client = useSupabaseAuthClient()
+  const client = useSupabaseClient()
   const { data } = await client.auth.getUser()
 
   if (!data.user) {

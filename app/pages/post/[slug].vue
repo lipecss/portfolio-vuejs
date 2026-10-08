@@ -37,14 +37,9 @@
       <Breadcrumb id="basebreadcrumb-articles" :breadcrumbList="breadcrumbList" />
     </div>
 
-    <adsbygoogle style="display:block" :id="config.googleId" ad-slot="9861534144" ad-format="auto"
-      :ad-full-width-responsive="true" />
-
     <div class="content px-6">
       <div v-html="sanitezed" class="ql-editor innerhtml"></div>
     </div>
-
-    <adsbygoogle style="display:block" :id="config.googleId" ad-slot="4077674670" ad-format="auto" :ad-full-width-responsive="true" />
 
     <AlternativeFooter />
   </div>

@@ -4,14 +4,7 @@
       <div class="max-w-md text-center">
         <h2 class="mb-8 font-extrabold text-9xl text-white inline-flex items-center">
           4
-          <NuxtImg
-            src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Face%20with%20Crossed-Out%20Eyes.png" alt="Face with Crossed-Out Eyes"
-            width="100" 
-            height="100"
-            format="webp"
-            quality="80"
-            sizes="sm:100vw md:100vw lg:100vw"
-          />
+          <span aria-label="Face with Crossed-Out Eyes" role="img" class="text-8xl mx-2">😵</span>
           4
         </h2>
 

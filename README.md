@@ -1,42 +1,26 @@
-# Nuxt 3 Minimal Starter
+# felipecss.com
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Portfólio em Nuxt 3 (estrutura `app/` do Nuxt 4 via `future.compatibilityVersion: 4`).
+Home "arcade" com o minigame Bug Invaders; posts, projetos e dashboard usam Mongo + Supabase.
 
-## Setup
-
-Make sure to install the dependencies:
+## Rodar
 
 ```bash
-# yarn
 yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install
+yarn dev        # http://localhost:3000
+yarn build      # servidor Nitro (Vercel)
 ```
 
-## Development Server
+## Variáveis de ambiente (`.env`)
 
-Start the development server on http://localhost:3000
+| Variável | Uso |
+| --- | --- |
+| `CONNECTION_STRING` | URI do MongoDB Atlas (o banco é `portfolio-api`; pode ser trocado com `MONGODB_DB`) |
+| `SUPABASE_URL`, `SUPABASE_KEY` | login do dashboard |
+| `SUPABASE_JWT_SECRET` | validação do token nas APIs de escrita |
+| `PUSHER_APP_ID`, `PUSHER_APP_KEY`, `PUSHER_APP_SECRET`, `PUSHER_APP_CLUSTER` | likes em tempo real |
+| `NUXT_BASE_URL` | URL base usada nas metas |
+| `NUXT_PUBLIC_CONTACT_EMAIL` | e-mail exibido na seção de contato |
 
-```bashs
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash 
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Em dev o servidor força DNS público (1.1.1.1/8.8.8.8) porque resolvedores locais que recusam
+consultas SRV quebram o `mongodb+srv://` (`querySrv ECONNREFUSED`).
