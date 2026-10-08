@@ -7,7 +7,7 @@
           <h2 class="arc-h2">Itens equipados</h2>
         </div>
         <div class="inv__tabs" role="group" aria-label="Filtrar itens por categoria">
-          <button v-for="tab in inventoryTabs" :key="tab.id" type="button" class="inv__tab"
+          <button v-for="tab in tabs" :key="tab.id" type="button" class="inv__tab"
             :class="{ 'inv__tab--on': current === tab.id }" :aria-pressed="current === tab.id" @click="current = tab.id">
             {{ tab.label }}
           </button>
@@ -15,7 +15,7 @@
       </div>
 
       <div class="inv__grid">
-        <div v-for="item in items" :key="item.name" class="slot inv__slot">
+        <div v-for="item in visible" :key="item.name" class="slot inv__slot">
           <span class="inv__cat">{{ item.cat }}</span>
           <span class="inv__name">{{ item.name }}</span>
         </div>
@@ -25,10 +25,31 @@
 </template>
 
 <script setup>
-import { inventory, inventoryTabs } from '~/data/home'
+import { categoryOrder, fallbackSkills, skillMeta } from '~/data/home'
+
+// Skills do Mongo; a lista fixa só entra se a API falhar ou vier vazia.
+const { data, status } = await useFetch('/api/skills/names', { server: false, lazy: true, default: () => [] })
+
+const items = computed(() => {
+  const fromApi = Array.isArray(data.value) ? data.value.filter((s) => s?.name) : []
+  // idle/pending (SSR e hidratação) renderizam igual: vazio
+  const settled = status.value === 'success' || status.value === 'error'
+  const source = fromApi.length || !settled ? fromApi : fallbackSkills
+
+  return source.map((s) => ({
+    name: skillMeta[s.name]?.label || s.name,
+    cat: skillMeta[s.name]?.cat || 'OUTROS'
+  }))
+})
+
+// Abas só para as categorias que existem.
+const tabs = computed(() => [
+  { id: 'tudo', label: 'TUDO' },
+  ...categoryOrder.filter((cat) => items.value.some((it) => it.cat === cat)).map((cat) => ({ id: cat, label: cat }))
+])
 
 const current = ref('tudo')
-const items = computed(() => (current.value === 'tudo' ? inventory : inventory.filter((it) => it.cat === current.value)))
+const visible = computed(() => (current.value === 'tudo' ? items.value : items.value.filter((it) => it.cat === current.value)))
 </script>
 
 <style scoped>

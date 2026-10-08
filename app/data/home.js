@@ -4,34 +4,39 @@ export const links = {
   github: 'https://github.com/lipecss'
 }
 
-export const inventoryTabs = [
-  { id: 'tudo', label: 'TUDO' },
-  { id: 'FRONT', label: 'FRONT' },
-  { id: 'BACK', label: 'BACK' },
-  { id: 'FERRAMENTAS', label: 'FERRAMENTAS' },
-  { id: 'GAMES', label: 'GAMES' }
-]
+// As skills vêm do Mongo (/api/skills/names); o Mongo não guarda categoria nem nome de exibição,
+// então eles ficam aqui. Skill nova sem entrada no mapa cai em "OUTROS".
+export const skillMeta = {
+  HTML: { cat: 'FRONT' },
+  CSS: { cat: 'FRONT' },
+  Javascript: { label: 'JavaScript', cat: 'FRONT' },
+  TypeScript: { cat: 'FRONT' },
+  Vuejs: { label: 'Vue.js', cat: 'FRONT' },
+  Nuxt: { cat: 'FRONT' },
+  Reactjs: { label: 'React', cat: 'FRONT' },
+  Talwind: { label: 'Tailwind', cat: 'FRONT' },
+  Pinia: { cat: 'FRONT' },
+  Vite: { cat: 'FRONT' },
+  PrimeVue: { cat: 'FRONT' },
+  Vuetify: { cat: 'FRONT' },
+  Nodejs: { label: 'Node.js', cat: 'BACK' },
+  Express: { cat: 'BACK' },
+  Deno: { cat: 'BACK' },
+  Firebase: { cat: 'BACK' },
+  Supabase: { cat: 'BACK' },
+  Pusher: { cat: 'BACK' },
+  Stripe: { cat: 'BACK' },
+  Cypress: { cat: 'FERRAMENTAS' },
+  Jest: { cat: 'FERRAMENTAS' },
+  Docker: { cat: 'FERRAMENTAS' },
+  Unity: { cat: 'GAMES' }
+}
 
-export const inventory = [
-  { name: 'HTML', cat: 'FRONT' },
-  { name: 'CSS', cat: 'FRONT' },
-  { name: 'JavaScript', cat: 'FRONT' },
-  { name: 'Vue.js', cat: 'FRONT' },
-  { name: 'Nuxt', cat: 'FRONT' },
-  { name: 'React', cat: 'FRONT' },
-  { name: 'React Native', cat: 'FRONT' },
-  { name: 'Tailwind', cat: 'FRONT' },
-  { name: 'Bootstrap', cat: 'FRONT' },
-  { name: 'Node.js', cat: 'BACK' },
-  { name: 'Express', cat: 'BACK' },
-  { name: 'SQL', cat: 'BACK' },
-  { name: 'MongoDB', cat: 'BACK' },
-  { name: 'Cypress', cat: 'FERRAMENTAS' },
-  { name: 'Git', cat: 'FERRAMENTAS' },
-  { name: 'Linux', cat: 'FERRAMENTAS' },
-  { name: 'C#', cat: 'GAMES' },
-  { name: 'Unity', cat: 'GAMES' }
-]
+export const categoryOrder = ['FRONT', 'BACK', 'FERRAMENTAS', 'GAMES', 'OUTROS']
+
+// Usado só se a API não responder.
+export const fallbackSkills = ['HTML', 'CSS', 'Javascript', 'Vuejs', 'Nuxt', 'Reactjs', 'Talwind', 'Nodejs', 'Express', 'Cypress', 'Unity']
+  .map((name) => ({ name }))
 
 export const ticker = ['Vue.js', 'Nuxt', 'Node.js', 'Supabase', 'Tailwind', 'React', 'MongoDB', 'Unity', 'Cypress', 'Linux', 'Twitch', 'Valorant']
 
